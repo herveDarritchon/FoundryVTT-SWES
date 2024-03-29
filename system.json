@@ -1,0 +1,154 @@
+{
+  "id": "crucible",
+  "title": "Crucible",
+  "description": "Crucible is an innovative and modern tabletop role-playing game system built exclusively for Foundry Virtual Tabletop as a digital platform. From the ground up, Crucible is designed to leverage the unique capabilities of Foundry VTT to provide gamemasters with a powerful toolset and effortless layers of automation, allowing gamemasters and players to focus on what matters most: telling a compelling story.",
+  "version": "0.6.0",
+  "manifest": "#{MANIFEST}#",
+  "download": "#{DOWNLOAD}#",
+  "url": "https://foundryvtt.com/packages/crucible",
+  "authors": [
+    {
+      "name": "Atropos",
+      "url": "https://foundryvtt.com",
+      "discord": "atropos"
+    }
+  ],
+  "compatibility": {
+    "minimum": 12,
+    "verified": 12
+  },
+  "license": "LICENSE",
+  "esmodules": ["crucible.mjs"],
+  "styles": ["styles/crucible.css"],
+  "packs": [
+    {
+      "name": "adversary-talents",
+      "label": "Adversary Talents",
+      "path": "packs/adversary-talents",
+      "type": "Item"
+    },
+    {
+      "name": "ancestry",
+      "label": "Ancestries",
+      "path": "packs/ancestry",
+      "type": "Item"
+    },
+    {
+      "name": "archetype",
+      "label": "Archetypes",
+      "path": "packs/archetype",
+      "type": "Item"
+    },
+    {
+      "name": "armor",
+      "label": "Armor",
+      "path": "packs/armor",
+      "type": "Item"
+    },
+    {
+      "name": "background",
+      "label": "Backgrounds",
+      "path": "packs/background",
+      "type": "Item"
+    },
+    {
+      "name": "rules",
+      "label": "System Rules",
+      "path": "packs/rules",
+      "type": "JournalEntry"
+    },
+    {
+      "name": "playtest",
+      "label": "Playtest",
+      "path": "packs/playtest",
+      "type": "Adventure"
+    },
+    {
+      "name": "pregens",
+      "label": "Pregenerated Heroes",
+      "path": "packs/pregens",
+      "type": "Actor"
+    },
+    {
+      "name": "summons",
+      "label": "Summoned Creatures",
+      "path": "packs/summons",
+      "type": "Actor"
+    },
+    {
+      "name": "talent",
+      "label": "Talents",
+      "path": "packs/talent",
+      "type": "Item"
+    },
+    {
+      "name": "taxonomy",
+      "label": "Taxonomies",
+      "path": "packs/taxonomy",
+      "type": "Item"
+    },
+    {
+      "name": "weapon",
+      "label": "Weapons",
+      "path": "packs/weapon",
+      "type": "Item"
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Crucible",
+      "color": "#561206",
+      "packs": [
+        "adversary-talents",
+        "ancestry",
+        "archetype",
+        "armor",
+        "background",
+        "rules",
+        "summons",
+        "playtest",
+        "pregens",
+        "talent",
+        "taxonomy",
+        "weapon"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "hero": {},
+      "adversary": {}
+    },
+    "Item": {
+      "ancestry": {},
+      "archetype": {},
+      "armor": {},
+      "background": {},
+      "talent": {
+        "gmOnlyFields": ["actorHooks.fn", "actions.actionHooks.fn"]
+      },
+      "taxonomy": {},
+      "weapon": {}
+    },
+    "JournalEntryPage": {
+      "skill": {}
+    }
+  },
+  "grid": {
+    "type": 1,
+    "distance": 1,
+    "units": "ft",
+    "diagonals": 4
+  },
+  "background": "systems/crucible/ui/background.webp",
+  "socket": true,
+  "primaryTokenAttribute": "resources.health",
+  "secondaryTokenAttribute": "resources.morale"
+}

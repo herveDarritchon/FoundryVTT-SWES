@@ -1,0 +1,14 @@
+# IDE
+.idea/
+.vs/
+
+# Node Modules
+node_modules/
+
+# Photoshop files
+*.psd
+
+# Foundry VTT
+crucible.lock
+signature.json
+packs/

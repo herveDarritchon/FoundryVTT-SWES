@@ -1,0 +1,164 @@
+@import "variables.less";
+
+/* ----------------------------------------- */
+/*  Armor and Weapons                        */
+/* ----------------------------------------- */
+
+.crucible-new.weapon,
+.crucible-new.armor {
+  .form-group.defense {
+    .form-fields {
+      flex: 8;
+      display: grid;
+      grid-template-columns: 1fr 64px 1fr 64px;
+    }
+  }
+  .item-fieldset {
+    display: grid;
+    gap: 0.5rem 1rem;
+    label {
+      font-size: var(--font-size-12);
+      color: var(--color-secondary);
+    }
+    .form-fields {
+      flex: 0;
+    }
+  }
+  .item-properties {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .item-equipment {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/** ----------------------------------------- *
+ *  Archetype Sheet                           *
+ * ------------------------------------------ */
+
+.crucible-new.archetype,
+.crucible-new.taxonomy {
+  .abilities {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0.5rem;
+  }
+  .resistances {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.5rem;
+  }
+  .abilities,
+  .resistances {
+    label {
+      padding: 0.25rem;
+      border: 1px solid var(--color-frame);
+      border-radius: 6px;
+    }
+    input {
+      font-size: var(--font-size-20);
+      border-color: transparent;
+    }
+  }
+  .ability-sum,
+  .resistance-sum {
+    float: right;
+  }
+  .talents {
+    gap: 1rem;
+  }
+  .droppable {
+    padding: 0 1rem;
+    border: 1px dashed var(--color-frame);
+    border-radius: 6px;
+  }
+}
+
+/** ----------------------------------------- *
+ *  Armor Sheet                               *
+ * ------------------------------------------ */
+
+.crucible.sheet.armor {
+  .resistance {
+    flex: 0 0 50%;
+    margin: 0 0 3px;
+    padding: 0 6px;
+
+    > input {
+      flex: 0 0 64px;
+      text-align: center;
+    }
+  }
+}
+
+/** ----------------------------------------- *
+ *  Action Sheet                              *
+ * ------------------------------------------ */
+
+.crucible-new.action {
+  button.delete-hook {
+    width: 28px;
+    line-height: 22px; // 28px height
+    float: right;
+  }
+}
+
+/** ----------------------------------------- *
+ *  Talent Sheet                              *
+ * ------------------------------------------ */
+
+.crucible-new.talent {
+
+  // Delete Hook
+  button.delete-hook {
+    width: 28px;
+    line-height: 22px; // 28px height
+    float: right;
+  }
+
+  // Actions Summary
+  .actions {
+    .line-item {
+      flex-direction: column;
+    }
+    .action-header h4 {
+      flex: none;
+    }
+  }
+}
+
+/** ----------------------------------------- *
+ *  Background Sheet                          *
+ * ------------------------------------------ */
+.crucible-new.background {
+  .skills {
+    .form-fields {
+      flex-wrap: wrap;
+      gap: 0.5rem 0;
+      label {
+        flex: 0 0 25%;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        input {
+          width: 16px;
+          margin: 0;
+        }
+      }
+    }
+  }
+  .talents {
+    .talent .tags {
+      flex: none;
+    }
+    .droppable {
+      padding: 0.5rem 1rem;
+      border: 1px dashed var(--color-tertiary);
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .talent + .droppable {
+      display: none;
+    }
+  }
+}
