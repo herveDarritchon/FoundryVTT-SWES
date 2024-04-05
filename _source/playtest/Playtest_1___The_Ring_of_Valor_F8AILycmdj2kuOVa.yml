@@ -2,11 +2,11 @@ name: Playtest 1 - The Ring of Valor
 img: systems/crucible/ui/banner.webp
 caption: >-
   Test your mettle in the Ring of Valor, the first available playtest for the
-  Crucible game system.
+  Star Wars Edge Studio game system.
 sort: 0
 description: >-
   <p><em>The Ring of Valor</em> is a guided introduction to character
-  development and combat mechanics in Crucible which places players in the role
+  development and combat mechanics in Star Wars Edge Studio which places players in the role
   of a gladiatorial team facing a sequence of escalating challenges.</p>
 actors:
   - folder: RIKlaSiHOWrF12cu
@@ -15965,7 +15965,7 @@ journal:
           content: >-
             <p><strong>Playtest One: The Ring of Valor </strong>is a guided
             introduction to character development and combat mechanics in
-            Crucible which places players in the role of a gladiatorial team
+            Star Wars Edge Studio which places players in the role of a gladiatorial team
             facing a sequence of challenges in the Ring of Valor.</p><p>Players
             may either create their own characters from scratch following the
             @UUID[Compendium.crucible.rules.JournalEntry.gszlBVQ5fGh3y0I6]{Character
@@ -15984,15 +15984,15 @@ journal:
             designed to introduce new gameplay mechanics and provide an
             opportunity to test out new abilities gained through level
             advancement.</p><h2 class="divider">Providing Feedback</h2><p>If you
-            test Crucible and experience the Ring of Valor, please help us by
+            test Star Wars Edge Studio and experience the Ring of Valor, please help us by
             taking a few moments to
             @UUID[Compendium.crucible.rules.JournalEntry.5SgXrAKS2EnqVggJ.JournalEntryPage.4Ggutuh9uzhcEXSK]{Provide
             Feedback} using our <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSd70XUeY_G3VDwlrEArSk1twTiw2xo0wJuQV6BcttmYRQcesg/viewform"
-            title="Crucible Feedback - Playtest One">Playtest One Feedback
+            title="Star Wars Edge Studio Feedback - Playtest One">Playtest One Feedback
             Form</a> or via the <strong>#crucible</strong> channel in our
             community Discord server.</p><h2 class="divider">Regarding
-            Defeat</h2><p>Normally, in Crucible - defeat whether by
+            Defeat</h2><p>Normally, in Star Wars Edge Studio - defeat whether by
             <strong>Insanity</strong> or <strong>Death</strong> would be the end
             of a character's journey. In the case of this initial playtest,
             however, we recommend that you as the Gamemaster adopt a more
@@ -16445,7 +16445,7 @@ journal:
         text:
           format: 1
           content: >-
-            <p>Thank you for completing the first <strong>Crucible Patreon
+            <p>Thank you for completing the first <strong>Star Wars Edge Studio Patreon
             Playtest</strong>. We hope that you and your players enjoyed the
             testing experience. For further challenges to evaluate the system,
             we recommend the following:</p><ol><li><p>Repeat the
@@ -18897,7 +18897,7 @@ macros: []
 cards: []
 playlists: []
 folders:
-  - name: Crucible Playtest
+  - name: Star Wars Edge Studio Playtest
     sorting: a
     folder: null
     type: Scene
@@ -18913,7 +18913,7 @@ folders:
       modifiedTime: 1686269718409
       lastModifiedBy: AnoypGxxNIMOS0XY
     description: ''
-  - name: Crucible Playtest
+  - name: Star Wars Edge Studio Playtest
     sorting: a
     folder: null
     type: Actor
@@ -19025,7 +19025,7 @@ folders:
       modifiedTime: 1686269649384
       lastModifiedBy: AnoypGxxNIMOS0XY
     description: ''
-  - name: Crucible Playtest
+  - name: Star Wars Edge Studio Playtest
     sorting: a
     folder: null
     type: JournalEntry

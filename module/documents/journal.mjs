@@ -14,7 +14,7 @@ const JOURNAL_CONFIG = `${JOURNAL_PATH}/config.json`;
  * The name of a world-level Folder where the rules entries are created
  * @type {string}
  */
-const LOCAL_FOLDER_NAME = "Crucible Rules";
+const LOCAL_FOLDER_NAME = "Star Wars Edge Studio Rules";
 
 /**
  * The collection name of the destination compendium pack where rules should be loaded

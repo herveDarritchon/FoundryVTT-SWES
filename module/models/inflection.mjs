@@ -1,5 +1,5 @@
 /**
- * The data structure and functionality of a Metamagic Inflection in the Crucible spellcraft system.
+ * The data structure and functionality of a Metamagic Inflection in the Star Wars Edge Studio spellcraft system.
  */
 export default class CrucibleInflection extends foundry.abstract.DataModel {
   static defineSchema() {

@@ -36,7 +36,7 @@ import CrucibleWeapon from "../models/weapon.mjs";
  */
 
 /**
- * The Actor document subclass in the Crucible system which extends the behavior of the base Actor class.
+ * The Actor document subclass in the Star Wars Edge Studio system which extends the behavior of the base Actor class.
  */
 export default class CrucibleActor extends Actor {
   constructor(data, context) {

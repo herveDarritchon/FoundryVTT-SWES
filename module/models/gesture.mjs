@@ -1,5 +1,5 @@
 /**
- * The data structure and functionality of a Somatic Gesture in the Crucible spellcraft system.
+ * The data structure and functionality of a Somatic Gesture in the Star Wars Edge Studio spellcraft system.
  */
 export default class CrucibleGesture extends foundry.abstract.DataModel {
   static defineSchema() {

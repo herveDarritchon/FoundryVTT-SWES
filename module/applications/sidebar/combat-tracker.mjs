@@ -1,5 +1,5 @@
 /**
- * Extend and replace the core CombatTracker class to add Crucible-specific UI customizations.
+ * Extend and replace the core CombatTracker class to add Star Wars Edge Studio-specific UI customizations.
  */
 export default class CrucibleCombatTracker extends CombatTracker {
 

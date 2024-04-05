@@ -13,7 +13,7 @@
  */
 
 /**
- * This class defines data schema, methods, and properties shared by all Actor subtypes in the Crucible system.
+ * This class defines data schema, methods, and properties shared by all Actor subtypes in the Star Wars Edge Studio system.
  *
  * @property {Object<string, CrucibleActorSkill>} skills
  */
@@ -24,7 +24,7 @@ export default class CrucibleActorType extends foundry.abstract.TypeDataModel {
   /* -------------------------------------------- */
 
   /**
-   * Define shared schema elements used by every Actor sub-type in Crucible.
+   * Define shared schema elements used by every Actor sub-type in Star Wars Edge Studio.
    * This method is extended by subclasses to add type-specific fields.
    * @override
    */

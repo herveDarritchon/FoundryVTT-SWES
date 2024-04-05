@@ -679,7 +679,7 @@ export default class CrucibleAction extends foundry.abstract.DataModel {
     foundry.utils.mergeObject(u, foundry.utils.expandObject(this.usage.actorUpdates));
     u.system ||= {};
     if ( u.system.status ) {
-      console.error(`Crucible | "system.status" key present in action.usage.actorUpdates: ${this.name}`);
+      console.error(`Star Wars Edge Studio | "system.status" key present in action.usage.actorUpdates: ${this.name}`);
     }
     u.system.status = Object.assign(u.system.status || {}, {lastAction: this.id},
       foundry.utils.expandObject(this.usage.actorStatus));

@@ -2,7 +2,7 @@ import CrucibleAction from "./action.mjs";
 import SpellCastDialog from "../dice/spell-cast-dialog.mjs";
 
 /**
- * Data and functionality that represents a Spell in the Crucible spellcraft system.
+ * Data and functionality that represents a Spell in the Star Wars Edge Studio spellcraft system.
  *
  * @property {CrucibleRune} rune
  * @property {CrucibleGesture} gesture

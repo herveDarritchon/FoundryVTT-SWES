@@ -1,116 +1,42 @@
 {
-  "id": "crucible",
-  "title": "Crucible",
-  "description": "Crucible is an innovative and modern tabletop role-playing game system built exclusively for Foundry Virtual Tabletop as a digital platform. From the ground up, Crucible is designed to leverage the unique capabilities of Foundry VTT to provide gamemasters with a powerful toolset and effortless layers of automation, allowing gamemasters and players to focus on what matters most: telling a compelling story.",
-  "version": "0.6.0",
+  "id": "swes",
+  "title": "Star Wars Edge Studio (FFG)",
+  "description": "Star Wars RPG Integration is a cutting-edge and contemporary digital adaptation of the Star Wars Roleplaying game by Edge Studio (formerly Fantasy Flight Games), crafted exclusively for Foundry Virtual Tabletop. From its inception, this project is engineered to harness the distinctive features of Foundry VTT, offering game masters a robust suite of tools and layers of automation for an unparalleled gameplay experience. This integration allows game masters and players to concentrate on the core aspect of role-playing games: weaving engaging and memorable narratives within the vast Star Wars universe.",
+  "version": "0.1.0",
   "manifest": "#{MANIFEST}#",
   "download": "#{DOWNLOAD}#",
-  "url": "https://foundryvtt.com/packages/crucible",
+  "url": "https://foundryvtt.com/packages/swes",
   "authors": [
     {
-      "name": "Atropos",
-      "url": "https://foundryvtt.com",
-      "discord": "atropos"
+      "name": "Hervé Darritchon",
+      "url": "https://herdev.hervedarritchon.com",
+      "discord": "herveDarritchon#7262"
     }
   ],
   "compatibility": {
-    "minimum": 12,
-    "verified": 12
+    "minimum": 11,
+    "verified": 11
   },
   "license": "LICENSE",
-  "esmodules": ["crucible.mjs"],
-  "styles": ["styles/crucible.css"],
+  "esmodules": ["swes.mjs"],
+  "styles": ["styles/swes.css"],
+  "scripts": [
+    "./vendors/jszip/jszip.min.js"
+  ],
   "packs": [
     {
-      "name": "adversary-talents",
-      "label": "Adversary Talents",
-      "path": "packs/adversary-talents",
-      "type": "Item"
-    },
-    {
-      "name": "ancestry",
-      "label": "Ancestries",
-      "path": "packs/ancestry",
-      "type": "Item"
-    },
-    {
-      "name": "archetype",
-      "label": "Archetypes",
-      "path": "packs/archetype",
-      "type": "Item"
-    },
-    {
-      "name": "armor",
-      "label": "Armor",
-      "path": "packs/armor",
-      "type": "Item"
-    },
-    {
-      "name": "background",
-      "label": "Backgrounds",
-      "path": "packs/background",
-      "type": "Item"
-    },
-    {
-      "name": "rules",
-      "label": "System Rules",
-      "path": "packs/rules",
+      "name": "news",
+      "label": "System News",
+      "path": "packs/news",
       "type": "JournalEntry"
-    },
-    {
-      "name": "playtest",
-      "label": "Playtest",
-      "path": "packs/playtest",
-      "type": "Adventure"
-    },
-    {
-      "name": "pregens",
-      "label": "Pregenerated Heroes",
-      "path": "packs/pregens",
-      "type": "Actor"
-    },
-    {
-      "name": "summons",
-      "label": "Summoned Creatures",
-      "path": "packs/summons",
-      "type": "Actor"
-    },
-    {
-      "name": "talent",
-      "label": "Talents",
-      "path": "packs/talent",
-      "type": "Item"
-    },
-    {
-      "name": "taxonomy",
-      "label": "Taxonomies",
-      "path": "packs/taxonomy",
-      "type": "Item"
-    },
-    {
-      "name": "weapon",
-      "label": "Weapons",
-      "path": "packs/weapon",
-      "type": "Item"
     }
   ],
   "packFolders": [
     {
-      "name": "Crucible",
+      "name": "swes",
       "color": "#561206",
       "packs": [
-        "adversary-talents",
-        "ancestry",
-        "archetype",
-        "armor",
-        "background",
-        "rules",
-        "summons",
-        "playtest",
-        "pregens",
-        "talent",
-        "taxonomy",
-        "weapon"
+        "news"
       ]
     }
   ],
@@ -144,10 +70,10 @@
   "grid": {
     "type": 1,
     "distance": 1,
-    "units": "ft",
+    "units": "m",
     "diagonals": 4
   },
-  "background": "systems/crucible/ui/background.webp",
+  "background": "systems/swes/ui/background.webp",
   "socket": true,
   "primaryTokenAttribute": "resources.health",
   "secondaryTokenAttribute": "resources.morale"

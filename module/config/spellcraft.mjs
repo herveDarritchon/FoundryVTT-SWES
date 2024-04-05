@@ -4,7 +4,7 @@ export const NAME_FORMATS = Object.freeze({
 });
 
 /**
- * The Arcane Runes which exist in the Crucible spellcraft system.
+ * The Arcane Runes which exist in the Star Wars Edge Studio spellcraft system.
  * These config objects are instantiated as CrucibleRune instances during system initialization.
  * @enum {CrucibleRune}
  */
@@ -146,7 +146,7 @@ export const RUNES = Object.seal({
 });
 
 /**
- * The Somatic Gestures which exist in the Crucible spellcraft system.
+ * The Somatic Gestures which exist in the Star Wars Edge Studio spellcraft system.
  * These config objects are instantiated as CrucibleGesture instances during system initialization.
  * @enum {CrucibleGesture}
  */
@@ -357,7 +357,7 @@ export const GESTURES = Object.seal({
 });
 
 /**
- * The Metamagic Inflections which exist in the Crucible spellcraft system.
+ * The Metamagic Inflections which exist in the Star Wars Edge Studio spellcraft system.
  * These config objects are instantiated as CrucibleInflection instances during system initialization.
  * @enum {CrucibleInflection}
  */

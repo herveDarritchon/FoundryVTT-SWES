@@ -1,7 +1,7 @@
 import CrucibleSheetMixin from "./crucible-sheet.mjs";
 
 /**
- * Define a custom JournalSheet class used for the Crucible rules journal entries.
+ * Define a custom JournalSheet class used for the Star Wars Edge Studio rules journal entries.
  * @extends JournalSheet
  * @mixes CrucibleSheet
  */

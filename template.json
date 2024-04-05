@@ -1,0 +1,18 @@
+{
+  "Actor": {
+    "types": ["character", "opponent"],
+    "character": {},
+    "opponent": {}
+  },
+  "Item": {
+    "types": ["archetype", "ability", "item", "weapon", "magic", "definition", "attack", "opponentAbility"],
+    "archetype": {},
+    "ability": {},
+    "item": {},
+    "weapon": {},
+    "magic": {},
+    "definition": {},
+    "attack": {},
+    "opponentAbility": {}
+  }
+}

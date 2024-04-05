@@ -24,7 +24,7 @@ import CrucibleTalentNode from "../config/talent-tree.mjs";
  */
 
 /**
- * The data schema of a Talent type Item in the Crucible system.
+ * The data schema of a Talent type Item in the Star Wars Edge Studio system.
  *
  * @property {TalentRankData} currentRank             The current rank in this talent
  * @property {number} cost                            The action point cost to have obtained the current rank

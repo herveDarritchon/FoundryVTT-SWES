@@ -276,12 +276,12 @@ export default class CrucibleActorSheet extends ActorSheet {
         consumables: {
           label: "Consumables",
           items: [],
-          empty: "Consumable items are not yet supported in the Crucible system Playtest 1."
+          empty: "Consumable items are not yet supported in the Star Wars Edge Studio system Playtest 1."
         },
         backpack: {
           label: "Backpack",
           items: [],
-          empty: "Add Armor or Weapons by dropping them from the provided Crucible system compendium packs."
+          empty: "Add Armor or Weapons by dropping them from the provided Star Wars Edge Studio system compendium packs."
         }
       }
     };

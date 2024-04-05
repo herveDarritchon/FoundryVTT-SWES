@@ -1,7 +1,7 @@
 import ActionConfig from "../config/action.mjs";
 
 /**
- * Add common functionalities to every Crucible Sheet application which alters their visual style.
+ * Add common functionalities to every Star Wars Edge Studio Sheet application which alters their visual style.
  * @param {typeof Application} Base     The base Application class being extended
  * @returns {typeof Application}        The extended CrucibleSheet class
  */

@@ -8,7 +8,7 @@ import * as SKILL from "./skills.mjs"
 import * as SPELL from "./spellcraft.mjs";
 import * as WEAPON from "./weapon.mjs";
 import {QUALITY_TIERS, ENCHANTMENT_TIERS} from "./items.mjs";
-export const SYSTEM_ID = "crucible";
+export const SYSTEM_ID = "swes";
 
 /* -------------------------------------------- */
 
