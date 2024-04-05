@@ -10,8 +10,8 @@ describe('OggDudeDataElement tests', () => {
             expect(oggDudeDataElement.isDir()).toBe(true);
             expect(oggDudeDataElement.isXml()).toBe(false);
             expect(oggDudeDataElement.isImage()).toBe(false);
-            expect(oggDudeDataElement.name).toBe(
-
+            expect(oggDudeDataElement.name).toBe("");
+        });
         describe('zip entry of file type is', () => {
             test('image should return an element of type image', () => {
                 let oggDudeDataElement = new OggDudeDataElement({name: "path/name.jpg", dir: false});
