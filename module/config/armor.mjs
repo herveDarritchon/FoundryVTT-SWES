@@ -1,5 +1,5 @@
 /**
- * @typedef {Object} CrucibleArmorCategory
+ * @typedef {Object} SwesArmorCategory
  * @property {string} id
  * @property {string} label
  * @property {{min: number, max: number}} armor
@@ -8,7 +8,7 @@
 
 /**
  * Named armor categories which are allowed by the system
- * @enum {CrucibleArmorCategory}
+ * @enum {SwesArmorCategory}
  */
 export const CATEGORIES = {
   unarmored: {

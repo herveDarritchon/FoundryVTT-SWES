@@ -1,5 +1,3 @@
-import CrucibleSheetMixin from "./crucible-sheet.mjs";
-
 /**
  * A sheet application for displaying and configuring Items with the Armor type.
  * @extends ItemSheet

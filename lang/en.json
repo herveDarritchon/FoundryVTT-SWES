@@ -18,6 +18,20 @@
       "skill": "Star Wars Edge Studio Skill"
     }
   },
+  "ARMOR": {
+    "Source": {
+      "label": "Source",
+      "hint": "Source of the armor"
+    },
+    "Category": {
+      "label": "Category",
+      "hint": "Category of the armor"
+    },
+    "Mod": {
+      "label": "Modification",
+      "hint": "Modification of the armor"
+    }
+  },
   "SWES": {
     "Base": "Base",
     "Bonus": "Bonus",

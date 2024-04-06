@@ -1,123 +1,145 @@
-import CruciblePhysicalItem from "./physical.mjs";
-import { SYSTEM } from "../config/system.mjs";
-
 /**
  * Data schema, attributes, and methods specific to Armor type Items.
  */
-export default class CrucibleArmor extends CruciblePhysicalItem {
+export default class SwesArmor {
 
-  /** @override */
-  static ITEM_CATEGORIES = SYSTEM.ARMOR.CATEGORIES;
+    /* -------------------------------------------- */
+    /*  Data Schema                                 */
 
-  /** @override */
-  static DEFAULT_CATEGORY = "medium";
+    /* -------------------------------------------- */
+    /** @inheritDoc */
+    static defineSchema() {
+        const fields = foundry.data.fields;
+        const optionalBoolean = {required: false, nullable: false};
+        const requiredString = {required: true, blank: false, trim: true, nullable: false};
+        const optionalString = {required: false, blank: false, trim: true, nullable: false};
+        const requiredInteger = {required: true, nullable: false, integer: true};
+        const optionalInteger = {required: false, nullable: false, integer: true};
 
-  /** @override */
-  static ITEM_PROPERTIES = SYSTEM.ARMOR.PROPERTIES;
-
-  /** @override */
-  static LOCALIZATION_PATHS = ["ITEM.FIELDS", "ARMOR.FIELDS"];
-
-  /* -------------------------------------------- */
-  /*  Data Schema                                 */
-  /* -------------------------------------------- */
-
-  /** @inheritDoc */
-  static defineSchema() {
-    const fields = foundry.data.fields;
-    return foundry.utils.mergeObject(super.defineSchema(), {
-      armor: new fields.SchemaField({
-        base: new fields.NumberField({integer: true, nullable: false, initial: 0, min: 0}),
-      }),
-      dodge: new fields.SchemaField({
-        base: new fields.NumberField({integer: true, nullable: false, initial: 0, min: 0}),
-      }),
-    });
-  }
-
-  /* -------------------------------------------- */
-  /*  Data Preparation                            */
-  /* -------------------------------------------- */
-
-  /**
-   * Weapon configuration data.
-   * @type {{category: WeaponCategory, quality: ItemQualityTier, enchantment: ItemEnchantmentTier}}
-   */
-  config;
-
-  /**
-   * Item rarity score.
-   * @type {number}
-   */
-  rarity;
-
-  /* -------------------------------------------- */
-
-  /**
-   * Prepare derived data specific to the weapon type.
-   */
-  prepareBaseData() {
-
-    // Armor Category
-    const categoryId = this.category in SYSTEM.ARMOR.CATEGORIES ? this.category : this.constructor.DEFAULT_CATEGORY;
-    const category = SYSTEM.ARMOR.CATEGORIES[categoryId];
-
-    // Armor Quality
-    const qualities = SYSTEM.QUALITY_TIERS;
-    const quality = qualities[this.quality] || qualities.standard;
-
-    // Enchantment Level
-    const enchantments = SYSTEM.ENCHANTMENT_TIERS;
-    const enchantment = enchantments[this.enchantment] || enchantments.mundane;
-
-    // Armor Configuration
-    this.config = {category, quality, enchantment};
-    this.rarity = quality.rarity + enchantment.rarity;
-
-    // Armor Defense
-    this.armor.base = Math.clamp(this.armor.base, category.armor.min, category.armor.max);
-    this.armor.bonus = quality.bonus + enchantment.bonus;
-
-    // Dodge Defense
-    this.dodge.base = Math.clamp(this.dodge.base, category.dodge.min, category.dodge.max);
-    this.dodge.start = category.dodge.start;
-
-    // Broken Armor
-    if ( this.broken ) {
-      this.armor.base = Math.floor(this.armor.base / 2);
-      this.armor.bonus = Math.floor(this.armor.bonus / 2);
+        return foundry.utils.mergeObject(super.defineSchema(),
+            {
+                key: new fields.StringField({...requiredString}),
+                name: new fields.StringField({...requiredString}),
+                description: new fields.StringField({...requiredString}),
+                sources: new fields.ArrayField(
+                    new fields.SchemaField({
+                        description: new fields.StringField({...requiredString}),
+                        page: new fields.NumberField({...requiredInteger, min: 1, initial: 1})
+                    }),
+                    {
+                        required: true,
+                        initial: [],
+                        label: "ARMOR.Source.label",
+                        hint: "ARMOR.Source.hint"
+                    }
+                ),
+                defense: new fields.NumberField({...requiredInteger, initial: 0, min: 0, max: 20}),
+                soak: new fields.NumberField({...requiredInteger, initial: 0, min: 0, max: 20}),
+                price: new fields.NumberField({...requiredInteger, initial: 1, min: 0}),
+                encumbrance: new fields.NumberField({...requiredInteger, initial: 0, min: 0, max: 50}),
+                hp: new fields.NumberField({...requiredInteger, initial: 0, min: 0, max: 20}),
+                rarity: new fields.NumberField({...requiredInteger, initial: 5, min: 0, max: 10}),
+                categories: new fields.ArrayField(new fields.StringField({...requiredString}),
+                    {
+                        required: false,
+                        initial: [],
+                        label: "ARMOR.Category.label",
+                        hint: "ARMOR.Category.hint"
+                    },
+                ),
+                mods:
+                    new fields.ArrayField(
+                        new fields.SchemaField({
+                            key: new fields.StringField({...optionalString}),
+                            miscDesc: new fields.StringField({...optionalString}),
+                            count: new fields.NumberField({...optionalInteger, min: 0}),
+                            dieModifiers: new fields.ArrayField(
+                                new fields.SchemaField({
+                                    skillKey: new fields.StringField({...optionalString}),
+                                    skillType: new fields.StringField({...optionalString}),
+                                    skillChar: new fields.StringField({...optionalString}),
+                                    addSetBackCount: new fields.NumberField({...optionalInteger, min: 0, max: 10}),
+                                    advantageCount: new fields.NumberField({...optionalInteger, min: 0, max: 10}),
+                                    boostCount: new fields.NumberField({...optionalInteger, min: 0, max: 10}),
+                                    setbackCount: new fields.NumberField({...optionalInteger, min: 0, max: 10}),
+                                    successCount: new fields.NumberField({...optionalInteger, min: 0, max: 10}),
+                                    threatCount: new fields.NumberField({...optionalInteger, min: 0, max: 10}),
+                                    upgradeAbilityCount: new fields.NumberField({...optionalInteger, min: 0,}),
+                                    upgradeDifficultyCount: new fields.NumberField({
+                                        ...optionalInteger,
+                                        min: 0,
+                                        max: 10
+                                    }),
+                                })
+                            ),
+                        })
+                        , {
+                            required: false,
+                            initial: [],
+                            label: "ARMOR.Mod.label",
+                            hint: "ARMOR.Mod.hint"
+                        }),
+                weaponModifiers: new fields.ArrayField(
+                    new fields.SchemaField({
+                        unarmed: new fields.BooleanField({...optionalBoolean}),
+                        skillKey: new fields.StringField({...optionalString}),
+                        damage: new fields.NumberField({...optionalInteger, min: 0, max: 10}),
+                        damageAdd: new fields.NumberField({...optionalInteger, min: 0, max: 10}),
+                        crit: new fields.NumberField({...optionalInteger, min: 0, max: 10}),
+                        critSub: new fields.NumberField({...optionalInteger, min: 0, max: 10}),
+                        rangeValue: new fields.NumberField({...optionalInteger, min: 0, max: 10}),
+                        qualities: new fields.ArrayField(
+                            new fields.SchemaField({
+                                key: new fields.StringField({...optionalString}),
+                                count: new fields.NumberField({...optionalInteger, min: 0, max: 100})
+                            })
+                        ),
+                        range: new fields.StringField({...optionalString}),
+                        mods: new fields.ArrayField(
+                            new fields.SchemaField({
+                                miscDesc: new fields.StringField({...optionalString}),
+                                count: new fields.NumberField({...optionalInteger, min: 0, max: 100})
+                            })
+                        ),
+                    })
+                ),
+                eraPricing: new fields.ArrayField({
+                    era: new fields.SchemaField({
+                        name: new fields.StringField({...requiredString}),
+                        price: new fields.NumberField({...requiredInteger, min: 0}),
+                        rarity: new fields.NumberField({...requiredInteger, min: 0, max: 10}),
+                        restricted: new fields.BooleanField({...optionalBoolean, initial: false})
+                    }),
+                })
+            });
     }
 
-    // Armor Properties
-    for ( let p of this.properties ) {
-      const prop = SYSTEM.ARMOR.PROPERTIES[p];
-      if ( prop.rarity ) this.rarity += prop.rarity;
-    }
-  }
+    /* -------------------------------------------- */
+    /*  Data Preparation                            */
+    /* -------------------------------------------- */
 
-  /* -------------------------------------------- */
-  /*  Helper Methods                              */
-  /* -------------------------------------------- */
+    /**
+     * Weapon configuration data.
+     * @type {{category: WeaponCategory, quality: ItemQualityTier, enchantment: ItemEnchantmentTier}}
+     */
+    config;
 
-  /**
-   * Return an object of string formatted tag data which describes this item type.
-   * @param {string} [scope="full"]       The scope of tags being retrieved, "full" or "short"
-   * @returns {Object<string, string>}    The tags which describe this weapon
-   */
-  getTags(scope="full") {
-    const tags = {};
-    tags.category = this.config.category.label;
-    for ( let p of this.properties ) {
-      tags[p] = SYSTEM.ARMOR.PROPERTIES[p].label;
+    /**
+     * Item rarity score.
+     * @type {number}
+     */
+    rarity;
+
+    /* -------------------------------------------- */
+
+    /**
+     * Prepare derived data specific to the weapon type.
+     */
+    prepareBaseData() {
     }
-    tags.armor = `${this.armor.base + this.armor.bonus} Armor`;
-    const actor = this.parent.parent;
-    if ( !actor ) tags.dodge = `${this.dodge.base}+ Dodge`;
-    else {
-      const dodgeBonus = Math.max(actor.system.abilities.dexterity.value - this.dodge.start, 0);
-      tags.dodge = `${this.dodge.base + dodgeBonus} Dodge`;
-      tags.total = `${this.armor.base + this.armor.bonus + this.dodge.base + dodgeBonus} Defense`;
-    }
-    return tags;
-  }
+
+    /* -------------------------------------------- */
+    /*  Helper Methods                              */
+
+    /* -------------------------------------------- */
 }

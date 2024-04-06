@@ -1,6 +1,6 @@
 {
   "id": "swes",
-  "title": "Star Wars Edge Studio (FFG)",
+  "title": "Star Wars (Edge Studio/FFG)",
   "description": "Star Wars RPG Integration is a cutting-edge and contemporary digital adaptation of the Star Wars Roleplaying game by Edge Studio (formerly Fantasy Flight Games), crafted exclusively for Foundry Virtual Tabletop. From its inception, this project is engineered to harness the distinctive features of Foundry VTT, offering game masters a robust suite of tools and layers of automation for an unparalleled gameplay experience. This integration allows game masters and players to concentrate on the core aspect of role-playing games: weaving engaging and memorable narratives within the vast Star Wars universe.",
   "version": "0.1.0",
   "manifest": "#{MANIFEST}#",
@@ -18,7 +18,7 @@
     "verified": 11
   },
   "license": "LICENSE",
-  "esmodules": ["swes.mjs"],
+  "esmodules": ["./swes.mjs"],
   "styles": ["styles/swes.css"],
   "scripts": [
     "./vendors/jszip/jszip.min.js"
