@@ -49,6 +49,7 @@ Hooks.once('init', function () {
   CONFIG.Item.documentClass = swesItem;
   CONFIG.Item.dataModels = {
     item: models.swesItem,
+    armor: models.swesArmor,
     feature: models.swesFeature,
     spell: models.swesSpell
   }
