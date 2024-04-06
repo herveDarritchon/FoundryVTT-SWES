@@ -1,0 +1,26 @@
+{
+  "name": "swes",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "compileCSS": "lessc styles/swes.less styles/swes.css",
+    "compilePacks": "node build.mjs compile",
+    "extractPacks": "node build.mjs extract",
+    "test": "jest --config=jest.config.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
+    "@foundryvtt/foundryvtt-cli": "^1.0.2",
+    "babel-jest": "^29.7.0",
+    "commander": "^11.1.0",
+    "gulp": "^5.0.0",
+    "gulp-less": "^5.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "less": "^4.2.0"
+  },
+  "author": "Hervé Darritchon",
+  "license": "MIT"
+}

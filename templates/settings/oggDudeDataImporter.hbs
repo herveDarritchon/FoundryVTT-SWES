@@ -1,0 +1,16 @@
+<form class="oggDude-data-importer" autocomplete="off">
+    <div class="form-group file-picker">
+        <h2>{{localize "SETTINGS.OggDudeDataImporter.loadWindow.title"}}</h2>
+        <h4>{{localize "SETTINGS.OggDudeDataImporter.loadWindow.message"}}</h4>
+        <div class="form-fields">
+            <label for="zip-file">{{localize "SETTINGS.OggDudeDataImporter.loadWindow.selectFile"}}</label>
+            <input id="zip-file" type="file" name="zip-file" accept=".zip"/>
+        </div>
+        <div>
+            <button type="button" class="control load-button" data-action="load">
+                <i class="fa-solid fa-jedi"></i>
+                {{localize "SETTINGS.OggDudeDataImporter.loadWindow.load"}}
+            </button>
+        </div>
+    </div>
+</form>

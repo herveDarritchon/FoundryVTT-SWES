@@ -1,0 +1,91 @@
+{
+  "ARMOR": {
+    "Source": {
+      "label": "Source",
+      "hint": "Source of the armor"
+    },
+    "Category": {
+      "label": "Category",
+      "hint": "Category of the armor"
+    },
+    "Mod": {
+      "label": "Modification",
+      "hint": "Modification of the armor"
+    }
+  },
+  "SETTINGS": {
+    "OggDudeDataImporter": {
+      "name": "OggDude Data Importer",
+      "label": "Import data from OggDude",
+      "hint": "Allow SWES to import data directly into it based on OggDude Data (like vehicles, characters, ship ...).",
+      "loadWindow": {
+        "menuLabel": "Import OggDude Data",
+        "title": "Import OggDude Data",
+        "message": "Please select the OggDude Data file you want to import.",
+        "selectFile": "OggDude Data File",
+        "load": "Load"
+      }
+    }
+  },
+  "SWES": {
+    "Base": "Base",
+    "Bonus": "Bonus",
+    "Rules": "Star Wars Edge Studio Rules",
+    "Scaling": "Scaling",
+    "Scaled": "Scaled",
+    "Ability": {
+      "Str": {
+        "long": "Strength",
+        "abbr": "str"
+      },
+      "Con": {
+        "long": "Constitution",
+        "abbr": "con"
+      },
+      "Dex": {
+        "long": "Dexterity",
+        "abbr": "dex"
+      },
+      "Int": {
+        "long": "Intelligence",
+        "abbr": "int"
+      },
+      "Wis": {
+        "long": "Wisdom",
+        "abbr": "wis"
+      },
+      "Cha": {
+        "long": "Charisma",
+        "abbr": "cha"
+      }
+    },
+    "SheetLabels": {
+      "Actor": "swes Actor Sheet",
+      "Item": "swes Item Sheet"
+    },
+    "Item": {
+      "Spell": {
+        "SpellLVL": "Level {level} Spells",
+        "AddLVL": "Add LVL {level}"
+      }
+    },
+    "Effect": {
+      "Source": "Source",
+      "Toggle": "Toggle Effect",
+      "Temporary": "Temporary Effects",
+      "Passive": "Passive Effects",
+      "Inactive": "Inactive Effects"
+    }
+  },
+  "TYPES": {
+    "Actor": {
+      "character": "Character",
+      "npc": "NPC"
+    },
+    "Item": {
+      "item": "Item",
+      "feature": "Feature",
+      "spell": "Spell"
+    }
+  }
+}

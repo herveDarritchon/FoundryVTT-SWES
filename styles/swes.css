@@ -1,0 +1,567 @@
+/* ----------------------------------------- */
+/*  Font Faces                               */
+/* ----------------------------------------- */
+@font-face {
+  font-family: "CaslonAntique";
+  src: url("../fonts/CaslonAntique/CaslonAntique.ttf");
+}
+@font-face {
+  font-family: "Planewalker";
+  src: url("../fonts/Planewalker/Planewalker.otf");
+}
+@font-face {
+  font-family: "AwerySmallcaps";
+  src: url("../fonts/AwerySmallcaps/AwerySmallcaps.ttf");
+}
+@font-face {
+  font-family: "Constantia";
+  src: url("../fonts/Constantia/Constantia.ttf");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Constantia";
+  src: url("../fonts/Constantia/ConstantiaBold.ttf");
+  font-style: normal;
+  font-weight: 700;
+}
+/* ----------------------------------------- */
+/*  LESS Variables                           */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+/*  CSS Variables                            */
+/* ----------------------------------------- */
+:root {
+  --fontFamilySerif: "CaslonAntique", "Palatino Linotype", serif;
+  --fontFamilySans: "Signika", sans-serif;
+}
+.crucible-new {
+  --color-background: #0b0909;
+  --color-text: #eee8df;
+  --color-secondary: #d7c4a9;
+  --color-tertiary: #b6967c;
+  --color-header: #cac5ba;
+  --color-sidebar: #cfc7bb;
+  --color-h1: #cfbea2;
+  --color-frame: #3f3128;
+  --color-frame-bg: #1c1a1a;
+  --color-accent: #cf9356;
+  --color-link-text: #f36739;
+  --color-border-highlight: var(--color-accent);
+  --font-h1: "AwerySmallcaps", serif;
+  --font-body: "Constantia", serif;
+  --font-quote: "CaslonAntique", serif;
+  --font-sans: "Signika", sans-serif;
+  --font-size-15: 0.9375rem;
+  --color-checkbox-checked: #cf9356;
+  --color-bg-option: #3f3128;
+}
+.crucible {
+  --fontSizeTitle: 20px;
+  --fontSizeHeader: 16px;
+  --fontSizeMain: 14px;
+  --fontSizeSmall: 12px;
+  --colorDark: #191813;
+  --colorBeige: #b5b3a4;
+  --colorFaint: #c9c7b8;
+  --colorTan: #7a7971;
+  --colorOlive: #33332e;
+  --colorError: #cb2f30;
+  --colorSuccess: #4e832b;
+  --colorActionBG: #e7cc9d;
+  --colorAction: #FF9900;
+  --colorFocusBG: #b2c3ef;
+  --colorFocus: #0066FF;
+  --colorHealthBG: #fc6060;
+  --colorHealth: #EE0000;
+}
+/** ----------------------------------------- *
+ *  Star Wars Edge Studio V2 Styles                        *
+ * ------------------------------------------ */
+.crucible-new {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  font-size: 0.9375rem;
+  letter-spacing: 0.5px;
+}
+.crucible-new h1,
+.crucible-new h2,
+.crucible-new h3,
+.crucible-new h4 {
+  font-family: var(--font-h1);
+  color: var(--color-h1);
+  border: none;
+}
+.crucible-new h1.divider,
+.crucible-new h2.divider,
+.crucible-new h3.divider,
+.crucible-new h4.divider {
+  clear: both;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+.crucible-new h1.divider::before,
+.crucible-new h2.divider::before,
+.crucible-new h3.divider::before,
+.crucible-new h4.divider::before {
+  flex: 1;
+  content: "";
+  margin-right: 0.5rem;
+  border-top: 2px ridge var(--color-h1);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 100%);
+}
+.crucible-new h1.divider::after,
+.crucible-new h2.divider::after,
+.crucible-new h3.divider::after,
+.crucible-new h4.divider::after {
+  flex: 1;
+  content: "";
+  margin-left: 0.5rem;
+  border-top: 2px ridge var(--color-h1);
+  -webkit-mask-image: linear-gradient(270deg, transparent 0%, black 100%);
+  mask-image: linear-gradient(270deg, transparent 0%, black 100%);
+}
+.crucible-new strong {
+  color: var(--color-h1);
+}
+.crucible-new a.content-link,
+.crucible-new a.inline-roll {
+  background: none;
+  border: none;
+  color: var(--color-link-text);
+}
+.crucible-new a.content-link i,
+.crucible-new a.inline-roll i {
+  color: var(--color-link-text);
+}
+.crucible-new table {
+  margin: 1rem 0;
+  border: none;
+  color: var(--color-secondary);
+}
+.crucible-new table td,
+.crucible-new table th {
+  text-align: left;
+  padding: 0.25rem 0.5rem;
+  font-size: var(--font-size-14);
+}
+.crucible-new table thead {
+  background: var(--color-frame-bg);
+  border: none;
+}
+.crucible-new table th {
+  line-height: 1.5rem;
+  color: var(--color-text);
+  font-family: var(--font-h1);
+  font-weight: normal;
+  text-align: left;
+  text-shadow: none;
+}
+.crucible-new table tr:nth-child(even) {
+  background-color: var(--color-frame-bg);
+}
+.crucible-new blockquote {
+  margin: 1rem 0;
+  border-left: 4px solid var(--color-secondary);
+  font-family: var(--font-quote);
+  font-size: var(--font-size-18);
+  color: var(--color-secondary);
+  letter-spacing: 0;
+}
+.crucible-new .frame-brown {
+  background: var(--color-frame);
+  border-image: url('../ui/journal/button-border.png');
+  border-image-slice: 16;
+  border-image-outset: 2;
+  border-image-width: 8px;
+  color: var(--color-h1);
+}
+.crucible-new ::-webkit-scrollbar-thumb {
+  background: var(--color-frame);
+}
+.crucible-new code {
+  color: #d3caf6;
+  border: 1px solid #321e7f;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: var(--font-size-14);
+}
+.crucible-new .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+  justify-content: flex-end;
+  align-items: center;
+  color: var(--color-secondary);
+}
+.crucible-new .tags label {
+  flex: 1;
+  font-size: var(--font-size-14);
+}
+.crucible-new .tags .tag {
+  padding: 0 3px;
+  border: 1px solid var(--color-secondary);
+  border-radius: 4px;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-12);
+  white-space: nowrap;
+}
+.crucible-new .tags .tag.unmet {
+  border-color: darkred;
+  color: red;
+}
+.crucible-new .tags:empty {
+  display: none;
+}
+.crucible-new .tag-icon {
+  flex: none;
+}
+.crucible-new section.construction {
+  position: relative;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem 0.5rem 80px;
+  border: 1px solid #af6417;
+  border-radius: 8px;
+  color: var(--color-accent);
+}
+.crucible-new section.construction::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  font-family: var(--font-awesome);
+  content: "\f7d9";
+  font-size: 48px;
+  text-align: center;
+  line-height: 80px;
+  width: 80px;
+}
+.crucible-new section.foundryvtt {
+  position: relative;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem 0.5rem 120px;
+  border: 1px solid #d74e14;
+  border-radius: 8px;
+}
+.crucible-new section.foundryvtt::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  content: "";
+  width: 120px;
+  height: 100%;
+  background: url("/icons/vtt-512.png") no-repeat;
+  background-size: 100px;
+  background-position: center;
+}
+.crucible-new section.gameplay {
+  position: relative;
+  padding: 1rem 1.5rem;
+  margin: 1rem 6px;
+  background: #21120e;
+}
+.crucible-new section.gameplay::before,
+.crucible-new section.gameplay::after {
+  display: block;
+  width: calc(100% + 12px);
+  height: 12px;
+  position: absolute;
+  left: -6px;
+  content: "";
+  background: url("../ui/journal/divider-border.png") no-repeat center;
+  background-size: cover;
+}
+.crucible-new section.gameplay::before {
+  top: -6px;
+}
+.crucible-new section.gameplay::after {
+  bottom: -6px;
+}
+.crucible-new section.gameplay h4 {
+  margin-top: 0.5rem;
+}
+.crucible-new section.gameplay p {
+  font-family: var(--font-quote);
+  font-size: var(--font-size-18);
+  font-style: italic;
+  color: var(--color-tertiary);
+  line-height: 1.25rem;
+  letter-spacing: 0;
+}
+.crucible-new section.gameplay strong {
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-style: normal;
+}
+.crucible-new section.formula {
+  margin: 1rem 0;
+  padding: 0.5rem 3rem 0.5rem 1.5rem;
+  background: url("../ui/journal/math-full.png") no-repeat center left;
+  background-size: 100% 100%;
+  color: #30030b;
+  font-weight: bold;
+  line-height: 1.25rem;
+  display: flex;
+  gap: 0.25rem;
+}
+.crucible-new section.formula .value,
+.crucible-new section.formula .equals {
+  flex: none;
+}
+.crucible-new section.formula .equation {
+  flex: 1;
+  word-break: break-word;
+}
+.crucible-new .flexrow {
+  align-items: center;
+}
+.crucible-new .flexcol > * {
+  flex: unset;
+}
+.crucible-new textarea {
+  padding: 0.5rem;
+  background: var(--color-frame-bg);
+  border: 1px solid var(--color-frame);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: var(--font-size-15);
+  color: var(--color-text);
+}
+.crucible-new select {
+  background: var(--color-frame);
+  color: var(--color-text);
+  border: none;
+}
+.crucible-new select::selection {
+  background: var(--color-frame);
+}
+.crucible-new input[type="text"],
+.crucible-new input[type="number"],
+.crucible-new input[type="password"],
+.crucible-new input[type="date"],
+.crucible-new input[type="time"],
+.crucible-new input[type="search"] {
+  background: var(--color-frame-bg);
+  color: var(--color-text);
+  border-color: var(--color-frame);
+}
+.crucible-new form .hint {
+  margin: 0;
+  color: var(--color-tertiary);
+}
+.crucible-new a.button {
+  flex: none;
+}
+.crucible-new button.icon,
+.crucible-new a.button.icon {
+  flex: none;
+}
+.crucible-new button.icon > i,
+.crucible-new a.button.icon > i {
+  margin: 0;
+}
+/* ----------------------------------------- */
+/*  Early Adoption of V2 Theme Rules         */
+/* ----------------------------------------- */
+.crucible-new {
+  /** Labeled Checkboxes */
+}
+.crucible-new input[type="checkbox"] {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.crucible-new input[type="checkbox"]:disabled {
+  cursor: initial;
+}
+.crucible-new input[type="checkbox"]:focus {
+  color: inherit;
+  outline: none;
+}
+.crucible-new input[type="checkbox"]:focus-visible::before {
+  outline: 2px solid var(--color-accent);
+}
+.crucible-new input[type="checkbox"]:checked:focus-visible::before {
+  outline: 2px solid var(--color-accent);
+}
+.crucible-new input[type="checkbox"]::before {
+  font-family: var(--font-awesome);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-frame);
+  content: "\f0c8";
+  border-radius: 3px;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  outline: 1px solid transparent;
+  transition: outline-color 0.5s;
+}
+.crucible-new input[type="checkbox"]:checked::before {
+  color: var(--color-accent);
+  font-weight: bold;
+  content: "\f14a";
+}
+.crucible-new input[type="checkbox"]:disabled::before {
+  color: var(--color-frame);
+}
+.crucible-new label.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  font-size: var(--font-size-12);
+}
+.crucible-new label.checkbox > input[type="checkbox"] {
+  position: unset;
+  height: 100%;
+}
+.crucible-new figure.placeholder {
+  position: relative;
+}
+.crucible-new figure.placeholder::after {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  content: "PLACEHOLDER";
+  color: white;
+  text-shadow: 1px 1px #000;
+  font-size: 24px;
+}
+/* ----------------------------------------- */
+/*  Apps and Sheets                          */
+/* ----------------------------------------- */
+.crucible-new.window-app {
+  overflow: hidden;
+  background: url("../ui/journal/background.png");
+  border-radius: 12px;
+  /** Line Items - Actions, Talents, etc... */
+}
+.crucible-new.window-app .background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border: none;
+  object-fit: cover;
+  object-position: top right;
+}
+.crucible-new.window-app .window-header {
+  border-bottom: none;
+  color: var(--color-header);
+}
+.crucible-new.window-app .window-header .window-title {
+  height: 100%;
+}
+.crucible-new.window-app .window-content {
+  padding: 0.5rem 1rem 1rem;
+  background: none;
+  color: var(--color-text);
+}
+.crucible-new.window-app .window-content > form {
+  height: 100%;
+  gap: 1rem;
+}
+.crucible-new.window-app .sheet-header {
+  --headerHeight: 80px;
+  --titleHeight: 40px;
+  gap: 0.5rem;
+}
+.crucible-new.window-app .sheet-header img.profile {
+  margin: 0;
+  border-radius: 8px;
+}
+.crucible-new.window-app .sheet-header h1 input {
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+}
+.crucible-new.window-app .sheet-header .header-tags {
+  flex: 0 0 100%;
+  justify-content: flex-end;
+}
+.crucible-new.window-app .sheet-header .header-tags label {
+  font-weight: bold;
+}
+.crucible-new.window-app nav.sheet-tabs {
+  margin: 0;
+  border-color: var(--color-frame-bg);
+  font-family: var(--font-h1);
+  color: var(--color-h1);
+}
+.crucible-new.window-app .sheet-body.flexcol {
+  gap: 1rem;
+}
+.crucible-new.window-app .sheet-body.flexcol .form-group {
+  gap: 0.5rem;
+  margin: 0;
+}
+.crucible-new.window-app .sheet-body.flexcol .form-group.slim .form-fields > label {
+  color: var(--color-secondary);
+}
+.crucible-new.window-app .sheet-body.flexcol .form-group.slim .form-fields input {
+  text-align: center;
+}
+.crucible-new.window-app fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid var(--color-frame);
+  border-radius: 6px;
+}
+.crucible-new.window-app fieldset legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+}
+.crucible-new.window-app fieldset legend h3 {
+  display: inline;
+  margin: 0;
+}
+.crucible-new.window-app .sheet-footer {
+  margin-top: 1rem;
+}
+.crucible-new.window-app .line-item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+}
+.crucible-new.window-app .line-item > header {
+  gap: 0.5rem;
+}
+.crucible-new.window-app .line-item img.icon {
+  height: 48px;
+  width: 48px;
+  flex: 0 0 48px;
+}
+.crucible-new.window-app .line-item .title {
+  color: var(--color-text);
+  margin: 0;
+}
+.crucible-new.window-app .line-item .description {
+  font-size: var(--font-size-14);
+}
+.crucible-new.window-app .line-item .controls {
+  flex: none;
+  display: flex;
+  gap: 0.5rem;
+  font-size: var(--font-size-14);
+  color: var(--color-secondary);
+}
+.crucible-new.window-app .line-item .header-tags {
+  gap: 0.5rem;
+}
+/*# sourceMappingURL=swes.css.map */
