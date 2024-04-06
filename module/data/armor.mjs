@@ -2,30 +2,36 @@ import swesItemBase from "./item-base.mjs";
 
 export default class swesArmor extends swesItemBase {
 
-  static defineSchema() {
-    const fields = foundry.data.fields;
-    const requiredInteger = { required: true, nullable: false, integer: true };
-    const schema = super.defineSchema();
+    static defineSchema() {
+        const fields = foundry.data.fields;
+        const optionalBoolean = {required: false, nullable: false};
+        const requiredInteger = {required: true, nullable: false, integer: true};
+        const optionalInteger = {required: false, nullable: false, integer: true};
+        const requiredString = {required: true, blank: false, trim: true, nullable: false};
+        const optionalString = {required: false, blank: false, trim: true, nullable: false};
+        const schema = super.defineSchema();
 
-    schema.quantity = new fields.NumberField({ ...requiredInteger, initial: 1, min: 1 });
-    schema.weight = new fields.NumberField({ required: true, nullable: false, initial: 0, min: 0 });
+        schema.key = new fields.StringField({...requiredString, initial: "KEY"});
+        schema.name = new fields.StringField({...requiredString, initial: "Name"});
+        schema.description = new fields.StringField({...requiredString, initial: "Description"});
+        schema.sources = new fields.ArrayField(
+            new fields.SchemaField({
+                description: new fields.StringField({...requiredString, initial: "Description"}),
+                page: new fields.NumberField({...requiredInteger, min: 1, initial: 1})
+            }),
+            {
+                required: true,
+                initial: [],
+                label: "ARMOR.Source.label",
+                hint: "ARMOR.Source.hint"
+            }
+        );
 
-    // Break down roll formula into three independent fields
-    schema.roll = new fields.SchemaField({
-      diceNum: new fields.NumberField({ ...requiredInteger, initial: 1, min: 1 }),
-      diceSize: new fields.StringField({ initial: "d20" }),
-      diceBonus: new fields.StringField({ initial: "+@str.mod+ceil(@lvl / 2)" })
-    })
+        return schema;
+    }
 
-    schema.formula = new fields.StringField({ blank: true });
-
-    return schema;
-  }
-
-  prepareDerivedData() {
-    // Build the formula dynamically using string interpolation
-    const roll = this.roll;
-
-    this.formula = `${roll.diceNum}${roll.diceSize}${roll.diceBonus}`
-  }
+    prepareDerivedData() {
+        // Build the formula dynamically using string interpolation
+        const roll = this.roll;
+    }
 }
