@@ -15,7 +15,7 @@
 
  * Represents a file in the OggDude data zip
  */
-export class OggDudeDataElement {
+class OggDudeDataElement {
     /**
      * The allowed image extensions
      * @type {string[]}
@@ -207,3 +207,5 @@ export class OggDudeDataElement {
         }
     }
 }
+
+export default OggDudeDataElement;

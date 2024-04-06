@@ -1,8 +1,8 @@
 {
   "Actor": {
-    "types": ["character", "npc"]
+    "types": ["character"]
   },
   "Item": {
-    "types": ["armor", "feature", "spell"]
+    "types": ["armor"]
   }
 }

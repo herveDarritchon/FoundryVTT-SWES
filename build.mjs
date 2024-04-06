@@ -11,18 +11,7 @@ const CONFIG = {
   dataPath: "packs",
   sourcePath: "_source",
   databases: [
-    "adversary-talents",
-    "ancestry",
-    "archetype",
     "armor",
-    "background",
-    "playtest",
-    "pregens",
-    "rules",
-    "summons",
-    "talent",
-    "taxonomy",
-    "weapon"
   ],
   yaml: true
 };

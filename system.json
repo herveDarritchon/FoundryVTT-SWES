@@ -18,8 +18,8 @@
     "verified": 11
   },
   "license": "LICENSE",
-  "esmodules": ["./swes.mjs"],
-  "styles": ["styles/swes.css"],
+  "esmodules": ["./module/swes.mjs"],
+  "styles": ["./styles/swes.css"],
   "scripts": [
     "./vendors/jszip/jszip.min.js"
   ],

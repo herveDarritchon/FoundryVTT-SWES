@@ -1,4 +1,4 @@
-import {OggDudeDataElement} from "../../../module/settings/models/OggDudeDataElement.mjs";
+import OggDudeDataElement from "../../../module/settings/models/OggDudeDataElement.mjs";
 
 /**
  * @jest-environment jsdom
