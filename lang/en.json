@@ -11,6 +11,38 @@
     "Mod": {
       "label": "Modification",
       "hint": "Modification of the armor"
+    },
+    "Sheet": {
+      "characteristics": {
+        "defense": {
+          "label": "Defense",
+          "hint": "Defense provided by the armor"
+        },
+        "soak": {
+          "label": "Soak",
+          "hint": "Soak provided by the armor"
+        },
+        "encumbrance": {
+          "label": "Encumbrance",
+          "hint": "Encumbrance of the armor"
+        },
+        "hardpoints": {
+          "label": "Hardpoints",
+          "hint": "Hardpoints of the armor"
+        },
+        "rarity": {
+          "label": "Rarity",
+          "hint": "Rarity of the armor"
+        }
+      },
+      "section": {
+        "active-effects": "Active Effects",
+        "characteristics": "Characteristics",
+        "details": "Details",
+        "modifiers": "Modifiers",
+        "price": "Price",
+        "weapon-modifiers": "Weapon Modifiers"
+      }
     }
   },
   "SETTINGS": {
