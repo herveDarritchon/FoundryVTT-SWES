@@ -122,6 +122,20 @@ export class OggDudeDataImporter extends FormApplication {
                 return dataElements;
             })
             .catch(err => alert(err));
+
+        const armorData = allDataElements.then((data) => {
+            let groupByDirectory = OggDudeDataElement.groupByDirectory(data);
+            const armorFile = OggDudeDataElement.getElementsFrom(groupByDirectory, "Data", "Armor.xml");
+            return zipFile.then((zip) => {
+                const armorXmlData = zip.files[armorFile.fullPath].async('text');
+                return armorXmlData;
+            });
+        });
+
+        armorData.then((data) => {
+                console.log("All Data Armors:", data);
+        });
+
     }
 
     /* -------------------------------------------- */
