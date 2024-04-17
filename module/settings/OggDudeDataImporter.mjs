@@ -6,6 +6,7 @@
 
 import OggDudeImporter from "../importer/oggDude.mjs";
 import OggDudeDataElement from "./models/OggDudeDataElement.mjs";
+import {SwesArmor, SwesItem} from "../data/_module.mjs";
 
 /**
  * A class responsible for configuring custom fonts for the world.
@@ -198,32 +199,56 @@ export class OggDudeDataImporter extends FormApplication {
             return [];
         }
 
+        /**
+         * Store the Armor Items in the database.
+         * @param armorItems {SwesArmor[]} The Armor Items to store.
+         * @param folder {Folder} The folder to store the items.
+         */
+        function storeArmorItems(armorItems, folder) {
+            let armors = armorItems.map(armor => {
+                console.log("Armor:", armor);
+                return {
+                    name: armor.name,
+                    type: 'armor', // This should match the type defined in your system
+                    system: armor, // This should match the structure of your SwesArmor schema
+                    folder: folder.id // Set the folder id
+                };
+            });
+
+            console.log("Armor Item Array:", armors);
+            // Step 2: Create the items
+            Item.createDocuments(armors).then(console.log("Items created !", items));
+        }
+
+        /**
+         * Armor Array Mapper : Map the Armor XML data to the SwesArmor object array.
+         * @param armors {Array} The Armors data from the XML file.
+         * @returns {Array}
+         */
         function armorMapper(armors) {
             console.log("[armorMapper] - All Armors:", armors);
-            return armors.map((armor) => {
+            let item = new SwesItem();
+            return armors.map((xmlArmor) => {
                 return {
-                    name: mapMandatoryString("armor.Name", armor.Name),
-                    key: mapMandatoryString("armor.Key", armor.Key),
-                    description: mapMandatoryString("armor.Description", armor.Description),
-                    soak: mapMandatoryNumber("armor.Soak", armor.Soak),
-                    defense: mapMandatoryNumber("armor.Defense", armor.Defense),
-                    encumbrance: mapMandatoryNumber("armor.Encumbrance", armor.Encumbrance),
-                    price: mapMandatoryNumber("armor.Price", armor.Price),
-                    rarity: mapMandatoryNumber("armor.Rarity", armor.Rarity),
-                    HP: mapMandatoryNumber("armor.HP", armor.HP),
+                    name: mapMandatoryString("armor.Name", xmlArmor.Name),
+                    key: mapMandatoryString("armor.Key", xmlArmor.Key),
+                    description: mapMandatoryString("armor.Description", xmlArmor.Description),
+                    soak: mapMandatoryNumber("armor.Soak", xmlArmor.Soak),
+                    defense: mapMandatoryNumber("armor.Defense", xmlArmor.Defense),
+                    encumbrance: mapMandatoryNumber("armor.Encumbrance", xmlArmor.Encumbrance),
+                    price: mapMandatoryNumber("armor.Price", xmlArmor.Price),
+                    rarity: mapMandatoryNumber("armor.Rarity", xmlArmor.Rarity),
+                    HP: mapMandatoryNumber("armor.HP", xmlArmor.HP),
                     sources: mapOptionalArray(
-                        armor?.Sources?.Source,
+                        xmlArmor?.Sources?.Source,
                         (source) => {
                             return {description: source._, page: source.Page}
                         }),
-                    /*                    armor.Sources.Source.map((source) => {
-                                            return {description: source._, page: source.Page}
-                                        }),*/
-                    categories: mapOptionalArray(armor?.Categories?.Category, (category) => category),
+                    categories: mapOptionalArray(xmlArmor?.Categories?.Category, (category) => category),
                     mods: {
-                        miscDesc: mapOptionalString(armor?.BaseMods?.Mod?.MiscDesc),
+                        miscDesc: mapOptionalString(xmlArmor?.BaseMods?.Mod?.MiscDesc)
                     }
-                };
+                }
             });
         }
 
@@ -237,12 +262,16 @@ export class OggDudeDataImporter extends FormApplication {
                 mergeAttrs: true
             })
                 .then(
-                    function (result) {
+                    async function (result) {
                         console.log("Parsing result:", result);
+                        let folder = game.folders.find(f => f.name === 'Swes Armors' && f.type === 'Item');
+                        if (!folder) {
+                            folder = await Folder.create({name: 'Swes Armors', type: 'Item', parent: null});
+                        }
+                        console.log("Folder created !", folder);
+                        // Step 2: Create the items
                         let armorItems = armorMapper(result.Armors.Armor);
-
-                        console.log("armorItems:", armorItems);
-                        console.log('Done');
+                        storeArmorItems(armorItems, folder);
                     }
                 )
                 .catch(
