@@ -7,7 +7,10 @@
     "compileCSS": "lessc styles/swes.less styles/swes.css",
     "compilePacks": "node build.mjs compile",
     "extractPacks": "node build.mjs extract",
-    "test": "jest --config=jest.config.js"
+    "test": "jest --config=jest.config.js",
+    "browserify": "browserify ./node_modules/.pnpm/xml2js@0.6.2/node_modules/xml2js/lib/xml2js.js  -s xml2js.js -o ./xml2js.js",
+    "minify": "cat ./xml2js.js  | uglifyjs > ./vendors/xml2js.min.js",
+    "copy": "copyfiles -f ./node_modules/.pnpm/jszip@3.10.1/node_modules/jszip//dist/jszip.min.js ./vendors"
   },
   "devDependencies": {
     "@babel/core": "^7.24.4",
@@ -19,7 +22,12 @@
     "gulp-less": "^5.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "less": "^4.2.0"
+    "less": "^4.2.0",
+    "xml2js": "^0.6.2",
+    "uglify-js": "^3.14.2",
+    "minify": "^7.0.0",
+    "browserify": "^17.0.0",
+    "copyfiles": "^2.4.1"
   },
   "author": "Hervé Darritchon",
   "license": "MIT"

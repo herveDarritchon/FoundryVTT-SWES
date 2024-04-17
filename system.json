@@ -1,11 +1,7 @@
 {
   "id": "swes",
   "title": "Star Wars (Edge Studio/FFG)",
-  "description": "Star Wars RPG Integration is a cutting-edge and contemporary digital adaptation of the Star Wars Roleplaying game by Edge Studio (formerly Fantasy Flight Games), crafted exclusively for Foundry Virtual Tabletop. From its inception, this project is engineered to harness the distinctive features of Foundry VTT, offering game masters a robust suite of tools and layers of automation for an unparalleled gameplay experience. This integration allows game masters and players to concentrate on the core aspect of role-playing games: weaving engaging and memorable narratives within the vast Star Wars universe.",
-  "version": "0.1.0",
-  "manifest": "#{MANIFEST}#",
-  "download": "#{DOWNLOAD}#",
-  "url": "https://foundryvtt.com/packages/swes",
+  "description": "The Star Wars (Edge Studio/FFG) system for FoundryVTT !",
   "authors": [
     {
       "name": "Hervé Darritchon",
@@ -13,32 +9,32 @@
       "discord": "herveDarritchon#7262"
     }
   ],
+  "url": "Replace this with a link to your public repository",
+  "license": "LICENSE.txt",
+  "readme": "README.md",
+  "bugs": "Replace this with a link to file issues or tickets",
+  "changelog": "CHANGELOG.md",
+  "media": [
+    {
+      "type": "setup",
+      "url": "systems/swes/ui/background-sw.webp",
+      "thumbnail": "systems/swes/ui/background-sw.webp"
+    }
+  ],
+  "version": "0.1.0",
   "compatibility": {
     "minimum": 11,
-    "verified": 11
+    "verified": "11.315"
   },
-  "license": "LICENSE",
-  "esmodules": ["./module/swes.mjs"],
-  "styles": ["./styles/swes.css"],
+  "esmodules": [
+    "./module/swes.mjs"
+  ],
+  "styles": [
+    "./styles/swes.css"
+  ],
   "scripts": [
-    "./vendors/jszip/jszip.min.js"
-  ],
-  "packs": [
-    {
-      "name": "news",
-      "label": "System News",
-      "path": "packs/news",
-      "type": "JournalEntry"
-    }
-  ],
-  "packFolders": [
-    {
-      "name": "swes",
-      "color": "#561206",
-      "packs": [
-        "news"
-      ]
-    }
+    "./vendors/jszip.min.js",
+    "./vendors/xml2js.min.js"
   ],
   "languages": [
     {
@@ -47,34 +43,14 @@
       "path": "lang/en.json"
     }
   ],
-  "documentTypes": {
-    "Actor": {
-      "hero": {},
-      "adversary": {}
-    },
-    "Item": {
-      "ancestry": {},
-      "archetype": {},
-      "armor": {},
-      "background": {},
-      "talent": {
-        "gmOnlyFields": ["actorHooks.fn", "actions.actionHooks.fn"]
-      },
-      "taxonomy": {},
-      "weapon": {}
-    },
-    "JournalEntryPage": {
-      "skill": {}
-    }
-  },
-  "grid": {
-    "type": 1,
-    "distance": 1,
-    "units": "m",
-    "diagonals": 4
-  },
-  "background": "systems/swes/ui/background.webp",
-  "socket": true,
-  "primaryTokenAttribute": "resources.health",
-  "secondaryTokenAttribute": "resources.morale"
+  "packs": [],
+  "packFolders": [],
+  "socket": false,
+  "manifest": "Replace this with a link to the /latest release system.json so people can receive updates after they've installed the system",
+  "download": "This must link to a .zip file of the current version",
+  "background": "systems/swes/ui/background-sw.webp",
+  "gridDistance": 5,
+  "gridUnits": "ft",
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "power"
 }

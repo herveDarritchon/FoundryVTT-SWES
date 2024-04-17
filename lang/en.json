@@ -1,23 +1,4 @@
 {
-  "TYPES": {
-    "Actor": {
-      "adversary": "Adversary",
-      "hero": "Protagonist",
-      "npc": "Background Character"
-    },
-    "Item": {
-      "ancestry": "Ancestry",
-      "archetype": "Archetype",
-      "armor": "Armor",
-      "background": "Background",
-      "taxonomy": "Taxonomy",
-      "talent": "Talent",
-      "weapon": "Weapon"
-    },
-    "JournalEntryPage": {
-      "skill": "Star Wars Edge Studio Skill"
-    }
-  },
   "ARMOR": {
     "Source": {
       "label": "Source",
@@ -30,14 +11,39 @@
     "Mod": {
       "label": "Modification",
       "hint": "Modification of the armor"
+    },
+    "Sheet": {
+      "characteristics": {
+        "defense": {
+          "label": "Defense",
+          "hint": "Defense provided by the armor"
+        },
+        "soak": {
+          "label": "Soak",
+          "hint": "Soak provided by the armor"
+        },
+        "encumbrance": {
+          "label": "Encumbrance",
+          "hint": "Encumbrance of the armor"
+        },
+        "hardpoints": {
+          "label": "Hardpoints",
+          "hint": "Hardpoints of the armor"
+        },
+        "rarity": {
+          "label": "Rarity",
+          "hint": "Rarity of the armor"
+        }
+      },
+      "section": {
+        "active-effects": "Active Effects",
+        "characteristics": "Characteristics",
+        "details": "Details",
+        "modifiers": "Modifiers",
+        "price": "Price",
+        "weapon-modifiers": "Weapon Modifiers"
+      }
     }
-  },
-  "SWES": {
-    "Base": "Base",
-    "Bonus": "Bonus",
-    "Rules": "Star Wars Edge Studio Rules",
-    "Scaling": "Scaling",
-    "Scaled": "Scaled"
   },
   "SETTINGS": {
     "OggDudeDataImporter": {
@@ -52,6 +58,66 @@
         "load": "Load"
       }
     }
+  },
+  "SWES": {
+    "Base": "Base",
+    "Bonus": "Bonus",
+    "Rules": "Star Wars Edge Studio Rules",
+    "Scaling": "Scaling",
+    "Scaled": "Scaled",
+    "Ability": {
+      "Str": {
+        "long": "Strength",
+        "abbr": "str"
+      },
+      "Con": {
+        "long": "Constitution",
+        "abbr": "con"
+      },
+      "Dex": {
+        "long": "Dexterity",
+        "abbr": "dex"
+      },
+      "Int": {
+        "long": "Intelligence",
+        "abbr": "int"
+      },
+      "Wis": {
+        "long": "Wisdom",
+        "abbr": "wis"
+      },
+      "Cha": {
+        "long": "Charisma",
+        "abbr": "cha"
+      }
+    },
+    "SheetLabels": {
+      "Actor": "swes Actor Sheet",
+      "Item": "swes Item Sheet"
+    },
+    "Item": {
+      "Spell": {
+        "SpellLVL": "Level {level} Spells",
+        "AddLVL": "Add LVL {level}"
+      }
+    },
+    "Effect": {
+      "Source": "Source",
+      "Toggle": "Toggle Effect",
+      "Temporary": "Temporary Effects",
+      "Passive": "Passive Effects",
+      "Inactive": "Inactive Effects"
+    }
+  },
+  "TYPES": {
+    "Actor": {
+      "character": "Character",
+      "npc": "NPC"
+    },
+    "Item": {
+      "item": "Item",
+      "feature": "Feature",
+      "spell": "Spell"
+    }
   }
 }
-

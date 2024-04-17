@@ -6,5 +6,6 @@ export {default as swesNPC} from "./npc.mjs";
 // Export Items
 export {default as swesItemBase} from "./item-base.mjs";
 export {default as swesItem} from "./item.mjs";
+export {default as swesArmor} from "./armor.mjs";
 export {default as swesFeature} from "./feature.mjs";
 export {default as swesSpell} from "./spell.mjs";

@@ -135,7 +135,6 @@ class OggDudeDataElement {
      * @returns {object} An object where the keys are the types and the values are arrays of elements of that type
      */
     static groupByType(elements) {
-        //return Object.groupBy(elements, ({ _type }) => _type);
        return elements.reduce((grouped, element) => {
             const key = element._type;
             if (!grouped[key]) {
@@ -152,7 +151,6 @@ class OggDudeDataElement {
      * @returns {object} An object where the keys are the types and the values are arrays of elements of that type
      */
     static groupByDirectory(elements) {
-        //return Object.groupBy(elements, ({ _type }) => _type);
         return elements
             .filter((element) => element._type !== OggDudeDataElement.directory)
             .reduce((grouped, element) => {
@@ -163,6 +161,11 @@ class OggDudeDataElement {
             grouped[key].push(element);
             return grouped;
         }, {});
+    }
+
+    static getElementsFrom(directories, path, name) {
+        const directory = directories[path] || [];
+        return directory.find((element) => element.name === name);
     }
 
     /**
