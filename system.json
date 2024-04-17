@@ -33,7 +33,8 @@
     "./styles/swes.css"
   ],
   "scripts": [
-    "./vendors/jszip/jszip.min.js"
+    "./vendors/jszip.min.js",
+    "./vendors/xml2js.min.js"
   ],
   "languages": [
     {
