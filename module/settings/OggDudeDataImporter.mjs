@@ -240,6 +240,7 @@ export class OggDudeDataImporter extends FormApplication {
                     function (result) {
                         console.log("Parsing result:", result);
                         let armorItems = armorMapper(result.Armors.Armor);
+
                         console.log("armorItems:", armorItems);
                         console.log('Done');
                     }

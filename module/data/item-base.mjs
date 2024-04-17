@@ -1,4 +1,4 @@
-export default class swesItemBase extends foundry.abstract.TypeDataModel {
+export default class SwesItemBase extends foundry.abstract.TypeDataModel {
 
   static defineSchema() {
     const fields = foundry.data.fields;

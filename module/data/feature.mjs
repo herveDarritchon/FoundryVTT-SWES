@@ -1,3 +1,3 @@
-import swesItemBase from "./item-base.mjs";
+import SwesItemBase from "./item-base.mjs";
 
-export default class swesFeature extends swesItemBase {}
+export default class swesFeature extends SwesItemBase {}

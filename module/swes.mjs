@@ -1,9 +1,9 @@
 // Import document classes.
 import { swesActor } from './documents/actor.mjs';
-import { swesItem } from './documents/item.mjs';
+import { SwesItem } from './documents/item.mjs';
 // Import sheet classes.
 import { swesActorSheet } from './sheets/actor-sheet.mjs';
-import { swesItemSheet } from './sheets/item-sheet.mjs';
+import { SwesItemSheet } from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { SWES } from './helpers/config.mjs';
@@ -20,7 +20,7 @@ Hooks.once('init', function () {
   // accessible in global contexts.
   game.swes = {
     swesActor,
-    swesItem,
+    SwesItem,
     rollItemMacro,
   };
 
@@ -46,10 +46,10 @@ Hooks.once('init', function () {
     character: models.swesCharacter,
     npc: models.swesNPC
   }
-  CONFIG.Item.documentClass = swesItem;
+  CONFIG.Item.documentClass = SwesItem;
   CONFIG.Item.dataModels = {
-    item: models.swesItem,
-    armor: models.swesArmor,
+    item: models.SwesItem,
+    armor: models.SwesArmor,
     feature: models.swesFeature,
     spell: models.swesSpell
   }
@@ -66,7 +66,7 @@ Hooks.once('init', function () {
     label: 'SWES.SheetLabels.Actor',
   });
   Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('swes', swesItemSheet, {
+  Items.registerSheet('swes', SwesItemSheet, {
     makeDefault: true,
     label: 'SWES.SheetLabels.Item',
   });

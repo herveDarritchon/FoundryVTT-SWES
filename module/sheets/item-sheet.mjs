@@ -7,7 +7,7 @@ import {
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
  */
-export class swesItemSheet extends ItemSheet {
+export class SwesItemSheet extends ItemSheet {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {

@@ -1,6 +1,6 @@
-import swesItemBase from "./item-base.mjs";
+import SwesItemBase from "./item-base.mjs";
 
-export default class swesArmor extends swesItemBase {
+export default class SwesArmor extends SwesItemBase {
 
     static defineSchema() {
         const fields = foundry.data.fields;
