@@ -6,7 +6,6 @@
 
 import OggDudeImporter from "../importer/oggDude.mjs";
 import OggDudeDataElement from "./models/OggDudeDataElement.mjs";
-import {SwesItem} from "../data/_module.mjs";
 
 /**
  * A class responsible for configuring custom fonts for the world.
@@ -81,13 +80,13 @@ export class OggDudeDataImporter extends FormApplication {
      * @param {Event} event  The originating click event
      * @private
      */
-    _onloadButtonClick(event) {
+    async _onloadButtonClick(event) {
         event.preventDefault();
         event.stopPropagation();
         const form = $("form.oggDude-data-importer")[0];
         const importedFile = form['zip-file'].files[0];
         const zipFile = new OggDudeImporter().load(importedFile);
-        let allDataElements = zipFile
+        let allDataElementsPromise = await zipFile
             .then((zip) => {
                 let dataElements = OggDudeDataElement.from(zip);
                 console.log("All Data Elements:", dataElements);
@@ -109,121 +108,112 @@ export class OggDudeDataImporter extends FormApplication {
             })
             .catch(err => alert(err));
 
-        const armorData = allDataElements.then((data) => {
-            let groupByDirectory = OggDudeDataElement.groupByDirectory(data);
-            const armorFile = OggDudeDataElement.getElementsFrom(groupByDirectory, "Data", "Armor.xml");
-            return zipFile.then((zip) => {
-                return zip.files[armorFile.fullPath].async('text');
-            });
+        const allDataElements = await allDataElementsPromise
+        let groupByDirectory = OggDudeDataElement.groupByDirectory(allDataElements);
+        const armorFile = OggDudeDataElement.getElementsFrom(groupByDirectory, "Data", "Armor.xml");
+        const armorData = await zipFile.then((zip) => {
+            return zip.files[armorFile.fullPath].async('text');
         });
 
-        const allImages = allDataElements.then((data) => {
-            let groupByType = OggDudeDataElement.groupByType(data);
-            console.log("Group By Type:", groupByType);
-            let images = groupByType.image;
-            console.log("All Images:", groupByType.image);
+        let groupByType = OggDudeDataElement.groupByType(allDataElements);
+        console.log("Group By Type:", groupByType);
+        const images = groupByType.image;
+        console.log("All Images:", images);
 
-            return images;
+        const armorImages = images.filter(image => {
+            // select only images starting with "EquipmentImages/Armor"
+            return image.fullPath.startsWith("Data/EquipmentImages/Armor");
         });
+        console.log("Armor Images:", armorImages);
 
-        allImages.then(async (images) => {
-            const armorImages = images.filter(image => {
-                // select only images starting with "EquipmentImages/Armor"
-                return image.fullPath.startsWith("Data/EquipmentImages/Armor");
-            });
-            console.log("Armor Images:", armorImages);
+        // Verify that the path is valid and exists on the server and create it if it does not
+        const imgPath = OggDudeDataImporter.buildImgArmorWorldPath();
+        if (await OggDudeDataImporter.checkPathExists(imgPath)) {
+            console.log(`Path ${imgPath} exists !`);
+        } else {
+            console.warn(`Path ${imgPath} does not exist ! Let's create it.`);
+            await OggDudeDataImporter.createPath(imgPath);
+        }
 
-            // Verify that the path is valid and exists on the server and create it if it does not
-            const imgPath = OggDudeDataImporter.buildImgArmorPath();
-            if (await OggDudeDataImporter.checkPathExists(imgPath)) {
-                console.log(`Path ${imgPath} exists !`);
-            } else {
-                console.warn(`Path ${imgPath} does not exist ! Let's create it.`);
-                await OggDudeDataImporter.createPath(imgPath);
-            }
-
-            armorImages.forEach(armorImage => {
-                zipFile.then((zip) => {
-                    const imgData = zip.files[armorImage.fullPath].async('blob');
-                    const imgFile = new File([imgData], armorImage.name, {type: armorImage.type});
-                    console.log(`Image to be stored ${imgPath}/`, imgFile);
-                    OggDudeDataImporter.uploadImage(imgPath, imgFile).then((result) => {
-                        console.log(`Image ${imgFile.name} has been uploaded ?`, result);
-                    });
+        armorImages.forEach(armorImage => {
+            zipFile.then(async (zip) => {
+                const imgData = await zip.files[armorImage.fullPath].async('blob');
+                const imgFile = new File([imgData], armorImage.name, {type: armorImage.type});
+                console.log(`Image to be stored ${imgPath}/`, imgFile);
+                await OggDudeDataImporter.uploadImage(imgPath, imgFile).then((result) => {
+                    console.log(`Image ${imgFile.name} has been uploaded ?`, result);
                 });
-            })
+            });
+        })
+
+        // Without parser
+        const armorDataXml = await xml2js.js.parseStringPromise(armorData, {
+            explicitArray: false,
+            trim: true,
+            mergeAttrs: true
         });
 
-        armorData.then((data) => {
-
-            // Without parser
-            xml2js.js.parseStringPromise(data, {
-                explicitArray: false,
-                trim: true,
-                mergeAttrs: true
-            })
-                .then(
-                    async function (result) {
-                        let folder = game.folders.find(f => f.name === 'Swes Armors' && f.type === 'Item');
-                        if (!folder) {
-                            folder = await Folder.create({name: 'Swes Armors', type: 'Item', parent: null});
-                        }
-                        // Step 2: Create the items
-                        let armorItems = OggDudeDataImporter.armorMapper(result.Armors.Armor);
-                        OggDudeDataImporter.storeArmorItems(armorItems, folder);
-                    }
-                )
-                .catch(
-                    function (err) {
-                        alert(err)
-                    }
-                )
-            ;
-
-        });
+        let folder = game.folders.find(f => f.name === 'Swes Armors' && f.type === 'Item');
+        if (!folder) {
+            folder = await Folder.create({name: 'Swes Armors', type: 'Item', parent: null});
+        }
+        // Step 2: Create the items
+        const armors = armorDataXml.Armors.Armor;
+        let armorItems = OggDudeDataImporter.armorMapper(armors);
+        console.log(`armorItems to be created in FVTT ${armorItems} with armors ${armors}`);
+        await OggDudeDataImporter.storeArmorItems(armorItems, folder);
     }
 
     /**
      * Create a directory on the server.
      * @param path {string} The path to create.
+     * @param target {string} The target directory to create.
      */
-    async static createDirectory(path) {
-        return FilePicker.createDirectory("data", path);
+    static async createDirectory(path, target) {
+        console.log(`Create Path ${path} with target ${target}.`);
+        return await FilePicker.createDirectory("data", path + "/" + target, {bucket: "data"});
     }
 
     /**
      * Create a path on the server by creating each directory in turn.
      * @param path {string} The path to create.
      */
-    async static createPath(path) {
+    static async createPath(path) {
+        console.log(`Create Path ${path} if necessary.`);
         let pathParts = path.split('/');
-        pathParts.forEach((part, index) => {
-            let subPath = pathParts.slice(0, index + 1).join('/');
-            OggDudeDataImporter.checkPathExists(subPath).then((found) => {
-                if (!found) {
-                    OggDudeDataImporter.createDirectory(subPath).then((result) => {
-                        console.log(`Sub-path ${subPath} created !`, result);
-                    });
-                }
-            });
-        });
+        let currentPath = '';
+        let fullPath = '';
+
+        for (let part of pathParts) {
+            fullPath += part + '/';
+            const found = await OggDudeDataImporter.checkPathExists(fullPath);
+            console.log(`Sub-path ${fullPath} exists ?`, found);
+            if (!found) {
+                console.log(`Sub-path ${fullPath} does not exist. Let's create it. CurrentPath ${currentPath} with part ${part}.`)
+                const result = await OggDudeDataImporter.createDirectory(currentPath, part);
+                console.log(`Sub-path ${fullPath} created !`, result);
+            }
+            currentPath = fullPath;
+        }
     }
 
     /**
      * Check if the path exists on the server.
      * @param path {string} The path to check.
-     * @returns {*}
+     * @returns {Promise<boolean>} True if the path exists, false otherwise.
      */
-    async static checkPathExists(path) {
-        return FilePicker.browse("data", path, {activeSource: "data", recursive: true})
-            .then((result) => {
-                console.log("Result:", result);
-                return result.target !== null;
-            })
-            .catch(err => {
-                console.warn(err);
-                return false;
-            });
+    static async checkPathExists(path) {
+        console.log(`Check that Path ${path} exists.`);
+        let result;
+        try {
+            result = await FilePicker.browse("data", path, {activeSource: "data", recursive: true});
+        } catch (e) {
+            return false;
+        }
+        const target = result.target;
+        const isExisting = target !== null;
+        console.log(`Path ${path} with result ${target} exists ?`, isExisting);
+        return isExisting;
     }
 
     /**
@@ -231,8 +221,8 @@ export class OggDudeDataImporter extends FormApplication {
      * @param path {string} The path of the image.
      * @param file {File} The image file.
      */
-    async static uploadImage(path, file) {
-        return FilePicker.upload("data", path, file, {}, {notify: false});
+    static async uploadImage(path, file) {
+        return await FilePicker.upload("data", path, file, {}, {notify: false});
     }
 
     /**
@@ -304,19 +294,30 @@ export class OggDudeDataImporter extends FormApplication {
      * @param armorItems {SwesArmor[]} The Armor Items to store.
      * @param folder {Folder} The folder to store the items.
      */
-    static storeArmorItems(armorItems, folder) {
-        let armors = armorItems.map(armor => {
+    static async storeArmorItems(armorItems, folder) {
+        let armorPromises = await Promise.all(armorItems.map(async armor => {
+            console.log("Armor %s: Armor image to be returned by method getArmorImage.", armor.key);
+            const img = await OggDudeDataImporter.getArmorImage(armor.key);
+            console.log("Armor %s: Armor image returned by method getArmorImage is %.", armor.key, img);
             return {
                 name: armor.name,
-                img: OggDudeDataImporter.getArmorImage(armor.key),
+                img: img,
                 type: 'armor', // This should match the type defined in your system
                 system: armor, // This should match the structure of your SwesArmor schema
                 folder: folder.id // Set the folder id
             };
-        });
+        }));
 
-        // Step 2: Create the items
-        Item.createDocuments(armors).then(console.log("Items created !", items));
+        console.log("Armors to be created from Promises:", armorPromises);
+
+        let armorPromiseResolved = Promise.all(armorPromises).then(async armors => {
+            console.log("Armors to be created:", armors)
+            await Item.createDocuments(armors).then((items) => {
+                console.log("Armors created:", items);
+            });
+        }).catch(error => {
+            console.error("Error while creating armors:", error);
+        });
     }
 
     /**
@@ -361,8 +362,8 @@ export class OggDudeDataImporter extends FormApplication {
      * Build the path to the armor images.
      * @returns {string}
      */
-    static buildImgArmorSystemPath() {
-        return `worlds/${game.system.id}/swes/images/armors`;
+    static buildImgItemSystemPath() {
+        return `systems/${game.system.id}/assets/images/icons`;
     }
 
     /* -------------------------------------------- */
@@ -371,18 +372,22 @@ export class OggDudeDataImporter extends FormApplication {
      * Otherwise, return the path of the armor image.
      *
      * @param armorKey {string} The key of the armor.
-     * @returns {Promise<void>}
+     * @returns {Promise<string>} The path of the armor image.
      */
-    async static getArmorImage(armorKey) {
+    static async getArmorImage(armorKey) {
         // get the armor image path
         const imgArmorWorldPath = OggDudeDataImporter.buildImgArmorWorldPath();
-        OggDudeDataImporter.checkPathExists(`${imgArmorWorldPath}/Armor${armorKey}.png`).then((found) => {
-            if (found) {
-                return `${imgArmorWorldPath}/Armor${armorKey}.png`;
-            } else {
-                const imgArmorSystemPath = OggDudeDataImporter.buildImgArmorSystemPath();
-                return `${imgArmorSystemPath}/Armor.png`;
-            }
-        });
+        const armorImage = `${imgArmorWorldPath}/Armor${armorKey}.png`;
+        console.log(`Armor image ${armorImage} for armor ${armorKey} to be checked.`);
+        const found = await OggDudeDataImporter.checkPathExists(armorImage);
+        if (found) {
+            console.log(`Armor image ${armorImage} for armor ${armorKey} found. Using specific armor image.`);
+            return armorImage;
+        } else {
+            const imgArmorSystemPath = OggDudeDataImporter.buildImgItemSystemPath();
+            const armorImage = `${imgArmorSystemPath}/armor.svg`;
+            console.log(`Armor image ${armorImage} for armor ${armorKey} not found. Using default armor image.`)
+            return armorImage;
+        }
     }
 }
