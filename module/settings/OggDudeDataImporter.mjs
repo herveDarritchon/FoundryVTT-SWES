@@ -124,6 +124,7 @@ export class OggDudeDataImporter extends FormApplication {
             // select only images starting with "EquipmentImages/Armor"
             return image.fullPath.startsWith("Data/EquipmentImages/Armor");
         });
+
         console.log("Armor Images:", armorImages);
 
         // Verify that the path is valid and exists on the server and create it if it does not
@@ -157,11 +158,14 @@ export class OggDudeDataImporter extends FormApplication {
         if (!folder) {
             folder = await Folder.create({name: 'Swes Armors', type: 'Item', parent: null});
         }
+
         // Step 2: Create the items
         const armors = armorDataXml.Armors.Armor;
         let armorItems = OggDudeDataImporter.armorMapper(armors);
         console.log(`armorItems to be created in FVTT ${armorItems} with armors ${armors}`);
         await OggDudeDataImporter.storeArmorItems(armorItems, folder);
+
+        await this.close({});
     }
 
     /**
