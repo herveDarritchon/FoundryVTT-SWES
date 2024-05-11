@@ -7,6 +7,64 @@
 import OggDudeImporter from "../importer/oggDude.mjs";
 import OggDudeDataElement from "./models/OggDudeDataElement.mjs";
 
+async function createArmorPath() {
+    // Verify that the path is valid and exists on the server and create it if it does not
+    const imgPath = OggDudeDataImporter.buildImgArmorWorldPath();
+    if (await OggDudeDataImporter.checkPathExists(imgPath)) {
+        console.log(`Path ${imgPath} exists !`);
+    } else {
+        console.warn(`Path ${imgPath} does not exist ! Let's create it.`);
+        await OggDudeDataImporter.createPath(imgPath);
+    }
+    return imgPath;
+}
+
+async function uploadImagesOnTheServer(images, zip, imgPath) {
+    // Upload the armor images to the server
+    const armorImages = images.filter(image => {
+        // select only images starting with "EquipmentImages/Armor"
+        return image.fullPath.startsWith("Data/EquipmentImages/Armor");
+    });
+
+    console.log("Armor Images:", armorImages);
+
+    for (const armorImage of armorImages) {
+        const imgData = await zip.files[armorImage.fullPath].async('blob');
+        const imgFile = new File([imgData], armorImage.name, {type: armorImage.type});
+        console.log(`Image to be stored ${imgPath}/`, imgFile);
+        const result = await OggDudeDataImporter.uploadImage(imgPath, imgFile)
+        console.log(`Image ${imgFile.name} has been uploaded ?`, result);
+    }
+}
+
+async function parseArmorXmlToJson(armorData) {
+    // Parse the Armor XML data
+    const armorDataXml = await xml2js.js.parseStringPromise(armorData, {
+        explicitArray: false,
+        trim: true,
+        mergeAttrs: true
+    });
+    console.log("Armor Data XML:", armorDataXml);
+    return armorDataXml;
+}
+
+async function createArmorFolder() {
+    // Create the folder
+    let folder = game.folders.find(f => f.name === 'Swes Armors' && f.type === 'Item');
+    if (!folder) {
+        folder = await Folder.create({name: 'Swes Armors', type: 'Item', parent: null});
+    }
+    return folder;
+}
+
+async function storeArmor(armorDataXml, folder) {
+    // Step 2: Create the items
+    const armors = armorDataXml.Armors.Armor;
+    let armorItems = OggDudeDataImporter.armorMapper(armors);
+    console.log(`armorItems to be created in FVTT ${armorItems} with armors ${armors}`);
+    await OggDudeDataImporter.storeArmorItems(armorItems, folder);
+}
+
 /**
  * A class responsible for configuring custom fonts for the world.
  * @extends {FormApplication}
@@ -85,85 +143,40 @@ export class OggDudeDataImporter extends FormApplication {
         event.stopPropagation();
         const form = $("form.oggDude-data-importer")[0];
         const importedFile = form['zip-file'].files[0];
-        const zipFile = new OggDudeImporter().load(importedFile);
-        let allDataElementsPromise = await zipFile
-            .then((zip) => {
-                let dataElements = OggDudeDataElement.from(zip);
-                console.log("All Data Elements:", dataElements);
-                return dataElements;
 
-            }).then((dataElements) => {
-                let groupByType = OggDudeDataElement.groupByType(dataElements);
-                console.log("All Types:", groupByType.directory);
-                console.log("All Images:", groupByType.image);
-                console.log("All XML:", groupByType.xml);
+        // Step 1: Load the zip file
+        const zip = await new OggDudeImporter().load(importedFile);
 
-                let groupByDirectory = OggDudeDataElement.groupByDirectory(dataElements);
-                console.log("Group By Directory:", groupByDirectory);
+        // Step 2: Load the data elements from the zip
+        let allDataElements = OggDudeDataElement.from(zip);
 
-                let xmlGroupByDirectory = OggDudeDataElement.groupByDirectory(groupByType.xml);
-                console.log("XML Group By Directory:", xmlGroupByDirectory);
-
-                return dataElements;
-            })
-            .catch(err => alert(err));
-
-        const allDataElements = await allDataElementsPromise
+        // Step 3: Group the data elements by directory
         let groupByDirectory = OggDudeDataElement.groupByDirectory(allDataElements);
-        const armorFile = OggDudeDataElement.getElementsFrom(groupByDirectory, "Data", "Armor.xml");
-        const armorData = await zipFile.then((zip) => {
-            return zip.files[armorFile.fullPath].async('text');
-        });
 
+        // Step 4: Get the Armor file from the Data directory
+        const armorFile = OggDudeDataElement.getElementsFrom(groupByDirectory, "Data", "Armor.xml");
+
+        // Step 5: Get the Armor data from the Armor file
+        const armorData = await zip.files[armorFile.fullPath].async('text');
+
+        // Step 6: Create the folder in the Item tab
+        const imgPath = await createArmorPath();
+
+        // Step 7: Upload the images to the server
         let groupByType = OggDudeDataElement.groupByType(allDataElements);
         console.log("Group By Type:", groupByType);
         const images = groupByType.image;
         console.log("All Images:", images);
+        await uploadImagesOnTheServer(images, zip, imgPath);
 
-        const armorImages = images.filter(image => {
-            // select only images starting with "EquipmentImages/Armor"
-            return image.fullPath.startsWith("Data/EquipmentImages/Armor");
-        });
+        // Step 8: Parse the XML data
+        const armorDataXml = await parseArmorXmlToJson(armorData);
 
-        console.log("Armor Images:", armorImages);
+        // Step 9: Create the folder
+        let folder = await createArmorFolder();
 
-        // Verify that the path is valid and exists on the server and create it if it does not
-        const imgPath = OggDudeDataImporter.buildImgArmorWorldPath();
-        if (await OggDudeDataImporter.checkPathExists(imgPath)) {
-            console.log(`Path ${imgPath} exists !`);
-        } else {
-            console.warn(`Path ${imgPath} does not exist ! Let's create it.`);
-            await OggDudeDataImporter.createPath(imgPath);
-        }
-
-        armorImages.forEach(armorImage => {
-            zipFile.then(async (zip) => {
-                const imgData = await zip.files[armorImage.fullPath].async('blob');
-                const imgFile = new File([imgData], armorImage.name, {type: armorImage.type});
-                console.log(`Image to be stored ${imgPath}/`, imgFile);
-                await OggDudeDataImporter.uploadImage(imgPath, imgFile).then((result) => {
-                    console.log(`Image ${imgFile.name} has been uploaded ?`, result);
-                });
-            });
-        })
-
-        // Without parser
-        const armorDataXml = await xml2js.js.parseStringPromise(armorData, {
-            explicitArray: false,
-            trim: true,
-            mergeAttrs: true
-        });
-
-        let folder = game.folders.find(f => f.name === 'Swes Armors' && f.type === 'Item');
-        if (!folder) {
-            folder = await Folder.create({name: 'Swes Armors', type: 'Item', parent: null});
-        }
-
-        // Step 2: Create the items
-        const armors = armorDataXml.Armors.Armor;
-        let armorItems = OggDudeDataImporter.armorMapper(armors);
-        console.log(`armorItems to be created in FVTT ${armorItems} with armors ${armors}`);
-        await OggDudeDataImporter.storeArmorItems(armorItems, folder);
+        // Step 10: Store the Armor Items
+        await storeArmor(armorDataXml, folder);
 
         await this.close({});
     }
@@ -359,7 +372,7 @@ export class OggDudeDataImporter extends FormApplication {
      * @returns {string}
      */
     static buildImgArmorWorldPath() {
-        return `worlds/${game.world.id}/swes/images/armors`;
+        return `worlds/${game.world.id}/swes-assets/images/armors`;
     }
 
     /**
