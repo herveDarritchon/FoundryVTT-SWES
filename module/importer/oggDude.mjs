@@ -5,8 +5,7 @@ export default class OggDudeImporter {
      * @returns {Promise<{[p: string]: JSZip.JSZipObject}>}
      */
     async load(file) {
-        let zip = JSZip.loadAsync(file)
-        return zip;
+        return JSZip.loadAsync(file);
     }
     /* -------------------------------------------- */
 
