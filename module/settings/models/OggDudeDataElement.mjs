@@ -135,7 +135,7 @@ class OggDudeDataElement {
      * @returns {object} An object where the keys are the types and the values are arrays of elements of that type
      */
     static groupByType(elements) {
-       return elements.reduce((grouped, element) => {
+        return elements.reduce((grouped, element) => {
             const key = element._type;
             if (!grouped[key]) {
                 grouped[key] = [];
@@ -154,13 +154,13 @@ class OggDudeDataElement {
         return elements
             .filter((element) => element._type !== OggDudeDataElement.directory)
             .reduce((grouped, element) => {
-            const key = element._relativePath;
-            if (!grouped[key]) {
-                grouped[key] = [];
-            }
-            grouped[key].push(element);
-            return grouped;
-        }, {});
+                const key = element._relativePath;
+                if (!grouped[key]) {
+                    grouped[key] = [];
+                }
+                grouped[key].push(element);
+                return grouped;
+            }, {});
     }
 
     static getElementsFrom(directories, path, name) {
@@ -208,6 +208,29 @@ class OggDudeDataElement {
         } else if (extension === OggDudeDataElement.xml) {
             return OggDudeDataElement.xml;
         }
+    }
+
+    /**
+     * Returns the MIME type of the file.
+     * @returns {*|string} the MIME type of the file
+     * @public
+     * @function
+     * @name _getMimeType
+     * @memberof OggDudeDataElement
+     */
+    getMimeType = () => {
+        const extension = this._name.split('.').pop().toLowerCase();
+        const mimeTypes = {
+            'jpg': 'image/jpeg',
+            'jpeg': 'image/jpeg',
+            'png': 'image/png',
+            'gif': 'image/gif',
+            'webp': 'image/webp',
+            'xml': 'application/xml',
+            // Ajoutez d'autres correspondances d'extensions et de types MIME au besoin
+        };
+
+        return mimeTypes[extension] || 'application/octet-stream';
     }
 }
 
