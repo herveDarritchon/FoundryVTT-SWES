@@ -6,33 +6,7 @@
 
 import OggDudeImporter from "../importer/oggDude.mjs";
 import OggDudeDataElement from "./models/OggDudeDataElement.mjs";
-import {checkFileExists} from "../helpers/server/directory/file.mjs";
-
-/**
- * Build the path to the armor images.
- * @param imageFileName {string} The name of the image file.
- * @returns {string} The path to the armor images.
- * @private
- * @function
- * @name OggDudeDataImporter._buildItemImgSystemPath
- * @memberof OggDudeDataImporter
- */
-function _buildItemImgSystemPath(imageFileName) {
-    return `systems/${game.system.id}/assets/images/icons/${imageFileName}`;
-}
-
-/**
- * Build the path to the images.
- * @param type {string} The type of the images.
- * @returns {string} The path to the images.
- * @private
- * @function
- * @name _buildArmorImgWorldPath
- * @memberof OggDudeDataImporter
- */
-function _buildArmorImgWorldPath(type) {
-    return `worlds/${game.world.id}/swes-assets/images/${type}`;
-}
+import {buildArmorImgWorldPath, buildItemImgSystemPath} from "./directories.mjs";
 
 /**
  * Map a String value, if it is not present, return an empty string.
@@ -119,6 +93,40 @@ function _mapOptionalArray(value, mapper) {
 }
 
 /**
+ * Armor Array Mapper : Map the Weapon XML data to the Swes Weapon object array.
+ * @param weapons {Array} The Weapons data from the XML file.
+ * @returns {Array} The Swes Weapon object array.
+ * @private
+ * @function
+ * @name _weaponMapper
+ * @memberof OggDudeDataImporter
+ */
+function _weaponMapper(weapons) {
+    return weapons.map((xmlWeapon) => {
+        return {
+            name: _mapMandatoryString("armor.Name", xmlWeapon.Name),
+            key: _mapMandatoryString("armor.Key", xmlWeapon.Key),
+            description: _mapMandatoryString("armor.Description", xmlWeapon.Description),
+            soak: _mapMandatoryNumber("armor.Soak", xmlWeapon.Soak),
+            defense: _mapMandatoryNumber("armor.Defense", xmlWeapon.Defense),
+            encumbrance: _mapMandatoryNumber("armor.Encumbrance", xmlWeapon.Encumbrance),
+            price: _mapMandatoryNumber("armor.Price", xmlWeapon.Price),
+            rarity: _mapMandatoryNumber("armor.Rarity", xmlWeapon.Rarity),
+            HP: _mapMandatoryNumber("armor.HP", xmlWeapon.HP),
+            sources: _mapOptionalArray(
+                xmlWeapon?.Sources?.Source,
+                (source) => {
+                    return {description: source._, page: source.Page}
+                }),
+            categories: _mapOptionalArray(xmlWeapon?.Categories?.Category, (category) => category),
+            mods: {
+                miscDesc: _mapOptionalString(xmlWeapon?.BaseMods?.Mod?.MiscDesc)
+            }
+        }
+    });
+}
+
+/**
  * Armor Array Mapper : Map the Armor XML data to the SwesArmor object array.
  * @param armors {Array} The Armors data from the XML file.
  * @returns {Array} The SwesArmor object array.
@@ -150,34 +158,6 @@ function _armorMapper(armors) {
             }
         }
     });
-}
-
-/**
- * Get the image of an armor. If it does not exist, return  the default armor image.
- * Otherwise, return the path of the armor image.
- * @param armorKey {string} The key of the armor.
- * @returns {Promise<string>} The path of the armor image.
- *  @async
- *  @private
- *  @function
- *  @name _getArmorImage
- *  @memberof OggDudeDataImporter
- */
-async function _getArmorImage(armorKey) {
-    // get the armor image path
-    const imgArmorWorldPath = _buildArmorImgWorldPath("armors");
-    const armorImage = `${imgArmorWorldPath}/Armor${armorKey}.png`;
-    console.log(`Armor image ${armorImage} for armor ${armorKey} to be checked.`);
-    const found = await checkFileExists(armorImage);
-    if (found) {
-        console.log(`Armor image ${armorImage} for armor ${armorKey} found. Using specific armor image.`);
-        return armorImage;
-    } else {
-        const imgArmorSystemPath = _buildItemImgSystemPath("armor.svg");
-        const armorImage = `${imgArmorSystemPath}/armor.svg`;
-        console.log(`Armor image ${armorImage} for armor ${armorKey} not found. Using default armor image.`)
-        return armorImage;
-    }
 }
 
 /**
@@ -222,10 +202,10 @@ async function _processArmorData(importedFile) {
     /* --------------------------------------------- SPÉCIFIQUE ------------------------------------------------------------------- */
 
     /**
-     *
-     * @type {OggDudeElementContext} The context of the element to be stored
+     *  Construct the Armor Item Context
+     * @type {OggDudeElementContext} The Armor Context of the element to be stored
      */
-    const context = {
+    const armorContext = {
         zip: {
             elementFileName: "Armor.xml",
             content: zip,
@@ -233,8 +213,8 @@ async function _processArmorData(importedFile) {
         },
         image: {
             criteria: "Data/EquipmentImages/Armor",
-            worldPath: _buildArmorImgWorldPath("armors"),
-            systemPath: _buildItemImgSystemPath("armor.svg"),
+            worldPath: buildArmorImgWorldPath("armors"),
+            systemPath: buildItemImgSystemPath("armor.svg"),
             images: groupByType.image
         },
         folder: {
@@ -248,7 +228,36 @@ async function _processArmorData(importedFile) {
         }
     }
 
-    await OggDudeDataElement.processElements(context);
+    await OggDudeDataElement.processElements(armorContext);
+
+    /**
+     *  Construct the Weapon Item Context
+     * @type {OggDudeElementContext} The  Weapon Context of the element to be stored
+     */
+    const weaponContext = {
+        zip: {
+            elementFileName: "Weapon.xml",
+            content: zip,
+            directories: groupByDirectory
+        },
+        image: {
+            criteria: "Data/EquipmentImages/Weapon",
+            worldPath: buildArmorImgWorldPath("weapons"),
+            systemPath: buildItemImgSystemPath("weapon.svg"),
+            images: groupByType.image
+        },
+        folder: {
+            name: 'Swes - Weapons',
+            type: 'Item'
+        },
+        element: {
+            jsonCriteria: 'Weapons.Weapon',
+            mapper: _weaponMapper,
+            type: 'weapon'
+        }
+    }
+
+    await OggDudeDataElement.processElements(weaponContext);
 
     /* ------------------------------------------------------------------------------------------------------------------------------------ */
 
