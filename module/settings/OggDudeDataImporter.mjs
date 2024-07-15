@@ -6,20 +6,19 @@
 
 import OggDudeImporter from "../importer/oggDude.mjs";
 import OggDudeDataElement from "./models/OggDudeDataElement.mjs";
-import {checkFileExists, createPathIfNeccessary, uploadFileOnTheServer} from "../helpers/server/directory/file.mjs";
-import {createFoundryFolder} from "../helpers/foundry/folder.mjs";
-import {parseXmlToJson} from "../utils/xml/parser.mjs";
+import {checkFileExists} from "../helpers/server/directory/file.mjs";
 
 /**
  * Build the path to the armor images.
+ * @param imageFileName {string} The name of the image file.
  * @returns {string} The path to the armor images.
  * @private
  * @function
- * @name _buildItemImgSystemPath
+ * @name OggDudeDataImporter._buildItemImgSystemPath
  * @memberof OggDudeDataImporter
  */
-function _buildItemImgSystemPath() {
-    return `systems/${game.system.id}/assets/images/icons`;
+function _buildItemImgSystemPath(imageFileName) {
+    return `systems/${game.system.id}/assets/images/icons/${imageFileName}`;
 }
 
 /**
@@ -34,113 +33,6 @@ function _buildItemImgSystemPath() {
 function _buildArmorImgWorldPath(type) {
     return `worlds/${game.world.id}/swes-assets/images/${type}`;
 }
-
-/**
- * Create the path to the armor images and verify that it exists on the server.
- * If it does not exist, create it.
- * @returns {Promise<string>}
- * @async
- * @private
- * @function
- * @name _createArmorImagePath
- * @memberof OggDudeDataImporter
- */
-async function _createArmorImagePath() {
-    // Verify that the path is valid and exists on the server and create it if it does not
-    const imgPath = _buildArmorImgWorldPath("armors");
-    await createPathIfNeccessary(imgPath);
-    return imgPath;
-}
-
-/* ------------------------------------------------------------------------------------------------------------------------------------ */
-
-/**
- * Upload the images to the server.
- * @param images {OggDudeDataElement[]} The images to upload.
- * @param zip {JSZip} The zip file.
- * @param imgPath {string} The path of the images.
- * @returns {Promise<void>}
- * @async
- * @private
- * @function
- * @name _uploadImagesOnTheServer
- * @memberof OggDudeDataImporter
- */
-async function _uploadImagesOnTheServer(images, zip, imgPath) {
-    // Upload the armor images to the server
-    const armorImages = images.filter(image => {
-        // select only images starting with "EquipmentImages/Armor"
-        return image.fullPath.startsWith("Data/EquipmentImages/Armor");
-    });
-
-    console.log("Armor Images:", armorImages);
-
-    for (const armorImage of armorImages) {
-        const imgData = await zip.files[armorImage.fullPath].async('blob');
-        console.log("Armor Image Data before upload:", armorImage);
-        await uploadFileOnTheServer({data: imgData, element: armorImage}, imgPath);
-    }
-}
-
-/* ------------------------------------------------------------------------------------------------------------------------------------ */
-
-/**
- * Store the Armor Items in the database.
- * @param armorItems {SwesArmor[]} The Armor Items to store.
- * @param folder {Folder} The folder to store the items.
- * @returns {Promise<void>} A Promise that resolves when the Armor Items have been stored.
- * @async
- * @private
- * @function
- * @name _storeArmorItems
- * @memberof OggDudeDataImporter
- */
-async function _storeArmorItems(armorItems, folder) {
-    let armorPromises = await Promise.all(armorItems.map(async armor => {
-        console.log("Armor %s: Armor image to be returned by method _getArmorImage.", armor.key);
-        const img = await _getArmorImage(armor.key);
-        console.log("Armor %s: Armor image returned by method _getArmorImage is %.", armor.key, img);
-        return {
-            name: armor.name,
-            img: img,
-            type: 'armor', // This should match the type defined in your system
-            system: armor, // This should match the structure of your SwesArmor schema
-            folder: folder.id // Set the folder id
-        };
-    }));
-
-    console.log("Armors to be created from Promises:", armorPromises);
-
-    let armorPromiseResolved =  Promise.all(armorPromises).then(async armors => {
-        console.log("Armors to be created:", armors)
-        await Item.createDocuments(armors).then((items) => {
-            console.log("Armors created:", items);
-        });
-    }).catch(error => {
-        console.error("Error while creating armors:", error);
-    });
-}
-
-/**
- * Store the Armor Items in the database. The Armor data is mapped to the SwesArmor object array.
- * @param armorDataXml {object} The Armor JSON data.
- * @param folder {Folder} The Armor folder.
- * @returns {Promise<void>} A Promise that resolves when the Armor Items have been stored.
- * @async
- * @private
- * @function
- * @name _storeArmor
- * @memberof OggDudeDataImporter
- */
-async function _storeArmor(armorDataXml, folder) {
-    // Step 2: Create the items
-    const armors = armorDataXml.Armors.Armor;
-    let armorItems = _armorMapper(armors);
-    console.log(`armorItems to be created in FVTT ${armorItems} with armors ${armors}`);
-    await _storeArmorItems(armorItems, folder);
-}
-
-/* ------------------------------------------------------------------------------------------------------------------------------------ */
 
 /**
  * Map a String value, if it is not present, return an empty string.
@@ -281,7 +173,7 @@ async function _getArmorImage(armorKey) {
         console.log(`Armor image ${armorImage} for armor ${armorKey} found. Using specific armor image.`);
         return armorImage;
     } else {
-        const imgArmorSystemPath = _buildItemImgSystemPath();
+        const imgArmorSystemPath = _buildItemImgSystemPath("armor.svg");
         const armorImage = `${imgArmorSystemPath}/armor.svg`;
         console.log(`Armor image ${armorImage} for armor ${armorKey} not found. Using default armor image.`)
         return armorImage;
@@ -310,6 +202,9 @@ async function _getArmorImage(armorKey) {
  * @memberof OggDudeDataImporter
  */
 async function _processArmorData(importedFile) {
+
+    /* --------------------------------------------- GÉNÉRIQUE ------------------------------------------------------------------- */
+
     // Step 1: Load the zip file
     const zip = await new OggDudeImporter().load(importedFile);
 
@@ -324,26 +219,40 @@ async function _processArmorData(importedFile) {
     let groupByType = OggDudeDataElement.groupByType(allDataElements);
     console.log("Group By Type:", groupByType);
 
-    // Step 4: Get the Armor file from the Data directory
-    const armorFile = OggDudeDataElement.getElementsFrom(groupByDirectory, "Data", "Armor.xml");
+    /* --------------------------------------------- SPÉCIFIQUE ------------------------------------------------------------------- */
 
-    // Step 5: Get the Armor data from the Armor file
-    const armorData = await zip.files[armorFile.fullPath].async('text');
+    /**
+     *
+     * @type {OggDudeElementContext} The context of the element to be stored
+     */
+    const context = {
+        zip: {
+            elementFileName: "Armor.xml",
+            content: zip,
+            directories: groupByDirectory
+        },
+        image: {
+            criteria: "Data/EquipmentImages/Armor",
+            worldPath: _buildArmorImgWorldPath("armors"),
+            systemPath: _buildItemImgSystemPath("armor.svg"),
+            images: groupByType.image
+        },
+        folder: {
+            name: 'Swes - Armors',
+            type: 'Item'
+        },
+        element: {
+            jsonCriteria: 'Armors.Armor',
+            mapper: _armorMapper,
+            type: 'armor'
+        }
+    }
 
-    // Step 6: Create the folder in the Item tab
-    const imgPath = await createPathIfNeccessary(_buildArmorImgWorldPath("armors"));
+    await OggDudeDataElement.processElements(context);
 
-    // Step 7: Upload the images to the server
-    await _uploadImagesOnTheServer(groupByType.image, zip, imgPath);
+    /* ------------------------------------------------------------------------------------------------------------------------------------ */
 
-    // Step 8: Parse the XML data
-    const armorDataXml = await parseXmlToJson(armorData);
 
-    // Step 9: Create the folder
-    let folder =  await createFoundryFolder('Swes Armors', 'Item');
-
-    // Step 10: Store the Armor Items
-    await _storeArmor(armorDataXml, folder);
 }
 
 /**
