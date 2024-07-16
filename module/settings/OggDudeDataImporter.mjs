@@ -71,6 +71,37 @@ function _mapOptionalNumber(value) {
 }
 
 /**
+ * Map a Boolean value, if it is not present, return false.
+ * @param label {string} The label of the element.
+ * @param value {string} The value of the element.
+ * @returns {boolean} The mapped value of the element.
+ * @private
+ * @function
+ * @name _mapMandatoryBoolean
+ * @memberof OggDudeDataImporter
+ */
+function _mapMandatoryBoolean(label, value) {
+    if (value == null || typeof value !== "string") {
+        console.warn(`Value ${label} is mandatory !`);
+        return false;
+    }
+    return (value === 'true');
+}
+
+/**
+ *  Map a Boolean value, if it is not present, return false.
+ * @param value {string} The value of the element.
+ * @returns {boolean} The mapped value of the element.
+ * @private
+ * @function
+ * @name _mapOptionalBoolean
+ * @memberof OggDudeDataImporter
+ */
+function _mapOptionalBoolean(value) {
+    return (value === 'true');
+}
+
+/**
  * Map an optional array value, if it is not present, return an empty array.
  * @param value {Array} The value of the element.
  * @param mapper {function} The function to map the value.
@@ -147,15 +178,63 @@ function _armorMapper(armors) {
             price: _mapMandatoryNumber("armor.Price", xmlArmor.Price),
             rarity: _mapMandatoryNumber("armor.Rarity", xmlArmor.Rarity),
             HP: _mapMandatoryNumber("armor.HP", xmlArmor.HP),
+            restricted: _mapOptionalBoolean("armor.Restricted", xmlArmor.Restricted),
             sources: _mapOptionalArray(
                 xmlArmor?.Sources?.Source,
                 (source) => {
                     return {description: source._, page: source.Page}
                 }),
             categories: _mapOptionalArray(xmlArmor?.Categories?.Category, (category) => category),
-            mods: {
-                miscDesc: _mapOptionalString(xmlArmor?.BaseMods?.Mod?.MiscDesc)
-            }
+            mods: _mapOptionalArray(xmlArmor?.BaseMods?.Mod, (mod) => {
+                return {
+                    miscDesc: _mapMandatoryString("armor.Mod.MiscDesc", mod.MiscDesc),
+                    key: _mapOptionalString("armor.Mod.Key", mod.Key),
+                    count: _mapOptionalNumber("armor.Mod.Count", mod.Count),
+                    dieModifiers: _mapOptionalArray(mod?.DieModifiers?.DieModifier, (dieModifier) => {
+                        return {
+                            skillKey: _mapMandatoryString("armor.Mod.Die,Modifier.SkillKey", dieModifier.SkillKey),
+                            skillType: _mapMandatoryString("armor.Mod.Die,Modifier.SkillType", dieModifier.SkillType),
+                            skillChar: _mapMandatoryString("armor.Mod.Die,Modifier.SkillChar", dieModifier.SkillChar),
+                            addSetBackCount: _mapMandatoryNumber("armor.Mod.Die,Modifier.AddSetBackCount", dieModifier.AddSetBackCount),
+                            advantageCount: _mapMandatoryNumber("armor.Mod.Die,Modifier.AdvantageCount", dieModifier.AdvantageCount),
+                            boostCount: _mapMandatoryNumber("armor.Mod.Die,Modifier.BoostCount", dieModifier.BoostCount),
+                            setbackCount: _mapMandatoryNumber("armor.Mod.Die,Modifier.SetbackCount", dieModifier.SetbackCount),
+                            successCount: _mapMandatoryNumber("armor.Mod.Die,Modifier.SuccessCount", dieModifier.SuccessCount),
+                            threatCount: _mapMandatoryNumber("armor.Mod.Die,Modifier.ThreatCount", dieModifier.ThreatCount),
+                            upgradeAbilityCount: _mapMandatoryNumber("armor.Mod.Die,Modifier.UpgradeAbilityCount", dieModifier.UpgradeAbilityCount),
+                            upgradeDifficultyCount: _mapMandatoryNumber("armor.Mod.Die,Modifier.UpgradeDifficultyCount", dieModifier.UpgradeDifficultyCount)
+                        }
+                    }),
+                }
+            }),
+            weaponModifiers: _mapOptionalArray(xmlArmor?.WeaponModifiers?.WeaponModifier, (weaponModifier) => {
+                return {
+                    unarmed: _mapMandatoryString("armor.WeaponModifier.Unarmed", weaponModifier.Unarmed),
+                    unarmedName: _mapMandatoryString("armor.WeaponModifier.UnarmedName", weaponModifier.UnarmedName),
+                    skillKey: _mapMandatoryString("armor.WeaponModifier.SkillKey", weaponModifier.SkillKey),
+                    allSkillKey: _mapMandatoryString("armor.WeaponModifier.AllSkillKey", weaponModifier.AllSkillKey),
+                    damage: _mapMandatoryNumber("armor.WeaponModifier.Damage", weaponModifier.Damage),
+                    damageAdd: _mapMandatoryNumber("armor.WeaponModifier.DamageAdd", weaponModifier.DamageAdd),
+                    crit: _mapMandatoryNumber("armor.WeaponModifier.Crit", weaponModifier.Crit),
+                    critSub: _mapMandatoryNumber("armor.WeaponModifier.CritSub", weaponModifier.CritSub),
+                    rangeValue: _mapMandatoryNumber("armor.WeaponModifier.RangeValue", weaponModifier.RangeValue),
+                    qualities: _mapOptionalArray(weaponModifier?.Qualities?.Quality, (quality) => {
+                        return {
+                            key: _mapMandatoryString("armor.WeaponModifier.Quality.Key", quality.Key),
+                            count: _mapMandatoryNumber("armor.WeaponModifier.Quality.Count", quality.Count)
+                        }
+                    }),
+                }
+            }),
+            eraPricing: _mapOptionalArray(xmlArmor?.EraPricing?.Era, (eraPrice) => {
+                return {
+                    name: _mapMandatoryString("armor.EraPrice.Name", eraPrice.Name),
+                    price: _mapMandatoryString("armor.EraPrice.Price", eraPrice.Price),
+                    rarity: _mapMandatoryString("armor.EraPrice.Rarity", eraPrice.Rarity),
+                    restricted: _mapMandatoryBoolean("armor.EraPrice.Restricted", eraPrice.Restricted)
+                }
+            })
+
         }
     });
 }
@@ -193,11 +272,11 @@ async function _processArmorData(importedFile) {
 
     // Step 3.1: Group the data elements by directory
     let groupByDirectory = OggDudeDataElement.groupByDirectory(allDataElements);
-    console.log("Group By Directory:", groupByDirectory);
+    console.debug("Group By Directory:", groupByDirectory);
 
     // Step 3.2: Group the data elements by type
     let groupByType = OggDudeDataElement.groupByType(allDataElements);
-    console.log("Group By Type:", groupByType);
+    console.debug("Group By Type:", groupByType);
 
     /* --------------------------------------------- SPÉCIFIQUE ------------------------------------------------------------------- */
 
