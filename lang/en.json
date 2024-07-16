@@ -34,9 +34,14 @@
           "label": "Rarity",
           "hint": "Rarity of the armor"
         }
-      },
+      }
+    }
+  },
+  "ITEM": {
+    "Sheet": {
       "section": {
         "active-effects": "Active Effects",
+        "attributes": "Attributes",
         "characteristics": "Characteristics",
         "details": "Details",
         "modifiers": "Modifiers",

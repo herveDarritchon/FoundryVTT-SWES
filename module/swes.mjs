@@ -50,6 +50,7 @@ Hooks.once('init', function () {
   CONFIG.Item.dataModels = {
     item: models.SwesItem,
     armor: models.SwesArmor,
+    weapon: models.SwesWeapon,
     feature: models.swesFeature,
     spell: models.swesSpell
   }

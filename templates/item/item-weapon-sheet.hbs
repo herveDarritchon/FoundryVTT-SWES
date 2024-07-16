@@ -1,0 +1,346 @@
+{{log "Weapon" this}}
+{{!-- This template is a fallback for when items don't have more specific templates. --}}
+{{!-- Generally, you'll want to make more specific templates when possible. --}}
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+        <div class="header-fields">
+            <h1 class="charname">
+                <input name="name" type="text" value="{{item.name}}" placeholder="Name"/>
+            </h1>
+        </div>
+    </header>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="details">{{localize "ITEM.Sheet.section.details"}}</a>
+        <a class="item" data-tab="attributes">{{localize "ITEM.Sheet.section.attributes"}}</a>
+        <a class="item" data-tab="characteristics">{{localize "ITEM.Sheet.section.characteristics"}}</a>
+        <a class="item" data-tab="modifiers">{{localize "ITEM.Sheet.section.modifiers"}}</a>
+        <a class="item" data-tab="weapon-modifiers">{{localize "ITEM.Sheet.section.weapon-modifiers"}}</a>
+        <a class="item" data-tab="price">{{localize "ITEM.Sheet.section.price"}}</a>
+        <a class="item" data-tab="active-effects">{{localize "ITEM.Sheet.section.active-effects"}}</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Description Tab --}}
+        <div class="tab details" data-group="primary" data-tab="details">
+            <h1>Details</h1>
+            <div>
+                <label for="key">{{localize "WEAPON.Sheet.details.key.label"}}</label>
+                <input id="key" name="system.key" type="text" value="{{system.key}}" placeholder="key"/>
+                {{editor system.description target="system.description" rollData=rollData button=true owner=owner
+                         editable=editable}}
+            </div>
+            <div>
+                {{#each this.sources as |source|}}
+                    <label for="source">{{localize "WEAPON.Sheet.details.source.label"}}</label>
+                    <input id="source" name="system.description" type="text" value="{{source.description}}"
+                           placeholder="Description"/>
+
+                    <label for="page">{{localize "WEAPON.Sheet.details.page.label"}}</label>
+                    <input id="page" name="system.page" type="number" value="{{source.page}}" placeholder="Page"/>
+                {{/each}}
+            </div>
+
+            <label for="price">{{localize "WEAPON.Sheet.characteristics.price.label"}}</label>
+            <input id="price" name="system.price" type="number" value="{{system.price}}"
+                   placeholder="Price"/>
+
+        </div>
+
+        <div class="tab attributes" data-group="primary" data-tab="attributes">
+            <h1>Attributes</h1>
+            <div>
+
+                <label for="encumbrance">{{localize "WEAPON.Sheet.attributes.encumbrance.label"}}</label>
+                <input id="encumbrance" name="system.encumbrance" type="number" value="{{system.encumbrance}}"
+                       placeholder="Encumbrance"/>
+
+                <label for="hardpoints">{{localize "WEAPON.Sheet.attributes.hardpoints.label"}}</label>
+                <input id="hardpoints" name="system.hp" type="number" value="{{system.hp}}" placeholder="hardpoints"/>
+
+                <label for="rarity">{{localize "WEAPON.Sheet.attributes.rarity.label"}}</label>
+                <input id="rarity" name="system.rarity" type="number" value="{{system.rarity}}" placeholder="Rarity"/>
+
+                <label for="type">{{localize "WEAPON.Sheet.attributes.type.label"}}</label>
+                <input id="type" name="system.type" type="text" value="{{system.type}}"
+                       placeholder="Type"/>
+
+                <label for="type">{{localize "WEAPON.Sheet.attributes.type.label"}}</label>
+                <input id="type" name="system.type" type="text" value="{{system.type}}"
+                       placeholder="Type"/>
+
+                <label for="skillKey">{{localize "WEAPON.Sheet.attributes.skillKey.label"}}</label>
+                <input id="skillKey" name="system.skillKey" type="text" value="{{system.skillKey}}"
+                       placeholder="Skill Key"/>
+
+                <label for="damage">{{localize "WEAPON.Sheet.attributes.damage.label"}}</label>
+                <input id="damage" name="system.damage" type="text" value="{{system.damage}}"
+                       placeholder="Damage"/>
+
+                <label for="damageAdd">{{localize "WEAPON.Sheet.attributes.damageAdd.label"}}</label>
+                <input id="damageAdd" name="system.damageAdd" type="text" value="{{system.damageAdd}}"
+                       placeholder="Damage Add"/>
+
+                <label for="crit">{{localize "WEAPON.Sheet.attributes.crit.label"}}</label>
+                <input id="crit" name="system.crit" type="text" value="{{system.crit}}"
+                       placeholder="Critics"/>
+
+                <label for="sizeLow">{{localize "WEAPON.Sheet.attributes.sizeLow.label"}}</label>
+                <input id="sizeLow" name="system.sizeLow" type="number" value="{{system.sizeLow}}"
+                       placeholder="Size Low"/>
+
+                <label for="sizeHigh">{{localize "WEAPON.Sheet.attributes.sizeHigh.label"}}</label>
+                <input id="sizeHigh" name="system.sizeHigh" type="number" value="{{system.sizeHigh}}"
+                       placeholder="Size High"/>
+
+                <label for="attachCostMult">{{localize "WEAPON.Sheet.attributes.attachCostMult.label"}}</label>
+                <input id="attachCostMult" name="system.attachCostMult" type="number" value="{{system.attachCostMult}}"
+                       placeholder="Attach Cost Mult"/>
+
+                <label for="range">{{localize "WEAPON.Sheet.attributes.range.label"}}</label>
+                <input id="range" name="system.range" type="text" value="{{system.range}}"
+                       placeholder="Range"/>
+
+                <label for="noMelee">{{localize "WEAPON.Sheet.attributes.noMelee.label"}}</label>
+                <input id="noMelee" name="system.noMelee" type="text" value="{{system.noMelee}}"
+                       placeholder="No Melee"/>
+
+                <label for="scale">{{localize "WEAPON.Sheet.attributes.scale.label"}}</label>
+                <input id="scale" name="system.scale" type="text" value="{{system.scale}}"
+                       placeholder="Scale"/>
+
+                <label for="hands">{{localize "WEAPON.Sheet.attributes.hands.label"}}</label>
+                <input id="hands" name="system.hands" type="text" value="{{system.hands}}"
+                       placeholder="Hands"/>
+
+                <label for="ordnance">{{localize "WEAPON.Sheet.attributes.ordnance.label"}}</label>
+                <input id="ordnance" name="system.ordnance" type="text" value="{{system.ordnance}}"
+                       placeholder="Ordnance"/>
+
+                <label for="vehicleNoReplace">{{localize "WEAPON.Sheet.attributes.vehicleNoReplace.label"}}</label>
+                <input id="vehicleNoReplace" name="system.vehicleNoReplace" type="text"
+                       value="{{system.vehicleNoReplace}}"
+                       placeholder="Vehicle No Replace"/>
+
+                <label for="rangeValue">{{localize "WEAPON.Sheet.attributes.rangeValue.label"}}</label>
+                <input id="rangeValue" name="system.rangeValue" type="text" value="{{system.rangeValue}}"
+                       placeholder="Range Value"/>
+
+                {{#each system.categories as |category id|}}
+                    <label for="category">{{localize "WEAPON.Sheet.attributes.category.label"}}</label>
+                    <input id="category" name="system.categories.{{id}}" type="text" value="{{category}}"
+                           placeholder="Category"/>
+                {{/each}}
+
+            </div>
+        </div>
+
+        <div class="tab characteristics" data-group="primary" data-tab="characteristics">
+            <h1>Characteristics</h1>
+            <div>
+                {{#each system.qualities as |quality id|}}
+                    <label for="quality-key">{{localize "WEAPON.Sheet.characteristics.quality.key.label"}}</label>
+                    <input id="quality-key" name="system.qualities.{{id}}.key" type="text" value="{{quality.key}}"
+                           placeholder="Quality Key"/>
+
+                    <label for="quality-count">{{localize "WEAPON.Sheet.characteristics.quality.count.label"}}</label>
+                    <input id="quality-count" name="system.qualities.{{id}}.count" type="number"
+                           value="{{quality.count}}"
+                           placeholder="Quality Count"/>
+                {{/each}}
+
+                {{#each system.mods as |mod id|}}
+                    <label for="mod-miscDesc">{{localize "WEAPON.Sheet.characteristics.mod.miscDesc.label"}}</label>
+                    <input id="mod-miscDesc" name="system.mods.{{id}}.miscDesc" type="text" value="{{mod.miscDesc}}"
+                           placeholder="Mod Misc Description"/>
+                {{/each}}
+            </div>
+        </div>
+
+        {{!-- Weapon Modifiers Tab --}}
+        <div class="tab modifiers" data-group="primary" data-tab="modifiers">
+            {{!-- As you add new fields, add them in here! --}}
+            <h1>Modifiers</h1>
+            {{#each system.mods as |mod id|}}
+
+                <label for="mod-key">{{localize "WEAPON.Sheet.modifiers.key.label"}}</label>
+                <input id="mod-key" name="system.mods.{{id}}.key" type="text" value="{{mod.key}}" placeholder="Key"/>
+
+                <label for="mod-miscDesc">{{localize "WEAPON.Sheet.modifiers.miscDesc.label"}}</label>
+                <input id="mod-miscDesc" name="system.mods.{{id}}.miscDesc" type="text" value="{{mod.miscDesc}}"
+                       placeholder="Misc Description"/>
+
+                <label for="mod-count">{{localize "WEAPON.Sheet.modifiers.value.count"}}</label>
+                <input id="mod-count" name="system.mods.{{id}}.count" type="number" value="{{mod.count}}"
+                       placeholder="Count"/>
+
+                {{#each mod.dieModifiers as |dieModifier idx|}}
+                    <label for="mod-dieModifier-skillKey">{{localize
+                            "WEAPON.Sheet.modifiers.dieModifier.skillKey"}}</label>
+                    <input id="mod-dieModifier-skillKey" name="system.mods.{{../id}}.dieModifiers.{{idx}}.skillKey"
+                           type="text"
+                           value="{{dieModifier.skillKey}}" placeholder="Skill Key"/>
+
+                    <label for="mod-dieModifier-skillType">{{localize
+                            "WEAPON.Sheet.modifiers.dieModifier.skillType"}}</label>
+                    <input id="mod-dieModifier-skillType" name="system.mod.dieModifier.skillType" type="text"
+                           value="{{dieModifier.skillType}}" placeholder="Skill Type"/>
+
+                    <label for="mod-dieModifier-skillChar">{{localize
+                            "WEAPON.Sheet.modifiers.dieModifier.skillChar"}}</label>
+                    <input id="mod-dieModifier-skillChar" name="system.mod.dieModifier.skillChar" type="text"
+                           value="{{dieModifier.skillChar}}" placeholder="Skill Characteristic"/>
+
+                    <label for="mod-dieModifier-addSetBackCount">{{localize
+                            "WEAPON.Sheet.modifiers.dieModifier.addSetBackCount"}}</label>
+                    <input id="mod-dieModifier-addSetBackCount" name="system.mod.dieModifier.addSetBackCount"
+                           type="number" value="{{dieModifier.addSetBackCount}}"
+                           placeholder="Add Setback Count"/>
+
+                    <label for="mod-dieModifier-advantageCount">{{localize
+                            "WEAPON.Sheet.modifiers.dieModifier.advantageCount"}}</label>
+                    <input id="mod-dieModifier-advantageCount" name="system.mod.dieModifier.advantageCount"
+                           type="number" value="{{dieModifier.advantageCount}}"
+                           placeholder="Advantage Count"/>
+
+                    <label for="mod-dieModifier-boostCount">{{localize
+                            "WEAPON.Sheet.modifiers.dieModifier.boostCount"}}</label>
+                    <input id="mod-dieModifier-boostCount" name="system.mod.dieModifier.boostCount" type="number"
+                           value="{{dieModifier.boostCount}}" placeholder="Boost Count"/>
+
+                    <label for="mod-dieModifier-setbackCount">{{localize
+                            "WEAPON.Sheet.modifiers.dieModifier.setbackCount"}}</label>
+                    <input id="mod-dieModifier-setbackCount" name="system.mod.dieModifier.setbackCount"
+                           type="number" value="{{dieModifier.setbackCount}}"
+                           placeholder="Setback Count"/>
+
+                    <label for="mod-dieModifier-successCount">{{localize
+                            "WEAPON.Sheet.modifiers.dieModifier.successCount"}}</label>
+                    <input id="mod-dieModifier-successCount" name="system.mod.dieModifier.successCount"
+                           type="number" value="{{dieModifier.successCount}}"
+                           placeholder="Success Count"/>
+
+                    <label for="mod-dieModifier-threatCount">{{localize
+                            "WEAPON.Sheet.modifiers.dieModifier.threatCount"}}</label>
+                    <input id="mod-dieModifier-threatCount" name="system.mod.dieModifier.threatCount" type="number"
+                           value="{{dieModifier.threatCount}}" placeholder="Threat Count"/>
+
+                    <label for="mod-dieModifier-upgradeAbilityCount">{{localize
+                            "WEAPON.Sheet.modifiers.dieModifier.upgradeAbilityCount"}}</label>
+                    <input id="mod-dieModifier-upgradeAbilityCount"
+                           name="system.mod.dieModifier.upgradeAbilityCount" type="number"
+                           value="{{dieModifier.upgradeAbilityCount}}"
+                           placeholder="Upgrade Ability Count"/>
+
+                    <label for="mod-dieModifier-upgradeDifficultyCount">{{localize
+                            "WEAPON.Sheet.modifiers.dieModifier.upgradeDifficultyCount"}}</label>
+                    <input id="mod-dieModifier-upgradeDifficultyCount"
+                           name="system.mod.dieModifier.upgradeDifficultyCount" type="number"
+                           value="{{dieModifier.upgradeDifficultyCount}}"
+                           placeholder="Upgrade Difficulty Count"/>
+                {{/each}}
+            {{/each}}
+        </div>
+
+        {{!-- Weapon Modifiers Tab --}}
+        <div class="tab weapon-modifiers" data-group="primary" data-tab="weapon-modifiers">
+            {{!-- As you add new fields, add them in here! --}}
+            <h1>Weapon Modifiers</h1>
+            <label for="weaponModifier-unarmed-name">{{localize "WEAPON.Sheet.weaponModifier.unarmedName.label"}}</label>
+            <input id="weaponModifier-unarmed-name" name="system.weaponModifiers.unarmedName" type="text"
+                   value="{{system.weaponModifiers.unarmedName}}" placeholder="Unarmed"/>
+
+            <label for="weaponModifier-skillKey">{{localize "WEAPON.Sheet.weaponModifier.skillKey.label"}}</label>
+            <input id="weaponModifier-skillKey" name="system.weaponModifiers.skillKey" type="text"
+                   value="{{system.weaponModifiers.skillKey}}" placeholder="Skill Key"/>
+
+            <label for="weaponModifier-damage">{{localize "WEAPON.Sheet.weaponModifier.damage.label"}}</label>
+            <input id="weaponModifier-damage" name="system.weaponModifiers.damage" type="number"
+                   value="{{system.weaponModifiers.damage}}" placeholder="Damage"/>
+
+            <label for="weaponModifier-crit">{{localize "WEAPON.Sheet.weaponModifier.crit.label"}}</label>
+            <input id="weaponModifier-crit" name="system.weaponModifier.crit" type="number"
+                   value="{{system.weaponModifiers.crit}}"
+                   placeholder="Crit"/>
+
+            <label for="weaponModifier-critSub">{{localize "WEAPON.Sheet.weaponModifier.critSub.label"}}</label>
+            <input id="weaponModifier-critSub" name="system.weaponModifiers.critSub" type="number"
+                   value="{{system.weaponModifiers.critSub}}" placeholder="Crit Sub"/>
+
+            <label for="weaponModifier-rangeValue">{{localize
+                    "WEAPON.Sheet.weaponModifier.rangeValue.label"}}</label>
+            <input id="weaponModifier-rangeValue" name="system.weaponModifiers.rangeValue" type="number"
+                   value="{{system.weaponModifiers.rangeValue}}" placeholder="Range Value"/>
+
+            <label for="weaponModifier-range">{{localize "WEAPON.Sheet.weaponModifier.range.label"}}</label>
+            <input id="weaponModifier-range" name="system.weaponModifiers.range" type="text"
+                   value="{{system.weaponModifiers.range}}"
+                   placeholder="Range"/>
+
+            {{#each weaponModifier.qualities as |quality idx|}}
+                <label for="weaponModifier-quality-key">{{localize
+                        "WEAPON.Sheet.weaponModifier.quality.key.label"}}</label>
+                <input id="weaponModifier-quality-key" name="system.weaponModifiers.qualities.{{idx}}.key"
+                       type="text"
+                       value="{{quality.key}}" placeholder="Quality Key"/>
+
+                <label for="weaponModifier-quality-count">{{localize
+                        "WEAPON.Sheet.weaponModifier.quality.count.label"}}</label>
+                <input id="weaponModifier-quality-count" name="system.weaponModifier.quality.count" type="number"
+                       value="{{quality.count}}" placeholder="Quality Count"/>
+            {{/each}}
+
+            {{#each weaponModifier.baseMods as |mod|}}
+                <label for="weaponModifier-mod-miscDesc">{{localize
+                        "WEAPON.Sheet.weaponModifier.mod.miscDesc.label"}}</label>
+                <input id="weaponModifier-mod-miscDesc" name="system.weaponModifier.mod.miscDesc" type="text"
+                       value="{{mod.miscDesc}}" placeholder="Misc Desc"/>
+
+                <label for="weaponModifier-mod-count">{{localize
+                        "WEAPON.Sheet.weaponModifier.mod.count.label"}}</label>
+                <input id="weaponModifier-mod-count" name="system.weaponModifier.mod.count" type="number"
+                       value="{{mod.count}}" placeholder="Count"/>
+            {{/each}}
+        </div>
+
+        {{!-- Price Tab --}}
+        <div class="tab price" data-group="primary" data-tab="price">
+            <h1>Price</h1>
+
+            {{#each system.eraPricing as |eraPrice|}}
+                <label for="eraPrice-name">{{localize "WEAPON.Sheet.eraPrice.name.label"}}</label>
+                <input id="eraPrice-name" name="system.eraPrice.name" type="text"
+                       value="{{eraPrice.name}}" placeholder="Name"/>
+
+                <label for="eraPrice-price">{{localize "WEAPON.Sheet.eraPrice.price.label"}}</label>
+                <input id="eraPrice-price" name="system.eraPrice.price" type="number"
+                       value="{{eraPrice.price}}" placeholder="Price"/>
+
+                <label for="eraPrice-rarity">{{localize "WEAPON.Sheet.eraPrice.rarity.label"}}</label>
+                <input id="eraPrice-rarity" name="system.eraPrice.rarity" type="number"
+                       value="{{eraPrice.rarity}}" placeholder="Rarity"/>
+
+                <label for="eraPrice-restricted">{{localize "WEAPON.Sheet.eraPrice.restricted.label"}}</label>
+                <input id="eraPrice-restricted" name="system.eraPrice.restricted" type="text"
+                       value="{{eraPrice.restricted}}" placeholder="Restricted"/>
+            {{/each}}
+
+        </div>
+
+        {{!-- Active Effects Tab --}}
+        <div class="tab active-effects" data-group="primary" data-tab="active-effects">
+            <h1>Active Effects</h1>
+            {{#each this.active-effects as |active-effect|}}
+                <div>
+                    <input name="system.active-effects" type="text" value="{{item.active-effect}}"
+                           placeholder="Active Effects"/>
+                </div>
+            {{/each}}
+        </div>
+
+    </section>
+</form>

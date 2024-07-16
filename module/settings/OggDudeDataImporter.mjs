@@ -134,27 +134,93 @@ function _mapOptionalArray(value, mapper) {
  */
 function _weaponMapper(weapons) {
     return weapons.map((xmlWeapon) => {
-        return {
-            name: _mapMandatoryString("armor.Name", xmlWeapon.Name),
-            key: _mapMandatoryString("armor.Key", xmlWeapon.Key),
-            description: _mapMandatoryString("armor.Description", xmlWeapon.Description),
-            soak: _mapMandatoryNumber("armor.Soak", xmlWeapon.Soak),
-            defense: _mapMandatoryNumber("armor.Defense", xmlWeapon.Defense),
-            encumbrance: _mapMandatoryNumber("armor.Encumbrance", xmlWeapon.Encumbrance),
-            price: _mapMandatoryNumber("armor.Price", xmlWeapon.Price),
-            rarity: _mapMandatoryNumber("armor.Rarity", xmlWeapon.Rarity),
-            HP: _mapMandatoryNumber("armor.HP", xmlWeapon.HP),
-            sources: _mapOptionalArray(
-                xmlWeapon?.Sources?.Source,
-                (source) => {
-                    return {description: source._, page: source.Page}
+            return {
+                key: _mapMandatoryString("weapon.Key", xmlWeapon.Key),
+                name: _mapMandatoryString("weapon.Name", xmlWeapon.Name),
+                description: _mapMandatoryString("weapon.Description", xmlWeapon.Description),
+                restricted: _mapOptionalBoolean(xmlWeapon.Restricted),
+                sources: _mapOptionalArray(
+                    xmlWeapon?.Sources?.Source,
+                    (source) => {
+                        return {description: source._, page: source.Page}
+                    }),
+                price: _mapMandatoryNumber("weapon.Price", xmlWeapon.Price),
+                encumbrance: _mapMandatoryNumber("weapon.Encumbrance", xmlWeapon.Encumbrance),
+                hp: _mapMandatoryNumber("weapon.HP", xmlWeapon.HP),
+                rarity: _mapMandatoryNumber("weapon.Rarity", xmlWeapon.Rarity),
+                type: _mapMandatoryString("weapon.Type", xmlWeapon.Type),
+                categories: _mapOptionalArray(xmlWeapon?.Categories?.Category, (category) => category),
+                eraPricing: _mapOptionalArray(xmlWeapon?.EraPricing?.Era, (eraPrice) => {
+                    return {
+                        name: _mapMandatoryString("armor.EraPrice.Name", eraPrice.Name),
+                        price: _mapMandatoryString("armor.EraPrice.Price", eraPrice.Price),
+                        rarity: _mapMandatoryString("armor.EraPrice.Rarity", eraPrice.Rarity),
+                        restricted: _mapMandatoryBoolean("armor.EraPrice.Restricted", eraPrice.Restricted)
+                    }
                 }),
-            categories: _mapOptionalArray(xmlWeapon?.Categories?.Category, (category) => category),
-            mods: {
-                miscDesc: _mapOptionalString(xmlWeapon?.BaseMods?.Mod?.MiscDesc)
+
+                skillKey: _mapMandatoryString("weapon.SkillKey", xmlWeapon.SkillKey),
+                damage: _mapMandatoryNumber("weapon.Damage", xmlWeapon.Damage),
+                damageAdd: _mapMandatoryNumber("weapon.DamageAdd", xmlWeapon.DamageAdd),
+                crit: _mapMandatoryNumber("weapon.Crit", xmlWeapon.Crit),
+                sizeLow: _mapMandatoryNumber("weapon.SizeLow", xmlWeapon.SizeLow),
+                sizeHigh: _mapMandatoryNumber("weapon.SizeHigh", xmlWeapon.SizeHigh),
+                attachCostMult: _mapMandatoryNumber("weapon.AttachCostMult", xmlWeapon.AttachCostMult),
+                range: _mapOptionalString("weapon.Range", xmlWeapon.Range),
+                noMelee: _mapOptionalBoolean(xmlWeapon.NoMelee),
+                scale: _mapOptionalString("weapon.Scale", xmlWeapon.Scale),
+                hands: _mapOptionalString("weapon.Hands", xmlWeapon.Hands),
+                ordnance: _mapOptionalBoolean(xmlWeapon.Ordnance),
+                vehicleNoReplace: _mapOptionalBoolean(xmlWeapon.VehicleNoReplace),
+                rangeValue: _mapOptionalString(xmlWeapon?.RangeValue),
+                qualities: _mapOptionalArray(
+                    xmlWeapon?.Qualities?.Quality,
+                    (quality) => {
+                        return {
+                            key: _mapMandatoryString("weapon.Characteristic.Quality.Key", quality.Key),
+                            count: _mapOptionalNumber(quality.Count),
+                        }
+                    }),
+                mods: _mapOptionalArray(
+                    xmlWeapon?.BaseMods?.Mod,
+                    (mod) => {
+                        return {
+                            key: _mapOptionalString(mod.Key),
+                            miscDesc: _mapOptionalString(mod.MiscDesc),
+                            count: _mapOptionalNumber(mod.Count),
+                            index: _mapOptionalNumber(mod.Index),
+                            defZone: _mapOptionalString(mod.DefZone),
+                            dieModifiers: _mapOptionalArray(
+                                mod?.DieModifiers?.DieModifier,
+                                (dieModifier) => {
+                                    return {
+                                        skillKey: _mapOptionalString(dieModifier.SkillKey),
+                                        boosCount: _mapOptionalNumber(dieModifier.BoosCount)
+                                    }
+                                }
+                            )
+                        }
+                    }
+                ),
+                weaponModifiers: {
+                    skillKey: _mapOptionalString(xmlWeapon?.WeaponModifiers?.WeaponModifier?.SkillKey),
+                    damageAdd: _mapOptionalNumber(xmlWeapon?.WeaponModifiers?.WeaponModifier?.DamageAdd),
+                    crit: _mapOptionalNumber(xmlWeapon?.WeaponModifiers?.WeaponModifier?.Crit),
+                    rangeValue: _mapOptionalString(xmlWeapon?.WeaponModifiers?.WeaponModifier?.RangeValue),
+                    unarmedName: _mapOptionalString(xmlWeapon?.WeaponModifiers?.WeaponModifier?.UnarmedName),
+                    qualities: _mapOptionalArray(xmlWeapon?.WeaponModifiers?.WeaponModifier?.Qualities?.Quality, (quality) => {
+                        return {
+                            key: _mapOptionalString(quality.Key),
+                            count: _mapOptionalNumber(quality.Count)
+                        }
+                    }),
+                    range: _mapOptionalString(xmlWeapon?.WeaponModifiers?.WeaponModifier?.Range),
+                    hands: _mapOptionalString(xmlWeapon?.WeaponModifiers?.WeaponModifier?.Hands)
+                }
             }
         }
-    });
+    )
+        ;
 }
 
 /**
@@ -207,25 +273,23 @@ function _armorMapper(armors) {
                     }),
                 }
             }),
-            weaponModifiers: _mapOptionalArray(xmlArmor?.WeaponModifiers?.WeaponModifier, (weaponModifier) => {
-                return {
-                    unarmed: _mapMandatoryString("armor.WeaponModifier.Unarmed", weaponModifier.Unarmed),
-                    unarmedName: _mapMandatoryString("armor.WeaponModifier.UnarmedName", weaponModifier.UnarmedName),
-                    skillKey: _mapMandatoryString("armor.WeaponModifier.SkillKey", weaponModifier.SkillKey),
-                    allSkillKey: _mapMandatoryString("armor.WeaponModifier.AllSkillKey", weaponModifier.AllSkillKey),
-                    damage: _mapMandatoryNumber("armor.WeaponModifier.Damage", weaponModifier.Damage),
-                    damageAdd: _mapMandatoryNumber("armor.WeaponModifier.DamageAdd", weaponModifier.DamageAdd),
-                    crit: _mapMandatoryNumber("armor.WeaponModifier.Crit", weaponModifier.Crit),
-                    critSub: _mapMandatoryNumber("armor.WeaponModifier.CritSub", weaponModifier.CritSub),
-                    rangeValue: _mapMandatoryNumber("armor.WeaponModifier.RangeValue", weaponModifier.RangeValue),
-                    qualities: _mapOptionalArray(weaponModifier?.Qualities?.Quality, (quality) => {
-                        return {
-                            key: _mapMandatoryString("armor.WeaponModifier.Quality.Key", quality.Key),
-                            count: _mapMandatoryNumber("armor.WeaponModifier.Quality.Count", quality.Count)
-                        }
-                    }),
-                }
-            }),
+            weaponModifiers: {
+                unarmed: _mapMandatoryString("armor.WeaponModifier.Unarmed", xmlArmor?.WeaponModifiers?.WeaponModifier?.Unarmed),
+                unarmedName: _mapMandatoryString("armor.WeaponModifier.UnarmedName", xmlArmor?.WeaponModifiers?.WeaponModifier?.UnarmedName),
+                skillKey: _mapMandatoryString("armor.WeaponModifier.SkillKey", xmlArmor?.WeaponModifiers?.WeaponModifier?.SkillKey),
+                allSkillKey: _mapMandatoryString("armor.WeaponModifier.AllSkillKey", xmlArmor?.WeaponModifiers?.WeaponModifier?.AllSkillKey),
+                damage: _mapOptionalNumber(xmlArmor?.WeaponModifiers?.WeaponModifier?.Damage),
+                damageAdd: _mapOptionalNumber(xmlArmor?.WeaponModifiers?.WeaponModifier?.DamageAdd),
+                crit: _mapOptionalNumber(xmlArmor?.WeaponModifiers?.WeaponModifier?.Crit),
+                critSub: _mapOptionalNumber(xmlArmor?.WeaponModifiers?.WeaponModifier?.CritSub),
+                rangeValue: _mapOptionalNumber(xmlArmor?.WeaponModifiers?.WeaponModifier?.RangeValue),
+                qualities: _mapOptionalArray(xmlArmor?.WeaponModifiers?.WeaponModifier?.Qualities?.Quality, (quality) => {
+                    return {
+                        key: _mapMandatoryString("armor.WeaponModifier.Quality.Key", quality.Key),
+                        count: _mapMandatoryNumber("armor.WeaponModifier.Quality.Count", quality.Count)
+                    }
+                }),
+            },
             eraPricing: _mapOptionalArray(xmlArmor?.EraPricing?.Era, (eraPrice) => {
                 return {
                     name: _mapMandatoryString("armor.EraPrice.Name", eraPrice.Name),
@@ -315,7 +379,7 @@ async function _processArmorData(importedFile) {
      */
     const weaponContext = {
         zip: {
-            elementFileName: "Weapon.xml",
+            elementFileName: "Weapons.xml",
             content: zip,
             directories: groupByDirectory
         },

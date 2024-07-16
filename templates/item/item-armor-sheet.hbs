@@ -13,12 +13,12 @@
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="details">{{localize "ARMOR.Sheet.section.details"}}</a>
-        <a class="item" data-tab="characteristics">{{localize "ARMOR.Sheet.section.characteristics"}}</a>
-        <a class="item" data-tab="modifiers">{{localize "ARMOR.Sheet.section.modifiers"}}</a>
-        <a class="item" data-tab="weapon-modifiers">{{localize "ARMOR.Sheet.section.weapon-modifiers"}}</a>
-        <a class="item" data-tab="price">{{localize "ARMOR.Sheet.section.price"}}</a>
-        <a class="item" data-tab="active-effects">{{localize "ARMOR.Sheet.section.active-effects"}}</a>
+        <a class="item" data-tab="details">{{localize "ITEM.Sheet.section.details"}}</a>
+        <a class="item" data-tab="attributes">{{localize "ITEM.Sheet.section.attributes"}}</a>
+        <a class="item" data-tab="modifiers">{{localize "ITEM.Sheet.section.modifiers"}}</a>
+        <a class="item" data-tab="weapon-modifiers">{{localize "ITEM.Sheet.section.weapon-modifiers"}}</a>
+        <a class="item" data-tab="price">{{localize "ITEM.Sheet.section.price"}}</a>
+        <a class="item" data-tab="active-effects">{{localize "ITEM.Sheet.section.active-effects"}}</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -45,28 +45,28 @@
             </div>
         </div>
 
-        <div class="tab characteristics" data-group="primary" data-tab="characteristics">
-            <h1>Characteristics</h1>
+        <div class="tab attributes" data-group="primary" data-tab="attributes">
+            <h1>Attributes</h1>
             <div>
-                <label for="defense">{{localize "ARMOR.Sheet.characteristics.defense.label"}}</label>
+                <label for="defense">{{localize "ARMOR.Sheet.attributes.defense.label"}}</label>
                 <input id="defense" name="system.defense" type="number" value="{{system.defense}}"
                        placeholder="Defense"/>
 
-                <label for="soak">{{localize "ARMOR.Sheet.characteristics.soak.label"}}</label>
+                <label for="soak">{{localize "ARMOR.Sheet.attributes.soak.label"}}</label>
                 <input id="soak" name="system.soak" type="number" value="{{system.soak}}" placeholder="Soak"/>
 
-                <label for="encumbrance">{{localize "ARMOR.Sheet.characteristics.encumbrance.label"}}</label>
+                <label for="encumbrance">{{localize "ARMOR.Sheet.attributes.encumbrance.label"}}</label>
                 <input id="encumbrance" name="system.encumbrance" type="number" value="{{system.encumbrance}}"
                        placeholder="Encumbrance"/>
 
-                <label for="hardpoints">{{localize "ARMOR.Sheet.characteristics.hardpoints.label"}}</label>
+                <label for="hardpoints">{{localize "ARMOR.Sheet.attributes.hardpoints.label"}}</label>
                 <input id="hardpoints" name="system.hp" type="number" value="{{system.hp}}" placeholder="hardpoints"/>
 
-                <label for="rarity">{{localize "ARMOR.Sheet.characteristics.rarity.label"}}</label>
+                <label for="rarity">{{localize "ARMOR.Sheet.attributes.rarity.label"}}</label>
                 <input id="rarity" name="system.rarity" type="number" value="{{system.rarity}}" placeholder="Rarity"/>
 
                 {{#each system.categories as |category|}}
-                    <label for="category">{{localize "ARMOR.Sheet.characteristics.category.label"}}</label>
+                    <label for="category">{{localize "ARMOR.Sheet.attributes.category.label"}}</label>
                     <input id="category" name="system.category" type="text" value="{{category}}"
                            placeholder="Category"/>
                 {{/each}}

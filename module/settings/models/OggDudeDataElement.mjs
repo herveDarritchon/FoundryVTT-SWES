@@ -288,7 +288,7 @@ class OggDudeDataElement {
      * @name _uploadImagesOnTheServer
      */
     static _uploadImagesOnTheServer = async (imageContext, zip) => {
-        // Upload the armor images to the server
+        // Upload the item images to the server
         const imageFiles = imageContext.images.filter(image => {
             return image.fullPath.startsWith(imageContext.criteria);
         });
@@ -296,7 +296,7 @@ class OggDudeDataElement {
 
         for (const file of imageFiles) {
             const imgData = await zip.files[file.fullPath].async('blob');
-            console.debug("Armor Image Data before upload:", file);
+            console.debug("Item Image Data before upload:", file);
             await uploadFileOnTheServer({data: imgData, element: file}, imageContext.worldPath);
         }
     }
@@ -313,16 +313,16 @@ class OggDudeDataElement {
      * @name _buildItemImgSystemPath
      */
     static  _getItemImage = async (key, imageWorldPath, elementType, imgSystemPath) => {
-        // get the armor image path
+        // get the item image path
         const image = `${imageWorldPath}/${elementType}${key}.png`;
-        console.debug(`Armor image ${image} for item ${key} to be checked.`);
+        console.debug(`Item image ${image} for item ${key} to be checked.`);
         const found = await checkFileExists(image);
         if (found) {
             console.debug(`Image ${image} for item ${key} found. Using specific item image.`);
             return image;
         } else {
             const image = `${imgSystemPath}`;
-            console.debug(`image ${image} for armor ${key} not found. Using default armor image.`)
+            console.debug(`image ${image} for item ${key} not found. Using default armor image.`)
             return image;
         }
     }
@@ -355,10 +355,13 @@ class OggDudeDataElement {
 
         console.debug("Items to be created from Promises:", itemPromises);
 
-        let armorPromiseResolved = Promise.all(itemPromises).then(async item => {
-            console.debug("Item to be created:", item)
-            await Item.createDocuments(item).then((item) => {
-                console.debug("Item created:", item);
+        let promiseResolved = Promise.all(itemPromises).then(async item => {
+            console.log("Item to be created:", item)
+            Item.createDocuments(item)
+                .then((item) => {
+                    console.debug("Item created:", item);
+                }).catch((error, item) => {
+                console.error("Error while creating item:", item, error);
             });
         }).catch(error => {
             console.error("Error while creating item:", error);
@@ -414,7 +417,7 @@ class OggDudeDataElement {
         // Step 9: Create the folder
         let folder = await createFoundryFolder(context.folder.name, context.folder.type);
 
-        console.log (jsonData);
+        console.log(jsonData);
 
         // Step 10: Store the Items
         const items = OggDudeDataElement._buildItemElements(jsonData, folder, context.element.jsonCriteria, context.element.mapper);
