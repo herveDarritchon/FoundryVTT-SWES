@@ -48,21 +48,6 @@ export default class SwesWeapon extends SwesCombatItem {
             required: true, initial: [], label: "WEAPON.Mod.label", hint: "WEAPON.Mod.hint"
         });
 
-        schema.weaponModifiers = new fields.SchemaField({
-            unarmedName: new fields.StringField({...(SwesItemBase.optionalString)}),
-            skillKey: new fields.StringField({...(SwesItemBase.optionalString)}),
-            damageAdd: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
-            crit: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
-            qualities: new fields.ArrayField(new fields.SchemaField({
-                key: new fields.StringField({...(SwesItemBase.optionalString)}),
-                count: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 100})
-            }, {required: true, initial: []}), {required: true, initial: []}),
-            range: new fields.StringField({...(SwesItemBase.optionalString)}),
-            hands: new fields.StringField({...(SwesItemBase.optionalString)}),
-        });
-
-
-
         return schema;
     }
 

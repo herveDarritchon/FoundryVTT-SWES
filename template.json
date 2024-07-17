@@ -1,8 +1,18 @@
 {
   "Actor": {
-    "types": ["character", "npc"]
+    "types": [
+      "character",
+      "npc"
+    ]
   },
   "Item": {
-    "types": ["armor", "item", "feature", "spell", "weapon"]
+    "types": [
+      "armor",
+      "gear",
+      "item",
+      "feature",
+      "spell",
+      "weapon"
+    ]
   }
 }

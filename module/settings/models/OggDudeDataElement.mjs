@@ -417,8 +417,6 @@ class OggDudeDataElement {
         // Step 9: Create the folder
         let folder = await createFoundryFolder(context.folder.name, context.folder.type);
 
-        console.log(jsonData);
-
         // Step 10: Store the Items
         const items = OggDudeDataElement._buildItemElements(jsonData, folder, context.element.jsonCriteria, context.element.mapper);
 

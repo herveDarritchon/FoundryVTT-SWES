@@ -31,11 +31,17 @@
             <div>
                 <label for="key">{{localize "WEAPON.Sheet.details.key.label"}}</label>
                 <input id="key" name="system.key" type="text" value="{{system.key}}" placeholder="key"/>
+
+                <label for="type">{{localize "WEAPON.Sheet.attributes.type.label"}}</label>
+                <input id="type" name="system.type" type="text" value="{{system.type}}"
+                       placeholder="Type"/>
+
+                <h3>Description</h3>
                 {{editor system.description target="system.description" rollData=rollData button=true owner=owner
                          editable=editable}}
             </div>
             <div>
-                {{#each this.sources as |source|}}
+                {{#each system.sources as |source|}}
                     <label for="source">{{localize "WEAPON.Sheet.details.source.label"}}</label>
                     <input id="source" name="system.description" type="text" value="{{source.description}}"
                            placeholder="Description"/>
@@ -64,14 +70,6 @@
 
                 <label for="rarity">{{localize "WEAPON.Sheet.attributes.rarity.label"}}</label>
                 <input id="rarity" name="system.rarity" type="number" value="{{system.rarity}}" placeholder="Rarity"/>
-
-                <label for="type">{{localize "WEAPON.Sheet.attributes.type.label"}}</label>
-                <input id="type" name="system.type" type="text" value="{{system.type}}"
-                       placeholder="Type"/>
-
-                <label for="type">{{localize "WEAPON.Sheet.attributes.type.label"}}</label>
-                <input id="type" name="system.type" type="text" value="{{system.type}}"
-                       placeholder="Type"/>
 
                 <label for="skillKey">{{localize "WEAPON.Sheet.attributes.skillKey.label"}}</label>
                 <input id="skillKey" name="system.skillKey" type="text" value="{{system.skillKey}}"

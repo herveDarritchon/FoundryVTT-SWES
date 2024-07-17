@@ -36,26 +36,6 @@ export default class SwesArmor extends SwesCombatItem {
             }), {
                 required: true, initial: [], label: "ARMOR.Mod.label", hint: "ARMOR.Mod.hint"
             }),
-
-            weaponModifiers : new fields.SchemaField({
-                unarmedName: new fields.StringField({...(SwesItemBase.optionalString)}),
-                skillKey: new fields.StringField({...(SwesItemBase.optionalString)}),
-                allSkillKey: new fields.StringField({...(SwesItemBase.optionalString)}),
-                damage: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
-                damageAdd: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
-                crit: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
-                critSub: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
-                rangeValue: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
-                qualities: new fields.ArrayField(new fields.SchemaField({
-                    key: new fields.StringField({...(SwesItemBase.optionalString)}),
-                    count: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 100})
-                }, {required: true, initial: []}), {required: true, initial: []}),
-                range: new fields.StringField({...(SwesItemBase.optionalString)}),
-                baseMods: new fields.ArrayField(new fields.SchemaField({
-                    miscDesc: new fields.StringField({...(SwesItemBase.optionalString)}),
-                    count: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 100})
-                }, {required: false}), {required: true, initial: []})
-            })
         });
     }
 
