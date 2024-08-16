@@ -6,6 +6,7 @@ export default class SwesCombatItem extends SwesItemBase {
         const fields = foundry.data.fields;
 
         return foundry.utils.mergeObject(super.defineSchema(), {
+
             key: new fields.StringField({...(SwesItemBase.optionalString), initial: "KEY"}),
             name: new fields.StringField({...(SwesItemBase.requiredString), initial: "Name"}),
             description: new fields.StringField({...(SwesItemBase.requiredString), initial: "Description"}),
@@ -25,10 +26,31 @@ export default class SwesCombatItem extends SwesItemBase {
 
             categories: new fields.ArrayField(
                 new fields.StringField({...(SwesItemBase.requiredString)}), {
-                    required: false, initial: [], label: "ARMOR.Category.label", hint: "ARMOR.Category.hint"
+                    required: false, initial: [], label: "ITEM.Category.label", hint: "ITEM.Category.hint"
                 }),
 
-            weaponModifiers : new fields.SchemaField({
+            mods: new fields.ArrayField(new fields.SchemaField({
+                key: new fields.StringField({...(SwesItemBase.optionalString)}),
+                miscDesc: new fields.StringField({...(SwesItemBase.optionalString)}),
+                count: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0}),
+                index: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0}),
+                defZone: new fields.StringField({...(SwesItemBase.optionalString)}),
+                dieModifiers: new fields.ArrayField(new fields.SchemaField({
+                    skillKey: new fields.StringField({...(SwesItemBase.optionalString)}),
+                    skillChar: new fields.StringField({...(SwesItemBase.optionalString)}),
+                    skillType: new fields.StringField({...(SwesItemBase.optionalString)}),
+                    boostCount: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
+                    advantageCount: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
+                    threatCount: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
+                    setbackCount: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
+                    upgradeAbilityCount: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
+                    successCount: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
+                }))
+            }), {
+                required: true, initial: [], label: "ITEM.Mod.label", hint: "ITEM.Mod.hint"
+            }),
+
+            weaponModifiers: new fields.SchemaField({
                 unarmedName: new fields.StringField({...(SwesItemBase.optionalString)}),
                 skillKey: new fields.StringField({...(SwesItemBase.optionalString)}),
                 allSkillKey: new fields.StringField({...(SwesItemBase.optionalString)}),
@@ -45,7 +67,12 @@ export default class SwesCombatItem extends SwesItemBase {
                 baseMods: new fields.ArrayField(new fields.SchemaField({
                     miscDesc: new fields.StringField({...(SwesItemBase.optionalString)}),
                     count: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 100})
-                }, {required: false}), {required: true, initial: []})
+                }, {required: false}), {
+                    required: true,
+                    initial: [],
+                    label: "ITEM.WeaponModifiers.label",
+                    hint: "ITEM.WeaponModifiers.hint"
+                })
             }),
 
             eraPricing: new fields.ArrayField(new fields.SchemaField({
@@ -53,7 +80,12 @@ export default class SwesCombatItem extends SwesItemBase {
                 price: new fields.NumberField({...(SwesItemBase.requiredInteger), min: 0}),
                 rarity: new fields.NumberField({...(SwesItemBase.requiredInteger), min: 0, max: 10}),
                 restricted: new fields.BooleanField({...(SwesItemBase.optionalBoolean), initial: false})
-            }, {required: false}), {required: true, initial: []}),
+            }, {required: false}), {
+                required: true,
+                initial: [],
+                label: "ITEM.EraPricing.label",
+                hint: "ITEM.EraPricing.hint"
+            }),
         });
     }
 }

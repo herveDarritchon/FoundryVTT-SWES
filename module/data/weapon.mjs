@@ -21,30 +21,12 @@ export default class SwesWeapon extends SwesCombatItem {
         schema.ordnance = new fields.BooleanField({...(SwesItemBase.optionalBoolean)});
         schema.vehicleNoReplace = new fields.BooleanField({...(SwesItemBase.optionalBoolean)});
 
-        schema.categories = new fields.ArrayField(new fields.StringField({...(SwesItemBase.requiredString)}), {
-            required: false, initial: [], label: "WEAPON.Category.label", hint: "WEAPON.Category.hint"
-        });
-
         schema.rangeValue= new fields.StringField({...(SwesItemBase.optionalString)});
 
         schema.qualities = new fields.ArrayField(new fields.SchemaField({
                 key: new fields.StringField({...(SwesItemBase.optionalString)}),
                 count: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0}),
             }), {
-            required: true, initial: [], label: "WEAPON.Mod.label", hint: "WEAPON.Mod.hint"
-        });
-
-        schema.mods = new fields.ArrayField(new fields.SchemaField({
-            key: new fields.StringField({...(SwesItemBase.optionalString)}),
-            miscDesc: new fields.StringField({...(SwesItemBase.optionalString)}),
-            count: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0}),
-            index: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0}),
-            defZone: new fields.StringField({...(SwesItemBase.optionalString)}),
-            dieModifiers: new fields.ArrayField(new fields.SchemaField({
-                skillKey: new fields.StringField({...(SwesItemBase.optionalString)}),
-                boosCount: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
-            }))
-        }), {
             required: true, initial: [], label: "WEAPON.Mod.label", hint: "WEAPON.Mod.hint"
         });
 
