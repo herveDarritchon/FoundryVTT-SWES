@@ -17,7 +17,7 @@
 
     <section class="domain-selection flexcol">
         <h4>{{localize "SETTINGS.OggDudeDataImporter.loadWindow.selectDomains"}}</h4>
-        <div class="domains">
+        <div class="domains flexcol">
             {{#each this.domains as |domain|}}
                 <label data-action="toggleDomainAction" data-domain-checked="{{domain.checked}}"
                        data-domain-name="{{domain.id}}">
