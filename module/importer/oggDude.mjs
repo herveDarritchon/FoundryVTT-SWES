@@ -123,13 +123,14 @@ export default class OggDudeImporter {
      * 4.2 Get the Weapon file from the Data directory
      * 4.3 Get the Gear file from the Data directory
      * @param importedFile {File} The imported file.
+     * @param domains {Object[]}The list of domains to import from the OggDude File.
      * @returns {Promise<void>} A Promise that resolves when the Armor data has been processed.
      * @async
      * @public
      * @function
      * @name _processOggDudeData
      */
-    static async processOggDudeData(importedFile) {
+    static async processOggDudeData(importedFile, domains) {
 
         /* --------------------------------------------- GÉNÉRIQUE ------------------------------------------------------------------- */
 
@@ -148,15 +149,18 @@ export default class OggDudeImporter {
         console.debug("Group By Type:", groupByType);
 
         /* --------------------------------------------- SPÉCIFIQUE ------------------------------------------------------------------- */
+        const buildContextMap = new Map();
+        buildContextMap.set("armor", {type: "armor", contextBuilder: buildArmorContext});
+        buildContextMap.set("weapon", {type: "weapon", contextBuilder: buildWeaponContext});
+        buildContextMap.set("gear", {type: "gear", contextBuilder: buildGearContext});
 
-        // Step 4.1: Get the Armor file from the Data directory
-        await OggDudeDataElement.processElements(buildArmorContext(zip, groupByDirectory, groupByType));
-
-        // Step 4.2: Get the Weapon file from the Data directory
-        await OggDudeDataElement.processElements(buildWeaponContext(zip, groupByDirectory, groupByType));
-
-        // Step 4.3: Get the Gear file from the Data directory
-        await OggDudeDataElement.processElements(buildGearContext(zip, groupByDirectory, groupByType));
+        const domainsToImport = domains.filter(domain => domain.checked).map(domain => domain.id);
+        Array.from(buildContextMap.values())
+            .map(async (context) => {
+                if (domainsToImport.includes(context.type)) {
+                    await OggDudeDataElement.processElements(context.contextBuilder(zip, groupByDirectory, groupByType));
+                }
+            });
 
         /* ------------------------------------------------------------------------------------------------------------------------------------ */
 

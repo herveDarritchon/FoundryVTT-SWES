@@ -59,8 +59,15 @@
         "menuLabel": "Import OggDude Data",
         "title": "Import OggDude Data",
         "message": "Please select the OggDude Data file you want to import.",
-        "selectFile": "OggDude Data File",
-        "load": "Load"
+        "selectFile": "OggDude Zip Data File",
+        "load": "Load",
+        "reset": "Reset",
+        "selectDomains": "Select the domains you want to import",
+        "domains": {
+          "armor": "Load Armor data",
+          "gear": "Load Gear data",
+          "weapon": "Load Weapons data"
+        }
       }
     }
   },

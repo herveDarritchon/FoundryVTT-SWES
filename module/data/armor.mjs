@@ -14,6 +14,7 @@ export default class SwesArmor extends SwesCombatItem {
         return foundry.utils.mergeObject(super.defineSchema(), {
             defense: new fields.NumberField({...(SwesItemBase.requiredInteger), initial: 0, min: 0, max: 20}),
             soak: new fields.NumberField({...(SwesItemBase.requiredInteger), initial: 0, min: 0, max: 20}),
+        });
     }
 
     prepareDerivedData() {

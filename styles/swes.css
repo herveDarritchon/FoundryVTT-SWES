@@ -564,4 +564,16 @@
 .crucible-new.window-app .line-item .header-tags {
   gap: 0.5rem;
 }
+div.standard-form.oggDude-data-importer section.file-picker {
+  margin-bottom: 2em;
+}
+div.standard-form.oggDude-data-importer section.file-picker label {
+  flex: 1;
+}
+div.standard-form.oggDude-data-importer section.file-picker input[type="file"] {
+  flex: 2;
+}
+div.standard-form.oggDude-data-importer section.domain-selection {
+  margin-bottom: 2em;
+}
 /*# sourceMappingURL=swes.css.map */
