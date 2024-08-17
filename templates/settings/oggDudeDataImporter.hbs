@@ -30,7 +30,8 @@
     </section>
 
     <section class="actions flexrow">
-        <button type="button" class="control reset-button" data-action="loadAction">
+        <button type="button" class="control reset-button" data-action="loadAction" {{#if
+                loadButtonDisabled}}disabled{{/if}}>
             <i class="fa-solid fa-jedi"></i>
             {{localize "SETTINGS.OggDudeDataImporter.loadWindow.load"}}
         </button>

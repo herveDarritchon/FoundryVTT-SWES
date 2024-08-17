@@ -18,14 +18,19 @@ const {ApplicationV2, HandlebarsApplicationMixin} = foundry.applications.api
 export class OggDudeDataImporter extends HandlebarsApplicationMixin(ApplicationV2) {
 
     _domainNames = ["weapon", "armor", "gear"];
-    domains = this.initializeDomains(this._domainNames);
+
+    domains = this._initializeDomains(this._domainNames);
+    zipFile = null;
+
+    /* -------------------------------------------- */
 
     /**
      * Initialize the domains for the OggDude data importer.
      * @param domainNames {string[]} The names of the domains to initialize.
      * @returns {object[]} The initialized domains.
+     * @private
      */
-    initializeDomains(domainNames) {
+    _initializeDomains(domainNames) {
         return domainNames.map(name => {
             return {
                 id: name,
@@ -35,10 +40,6 @@ export class OggDudeDataImporter extends HandlebarsApplicationMixin(ApplicationV
         });
     }
 
-    domainSelectionDisabled = true;
-
-    zipFile = null;
-
     /* -------------------------------------------- */
 
     static PARTS = {
@@ -46,6 +47,8 @@ export class OggDudeDataImporter extends HandlebarsApplicationMixin(ApplicationV
             template: 'systems/swes/templates/settings/oggDudeDataImporter.hbs',
         }
     }
+
+    /* -------------------------------------------- */
 
     /** @inheritdoc */
     static DEFAULT_OPTIONS = {
@@ -76,18 +79,27 @@ export class OggDudeDataImporter extends HandlebarsApplicationMixin(ApplicationV
         },
     }
 
+    /* -------------------------------------------- */
+
     _prepareContext(options) {
         //const setting = game.settings.get("swesSettings", "config");
         console.log(`Preparing context: ${options}`, this);
         return {
             domains: this.domains,
-            domainSelectionDisabled: this.zipFile == null,
+            domainSelectionDisabled: this.noZipFileSelected(),
+            loadButtonDisabled: this.noZipFileSelected() || this._noDomainSelected(),
             zipFile: this.zipFile,
-            /* buttons: [
-                 { type: "submit", icon: "fa-solid fa-save", label: "SETTINGS.Save" },
-                 { type: "submit", icon: "fa-solid fa-refresh", label: "SETTINGS.Refresh" },
-             ]*/
         }
+    }
+
+    noZipFileSelected() {
+        return this.zipFile == null;
+    }
+
+    /* -------------------------------------------- */
+
+    _noDomainSelected() {
+        return this.domains.filter(domain => domain.checked).length === 0;
     }
 
     /* -------------------------------------------- */
@@ -145,7 +157,10 @@ export class OggDudeDataImporter extends HandlebarsApplicationMixin(ApplicationV
 
     /* -------------------------------------------- */
 
-    static toggleDomainAction(_event, target) {
+    static async toggleDomainAction(_event, target) {
+        if ( this.noZipFileSelected()){
+            return;
+        }
         const name = target.dataset.domainName;
         const value = OggDudeDataImporter.toBoolean(target.dataset.domainChecked);
         console.log(`Toggle Domain [${name}/${value}]: {}`, _event, target);
@@ -155,6 +170,7 @@ export class OggDudeDataImporter extends HandlebarsApplicationMixin(ApplicationV
             }
             return domain;
         });
+        await this.render();
     }
 
     /* -------------------------------------------- */
@@ -173,7 +189,7 @@ export class OggDudeDataImporter extends HandlebarsApplicationMixin(ApplicationV
         //await game.settings.set("foo", "config", {});
         console.log(`Resetting settings: {}`, this);
         this.zipFile = null;
-        this.domains = this.initializeDomains(this._domainNames);
+        this.domains = this._initializeDomains(this._domainNames);
         await this.render();
     }
 
