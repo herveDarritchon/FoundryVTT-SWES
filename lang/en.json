@@ -47,7 +47,16 @@
         "modifiers": "Modifiers",
         "price": "Price",
         "weapon-modifiers": "Weapon Modifiers"
-      }
+      },
+      "armor": {
+        "title": "Armor"
+      },
+        "weapon": {
+            "title": "Weapon"
+        },
+        "gear": {
+            "title": "Gear"
+        }
     }
   },
   "SETTINGS": {
@@ -105,7 +114,7 @@
     },
     "SheetLabels": {
       "Actor": "swes Actor Sheet",
-      "Item": "swes Item Sheet"
+      "Armor": "Swes Armor Sheet"
     },
     "Item": {
       "Spell": {

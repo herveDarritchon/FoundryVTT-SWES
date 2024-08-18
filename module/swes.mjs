@@ -3,7 +3,7 @@ import { swesActor } from './documents/actor.mjs';
 import { SwesItem } from './documents/item.mjs';
 // Import sheet classes.
 import { swesActorSheet } from './sheets/actor-sheet.mjs';
-import { SwesItemSheet } from './sheets/item-sheet.mjs';
+import {SwesArmorSheet} from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { SWES } from './helpers/config.mjs';
@@ -67,9 +67,10 @@ Hooks.once('init', function () {
     label: 'SWES.SheetLabels.Actor',
   });
   Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('swes', SwesItemSheet, {
+  Items.registerSheet('swes', SwesArmorSheet, {
+    types: ["armor"],
     makeDefault: true,
-    label: 'SWES.SheetLabels.Item',
+    label: 'SWES.SheetLabels.Armor',
   });
 
   // OggDude Data Importer settings
