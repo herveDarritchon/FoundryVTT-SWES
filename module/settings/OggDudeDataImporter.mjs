@@ -113,32 +113,6 @@ export class OggDudeDataImporter extends HandlebarsApplicationMixin(ApplicationV
 
     /* -------------------------------------------- */
 
-    /** @override */
-    /*    _configureRenderOptions(options) {
-            // This fills in `options.parts` with an array of ALL part keys by default
-            // So we need to call `super` first
-            super._configureRenderOptions(options);
-            // Completely overriding the parts
-            options.parts = ['file-picker', 'domain-selection', 'actions']
-            // Don't show the other tabs if only limited view
-            if (this.document.limited) return;
-            // Keep in mind that the order of `parts` *does* matter
-            // So you may need to use array manipulation
-            switch (this.document.type) {
-                case 'typeA':
-                    options.parts.push('file-picker')
-                    break;
-                case 'typeB':
-                    options.parts.push('domain-selection')
-                    break;
-                case 'typeC':
-                    options.parts.push('actions')
-                    break;
-            }
-        }*/
-
-    /* -------------------------------------------- */
-
     static async loadAction(_event, target) {
         console.log(`Load OggDude Data: {}`, this);
         await OggDudeImporter.processOggDudeData(this.zipFile, this.domains);

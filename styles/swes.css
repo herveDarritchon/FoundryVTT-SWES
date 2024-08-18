@@ -576,4 +576,10 @@ div.standard-form.oggDude-data-importer section.file-picker input[type="file"] {
 div.standard-form.oggDude-data-importer section.domain-selection {
   margin-bottom: 2em;
 }
+div.standard-form.oggDude-data-importer section.domain-selection .domain * {
+  cursor: inherit;
+}
+div.standard-form.oggDude-data-importer .not-allowed {
+  cursor: not-allowed;
+}
 /*# sourceMappingURL=swes.css.map */
