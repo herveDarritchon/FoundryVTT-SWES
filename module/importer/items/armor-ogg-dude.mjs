@@ -15,14 +15,14 @@ export function armorMapper(armors) {
             name: OggDudeImporter.mapMandatoryString("armor.Name", xmlArmor.Name),
             key: OggDudeImporter.mapMandatoryString("armor.Key", xmlArmor.Key),
             description: OggDudeImporter.mapMandatoryString("armor.Description", xmlArmor.Description),
-            soak: OggDudeImporter.mapMandatoryNumber("armor.Soak", xmlArmor.Soak),
-            defense: OggDudeImporter.mapMandatoryNumber("armor.Defense", xmlArmor.Defense),
-            encumbrance: OggDudeImporter.mapMandatoryNumber("armor.Encumbrance", xmlArmor.Encumbrance),
+            soak: OggDudeImporter.mapOptionalNumber( xmlArmor.Soak),
+            defense: OggDudeImporter.mapOptionalNumber( xmlArmor.Defense),
+            encumbrance: OggDudeImporter.mapOptionalNumber( xmlArmor.Encumbrance),
             price: OggDudeImporter.mapMandatoryNumber("armor.Price", xmlArmor.Price),
             rarity: OggDudeImporter.mapMandatoryNumber("armor.Rarity", xmlArmor.Rarity),
-            HP: OggDudeImporter.mapMandatoryNumber("armor.HP", xmlArmor.HP),
+            HP: OggDudeImporter.mapOptionalNumber( xmlArmor.HP),
             restricted: OggDudeImporter.mapOptionalBoolean(xmlArmor.Restricted),
-            type: OggDudeImporter.mapMandatoryString("armor.Type", xmlArmor.Type),
+            type: OggDudeImporter.mapOptionalString(xmlArmor.Type),
             sources: OggDudeImporter.mapOptionalArray(
                 xmlArmor?.Sources?.Source,
                 (source) => {
@@ -31,31 +31,32 @@ export function armorMapper(armors) {
             categories: OggDudeImporter.mapOptionalArray(xmlArmor?.Categories?.Category, (category) => category),
             mods: OggDudeImporter.mapOptionalArray(xmlArmor?.BaseMods?.Mod, (mod) => {
                 return {
-                    miscDesc: OggDudeImporter.mapMandatoryString("armor.Mod.MiscDesc", mod.MiscDesc),
-                    key: OggDudeImporter.mapOptionalString("armor.Mod.Key", mod.Key),
-                    count: OggDudeImporter.mapOptionalNumber("armor.Mod.Count", mod.Count),
+                    miscDesc: OggDudeImporter.mapOptionalString( mod.MiscDesc),
+                    key: OggDudeImporter.mapOptionalString( mod.Key),
+                    count: OggDudeImporter.mapOptionalNumber( mod.Count),
+                    index: OggDudeImporter.mapOptionalNumber( mod.Index),
                     dieModifiers: OggDudeImporter.mapOptionalArray(mod?.DieModifiers?.DieModifier, (dieModifier) => {
                         return {
-                            skillKey: OggDudeImporter.mapMandatoryString("armor.Mod.Die,Modifier.SkillKey", dieModifier.SkillKey),
-                            skillType: OggDudeImporter.mapMandatoryString("armor.Mod.Die,Modifier.SkillType", dieModifier.SkillType),
-                            skillChar: OggDudeImporter.mapMandatoryString("armor.Mod.Die,Modifier.SkillChar", dieModifier.SkillChar),
-                            addSetBackCount: OggDudeImporter.mapMandatoryNumber("armor.Mod.Die,Modifier.AddSetBackCount", dieModifier.AddSetBackCount),
-                            advantageCount: OggDudeImporter.mapMandatoryNumber("armor.Mod.Die,Modifier.AdvantageCount", dieModifier.AdvantageCount),
-                            boostCount: OggDudeImporter.mapMandatoryNumber("armor.Mod.Die,Modifier.BoostCount", dieModifier.BoostCount),
-                            setbackCount: OggDudeImporter.mapMandatoryNumber("armor.Mod.Die,Modifier.SetbackCount", dieModifier.SetbackCount),
-                            successCount: OggDudeImporter.mapMandatoryNumber("armor.Mod.Die,Modifier.SuccessCount", dieModifier.SuccessCount),
-                            threatCount: OggDudeImporter.mapMandatoryNumber("armor.Mod.Die,Modifier.ThreatCount", dieModifier.ThreatCount),
-                            upgradeAbilityCount: OggDudeImporter.mapMandatoryNumber("armor.Mod.Die,Modifier.UpgradeAbilityCount", dieModifier.UpgradeAbilityCount),
-                            upgradeDifficultyCount: OggDudeImporter.mapMandatoryNumber("armor.Mod.Die,Modifier.UpgradeDifficultyCount", dieModifier.UpgradeDifficultyCount)
+                            skillKey: OggDudeImporter.mapOptionalString( dieModifier.SkillKey),
+                            skillType: OggDudeImporter.mapOptionalString(dieModifier.SkillType),
+                            skillChar: OggDudeImporter.mapOptionalString(dieModifier.SkillChar),
+                            addSetBackCount: OggDudeImporter.mapOptionalNumber(dieModifier.AddSetBackCount),
+                            advantageCount: OggDudeImporter.mapOptionalNumber(dieModifier.AdvantageCount),
+                            boostCount: OggDudeImporter.mapOptionalNumber(dieModifier.BoostCount),
+                            setbackCount: OggDudeImporter.mapOptionalNumber(dieModifier.SetbackCount),
+                            successCount: OggDudeImporter.mapOptionalNumber(dieModifier.SuccessCount),
+                            threatCount: OggDudeImporter.mapOptionalNumber(dieModifier.ThreatCount),
+                            upgradeAbilityCount: OggDudeImporter.mapOptionalNumber(dieModifier.UpgradeAbilityCount),
+                            upgradeDifficultyCount: OggDudeImporter.mapOptionalNumber(dieModifier.UpgradeDifficultyCount)
                         }
                     }),
                 }
             }),
             weaponModifiers: {
-                unarmed: OggDudeImporter.mapMandatoryString("armor.WeaponModifier.Unarmed", xmlArmor?.WeaponModifiers?.WeaponModifier?.Unarmed),
-                unarmedName: OggDudeImporter.mapMandatoryString("armor.WeaponModifier.UnarmedName", xmlArmor?.WeaponModifiers?.WeaponModifier?.UnarmedName),
-                skillKey: OggDudeImporter.mapMandatoryString("armor.WeaponModifier.SkillKey", xmlArmor?.WeaponModifiers?.WeaponModifier?.SkillKey),
-                allSkillKey: OggDudeImporter.mapMandatoryString("armor.WeaponModifier.AllSkillKey", xmlArmor?.WeaponModifiers?.WeaponModifier?.AllSkillKey),
+                unarmed: OggDudeImporter.mapOptionalString(xmlArmor?.WeaponModifiers?.WeaponModifier?.Unarmed),
+                unarmedName: OggDudeImporter.mapOptionalString(xmlArmor?.WeaponModifiers?.WeaponModifier?.UnarmedName),
+                skillKey: OggDudeImporter.mapOptionalString(xmlArmor?.WeaponModifiers?.WeaponModifier?.SkillKey),
+                allSkillKey: OggDudeImporter.mapOptionalString(xmlArmor?.WeaponModifiers?.WeaponModifier?.AllSkillKey),
                 damage: OggDudeImporter.mapOptionalNumber(xmlArmor?.WeaponModifiers?.WeaponModifier?.Damage),
                 damageAdd: OggDudeImporter.mapOptionalNumber(xmlArmor?.WeaponModifiers?.WeaponModifier?.DamageAdd),
                 crit: OggDudeImporter.mapOptionalNumber(xmlArmor?.WeaponModifiers?.WeaponModifier?.Crit),
@@ -64,7 +65,7 @@ export function armorMapper(armors) {
                 qualities: OggDudeImporter.mapOptionalArray(xmlArmor?.WeaponModifiers?.WeaponModifier?.Qualities?.Quality, (quality) => {
                     return {
                         key: OggDudeImporter.mapMandatoryString("armor.WeaponModifier.Quality.Key", quality.Key),
-                        count: OggDudeImporter.mapMandatoryNumber("armor.WeaponModifier.Quality.Count", quality.Count)
+                        count: OggDudeImporter.mapOptionalNumber(quality.Count)
                     }
                 }),
             },
@@ -90,7 +91,7 @@ export function armorMapper(armors) {
  * @public
  * @function
  */
-export  function buildArmorContext(zip, groupByDirectory, groupByType) {
+export function buildArmorContext(zip, groupByDirectory, groupByType) {
     return {
         zip: {
             elementFileName: "Armor.xml",

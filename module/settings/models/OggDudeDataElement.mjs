@@ -364,8 +364,11 @@ class OggDudeDataElement {
                 console.error("Error while creating item:", item, error);
             });
         }).catch(error => {
-            console.error("Error while creating item:", error);
+            console.error("Error while resolving creation item promises:", error);
         });
+
+        console.debug("Items to be created in FVTT:", promiseResolved);
+        return promiseResolved;
     }
 
     /**
