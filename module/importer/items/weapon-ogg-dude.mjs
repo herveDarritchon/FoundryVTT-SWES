@@ -1,5 +1,8 @@
 import {buildArmorImgWorldPath, buildItemImgSystemPath} from "../../settings/directories.mjs";
 import OggDudeImporter from "../oggDude.mjs";
+import {buildMod, buildWeaponModifiers} from "./combat-item-mapper.mjs";
+
+
 
 /**
  * Weapon Array Mapper : Map the Weapon XML data to the Swes Weapon object array.
@@ -21,32 +24,32 @@ export function weaponMapper(weapons) {
                     (source) => {
                         return {description: source._, page: source.Page}
                     }),
-                price: OggDudeImporter.mapMandatoryNumber("weapon.Price", xmlWeapon.Price),
-                encumbrance: OggDudeImporter.mapMandatoryNumber("weapon.Encumbrance", xmlWeapon.Encumbrance),
-                hp: OggDudeImporter.mapMandatoryNumber("weapon.HP", xmlWeapon.HP),
-                rarity: OggDudeImporter.mapMandatoryNumber("weapon.Rarity", xmlWeapon.Rarity),
-                type: OggDudeImporter.mapMandatoryString("weapon.Type", xmlWeapon.Type),
+                price: OggDudeImporter.mapOptionalNumber(xmlWeapon.Price),
+                encumbrance: OggDudeImporter.mapOptionalNumber(xmlWeapon.Encumbrance),
+                hp: OggDudeImporter.mapOptionalNumber(xmlWeapon.HP),
+                rarity: OggDudeImporter.mapOptionalNumber(xmlWeapon.Rarity),
+                type: OggDudeImporter.mapOptionalString(xmlWeapon.Type),
                 categories: OggDudeImporter.mapOptionalArray(xmlWeapon?.Categories?.Category, (category) => category),
                 eraPricing: OggDudeImporter.mapOptionalArray(xmlWeapon?.EraPricing?.Era, (eraPrice) => {
                     return {
                         name: OggDudeImporter.mapMandatoryString("armor.EraPrice.Name", eraPrice.Name),
                         price: OggDudeImporter.mapMandatoryString("armor.EraPrice.Price", eraPrice.Price),
                         rarity: OggDudeImporter.mapMandatoryString("armor.EraPrice.Rarity", eraPrice.Rarity),
-                        restricted: OggDudeImporter.mapMandatoryBoolean("armor.EraPrice.Restricted", eraPrice.Restricted)
+                        restricted: OggDudeImporter.mapOptionalBoolean(eraPrice.Restricted)
                     }
                 }),
 
                 skillKey: OggDudeImporter.mapMandatoryString("weapon.SkillKey", xmlWeapon.SkillKey),
-                damage: OggDudeImporter.mapMandatoryNumber("weapon.Damage", xmlWeapon.Damage),
-                damageAdd: OggDudeImporter.mapMandatoryNumber("weapon.DamageAdd", xmlWeapon.DamageAdd),
-                crit: OggDudeImporter.mapMandatoryNumber("weapon.Crit", xmlWeapon.Crit),
-                sizeLow: OggDudeImporter.mapMandatoryNumber("weapon.SizeLow", xmlWeapon.SizeLow),
-                sizeHigh: OggDudeImporter.mapMandatoryNumber("weapon.SizeHigh", xmlWeapon.SizeHigh),
-                attachCostMult: OggDudeImporter.mapMandatoryNumber("weapon.AttachCostMult", xmlWeapon.AttachCostMult),
+                damage: OggDudeImporter.mapOptionalNumber( xmlWeapon.Damage),
+                damageAdd: OggDudeImporter.mapOptionalNumber(xmlWeapon.DamageAdd),
+                crit: OggDudeImporter.mapOptionalNumber(xmlWeapon.Crit),
+                sizeLow: OggDudeImporter.mapOptionalNumber(xmlWeapon.SizeLow),
+                sizeHigh: OggDudeImporter.mapOptionalNumber(xmlWeapon.SizeHigh),
+                attachCostMult: OggDudeImporter.mapOptionalNumber(xmlWeapon.AttachCostMult),
                 range: OggDudeImporter.mapOptionalString(xmlWeapon.Range),
                 noMelee: OggDudeImporter.mapOptionalBoolean(xmlWeapon.NoMelee),
-                scale: OggDudeImporter.mapOptionalString( xmlWeapon.Scale),
-                hands: OggDudeImporter.mapOptionalString( xmlWeapon.Hands),
+                scale: OggDudeImporter.mapOptionalString(xmlWeapon.Scale),
+                hands: OggDudeImporter.mapOptionalString(xmlWeapon.Hands),
                 ordnance: OggDudeImporter.mapOptionalBoolean(xmlWeapon.Ordnance),
                 vehicleNoReplace: OggDudeImporter.mapOptionalBoolean(xmlWeapon.VehicleNoReplace),
                 rangeValue: OggDudeImporter.mapOptionalString(xmlWeapon?.RangeValue),
@@ -58,44 +61,16 @@ export function weaponMapper(weapons) {
                             count: OggDudeImporter.mapOptionalNumber(quality.Count),
                         }
                     }),
+
                 mods: OggDudeImporter.mapOptionalArray(
                     xmlWeapon?.BaseMods?.Mod,
                     (mod) => {
-                        return {
-                            key: OggDudeImporter.mapOptionalString(mod.Key),
-                            miscDesc: OggDudeImporter.mapOptionalString(mod.MiscDesc),
-                            count: OggDudeImporter.mapOptionalNumber(mod.Count),
-                            index: OggDudeImporter.mapOptionalNumber(mod.Index),
-                            defZone: OggDudeImporter.mapOptionalString(mod.DefZone),
-                            dieModifiers: OggDudeImporter.mapOptionalArray(
-                                mod?.DieModifiers?.DieModifier,
-                                (dieModifier) => {
-                                    return {
-                                        skillKey: OggDudeImporter.mapOptionalString(dieModifier.SkillKey),
-                                        boosCount: OggDudeImporter.mapOptionalNumber(dieModifier.BoosCount)
-                                    }
-                                }
-                            )
-                        }
+                        return buildMod(mod)
                     }
                 ),
-                weaponModifiers: {
-                    unarmed: OggDudeImporter.mapMandatoryString("gear.WeaponModifier.Unarmed", xmlWeapon?.WeaponModifiers?.WeaponModifier?.Unarmed),
-                    unarmedName: OggDudeImporter.mapMandatoryString("gear.WeaponModifier.UnarmedName", xmlWeapon?.WeaponModifiers?.WeaponModifier?.UnarmedName),
-                    skillKey: OggDudeImporter.mapMandatoryString("gear.WeaponModifier.SkillKey", xmlWeapon?.WeaponModifiers?.WeaponModifier?.SkillKey),
-                    allSkillKey: OggDudeImporter.mapMandatoryString("gear.WeaponModifier.AllSkillKey", xmlWeapon?.WeaponModifiers?.WeaponModifier?.AllSkillKey),
-                    damage: OggDudeImporter.mapOptionalNumber(xmlWeapon?.WeaponModifiers?.WeaponModifier?.Damage),
-                    damageAdd: OggDudeImporter.mapOptionalNumber(xmlWeapon?.WeaponModifiers?.WeaponModifier?.DamageAdd),
-                    crit: OggDudeImporter.mapOptionalNumber(xmlWeapon?.WeaponModifiers?.WeaponModifier?.Crit),
-                    critSub: OggDudeImporter.mapOptionalNumber(xmlWeapon?.WeaponModifiers?.WeaponModifier?.CritSub),
-                    rangeValue: OggDudeImporter.mapOptionalNumber(xmlWeapon?.WeaponModifiers?.WeaponModifier?.RangeValue),
-                    qualities: OggDudeImporter.mapOptionalArray(xmlWeapon?.WeaponModifiers?.WeaponModifier?.Qualities?.Quality, (quality) => {
-                        return {
-                            key: OggDudeImporter.mapMandatoryString("gear.WeaponModifier.Quality.Key", quality.Key),
-                            count: OggDudeImporter.mapMandatoryNumber("gear.WeaponModifier.Quality.Count", quality.Count)
-                        }
-                    }),
-                }
+
+                weaponModifiers: buildWeaponModifiers(xmlWeapon?.WeaponModifiers?.WeaponModifier),
+
             }
         }
     );

@@ -1,5 +1,6 @@
 import {buildArmorImgWorldPath, buildItemImgSystemPath} from "../../settings/directories.mjs";
 import OggDudeImporter from "../oggDude.mjs";
+import {buildMod, buildWeaponModifiers} from "./combat-item-mapper.mjs";
 
 /**
  * Gear Array Mapper : Map the Gear XML data to the SwesGear object array.
@@ -14,12 +15,12 @@ export function gearMapper(gears) {
         return {
             name: OggDudeImporter.mapMandatoryString("gear.Name", xmlGear.Name),
             key: OggDudeImporter.mapMandatoryString("gear.Key", xmlGear.Key),
-            short: OggDudeImporter.mapMandatoryString("gear.Short", xmlGear.Short),
+            short: OggDudeImporter.mapOptionalString(xmlGear.Short),
             description: OggDudeImporter.mapMandatoryString("gear.Description", xmlGear.Description),
-            encumbrance: OggDudeImporter.mapMandatoryNumber("gear.Encumbrance", xmlGear.Encumbrance),
-            price: OggDudeImporter.mapMandatoryNumber("gear.Price", xmlGear.Price),
-            rarity: OggDudeImporter.mapMandatoryNumber("gear.Rarity", xmlGear.Rarity),
-            HP: OggDudeImporter.mapMandatoryNumber("gear.HP", xmlGear.HP),
+            encumbrance: OggDudeImporter.mapOptionalNumber(xmlGear.Encumbrance),
+            price: OggDudeImporter.mapOptionalNumber(xmlGear.Price),
+            rarity: OggDudeImporter.mapOptionalNumber(xmlGear.Rarity),
+            HP: OggDudeImporter.mapOptionalNumber(xmlGear.HP),
             restricted: OggDudeImporter.mapOptionalBoolean(xmlGear.Restricted),
             type: OggDudeImporter.mapMandatoryString("gear.Type", xmlGear.Type),
             sources: OggDudeImporter.mapOptionalArray(
@@ -28,23 +29,16 @@ export function gearMapper(gears) {
                     return {description: source._, page: source.Page}
                 }),
             categories: OggDudeImporter.mapOptionalArray(xmlGear?.Categories?.Category, (category) => category),
-            weaponModifiers: {
-                unarmed: OggDudeImporter.mapMandatoryString("gear.WeaponModifier.Unarmed", xmlGear?.WeaponModifiers?.WeaponModifier?.Unarmed),
-                unarmedName: OggDudeImporter.mapMandatoryString("gear.WeaponModifier.UnarmedName", xmlGear?.WeaponModifiers?.WeaponModifier?.UnarmedName),
-                skillKey: OggDudeImporter.mapMandatoryString("gear.WeaponModifier.SkillKey", xmlGear?.WeaponModifiers?.WeaponModifier?.SkillKey),
-                allSkillKey: OggDudeImporter.mapMandatoryString("gear.WeaponModifier.AllSkillKey", xmlGear?.WeaponModifiers?.WeaponModifier?.AllSkillKey),
-                damage: OggDudeImporter.mapOptionalNumber(xmlGear?.WeaponModifiers?.WeaponModifier?.Damage),
-                damageAdd: OggDudeImporter.mapOptionalNumber(xmlGear?.WeaponModifiers?.WeaponModifier?.DamageAdd),
-                crit: OggDudeImporter.mapOptionalNumber(xmlGear?.WeaponModifiers?.WeaponModifier?.Crit),
-                critSub: OggDudeImporter.mapOptionalNumber(xmlGear?.WeaponModifiers?.WeaponModifier?.CritSub),
-                rangeValue: OggDudeImporter.mapOptionalNumber(xmlGear?.WeaponModifiers?.WeaponModifier?.RangeValue),
-                qualities: OggDudeImporter.mapOptionalArray(xmlGear?.WeaponModifiers?.WeaponModifier?.Qualities?.Quality, (quality) => {
-                    return {
-                        key: OggDudeImporter.mapMandatoryString("gear.WeaponModifier.Quality.Key", quality.Key),
-                        count: OggDudeImporter.mapMandatoryNumber("gear.WeaponModifier.Quality.Count", quality.Count)
-                    }
-                }),
-            },
+
+            mods: OggDudeImporter.mapOptionalArray(
+                xmlGear?.BaseMods?.Mod,
+                (mod) => {
+                    return buildMod(mod)
+                }
+            ),
+
+            weaponModifiers: buildWeaponModifiers(xmlGear?.WeaponModifiers?.WeaponModifier),
+
             eraPricing: OggDudeImporter.mapOptionalArray(xmlGear?.EraPricing?.Era, (eraPrice) => {
                 return {
                     name: OggDudeImporter.mapMandatoryString("gear.EraPrice.Name", eraPrice.Name),

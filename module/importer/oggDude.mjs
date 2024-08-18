@@ -102,16 +102,33 @@ export default class OggDudeImporter {
      * @name mapOptionalArray
      */
     static mapOptionalArray(value, mapper) {
-        if (value && Array.isArray(value)) {
+        if (value != null && Array.isArray(value)) {
             return value.map((v) => {
                 return mapper(v)
             });
         }
-        if (typeof value === "object" && value !== {}) {
+        if (typeof value === "object" && value != null && value !== {}) {
             return [mapper(value)];
         }
         return [];
     }
+
+    /**
+     * Map an optional array value, if it is not present, return an empty array.
+     * @param value {Object} The value of the element.
+     * @param mapper {function} The function to map the value.
+     * @returns {Object} The mapped value of the element as an object.
+     * @public
+     * @function
+     * @name mapOptionalObject
+     */
+    static mapOptionalObject(value, mapper) {
+        if (typeof value === "object" && value !== {}) {
+            return [mapper(value)];
+        }
+        return {};
+    }
+
 
     /**
      * Process the Armor data from the imported file. The process is as follows:

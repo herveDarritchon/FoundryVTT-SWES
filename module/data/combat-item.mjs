@@ -45,7 +45,7 @@ export default class SwesCombatItem extends SwesItemBase {
                     setbackCount: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
                     upgradeAbilityCount: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
                     successCount: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
-                }), {
+                }, {required: false}), {
                     required: false,
                     initial: [],
                     label: "ITEM.Mod.DieModifiers.label",
@@ -63,30 +63,20 @@ export default class SwesCombatItem extends SwesItemBase {
                 unarmedName: new fields.StringField({...(SwesItemBase.optionalString)}),
                 skillKey: new fields.StringField({...(SwesItemBase.optionalString)}),
                 allSkillKey: new fields.StringField({...(SwesItemBase.optionalString)}),
-                damage: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
-                damageAdd: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
-                crit: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
-                critSub: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
-                rangeValue: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 10}),
+                damage: new fields.NumberField({...(SwesItemBase.optionalInteger),initial: 0, min: 0, max: 10}),
+                damageAdd: new fields.NumberField({...(SwesItemBase.optionalInteger),initial: 0, min: 0, max: 10}),
+                crit: new fields.NumberField({...(SwesItemBase.optionalInteger),initial: 0, min: 0, max: 10}),
+                critSub: new fields.NumberField({...(SwesItemBase.optionalInteger),initial: 0, min: 0, max: 10}),
+                rangeValue: new fields.NumberField({...(SwesItemBase.optionalInteger),initial: 0, min: 0, max: 10}),
                 qualities: new fields.ArrayField(new fields.SchemaField({
                     key: new fields.StringField({...(SwesItemBase.optionalString)}),
                     count: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 100})
-                }, {
-                    required: false,
-                    initial: [],
-                    label: "ITEM.weaponModifiers.qualities.label",
-                    hint: "ITEM.weaponModifiers.qualities.hint"
-                }), {required: true, initial: []}),
+                }, {required: false}), {required: true, initial: []}),
                 range: new fields.StringField({...(SwesItemBase.optionalString)}),
                 baseMods: new fields.ArrayField(new fields.SchemaField({
                     miscDesc: new fields.StringField({...(SwesItemBase.optionalString)}),
                     count: new fields.NumberField({...(SwesItemBase.optionalInteger), min: 0, max: 100})
-                }, {
-                    required: false,
-                    initial: [],
-                    label: "ITEM.WeaponModifiers.baseMods.label",
-                    hint: "ITEM.WeaponModifiers.baseMods.hint"
-                }), {
+                }, {required: false}), {
                     required: false,
                     initial: [],
                     label: "ITEM.WeaponModifiers.label",
