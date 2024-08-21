@@ -1,3 +1,4 @@
+{{log "stats" this}}
 {{! Attributes Stats }}
 <section
         class='tab attributes {{tab.cssClass}}'
@@ -7,9 +8,59 @@
     {{! As you add new fields, add them in here! }}
     <h1>Attributes</h1>
     <div>
+
+        {{!--
+        <fieldset>
+            <legend>{{field.label}}</legend>
+            {{formInput field value=value enriched=enriched toggled=true compact=true height=300 collaborate=true documentUUID=uuid disabled=@root.isPlayMode}}
+        </fieldset>
+       --}}
+
+        {{!--
+        <fieldset class="attributes">
+            {{#with system.defense}}
+                {{log "defense" this}}
+                <legend>{{field.label}}</legend>
+                {{formInput field value=value disabled=disabled type=type}}
+                <p class="hint">{{field.hint}}</p>
+            {{/with}}
+        </fieldset>
+       --}}
+
+        {{!--
+        <fieldset>
+            <legend>{{localize "ARTICHRON.ItemProperty.Fieldsets.Configuration"}}</legend>
+            {{#each system.defense}}
+                {{formGroup field value=value disabled=disabled}}
+            {{/each}}
+        </fieldset>
+       --}}
+
+        {{!--
+        {{formInput systemFields.abilities.fields.str.fields.value value=system.abilities.str.value rootId=partId}}
+        {{formField systemFields.damageFormula value=system.damageFormula rootId=partId}}
+        --}}
+
+        <fieldset>
+            <legend>{{localize "ARMOR.Sheet.attributes.defense.label"}}</legend>
+            {{formField systemFields.defense value=system.defense localize=true rootId=partId}}
+        </fieldset>
+
+        <fieldset>
+            <legend>{{localize "ARMOR.Sheet.attributes.defense.label"}}</legend>
+            {{formInput systemFields.defense value=system.defense rootId=partId}}
+        </fieldset>
+
+        <label for="defense2">{{localize "ARMOR.Sheet.attributes.defense.label"}}</label>
+        <input id="defense2"
+               name="system.defense"
+               type="number"
+               value="{{system.defense}}"
+               data-dtype="{{system.defense}}" step="1" min="0"
+               max="20" required>
+
         <label for="defense">{{localize "ARMOR.Sheet.attributes.defense.label"}}</label>
-        <input id="defense" name="system.defense" type="number" value="{{system.defense}}"
-               placeholder="Defense"/>
+        <input id="defense" name="system.defense" type="number" value="{{system.defense}}" data-dtype="{{system.defense}}" placeholder="Defense"/>
 
         <label for="soak">{{localize "ARMOR.Sheet.attributes.soak.label"}}</label>
         <input id="soak" name="system.soak" type="number" value="{{system.soak}}" placeholder="Soak"/>
