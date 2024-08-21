@@ -143,6 +143,7 @@
       "armor": "Armor",
       "gear": "Gear",
       "weapon": "Weapon",
+      "species": "Species",
       "item": "Item",
       "feature": "Feature",
       "spell": "Spell"

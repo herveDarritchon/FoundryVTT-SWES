@@ -12,7 +12,8 @@
       "item",
       "feature",
       "spell",
-      "weapon"
+      "weapon",
+      "species"
     ]
   }
 }
