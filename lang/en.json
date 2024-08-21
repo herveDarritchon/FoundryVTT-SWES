@@ -140,6 +140,9 @@
       "npc": "NPC"
     },
     "Item": {
+      "armor": "Armor",
+      "gear": "Gear",
+      "weapon": "Weapon",
       "item": "Item",
       "feature": "Feature",
       "spell": "Spell"
