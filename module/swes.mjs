@@ -1,15 +1,36 @@
 // Import document classes.
-import { swesActor } from './documents/actor.mjs';
+import {SwesActor} from './documents/actor.mjs';
 import { SwesItem } from './documents/item.mjs';
 // Import sheet classes.
-import { swesActorSheet } from './sheets/actor-sheet.mjs';
-import {SwesArmorSheet} from './sheets/item-sheet.mjs';
+import {SwesActorSheet} from './sheets/actor-sheet.mjs';
+import { SwesItemSheet} from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
 import { SWES } from './helpers/config.mjs';
 // Import DataModel classes
 import * as models from './data/_module.mjs';
 import {OggDudeDataImporter} from "./settings/OggDudeDataImporter.mjs";
+import SwesArmor from "./data/gear.mjs";
+import SwesWeapon from "./data/weapon.mjs";
+import SwesGear from "./data/gear.mjs";
+
+// Add key classes to the global scope so they can be more easily used
+// by downstream developers
+globalThis.swes = {
+  documents: {
+    SwesActor,
+    SwesArmor,
+    SwesWeapon,
+    SwesGear,
+  },
+  applications: {
+    SwesActorSheet,
+    SwesItemSheet,
+  },
+  utils: {
+    rollItemMacro,
+  },
+};
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -19,7 +40,7 @@ Hooks.once('init', function () {
   // Add utility classes to the global game object so that they're more easily
   // accessible in global contexts.
   game.swes = {
-    swesActor,
+    SwesActor,
     SwesItem,
     rollItemMacro,
   };
@@ -37,7 +58,7 @@ Hooks.once('init', function () {
   };
 
   // Define custom Document and DataModel classes
-  CONFIG.Actor.documentClass = swesActor;
+  CONFIG.Actor.documentClass = SwesActor;
 
   // Note that you don't need to declare a DataModel
   // for the base actor/item classes - they are included
@@ -62,15 +83,14 @@ Hooks.once('init', function () {
 
   // Register sheet application classes
   Actors.unregisterSheet('core', ActorSheet);
-  Actors.registerSheet('swes', swesActorSheet, {
+  Actors.registerSheet('swes', SwesActorSheet, {
     makeDefault: true,
     label: 'SWES.SheetLabels.Actor',
   });
   Items.unregisterSheet('core', ItemSheet);
-  Items.registerSheet('swes', SwesArmorSheet, {
-    types: ["armor"],
+  Items.registerSheet('swes', SwesItemSheet, {
     makeDefault: true,
-    label: 'SWES.SheetLabels.Armor',
+    label: 'SWES.SheetLabels.Item',
   });
 
   // OggDude Data Importer settings

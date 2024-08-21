@@ -1,0 +1,45 @@
+{{! Description Tab }}
+<section
+        class='tab {{tab.cssClass}}'
+        data-group='primary'
+        data-tab='description'
+>
+    {{! Editors must receive enriched text data from getData to properly handle rolls, UUID links, etc. }}
+    {{#if editable}}
+        <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}" collaborate="true" toggled="true">
+            {{{enrichedDescription}}}
+        </prose-mirror>
+    {{else}} {{{enrichedDescription}}}
+    {{/if}}
+
+    <h1>Details</h1>
+    <div>
+        <label for="key">{{localize "ARMOR.Sheet.details.key.label"}}</label>
+        <input id="key" name="system.key" type="text" value="{{system.key}}" placeholder="Key"/>
+
+        <label for="short">{{localize "ARMOR.Sheet.details.short.label"}}</label>
+        <input id="short" name="system.short" type="text" value="{{system.short}}" placeholder="Short"/>
+
+        <label for="type">{{localize "ARMOR.Sheet.attributes.type.label"}}</label>
+        <input id="type" name="system.type" type="text" value="{{system.type}}"
+               placeholder="Type"/>
+
+        <h3>Description</h3>
+        {{editor system.description target="system.description" rollData=rollData button=true owner=owner
+                 editable=editable}}
+    </div>
+    <div>
+        {{#each system.sources as |source|}}
+            <label for="source">{{localize "ARMOR.Sheet.details.source.label"}}</label>
+            <input id="source" name="system.description" type="text" value="{{source.description}}"
+                   placeholder="Description"/>
+
+            <label for="page">{{localize "ARMOR.Sheet.details.page.label"}}</label>
+            <input id="page" name="system.page" type="number" value="{{source.page}}" placeholder="Page"/>
+        {{/each}}
+    </div>
+
+    <label for="price">{{localize "ARMOR.Sheet.characteristics.price.label"}}</label>
+    <input id="price" name="system.price" type="number" value="{{system.price}}"
+           placeholder="Price"/>
+</section>

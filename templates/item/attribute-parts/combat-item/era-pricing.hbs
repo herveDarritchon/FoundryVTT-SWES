@@ -1,0 +1,29 @@
+{{! Attributes Era PricingTab }}
+<section
+        class='tab attributes {{tab.cssClass}}'
+        data-group='primary'
+        data-tab='attributesEraPricing'
+>
+    {{! As you add new fields, add them in here! }}
+    <h1>Price</h1>
+
+    {{#each system.eraPricing as |eraPrice|}}
+        <label for="eraPrice-name">{{localize "ARMOR.Sheet.eraPrice.name.label"}}</label>
+        <input id="eraPrice-name" name="system.eraPrice.name" type="text"
+               value="{{eraPrice.name}}" placeholder="Name"/>
+
+        <label for="eraPrice-price">{{localize "ARMOR.Sheet.eraPrice.price.label"}}</label>
+        <input id="eraPrice-price" name="system.eraPrice.price" type="number"
+               value="{{eraPrice.price}}" placeholder="Price"/>
+
+        <label for="eraPrice-rarity">{{localize "ARMOR.Sheet.eraPrice.rarity.label"}}</label>
+        <input id="eraPrice-rarity" name="system.eraPrice.rarity" type="number"
+               value="{{eraPrice.rarity}}" placeholder="Rarity"/>
+
+        <label for="eraPrice-restricted">{{localize "ARMOR.Sheet.eraPrice.restricted.label"}}</label>
+        <input id="eraPrice-restricted" name="system.eraPrice.restricted" type="text"
+               value="{{eraPrice.restricted}}" placeholder="Restricted"/>
+    {{/each}}
+
+
+</section>

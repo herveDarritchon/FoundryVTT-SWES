@@ -81,11 +81,6 @@
     }
   },
   "SWES": {
-    "Base": "Base",
-    "Bonus": "Bonus",
-    "Rules": "Star Wars Edge Studio Rules",
-    "Scaling": "Scaling",
-    "Scaled": "Scaled",
     "Ability": {
       "Str": {
         "long": "Strength",
@@ -112,22 +107,31 @@
         "abbr": "cha"
       }
     },
-    "SheetLabels": {
-      "Actor": "swes Actor Sheet",
-      "Armor": "Swes Armor Sheet"
-    },
-    "Item": {
-      "Spell": {
-        "SpellLVL": "Level {level} Spells",
-        "AddLVL": "Add LVL {level}"
-      }
-    },
+    "Base": "Base",
+    "Bonus": "Bonus",
     "Effect": {
       "Source": "Source",
       "Toggle": "Toggle Effect",
       "Temporary": "Temporary Effects",
       "Passive": "Passive Effects",
       "Inactive": "Inactive Effects"
+    },
+    "Item": {
+      "Tabs": {
+        "Description": "Description",
+        "Effects": "Effects",
+        "AttributesMods": "Mods",
+        "AttributesStats": "Stats",
+        "AttributesWeaponModifiers": "Weapon Modifiers",
+        "AttributesEraPricing": "Era Pricing"
+      }
+    },
+    "Rules": "Star Wars Edge Studio Rules",
+    "Scaling": "Scaling",
+    "Scaled": "Scaled",
+    "SheetLabels": {
+      "Actor": "swes Actor Sheet",
+      "Armor": "Swes Armor Sheet"
     }
   },
   "TYPES": {

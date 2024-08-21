@@ -11,6 +11,13 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/swes/templates/actor/parts/actor-spells.hbs',
     'systems/swes/templates/actor/parts/actor-effects.hbs',
     // Item partials
+    'systems/swes/templates/item/parts/item-header.hbs',
+    'systems/swes/templates/item/parts/item-description.hbs',
     'systems/swes/templates/item/parts/item-effects.hbs',
+    // Item attributes
+    'systems/swes/templates/item/attribute-parts/combat-item/stats.hbs',
+    'systems/swes/templates/item/attribute-parts/combat-item/era-pricing.hbs',
+    'systems/swes/templates/item/attribute-parts/combat-item/mods.hbs',
+    'systems/swes/templates/item/attribute-parts/combat-item/weapon-modifiers.hbs',
   ]);
 };

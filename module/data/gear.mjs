@@ -1,7 +1,7 @@
 import SwesItemBase from "./item-base.mjs";
 import SwesCombatItem from "./combat-item.mjs";
 
-export default class SwesArmor extends SwesCombatItem {
+export default class SwesGear extends SwesCombatItem {
 
     /* -------------------------------------------- */
     /*  Data Schema                                 */

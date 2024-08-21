@@ -1,0 +1,67 @@
+{{! Attributes Weapon ModifiersTab }}
+<section
+        class='tab attributes {{tab.cssClass}}'
+        data-group='primary'
+        data-tab='attributesWeaponModifiers'
+>
+    {{!-- As you add new fields, add them in here! --}}
+    <h1>Weapon Modifiers</h1>
+    {{#each system.weaponModifiers as |weaponModifier|}}
+        <label for="weaponModifier-unarmed">{{localize "ARMOR.Sheet.weaponModifier.unarmed.label"}}</label>
+        <input id="weaponModifier-unarmed" name="system.weaponModifier.unarmed" type="text"
+               value="{{weaponModifier.unarmed}}" placeholder="Unarmed"/>
+
+        <label for="weaponModifier-skillKey">{{localize "ARMOR.Sheet.weaponModifier.skillKey.label"}}</label>
+        <input id="weaponModifier-skillKey" name="system.weaponModifier.skillKey" type="text"
+               value="{{weaponModifier.skillKey}}" placeholder="Skill Key"/>
+
+        <label for="weaponModifier-damage">{{localize "ARMOR.Sheet.weaponModifier.damage.label"}}</label>
+        <input id="weaponModifier-damage" name="system.weaponModifier.damage" type="number"
+               value="{{weaponModifier.damage}}" placeholder="Damage"/>
+
+        <label for="weaponModifier-crit">{{localize "ARMOR.Sheet.weaponModifier.crit.label"}}</label>
+        <input id="weaponModifier-crit" name="system.weaponModifier.crit" type="number"
+               value="{{weaponModifier.crit}}"
+               placeholder="Crit"/>
+
+        <label for="weaponModifier-critSub">{{localize "ARMOR.Sheet.weaponModifier.critSub.label"}}</label>
+        <input id="weaponModifier-critSub" name="system.weaponModifier.critSub" type="number"
+               value="{{weaponModifier.critSub}}" placeholder="Crit Sub"/>
+
+        <label for="weaponModifier-rangeValue">{{localize
+                "ARMOR.Sheet.weaponModifier.rangeValue.label"}}</label>
+        <input id="weaponModifier-rangeValue" name="system.weaponModifier.rangeValue" type="number"
+               value="{{weaponModifier.rangeValue}}" placeholder="Range Value"/>
+
+        <label for="weaponModifier-range">{{localize "ARMOR.Sheet.weaponModifier.range.label"}}</label>
+        <input id="weaponModifier-range" name="system.weaponModifier.range" type="text"
+               value="{{weaponModifier.range}}"
+               placeholder="Range"/>
+
+        {{#each weaponModifier.qualities as |quality|}}
+            <label for="weaponModifier-quality-key">{{localize
+                    "ARMOR.Sheet.weaponModifier.quality.key.label"}}</label>
+            <input id="weaponModifier-quality-key" name="system.weaponModifier.quality.key" type="text"
+                   value="{{quality.key}}" placeholder="Quality Key"/>
+
+            <label for="weaponModifier-quality-count">{{localize
+                    "ARMOR.Sheet.weaponModifier.quality.count.label"}}</label>
+            <input id="weaponModifier-quality-count" name="system.weaponModifier.quality.count" type="number"
+                   value="{{quality.count}}" placeholder="Quality Count"/>
+        {{/each}}
+
+        {{#each weaponModifier.baseMods as |mod|}}
+            <label for="weaponModifier-mod-miscDesc">{{localize
+                    "ARMOR.Sheet.weaponModifier.mod.miscDesc.label"}}</label>
+            <input id="weaponModifier-mod-miscDesc" name="system.weaponModifier.mod.miscDesc" type="text"
+                   value="{{mod.miscDesc}}" placeholder="Misc Desc"/>
+
+            <label for="weaponModifier-mod-count">{{localize
+                    "ARMOR.Sheet.weaponModifier.mod.count.label"}}</label>
+            <input id="weaponModifier-mod-count" name="system.weaponModifier.mod.count" type="number"
+                   value="{{mod.count}}" placeholder="Count"/>
+        {{/each}}
+
+    {{/each}}
+
+</section>
