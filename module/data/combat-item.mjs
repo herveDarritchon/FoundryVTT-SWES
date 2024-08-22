@@ -19,7 +19,7 @@ export default class SwesCombatItemData extends SwesItemBaseData {
             rarity: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 5, min: 0, max: 10}),
             type: new fields.StringField({...(SwesItemBaseData.optionalString), initial: "Item"}),
 
-            sources: new fields.ArrayField(new fields.SchemaField({
+            sources: new fields.SetField(new fields.SchemaField({
                 description: new fields.StringField({...(SwesItemBaseData.requiredString), initial: "Description"}),
                 page: new fields.NumberField({...(SwesItemBaseData.requiredInteger), min: 1, initial: 1})
             }), {
@@ -31,13 +31,13 @@ export default class SwesCombatItemData extends SwesItemBaseData {
                     required: false, initial: [], label: "SWES.Combat-Item.FIELDS.Categories.label", hint: "SWES.Combat-Item.FIELDS.Categories.hint"
                 }),
 
-            mods: new fields.ArrayField(new fields.SchemaField({
+            mods: new fields.SetField(new fields.SchemaField({
                 key: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                 miscDesc: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                 count: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0}),
                 index: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0}),
                 defZone: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                dieModifiers: new fields.ArrayField(new fields.SchemaField({
+                dieModifiers: new fields.SetField(new fields.SchemaField({
                     skillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                     skillChar: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                     skillType: new fields.StringField({...(SwesItemBaseData.optionalString)}),
@@ -70,12 +70,12 @@ export default class SwesCombatItemData extends SwesItemBaseData {
                 crit: new fields.NumberField({...(SwesItemBaseData.optionalInteger),initial: 0, min: 0, max: 10}),
                 critSub: new fields.NumberField({...(SwesItemBaseData.optionalInteger),initial: 0, min: 0, max: 10}),
                 rangeValue: new fields.NumberField({...(SwesItemBaseData.optionalInteger),initial: 0, min: 0, max: 10}),
-                qualities: new fields.ArrayField(new fields.SchemaField({
+                qualities: new fields.SetField(new fields.SchemaField({
                     key: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                     count: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 100})
                 }, {required: false}), {required: true, initial: []}),
                 range: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                baseMods: new fields.ArrayField(new fields.SchemaField({
+                baseMods: new fields.SetField(new fields.SchemaField({
                     miscDesc: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                     count: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 100})
                 }, {required: false}), {
@@ -86,7 +86,7 @@ export default class SwesCombatItemData extends SwesItemBaseData {
                 })
             }),
 
-            eraPricing: new fields.ArrayField(new fields.SchemaField({
+            eraPricing: new fields.SetField(new fields.SchemaField({
                 name: new fields.StringField({...(SwesItemBaseData.requiredString)}),
                 price: new fields.NumberField({...(SwesItemBaseData.requiredInteger), min: 0}),
                 rarity: new fields.NumberField({...(SwesItemBaseData.requiredInteger), min: 0, max: 10}),
