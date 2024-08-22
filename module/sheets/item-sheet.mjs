@@ -26,7 +26,7 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         },
         position: {
             width: 520,
-            height: 480,
+            height: "auto",
         },
         actions: {
             onEditImage: this._onEditImage,
@@ -76,7 +76,7 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
 
     /** @override */
     async _prepareContext(options) {
-        const context =  foundry.utils.mergeObject(await super. _prepareContext(options), {
+        return foundry.utils.mergeObject(await super._prepareContext(options), {
             // Validates both permissions and compendium status
             editable: this.isEditable,
             owner: this.document.isOwner,
@@ -94,8 +94,6 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             fields: this.document.schema.fields,
             systemFields: this.document.system.schema.fields,
         });
-        console.log("Context", context);
-        return context;
     }
 
     /* -------------------------------------------- */

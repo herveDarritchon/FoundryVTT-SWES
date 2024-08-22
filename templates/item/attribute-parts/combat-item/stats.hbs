@@ -51,16 +51,19 @@
 
         {{formField systemFields.rarity value=system.rarity}}
 
-        {{!--        {{#each system.categories as |category|}}
+        {{!--
+               {{#each system.categories as |category|}}
                     {{formField systemFields.category value=category}}
                 {{/each}}
-                --}}
+        --}}
 
+        {{!--
         {{#each system.categories as |category|}}
             <label for="category">{{localize "ARMOR.Sheet.attributes.category.label"}}</label>
             <input id="category" name="system.category" type="text" value="{{category}}"
                    placeholder="Category"/>
         {{/each}}
+        --}}
 
     </div>
 

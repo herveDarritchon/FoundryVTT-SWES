@@ -72,6 +72,8 @@ Hooks.once('init', function () {
     item: models.SwesItem,
     armor: models.SwesArmor,
     weapon: models.SwesWeapon,
+    gear: models.SwesGear,
+    species: models.SwesSpecies,
     feature: models.swesFeature,
     spell: models.swesSpell
   }

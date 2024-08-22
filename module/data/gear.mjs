@@ -4,7 +4,7 @@ import SwesCombatItem from "./combat-item.mjs";
 export default class SwesGear extends SwesCombatItem {
 
     /* -------------------------------------------- */
-    /*  Data Schema                                 */
+    /*  Data Schema                                                  */
     /* -------------------------------------------- */
 
     /** @inheritDoc */
