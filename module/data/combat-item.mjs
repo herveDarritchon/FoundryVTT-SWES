@@ -26,9 +26,9 @@ export default class SwesCombatItemData extends SwesItemBaseData {
                 required: false, initial: [], label: "ITEM.Source.label", hint: "ITEM.Source.hint"
             }),
 
-            categories: new fields.ArrayField(
-                new fields.StringField({...(SwesItemBaseData.requiredString)}), {
-                    required: false, initial: [], label: "ITEM.Category.label", hint: "ITEM.Category.hint"
+            categories: new fields.SetField(
+                new fields.StringField({...(SwesItemBaseData.requiredString), label: "SWES.Combat-Item.FIELDS.Category.label", hint: "SWES.Combat-Item.FIELDS.Category.hint"}), {
+                    required: false, initial: [], label: "SWES.Combat-Item.FIELDS.Categories.label", hint: "SWES.Combat-Item.FIELDS.Categories.hint"
                 }),
 
             mods: new fields.ArrayField(new fields.SchemaField({

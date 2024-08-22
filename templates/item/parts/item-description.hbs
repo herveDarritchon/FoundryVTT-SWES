@@ -4,8 +4,44 @@
         data-group='primary'
         data-tab='description'
 >
+
+    <h1>Details</h1>
+
+    <fieldset>
+
+        {{formField systemFields.key value=system.key
+                    placeholder=(localize "SWES.Combat-Item.FIELDS.key.placeholder")}}
+
+        {{formField systemFields.type value=system.type
+                    placeholder=(localize "SWES.Combat-Item.FIELDS.type.placeholder")}}
+
+        {{formField systemFields.price value=system.price
+                    placeholder=(localize "SWES.Combat-Item.FIELDS.price.placeholder")}}
+
+    </fieldset>
+
+    <h3>Description</h3>
     {{! Editors must receive enriched text data from getData to properly handle rolls, UUID links, etc. }}
-    {{#if editable}}
+
+    <section class="item-description">
+        <fieldset>
+            <legend data-tooltip="SWES.Combat-Item.FIELDS.description.hint">{{localize
+                    "SWES.Combat-Item.FIELDS.description.label"}}</legend>
+            {{formInput
+                    systemFields.description
+                    enriched=enrichedDescription
+                    value=system.description
+                    documentUUID=item.uuid
+                    name="system.description"
+                    collaborate="false"
+                    toggled="true"
+                    height="50"
+            }}
+        </fieldset>
+    </section>
+
+{{!--
+{{#if editable}}
         <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}"
                       collaborate="true" toggled="true">
             {{{enrichedDescription}}}
@@ -13,24 +49,9 @@
     {{else}}
         {{{enrichedDescription}}}
     {{/if}}
+--}}
 
-    <h1>Details</h1>
-    <div>
-        <label for="key">{{localize "ARMOR.Sheet.details.key.label"}}</label>
-        <input id="key" name="system.key" type="text" value="{{system.key}}" placeholder="Key"/>
-
-        <label for="short">{{localize "ARMOR.Sheet.details.short.label"}}</label>
-        <input id="short" name="system.short" type="text" value="{{system.short}}" placeholder="Short"/>
-
-        <label for="type">{{localize "ARMOR.Sheet.attributes.type.label"}}</label>
-        <input id="type" name="system.type" type="text" value="{{system.type}}"
-               placeholder="Type"/>
-
-        <h3>Description</h3>
-        {{editor system.description target="system.description" rollData=rollData button=true owner=owner
-                 editable=editable}}
-    </div>
-    <div>
+    <fieldset>
         {{#each system.sources as |source|}}
             <label for="source">{{localize "ARMOR.Sheet.details.source.label"}}</label>
             <input id="source" name="system.description" type="text" value="{{source.description}}"
@@ -39,9 +60,6 @@
             <label for="page">{{localize "ARMOR.Sheet.details.page.label"}}</label>
             <input id="page" name="system.page" type="number" value="{{source.page}}" placeholder="Page"/>
         {{/each}}
-    </div>
+    </fieldset>
 
-    <label for="price">{{localize "ARMOR.Sheet.characteristics.price.label"}}</label>
-    <input id="price" name="system.price" type="number" value="{{system.price}}"
-           placeholder="Price"/>
 </section>
