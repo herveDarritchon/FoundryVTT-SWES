@@ -50,6 +50,9 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             // Foundry-provided generic template
             template: 'templates/generic/tab-navigation.hbs',
         },
+        details: {
+            template: 'systems/swes/templates/item/parts/item-details.hbs',
+        },
         description: {
             template: 'systems/swes/templates/item/parts/item-description.hbs',
         },
@@ -108,7 +111,7 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     _configureRenderOptions(options) {
         super._configureRenderOptions(options);
         // Not all parts always render
-        options.parts = ['header', 'tabs', 'description'];
+        options.parts = ['header', 'tabs', 'details', 'description'];
         // Don't show the other tabs if only limited view
         if (this.document.limited) return;
         // Control which parts show based on document subtype
@@ -135,6 +138,7 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             case 'attributesStats':
             case 'attributesCombat':
             case 'attributesWeaponModifiers':
+            case 'details':
                 // Necessary for preserving active tab on re-render
                 context.tab = context.tabs[partId];
                 break;
@@ -191,6 +195,10 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
                 case 'header':
                 case 'tabs':
                     return tabs;
+                case 'details':
+                    tab.id = 'details';
+                    tab.label += 'Details';
+                    break;
                 case 'description':
                     tab.id = 'description';
                     tab.label += 'Description';

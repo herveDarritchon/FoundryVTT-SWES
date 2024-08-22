@@ -13,6 +13,7 @@ export const preloadHandlebarsTemplates = async function () {
         // Item partials
         'systems/swes/templates/item/parts/item-header.hbs',
         'systems/swes/templates/item/parts/item-description.hbs',
+        'systems/swes/templates/item/parts/item-details.hbs',
         'systems/swes/templates/item/parts/item-effects.hbs',
         // Item attributes
         'systems/swes/templates/item/attribute-parts/combat-item/weapon/combat.hbs',

@@ -171,6 +171,7 @@
     },
     "Item": {
       "Tabs": {
+        "Details": "Details",
         "Description": "Description",
         "Effects": "Effects",
         "AttributesMods": "Mods",
