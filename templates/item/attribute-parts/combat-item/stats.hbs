@@ -1,4 +1,3 @@
-{{log "stats" this}}
 {{! Attributes Stats }}
 <section
         class='tab attributes {{tab.cssClass}}'
@@ -9,41 +8,17 @@
     <h1>Attributes</h1>
     <div>
 
-        {{!--
-        <fieldset>
-            <legend>{{field.label}}</legend>
-            {{formInput field value=value enriched=enriched toggled=true compact=true height=300 collaborate=true documentUUID=uuid disabled=@root.isPlayMode}}
-        </fieldset>
-       --}}
+        {{#if (eq item.type "armor")}}
+            {{> "systems/swes/templates/item/attribute-parts/combat-item/armor/armor.hbs"}}
+        {{/if}}
 
-        {{!--
-        <fieldset class="attributes">
-            {{#with system.defense}}
-                {{log "defense" this}}
-                <legend>{{field.label}}</legend>
-                {{formInput field value=value disabled=disabled type=type}}
-                <p class="hint">{{field.hint}}</p>
-            {{/with}}
-        </fieldset>
-       --}}
+        {{#if (eq item.type "weapon")}}
+            {{> "systems/swes/templates/item/attribute-parts/combat-item/weapon/weapon.hbs"}}
+        {{/if}}
 
-        {{!--
-        <fieldset>
-            <legend>{{localize "ARTICHRON.ItemProperty.Fieldsets.Configuration"}}</legend>
-            {{#each system.defense}}
-                {{formGroup field value=value disabled=disabled}}
-            {{/each}}
-        </fieldset>
-       --}}
-
-        {{!--
-        {{formInput systemFields.abilities.fields.str.fields.value value=system.abilities.str.value rootId=partId}}
-        {{formField systemFields.damageFormula value=system.damageFormula rootId=partId}}
-        --}}
-
-        {{formField systemFields.defense value=system.defense}}
-
-        {{formField systemFields.soak value=system.soak}}
+        {{#if (eq item.type "gear")}}
+            {{> "systems/swes/templates/item/attribute-parts/combat-item/gear/gear.hbs"}}
+        {{/if}}
 
         {{formField systemFields.encumbrance value=system.encumbrance}}
 

@@ -89,6 +89,9 @@
         "encumbrance": {
           "label": "Encumbrance"
         },
+        "short": {
+          "label": "Short"
+        },
         "soak": {
           "label": "Soak"
         },
@@ -140,6 +143,7 @@
         "Description": "Description",
         "Effects": "Effects",
         "AttributesMods": "Mods",
+        "AttributesCombat": "Combat",
         "AttributesStats": "Stats",
         "AttributesWeaponModifiers": "Weapon Modifiers",
         "AttributesEraPricing": "Era Pricing"

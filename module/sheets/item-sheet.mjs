@@ -56,6 +56,9 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         attributesMods: {
             template: 'systems/swes/templates/item/attribute-parts/combat-item/mods.hbs',
         },
+        attributesCombat: {
+            template: 'systems/swes/templates/item/attribute-parts/combat-item/weapon/combat.hbs',
+        },
         attributesStats: {
             template: 'systems/swes/templates/item/attribute-parts/combat-item/stats.hbs',
         },
@@ -64,6 +67,9 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         },
         attributesEraPricing: {
             template: 'systems/swes/templates/item/attribute-parts/combat-item/era-pricing.hbs',
+        },
+        armorSpecific: {
+            template: 'systems/swes/templates/item/attribute-parts/combat-item/armor/armor.hbs',
         },
         effects: {
             template: 'systems/swes/templates/item/parts/item-effects.hbs',
@@ -111,7 +117,7 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
                 options.parts.push('attributesStats', 'attributesMods', 'attributesWeaponModifiers', 'attributesEraPricing', 'effects');
                 break;
             case 'weapon':
-                options.parts.push('attributesStats', 'attributesMods', 'attributesWeaponModifiers', 'attributesEraPricing', 'effects');
+                options.parts.push('attributesStats', 'attributesCombat', 'attributesMods', 'attributesWeaponModifiers', 'attributesEraPricing', 'effects');
                 break;
             case 'gear':
                 options.parts.push('attributesStats', 'attributesMods', 'attributesWeaponModifiers', 'attributesEraPricing', 'effects');
@@ -127,6 +133,7 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             case 'attributesEraPricing':
             case 'attributesMods':
             case 'attributesStats':
+            case 'attributesCombat':
             case 'attributesWeaponModifiers':
                 // Necessary for preserving active tab on re-render
                 context.tab = context.tabs[partId];
@@ -187,6 +194,10 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
                 case 'description':
                     tab.id = 'description';
                     tab.label += 'Description';
+                    break;
+                case 'attributesCombat':
+                    tab.id = 'attributesCombat';
+                    tab.label += 'AttributesCombat';
                     break;
                 case 'attributesStats':
                     tab.id = 'attributesStats';
