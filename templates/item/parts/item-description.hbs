@@ -16,29 +16,30 @@
                     systemFields.description
                     enriched=enrichedDescription
                     value=system.description
-                    documentUUID=item.uuid
+                    documentUUID=actor.uuid
                     name="system.description"
-                    collaborate="false"
+                    collaborate="true"
                     toggled="true"
-                    height="50"
+                    height="200"
             }}
         </fieldset>
     </section>
 
-{{!--
-{{#if editable}}
-        <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}"
-                      collaborate="true" toggled="true">
+    {{!--
+    {{#if editable}}
+            <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}"
+                          collaborate="true" toggled="true">
+                {{{enrichedDescription}}}
+            </prose-mirror>
+        {{else}}
             {{{enrichedDescription}}}
-        </prose-mirror>
-    {{else}}
-        {{{enrichedDescription}}}
-    {{/if}}
---}}
+        {{/if}}
+    --}}
 
     <fieldset>
         {{#each system.sources as |source|}}
-            {{formField @root.systemFields.sources.element.description value=source.description localize=true rootId=partId}}
+            {{formField @root.systemFields.sources.element.description value=source.description localize=true
+                        rootId=partId}}
             {{formField @root.systemFields.sources.element.page value=source.page localize=true rootId=partId}}
         {{/each}}
     </fieldset>

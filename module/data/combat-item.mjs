@@ -11,7 +11,7 @@ export default class SwesCombatItemData extends SwesItemBaseData {
 
             key: new fields.StringField({...(SwesItemBaseData.optionalString), initial: "KEY"}),
             name: new fields.StringField({...(SwesItemBaseData.requiredString), initial: "Name"}),
-            description: new fields.StringField({...(SwesItemBaseData.requiredString), initial: "Description"}),
+            document: new fields.HTMLField({...(SwesItemBaseData.requiredString), initial: "", textSearch: true }),
             restricted: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
             price: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 1, min: 0}),
             encumbrance: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 50}),

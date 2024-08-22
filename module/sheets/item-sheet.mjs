@@ -146,7 +146,8 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
                 context.tab = context.tabs[partId];
                 // Enrich description info for display
                 // Enrichment turns text like `[[/r 1d20]]` into buttons
-                context.enrichedDescription = await TextEditor.enrichHTML(
+                context.enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, { async: true });
+/*                context.enrichedDescription = await TextEditor.enrichHTML(
                     this.item.system.description,
                     {
                         // Whether to show secret blocks in the finished html
@@ -156,7 +157,8 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
                         // Relative UUID resolution
                         relativeTo: this.item,
                     }
-                );
+                )*/;
+                console.log("Context:", context);
                 break;
             case 'effects':
                 context.tab = context.tabs[partId];
