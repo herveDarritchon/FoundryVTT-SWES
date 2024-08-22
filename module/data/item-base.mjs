@@ -1,4 +1,4 @@
-export default class SwesItemBase extends foundry.abstract.TypeDataModel {
+export default class SwesItemBaseData extends foundry.abstract.TypeDataModel {
 
     static optionalBoolean = {required: false, nullable: false};
     static  requiredInteger = {required: true, nullable: false, integer: true};

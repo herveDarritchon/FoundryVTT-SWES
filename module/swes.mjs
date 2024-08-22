@@ -1,6 +1,5 @@
 // Import document classes.
 import {SwesActor} from './documents/actor.mjs';
-import { SwesItem } from './documents/item.mjs';
 // Import sheet classes.
 import {SwesActorSheet} from './sheets/actor-sheet.mjs';
 import { SwesItemSheet} from './sheets/item-sheet.mjs';
@@ -13,6 +12,8 @@ import {OggDudeDataImporter} from "./settings/OggDudeDataImporter.mjs";
 import SwesArmor from "./data/gear.mjs";
 import SwesWeapon from "./data/weapon.mjs";
 import SwesGear from "./data/gear.mjs";
+import SwesSpecies from "./data/species.mjs";
+import {SwesItem} from "./documents/item.mjs";
 
 // Add key classes to the global scope so they can be more easily used
 // by downstream developers
@@ -22,6 +23,7 @@ globalThis.swes = {
     SwesArmor,
     SwesWeapon,
     SwesGear,
+    SwesSpecies,
   },
   applications: {
     SwesActorSheet,
@@ -69,13 +71,10 @@ Hooks.once('init', function () {
   }
   CONFIG.Item.documentClass = SwesItem;
   CONFIG.Item.dataModels = {
-    item: models.SwesItem,
     armor: models.SwesArmor,
     weapon: models.SwesWeapon,
     gear: models.SwesGear,
     species: models.SwesSpecies,
-    feature: models.swesFeature,
-    spell: models.swesSpell
   }
 
   // Active Effects are never copied to the Actor,

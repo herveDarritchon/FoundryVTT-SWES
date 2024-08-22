@@ -19,7 +19,7 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
 
     /** @override */
     static DEFAULT_OPTIONS = {
-        tag: "div", // The default is "div"
+        tag: "form", // Document sheets are forms by default
         classes: ['swes', 'sheet', 'item', 'combat-item'],
         form: {
             submitOnChange: true,

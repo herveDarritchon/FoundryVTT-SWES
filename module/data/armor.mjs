@@ -1,7 +1,7 @@
-import SwesItemBase from "./item-base.mjs";
-import SwesCombatItem from "./combat-item.mjs";
+import SwesItemBaseData from "./item-base.mjs";
+import SwesCombatItemData from "./combat-item.mjs";
 
-export default class SwesArmor extends SwesCombatItem {
+export default class SwesArmor extends SwesCombatItemData {
 
     /* -------------------------------------------- */
     /*  Data Schema                                                  */
@@ -12,9 +12,9 @@ export default class SwesArmor extends SwesCombatItem {
         const fields = foundry.data.fields;
         return foundry.utils.mergeObject(super.defineSchema(), {
             defense: new fields.NumberField(
-                {...(SwesItemBase.requiredInteger), initial: 0, min: 0, max: 20}
+                {...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 20}
             ),
-            soak: new fields.NumberField({...(SwesItemBase.requiredInteger), initial: 0, min: 0, max: 20}),
+            soak: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 20}),
         });
     }
 

@@ -1,6 +1,8 @@
-import {SwesItemBase} from "./_module.mjs";
+import SwesItemBaseData from "./item-base.mjs";
 
-export default class SwesSpecies extends SwesItemBase {
+export default class SwesSpecies extends SwesItemBaseData {
+
+    static LOCALIZATION_PREFIXES = ["SWES.Species"]
 
     /* -------------------------------------------- */
     /*  Data Schema                                                 */
@@ -10,8 +12,8 @@ export default class SwesSpecies extends SwesItemBase {
     static defineSchema() {
         const fields = foundry.data.fields;
         return foundry.utils.mergeObject(super.defineSchema(), {
-            defense: new fields.NumberField({...(SwesItemBase.requiredInteger), initial: 0, min: 0, max: 20}),
-            soak: new fields.NumberField({...(SwesItemBase.requiredInteger), initial: 0, min: 0, max: 20}),
+            defense: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 20}),
+            soak: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 20}),
         });
     }
 
