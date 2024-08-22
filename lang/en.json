@@ -51,12 +51,12 @@
       "armor": {
         "title": "Armor"
       },
-        "weapon": {
-            "title": "Weapon"
-        },
-        "gear": {
-            "title": "Gear"
-        }
+      "weapon": {
+        "title": "Weapon"
+      },
+      "gear": {
+        "title": "Gear"
+      }
     }
   },
   "SETTINGS": {
@@ -81,6 +81,25 @@
     }
   },
   "SWES": {
+    "Combat-Item": {
+      "FIELDS": {
+        "defense": {
+          "label": "Defense"
+        },
+        "encumbrance": {
+          "label": "Encumbrance"
+        },
+        "soak": {
+          "label": "Soak"
+        },
+        "hp": {
+          "label": "Hardpoints"
+        },
+        "rarity": {
+          "label": "Rarity"
+        }
+      }
+    },
     "Ability": {
       "Str": {
         "long": "Strength",

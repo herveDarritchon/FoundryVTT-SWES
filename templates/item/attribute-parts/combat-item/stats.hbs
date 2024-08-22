@@ -41,45 +41,27 @@
         {{formField systemFields.damageFormula value=system.damageFormula rootId=partId}}
         --}}
 
-        <fieldset>
-            <legend>{{localize "ARMOR.Sheet.attributes.defense.label"}}</legend>
-            {{formField systemFields.defense value=system.defense localize=true rootId=partId}}
-        </fieldset>
+        {{formField systemFields.defense value=system.defense}}
 
-        <fieldset>
-            <legend>{{localize "ARMOR.Sheet.attributes.defense.label"}}</legend>
-            {{formInput systemFields.defense value=system.defense rootId=partId}}
-        </fieldset>
+        {{formField systemFields.soak value=system.soak}}
 
-        <label for="defense2">{{localize "ARMOR.Sheet.attributes.defense.label"}}</label>
-        <input id="defense2"
-               name="system.defense"
-               type="number"
-               value="{{system.defense}}"
-               data-dtype="{{system.defense}}" step="1" min="0"
-               max="20" required>
+        {{formField systemFields.encumbrance value=system.encumbrance}}
 
-        <label for="defense">{{localize "ARMOR.Sheet.attributes.defense.label"}}</label>
-        <input id="defense" name="system.defense" type="number" value="{{system.defense}}" data-dtype="{{system.defense}}" placeholder="Defense"/>
+        {{formField systemFields.hp value=system.hp}}
 
-        <label for="soak">{{localize "ARMOR.Sheet.attributes.soak.label"}}</label>
-        <input id="soak" name="system.soak" type="number" value="{{system.soak}}" placeholder="Soak"/>
+        {{formField systemFields.rarity value=system.rarity}}
 
-        <label for="encumbrance">{{localize "ARMOR.Sheet.attributes.encumbrance.label"}}</label>
-        <input id="encumbrance" name="system.encumbrance" type="number" value="{{system.encumbrance}}"
-               placeholder="Encumbrance"/>
-
-        <label for="hardpoints">{{localize "ARMOR.Sheet.attributes.hardpoints.label"}}</label>
-        <input id="hardpoints" name="system.hp" type="number" value="{{system.hp}}" placeholder="hardpoints"/>
-
-        <label for="rarity">{{localize "ARMOR.Sheet.attributes.rarity.label"}}</label>
-        <input id="rarity" name="system.rarity" type="number" value="{{system.rarity}}" placeholder="Rarity"/>
+        {{!--        {{#each system.categories as |category|}}
+                    {{formField systemFields.category value=category}}
+                {{/each}}
+                --}}
 
         {{#each system.categories as |category|}}
             <label for="category">{{localize "ARMOR.Sheet.attributes.category.label"}}</label>
             <input id="category" name="system.category" type="text" value="{{category}}"
                    placeholder="Category"/>
         {{/each}}
+
     </div>
 
 </section>

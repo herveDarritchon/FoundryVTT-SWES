@@ -12,14 +12,6 @@ export default class SwesArmor extends SwesCombatItem {
     static defineSchema() {
         const fields = foundry.data.fields;
         return foundry.utils.mergeObject(super.defineSchema(), {
-            subType: new fields.StringField(
-                {
-                    required: true, nullable: false, initial: "weapon", choices: {
-                        equipment: {label: "INTOTHEODD.Equipment.SubType.equipment"},
-                        armour: {label: "INTOTHEODD.Equipment.SubType.armour"},
-                        weapon: {label: "INTOTHEODD.Equipment.SubType.weapon"}
-                    }
-                }),
             defense: new fields.NumberField(
                 {...(SwesItemBase.requiredInteger), initial: 0, min: 0, max: 20}
             ),

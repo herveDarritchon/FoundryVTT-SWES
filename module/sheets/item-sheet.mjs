@@ -1,4 +1,5 @@
 import {prepareActiveEffectCategories} from '../helpers/effects.mjs';
+import {SWES} from "../helpers/config.mjs";
 
 // Similar syntax to importing, but note that
 // this is object destructuring rather than an actual import
@@ -75,24 +76,26 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
 
     /** @override */
     async _prepareContext(options) {
-        return {
+        const context =  foundry.utils.mergeObject(await super. _prepareContext(options), {
             // Validates both permissions and compendium status
             editable: this.isEditable,
             owner: this.document.isOwner,
             limited: this.document.limited,
             // Add the item document.
-            item: this.item,
+            item: this.document,
             // Adding system and flags for easier access
             system: this.item.system,
             flags: this.item.flags,
             // Adding a pointer to CONFIG.SWES
-            config: CONFIG.SWES,
+            config: SWES,
             // You can factor out context construction to helper functions
             tabs: this._getTabs(options.parts),
             // Necessary for formInput and formFields helpers
             fields: this.document.schema.fields,
             systemFields: this.document.system.schema.fields,
-        };
+        });
+        console.log("Context", context);
+        return context;
     }
 
     /* -------------------------------------------- */

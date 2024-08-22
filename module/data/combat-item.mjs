@@ -2,6 +2,8 @@ import {SwesItemBase} from "./_module.mjs";
 
 export default class SwesCombatItem extends SwesItemBase {
 
+    static LOCALIZATION_PREFIXES = ["SWES.Combat-Item"]
+
     static defineSchema() {
         const fields = foundry.data.fields;
 
