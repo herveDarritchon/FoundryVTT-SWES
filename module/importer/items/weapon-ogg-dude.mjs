@@ -91,6 +91,9 @@ export function weaponMapper(weapons) {
  * @function
  */
 export function buildWeaponContext(zip, groupByDirectory, groupByType) {
+
+    console.debug("Building Weapon with Zip, GroupByDirectory, GroupByType", zip, groupByDirectory, groupByType);
+
     return {
         zip: {
             elementFileName: "Weapons.xml",

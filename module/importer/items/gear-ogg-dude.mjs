@@ -66,6 +66,9 @@ export function gearMapper(gears) {
  * @function
  */
 export function buildGearContext(zip, groupByDirectory, groupByType) {
+
+    console.debug("Building Gear with Zip, GroupByDirectory, GroupByType", zip, groupByDirectory, groupByType);
+
     return {
         zip: {
             elementFileName: "Gear.xml",

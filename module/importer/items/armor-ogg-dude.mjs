@@ -68,7 +68,7 @@ export function armorMapper(armors) {
  */
 export function buildArmorContext(zip, groupByDirectory, groupByType) {
 
-    console.log("Building Armor with Zip, GroupByDirectory, GroupByType", zip, groupByDirectory, groupByType);
+    console.debug("Building Armor with Zip, GroupByDirectory, GroupByType", zip, groupByDirectory, groupByType);
 
     return {
         zip: {

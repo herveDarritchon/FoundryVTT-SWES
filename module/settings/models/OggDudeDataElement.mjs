@@ -404,27 +404,36 @@ class OggDudeDataElement {
 
         // Step 4: Get the item File from the Data directory
         const itemFile = OggDudeDataElement.getElementsFrom(context.zip.directories, "Data", context.zip.elementFileName);
+        console.debug("[ProcessElements] - Step 4: Item File >", itemFile);
 
         // Step 5: Get the item Data from the itemFile
         const itemData = await zip.files[itemFile.fullPath].async('text');
+        console.debug("[ProcessElements] - Step 5: Item Data >", itemData);
 
         // Step 6: Create the folder in the FVTT tab
         const imgPath = await createPathIfNeccessary(context.image.worldPath);
+        console.log("[ProcessElements] - Step 6: Image Path >", imgPath);
 
         // Step 7: Upload the images to the server
         await OggDudeDataElement._uploadImagesOnTheServer(context.image, zip);
+        console.debug("[ProcessElements] - Step 7: Images uploaded to the server.");
 
         // Step 8: Parse the XML itemData
         const jsonData = await parseXmlToJson(itemData);
+        console.debug("[ProcessElements] - Step 8: JSON Data >", jsonData);
 
         // Step 9: Create the folder
         let folder = await createFoundryFolder(context.folder.name, context.folder.type);
+        console.debug("[ProcessElements] - Step 9: Folder >", folder);
 
         // Step 10: Store the Items
         const items = OggDudeDataElement._buildItemElements(jsonData, folder, context.element.jsonCriteria, context.element.mapper);
+        console.debug("[ProcessElements] - Step 10: Items >", items);
 
         // Step 11: Store the Items in the server database
         await OggDudeDataElement._storeItems(items, folder, context.element.type, context.image.worldPath, context.image.systemPath);
+        console.debug("[ProcessElements] - Step 11: Items stored in the server database.");
+
     }
 
 }
