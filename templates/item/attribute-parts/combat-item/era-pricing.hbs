@@ -7,23 +7,33 @@
     {{! As you add new fields, add them in here! }}
     <h1>Price</h1>
 
-    {{#each system.eraPricing as |eraPrice|}}
-        <label for="eraPrice-name">{{localize "ARMOR.Sheet.eraPrice.name.label"}}</label>
-        <input id="eraPrice-name" name="system.eraPrice.name" type="text"
-               value="{{eraPrice.name}}" placeholder="Name"/>
+    <fieldset>
+        <legend data-tooltip="SWES.Combat-Item.FIELDS.era-pricing.hint">{{localize
+                "SWES.Combat-Item.FIELDS.era-pricing.label"}}</legend>
 
-        <label for="eraPrice-price">{{localize "ARMOR.Sheet.eraPrice.price.label"}}</label>
-        <input id="eraPrice-price" name="system.eraPrice.price" type="number"
-               value="{{eraPrice.price}}" placeholder="Price"/>
+        {{#each system.eraPricing as |eraPrice idx|}}
+            {{formField @root.systemFields.eraPricing.element.fields.name
+                        name=(concat "system.era-pricing." idx ".name")
+                        value=eraPrice.name localize=true
+                        label="SWES.Combat-Item.FIELDS.era-pricing.element.FIELDS.name.label"
+                        rootId=partId}}
+            {{formField @root.systemFields.eraPricing.element.fields.price
+                        name=(concat "system.era-pricing." idx ".price")
+                        value=eraPrice.price localize=true
+                        label="SWES.Combat-Item.FIELDS.era-pricing.element.FIELDS.price.label"
+                        rootId=partId}}
+            {{formField @root.systemFields.eraPricing.element.fields.rarity
+                        name=(concat "system.era-pricing." idx ".rarity")
+                        value=eraPrice.rarity localize=true
+                        label="SWES.Combat-Item.FIELDS.era-pricing.element.FIELDS.rarity.label"
+                        rootId=partId}}
+            {{formField @root.systemFields.eraPricing.element.fields.restricted
+                        name=(concat "system.era-pricing." idx ".restricted")
+                        value=eraPrice.restricted localize=true
+                        label="SWES.Combat-Item.FIELDS.era-pricing.element.FIELDS.restricted.label"
+                        rootId=partId}}
+        {{/each}}
 
-        <label for="eraPrice-rarity">{{localize "ARMOR.Sheet.eraPrice.rarity.label"}}</label>
-        <input id="eraPrice-rarity" name="system.eraPrice.rarity" type="number"
-               value="{{eraPrice.rarity}}" placeholder="Rarity"/>
-
-        <label for="eraPrice-restricted">{{localize "ARMOR.Sheet.eraPrice.restricted.label"}}</label>
-        <input id="eraPrice-restricted" name="system.eraPrice.restricted" type="text"
-               value="{{eraPrice.restricted}}" placeholder="Restricted"/>
-    {{/each}}
-
+    </fieldset>
 
 </section>

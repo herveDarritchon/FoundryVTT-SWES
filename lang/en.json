@@ -103,6 +103,30 @@
         "encumbrance": {
           "label": "Encumbrance"
         },
+        "era-pricing": {
+          "element": {
+            "FIELDS": {
+              "name": {
+                "label": "Name",
+                "hint": "Name of the Era Price"
+              },
+              "price": {
+                "label": "Price",
+                "hint": "Price of the Era Price"
+              },
+              "rarity": {
+                "label": "Rarity",
+                "hint": "Rarity of the Era Price"
+              },
+              "restricted": {
+                "label": "Restricted",
+                "hint": "Is the Era Price restricted"
+              }
+            }
+          },
+          "label": "Sources",
+          "hint": "Sources about the item"
+        },
         "hp": {
           "label": "Hard Points"
         },
