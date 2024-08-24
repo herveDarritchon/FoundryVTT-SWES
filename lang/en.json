@@ -234,6 +234,70 @@
           "label": "Type",
           "hint": "Type of the item",
           "placeholder": "Enter the type"
+        },
+        "weaponModifiers": {
+          "element": {
+            "FIELDS": {
+              "qualities": {
+                "element": {
+                  "FIELDS": {
+                    "count": {
+                      "label": "Count",
+                      "hint": "Count of the modifier"
+                    },
+                    "key": {
+                      "label": "Key",
+                      "hint": "Key of the quality"
+                    }
+                  }
+                },
+                "label": "Quality",
+                "hint": "Quality of the weapon"
+              },
+              "mods": {
+                "element": {
+                  "FIELDS": {
+                    "miscDesc": {
+                      "label": "Miscellaneous Description",
+                      "hint": "Miscellaneous Description of the modifier"
+                    }
+                  }
+                },
+                "label": "Modifiers",
+                "hint": "Modifiers of the weapon"
+              },
+              "crit": {
+                "label": "Critical",
+                "hint": "Critical of the weapon"
+              },
+              "critSub": {
+                "label": "Critical Sub",
+                "hint": "Critical Sub of the weapon"
+              },
+              "damage": {
+                "label": "Damage",
+                "hint": "Damage of the weapon"
+              },
+              "range": {
+                "label": "Range",
+                "hint": "Range of the weapon"
+              },
+              "rangeValue": {
+                "label": "Range Value",
+                "hint": "Range Value of the weapon"
+              },
+              "skillKey": {
+                "label": "Skill Key",
+                "hint": "Skill Key of the weapon"
+              },
+              "unarmed": {
+                "label": "Unarmed",
+                "hint": "Is the weapon unarmed"
+              }
+            }
+          },
+          "label": "Modification",
+          "hint": "Modification of the armor"
         }
       }
     },

@@ -37,7 +37,7 @@ export function gearMapper(gears) {
                 }
             ),
 
-            weaponModifiers: buildWeaponModifiers(xmlGear?.WeaponModifiers?.WeaponModifier),
+            weaponModifiers: OggDudeImporter.mapOptionalArray(xmlGear?.WeaponModifiers?.WeaponModifier, (weaponModifier) => buildWeaponModifiers(weaponModifier)),
 
             eraPricing: OggDudeImporter.mapOptionalArray(xmlGear?.EraPricing?.Era, (eraPrice) => {
                 return {

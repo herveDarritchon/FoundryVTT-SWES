@@ -25,8 +25,15 @@ export default class SwesCombatItemData extends SwesItemBaseData {
             }),
 
             categories: new fields.SetField(
-                new fields.StringField({...(SwesItemBaseData.requiredString), label: "SWES.Combat-Item.FIELDS.Category.label", hint: "SWES.Combat-Item.FIELDS.Category.hint"}), {
-                    required: false, initial: [], label: "SWES.Combat-Item.FIELDS.Categories.label", hint: "SWES.Combat-Item.FIELDS.Categories.hint"
+                new fields.StringField({
+                    ...(SwesItemBaseData.requiredString),
+                    label: "SWES.Combat-Item.FIELDS.Category.label",
+                    hint: "SWES.Combat-Item.FIELDS.Category.hint"
+                }), {
+                    required: false,
+                    initial: [],
+                    label: "SWES.Combat-Item.FIELDS.Categories.label",
+                    hint: "SWES.Combat-Item.FIELDS.Categories.hint"
                 }),
 
             mods: new fields.SetField(new fields.SchemaField({
@@ -62,8 +69,8 @@ export default class SwesCombatItemData extends SwesItemBaseData {
                 hint: "ITEM.Mod.hint"
             }),
 
-            weaponModifiers: new fields.SchemaField({
-                unarmed: new fields.StringField({...(SwesItemBaseData.optionalString)}),
+            weaponModifiers: new fields.SetField(new fields.SchemaField({
+                unarmed: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean)}),
                 unarmedName: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                 skillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                 allSkillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
@@ -91,6 +98,11 @@ export default class SwesCombatItemData extends SwesItemBaseData {
                     label: "ITEM.WeaponModifiers.label",
                     hint: "ITEM.WeaponModifiers.hint"
                 })
+            }), {
+                required: false,
+                initial: [],
+                label: "ITEM.Mod.label",
+                hint: "ITEM.Mod.hint"
             }),
 
             eraPricing: new fields.SetField(new fields.SchemaField({

@@ -7,13 +7,10 @@
     {{!-- As you add new fields, add them in here! --}}
     <h3>Modifiers</h3>
 
-    {{log "system.mods data" system.mods}}
-    {{log "system.mods fields" systemFields.mods}}
-
-        {{#each system.mods as |mod modIdx|}}
-    <fieldset>
-        <legend data-tooltip="SWES.Combat-Item.FIELDS.mods.hint">{{localize
-                "SWES.Combat-Item.FIELDS.mods.label"}}</legend>
+    {{#each system.mods as |mod modIdx|}}
+        <fieldset>
+            <legend data-tooltip="SWES.Combat-Item.FIELDS.mods.hint">{{localize
+                    "SWES.Combat-Item.FIELDS.mods.label"}}</legend>
 
             {{formField @root.systemFields.mods.element.fields.key
                         name=(concat "system.mods." modIdx ".key")
@@ -43,62 +40,60 @@
 
             {{#each mod.dieModifiers as |dieModifier dmIdx|}}
 
-            <fieldset>
-                <legend data-tooltip="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.hint">{{localize
-                        "SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.label"}}</legend>
+                <fieldset>
+                    <legend data-tooltip="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.hint">{{localize
+                            "SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.label"}}</legend>
 
-                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.skillKey
-                            name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".skillKey")
-                            value=dieModifier.skillKey localize=true
-                            label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.skillKey.label"
-                            rootId=partId}}
-                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.skillChar
-                            name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".skillChar")
-                            value=dieModifier.skillChar localize=true
-                            label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.skillChar.label"
-                            rootId=partId}}
-                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.skillType
-                            name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".skillType")
-                            value=dieModifier.skillType localize=true
-                            label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.skillType.label"
-                            rootId=partId}}
-                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.boostCount
-                            name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".boostCount")
-                            value=dieModifier.boostCount localize=true
-                            label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.boostCount.label"
-                            rootId=partId}}
-                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.advantageCount
-                            name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".advantageCount")
-                            value=dieModifier.advantageCount localize=true
-                            label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.advantageCount.label"
-                            rootId=partId}}
-                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.threatCount
-                            name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".threatCount")
-                            value=dieModifier.threatCount localize=true
-                            label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.threatCount.label"
-                            rootId=partId}}
-                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.setbackCount
-                            name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".setbackCount")
-                            value=dieModifier.setbackCount localize=true
-                            label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.setbackCount.label"
-                            rootId=partId}}
-                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.upgradeAbilityCount
-                            name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".upgradeAbilityCount")
-                            value=dieModifier.upgradeAbilityCount localize=true
-                            label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.upgradeAbilityCount.label"
-                            rootId=partId}}
-                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.successCount
-                            name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".successCount")
-                            value=dieModifier.successCount localize=true
-                            label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.successCount.label"
-                            rootId=partId}}
+                    {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.skillKey
+                                name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".skillKey")
+                                value=dieModifier.skillKey localize=true
+                                label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.skillKey.label"
+                                rootId=partId}}
+                    {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.skillChar
+                                name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".skillChar")
+                                value=dieModifier.skillChar localize=true
+                                label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.skillChar.label"
+                                rootId=partId}}
+                    {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.skillType
+                                name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".skillType")
+                                value=dieModifier.skillType localize=true
+                                label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.skillType.label"
+                                rootId=partId}}
+                    {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.boostCount
+                                name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".boostCount")
+                                value=dieModifier.boostCount localize=true
+                                label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.boostCount.label"
+                                rootId=partId}}
+                    {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.advantageCount
+                                name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".advantageCount")
+                                value=dieModifier.advantageCount localize=true
+                                label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.advantageCount.label"
+                                rootId=partId}}
+                    {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.threatCount
+                                name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".threatCount")
+                                value=dieModifier.threatCount localize=true
+                                label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.threatCount.label"
+                                rootId=partId}}
+                    {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.setbackCount
+                                name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".setbackCount")
+                                value=dieModifier.setbackCount localize=true
+                                label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.setbackCount.label"
+                                rootId=partId}}
+                    {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.upgradeAbilityCount
+                                name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".upgradeAbilityCount")
+                                value=dieModifier.upgradeAbilityCount localize=true
+                                label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.upgradeAbilityCount.label"
+                                rootId=partId}}
+                    {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.successCount
+                                name=(concat "system.mods." modIdx "dieModifiers." dmIdx ".successCount")
+                                value=dieModifier.successCount localize=true
+                                label="SWES.Combat-Item.FIELDS.mods.element.FIELDS.dieModifiers.element.FIELDS.successCount.label"
+                                rootId=partId}}
 
-        </fieldset>
+                </fieldset>
             {{/each}}
 
-
-    </fieldset>
-        {{/each}}
-
+        </fieldset>
+    {{/each}}
 
 </section>

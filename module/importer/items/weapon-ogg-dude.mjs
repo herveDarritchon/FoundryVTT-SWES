@@ -69,8 +69,10 @@ export function weaponMapper(weapons) {
                     }
                 ),
 
-                weaponModifiers: buildWeaponModifiers(xmlWeapon?.WeaponModifiers?.WeaponModifier),
-
+                weaponModifiers: OggDudeImporter.mapOptionalArray(xmlWeapon?.WeaponModifiers?.WeaponModifier, (weaponModifier) => {
+                    console.log("Weapon Modifier in XML", weaponModifier);
+                    return buildWeaponModifiers(weaponModifier)
+                }),
             }
         }
     );

@@ -33,7 +33,7 @@ export function armorMapper(armors) {
 
             mods: OggDudeImporter.mapOptionalArray(xmlArmor?.BaseMods?.Mod, (mod) => buildMod(mod)),
 
-            weaponModifiers: buildWeaponModifiers(xmlArmor?.WeaponModifiers?.WeaponModifier),
+            weaponModifiers: OggDudeImporter.mapOptionalArray(xmlArmor?.WeaponModifiers?.WeaponModifier, (weaponModifier) => buildWeaponModifiers(weaponModifier)),
 
             eraPricing: OggDudeImporter.mapOptionalArray(xmlArmor?.EraPricing?.Era, (eraPrice) => {
                 return {
