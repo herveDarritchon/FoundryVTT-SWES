@@ -18,30 +18,34 @@
                     value=system.description
                     documentUUID=actor.uuid
                     name="system.description"
-                    collaborate="true"
+                    collaborate=false
                     toggled="true"
                     height="200"
             }}
         </fieldset>
     </section>
 
-    {{!--
-    {{#if editable}}
-            <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}"
-                          collaborate="true" toggled="true">
-                {{{enrichedDescription}}}
-            </prose-mirror>
-        {{else}}
-            {{{enrichedDescription}}}
-        {{/if}}
-    --}}
-
     <fieldset>
-        {{#each system.sources as |source|}}
-            {{formField @root.systemFields.sources.element.description value=source.description localize=true
+        <legend data-tooltip="SWES.Combat-Item.FIELDS.sources.hint">{{localize
+                "SWES.Combat-Item.FIELDS.sources.label"}}</legend>
+        {{#each system.sources as |source idx|}}
+            {{formField @root.systemFields.sources.element.fields.description
+                        name=(concat "system.sources." idx ".description")
+                        value=source.description localize=true
+                        label="SWES.Combat-Item.FIELDS.sources.element.FIELDS.description.label"
                         rootId=partId}}
-            {{formField @root.systemFields.sources.element.page value=source.page localize=true rootId=partId}}
+            {{formField @root.systemFields.sources.element.fields.page
+                        name=(concat "system.sources." idx ".page")
+                        value=source.page localize=true
+                        label="SWES.Combat-Item.FIELDS.sources.element.FIELDS.page.label"
+                        rootId=partId}}
         {{/each}}
+
     </fieldset>
+
+    {{!--
+    {{formField @root.systemFields.sources value=system.sources localize=true
+                rootId=partId}}
+    --}}
 
 </section>

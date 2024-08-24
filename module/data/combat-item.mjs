@@ -43,7 +43,11 @@ export default class SwesCombatItemData extends SwesItemBaseData {
                     advantageCount: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 10}),
                     threatCount: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 10}),
                     setbackCount: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 10}),
-                    upgradeAbilityCount: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 10}),
+                    upgradeAbilityCount: new fields.NumberField({
+                        ...(SwesItemBaseData.optionalInteger),
+                        min: 0,
+                        max: 10
+                    }),
                     successCount: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 10}),
                 }, {required: false}), {
                     required: false,
@@ -51,7 +55,7 @@ export default class SwesCombatItemData extends SwesItemBaseData {
                     label: "ITEM.Mod.DieModifiers.label",
                     hint: "ITEM.Mod.DieModifiers.hint"
                 })
-            }), {
+            }, {required: false}), {
                 required: false,
                 initial: [],
                 label: "ITEM.Mod.label",
@@ -63,11 +67,16 @@ export default class SwesCombatItemData extends SwesItemBaseData {
                 unarmedName: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                 skillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                 allSkillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                damage: new fields.NumberField({...(SwesItemBaseData.optionalInteger),initial: 0, min: 0, max: 10}),
-                damageAdd: new fields.NumberField({...(SwesItemBaseData.optionalInteger),initial: 0, min: 0, max: 10}),
-                crit: new fields.NumberField({...(SwesItemBaseData.optionalInteger),initial: 0, min: 0, max: 10}),
-                critSub: new fields.NumberField({...(SwesItemBaseData.optionalInteger),initial: 0, min: 0, max: 10}),
-                rangeValue: new fields.NumberField({...(SwesItemBaseData.optionalInteger),initial: 0, min: 0, max: 10}),
+                damage: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
+                damageAdd: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
+                crit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
+                critSub: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
+                rangeValue: new fields.NumberField({
+                    ...(SwesItemBaseData.optionalInteger),
+                    initial: 0,
+                    min: 0,
+                    max: 10
+                }),
                 qualities: new fields.SetField(new fields.SchemaField({
                     key: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                     count: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 100})

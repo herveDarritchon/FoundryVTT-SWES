@@ -6,83 +6,45 @@
 >
     {{!-- As you add new fields, add them in here! --}}
     <h1>Modifiers</h1>
+
     {{#each system.mods as |mod|}}
-
-        <label for="mod-key">{{localize "ARMOR.Sheet.modifiers.key.label"}}</label>
-        <input id="mod-key" name="system.mod.key" type="text" value="{{mod.key}}" placeholder="Key"/>
-
-        <label for="mod-miscDesc">{{localize "ARMOR.Sheet.modifiers.miscDesc.label"}}</label>
-        <input id="mod-miscDesc" name="system.mod.miscDesc" type="text" value="{{mod.miscDesc}}"
-               placeholder="Misc Description"/>
-
-        <label for="mod-count">{{localize "ARMOR.Sheet.modifiers.value.count"}}</label>
-        <input id="mod-count" name="system.mod.count" type="number" value="{{mod.count}}"
-               placeholder="Count"/>
+    <fieldset>
+        <legend data-tooltip="SWES.Combat-Item.FIELDS.Mod.hint">{{localize
+                "SWES.Combat-Item.FIELDS.Mod.label"}}</legend>
+        {{formField @root.systemFields.mods.element.fields.key value=mod.key localize=true rootId=partId}}
+        {{formField @root.systemFields.mods.element.fields.miscDesc value=mod.miscDesc localize=true rootId=partId}}
+        {{formField @root.systemFields.mods.element.fields.count value=mod.count localize=true rootId=partId}}
+        {{formField @root.systemFields.mods.element.fields.index value=mod.index localize=true rootId=partId}}
+        {{formField @root.systemFields.mods.element.fields.defZone value=mod.defZone localize=true rootId=partId}}
 
         {{#each mod.dieModifiers as |dieModifier|}}
-            <label for="mod-dieModifier-skillKey">{{localize
-                    "ARMOR.Sheet.modifiers.dieModifier.skillKey"}}</label>
-            <input id="mod-dieModifier-skillKey" name="system.mod.dieModifier.skillKey" type="text"
-                   value="{{dieModifier.skillKey}}" placeholder="Skill Key"/>
+            <fieldset>
+                <legend data-tooltip="SWES.Combat-Item.FIELDS.Mod.FIELDS.DieModifier.hint">{{localize
+                        "SWES.Combat-Item.FIELDS.Mod.FIELDS.DieModifier.label"}}</legend>
 
-            <label for="mod-dieModifier-skillType">{{localize
-                    "ARMOR.Sheet.modifiers.dieModifier.skillType"}}</label>
-            <input id="mod-dieModifier-skillType" name="system.mod.dieModifier.skillType" type="text"
-                   value="{{dieModifier.skillType}}" placeholder="Skill Type"/>
+                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.skillKey
+                            value=dieModifier.skillKey localize=true rootId=partId}}
+                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.skillChar
+                            value=dieModifier.skillChar localize=true rootId=partId}}
+                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.skillType
+                            value=dieModifier.skillType localize=true rootId=partId}}
+                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.boostCount
+                            value=dieModifier.boostCount localize=true rootId=partId}}
+                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.advantageCount
+                            value=dieModifier.advantageCount localize=true rootId=partId}}
+                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.threatCount
+                            value=dieModifier.threatCount localize=true rootId=partId}}
+                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.setbackCount
+                            value=dieModifier.setbackCount localize=true rootId=partId}}
+                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.upgradeAbilityCount
+                            value=dieModifier.upgradeAbilityCount localize=true rootId=partId}}
+                {{formField @root.systemFields.mods.element.fields.dieModifiers.element.fields.successCount
+                            value=dieModifier.successCount localize=true rootId=partId}}
+            </fieldset>
 
-            <label for="mod-dieModifier-skillChar">{{localize
-                    "ARMOR.Sheet.modifiers.dieModifier.skillChar"}}</label>
-            <input id="mod-dieModifier-skillChar" name="system.mod.dieModifier.skillChar" type="text"
-                   value="{{dieModifier.skillChar}}" placeholder="Skill Characteristic"/>
-
-            <label for="mod-dieModifier-addSetBackCount">{{localize
-                    "ARMOR.Sheet.modifiers.dieModifier.addSetBackCount"}}</label>
-            <input id="mod-dieModifier-addSetBackCount" name="system.mod.dieModifier.addSetBackCount"
-                   type="number" value="{{dieModifier.addSetBackCount}}"
-                   placeholder="Add Setback Count"/>
-
-            <label for="mod-dieModifier-advantageCount">{{localize
-                    "ARMOR.Sheet.modifiers.dieModifier.advantageCount"}}</label>
-            <input id="mod-dieModifier-advantageCount" name="system.mod.dieModifier.advantageCount"
-                   type="number" value="{{dieModifier.advantageCount}}"
-                   placeholder="Advantage Count"/>
-
-            <label for="mod-dieModifier-boostCount">{{localize
-                    "ARMOR.Sheet.modifiers.dieModifier.boostCount"}}</label>
-            <input id="mod-dieModifier-boostCount" name="system.mod.dieModifier.boostCount" type="number"
-                   value="{{dieModifier.boostCount}}" placeholder="Boost Count"/>
-
-            <label for="mod-dieModifier-setbackCount">{{localize
-                    "ARMOR.Sheet.modifiers.dieModifier.setbackCount"}}</label>
-            <input id="mod-dieModifier-setbackCount" name="system.mod.dieModifier.setbackCount"
-                   type="number" value="{{dieModifier.setbackCount}}"
-                   placeholder="Setback Count"/>
-
-            <label for="mod-dieModifier-successCount">{{localize
-                    "ARMOR.Sheet.modifiers.dieModifier.successCount"}}</label>
-            <input id="mod-dieModifier-successCount" name="system.mod.dieModifier.successCount"
-                   type="number" value="{{dieModifier.successCount}}"
-                   placeholder="Success Count"/>
-
-            <label for="mod-dieModifier-threatCount">{{localize
-                    "ARMOR.Sheet.modifiers.dieModifier.threatCount"}}</label>
-            <input id="mod-dieModifier-threatCount" name="system.mod.dieModifier.threatCount" type="number"
-                   value="{{dieModifier.threatCount}}" placeholder="Threat Count"/>
-
-            <label for="mod-dieModifier-upgradeAbilityCount">{{localize
-                    "ARMOR.Sheet.modifiers.dieModifier.upgradeAbilityCount"}}</label>
-            <input id="mod-dieModifier-upgradeAbilityCount"
-                   name="system.mod.dieModifier.upgradeAbilityCount" type="number"
-                   value="{{dieModifier.upgradeAbilityCount}}"
-                   placeholder="Upgrade Ability Count"/>
-
-            <label for="mod-dieModifier-upgradeDifficultyCount">{{localize
-                    "ARMOR.Sheet.modifiers.dieModifier.upgradeDifficultyCount"}}</label>
-            <input id="mod-dieModifier-upgradeDifficultyCount"
-                   name="system.mod.dieModifier.upgradeDifficultyCount" type="number"
-                   value="{{dieModifier.upgradeDifficultyCount}}"
-                   placeholder="Upgrade Difficulty Count"/>
+        </fieldset>
         {{/each}}
+
     {{/each}}
 
 </section>

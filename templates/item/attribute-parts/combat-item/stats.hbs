@@ -1,5 +1,3 @@
-{{log "Stats" this}}
-
 {{! Attributes Stats }}
 <section
         class='tab attributes {{tab.cssClass}}'
@@ -31,9 +29,7 @@
         <fieldset>
             <legend data-tooltip="SWES.Combat-Item.FIELDS.categories.hint">{{localize
                     "SWES.Combat-Item.FIELDS.categories.label"}}</legend>
-            {{#each system.categories as |category|}}
-                {{formField @root.systemFields.categories.element value=category localize=true rootId=partId}}
-            {{/each}}
+                {{formField @root.systemFields.categories value=system.categories localize=true rootId=partId}}
         </fieldset>
 
     </div>

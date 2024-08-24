@@ -127,6 +127,22 @@
         "soak": {
           "label": "Soak"
         },
+        "sources": {
+          "element": {
+            "FIELDS": {
+              "description": {
+                "label": "Resource",
+                "hint": "Name of the resource"
+              },
+              "page": {
+                "label": "Page",
+                "hint": "Page about the source"
+              }
+            }
+          },
+          "label": "Sources",
+          "hint": "Sources about the item"
+        },
         "type": {
           "label": "Type",
           "hint": "Type of the item",
