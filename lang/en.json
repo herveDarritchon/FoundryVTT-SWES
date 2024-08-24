@@ -8,10 +8,6 @@
       "label": "Category",
       "hint": "Category of the armor"
     },
-    "Mod": {
-      "label": "Modification",
-      "hint": "Modification of the armor"
-    },
     "Sheet": {
       "characteristics": {
         "defense": {
@@ -90,11 +86,6 @@
           "label": "Categories",
           "hint": "List of categories"
         },
-        "Category": {
-          "label": "Category",
-          "hint": "One of the categories",
-          "placeholder": "Enter the category"
-        },
         "description": {
           "label": "Description",
           "hint": "Description of the item",
@@ -134,6 +125,78 @@
           "label": "Key",
           "hint": "Key of the item",
           "placeholder": "Enter the key"
+        },
+        "mods": {
+          "element": {
+            "FIELDS": {
+              "count": {
+                "label": "Count",
+                "hint": "Count of the armor"
+              },
+              "dieModifiers": {
+                "element": {
+                  "FIELDS": {
+                    "advatageCount": {
+                      "label": "Advantage Count",
+                      "hint": "Advantage Count of the die modifier"
+                    },
+                    "boosCount": {
+                      "label": "Boost Count",
+                      "hint": "Boost Count of the die modifier"
+                    },
+                    "setbackCount": {
+                      "label": "Setback Count",
+                      "hint": "Setback Count of the die modifier"
+                    },
+                    "skillChar": {
+                      "label": "Skill Characteristic",
+                      "hint": "Skill Characteristic of the die modifier"
+                    },
+                    "skillKey": {
+                      "label": "Skill Key",
+                      "hint": "Skill Key of the die modifier"
+                    },
+                    "skillType": {
+                      "label": "Skill Type",
+                      "hint": "Skill Type of the die modifier"
+                    },
+                    "successCount": {
+                      "label": "Success Count",
+                      "hint": "Success Count of the die modifier"
+                    },
+                    "threatCount": {
+                      "label": "Threat Count",
+                      "hint": "Threat Count of the die modifier"
+                    },
+                    "upgradeAbilityCount": {
+                      "label": "Upgrade Ability Count",
+                      "hint": "Upgrade Ability Count of the die modifier"
+                    }
+                  }
+                },
+                "label": "Die Modifiers",
+                "hint": "Die Modifiers of the armor"
+              },
+              "defZone": {
+                "label": "Defense Zone",
+                "hint": "Defense Zone of the armor"
+              },
+              "index": {
+                "label": "Index",
+                "hint": "Index of the armor"
+              },
+              "key": {
+                "label": "Key",
+                "hint": "Key of the modification"
+              },
+              "miscDesc": {
+                "label": "Miscellaneous Description",
+                "hint": "Miscellaneous Description of the modification"
+              }
+            }
+          },
+          "label": "Modification",
+          "hint": "Modification of the armor"
         },
         "price": {
           "label": "Price",

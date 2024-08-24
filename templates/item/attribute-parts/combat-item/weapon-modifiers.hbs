@@ -5,7 +5,7 @@
         data-tab='attributesWeaponModifiers'
 >
     {{!-- As you add new fields, add them in here! --}}
-    <h1>Weapon Modifiers</h1>
+    <h3>Weapon Modifiers</h3>
     {{#each system.weaponModifiers as |weaponModifier|}}
         <label for="weaponModifier-unarmed">{{localize "ARMOR.Sheet.weaponModifier.unarmed.label"}}</label>
         <input id="weaponModifier-unarmed" name="system.weaponModifier.unarmed" type="text"
