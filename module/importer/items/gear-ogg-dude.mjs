@@ -15,6 +15,7 @@ export function gearMapper(gears) {
         return {
             short: OggDudeImporter.mapOptionalString(xmlGear.Short),
 
+            // FIXME il faudrait refactorer tout ça pour ne pas avoir de duplication avec les autres combat-item
             name: OggDudeImporter.mapMandatoryString("gear.Name", xmlGear.Name),
             key: OggDudeImporter.mapMandatoryString("gear.Key", xmlGear.Key),
             description: OggDudeImporter.mapMandatoryString("gear.Description", xmlGear.Description),

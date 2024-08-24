@@ -16,6 +16,7 @@ export function armorMapper(armors) {
             soak: OggDudeImporter.mapOptionalNumber(xmlArmor.Soak),
             defense: OggDudeImporter.mapOptionalNumber(xmlArmor.Defense),
 
+            // FIXME il faudrait refactorer tout ça pour ne pas avoir de duplication avec les autres combat-item
             name: OggDudeImporter.mapMandatoryString("armor.Name", xmlArmor.Name),
             key: OggDudeImporter.mapMandatoryString("armor.Key", xmlArmor.Key),
             description: OggDudeImporter.mapMandatoryString("armor.Description", xmlArmor.Description),

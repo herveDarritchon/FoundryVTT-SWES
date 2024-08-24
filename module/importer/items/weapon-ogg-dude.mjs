@@ -37,6 +37,7 @@ export function weaponMapper(weapons) {
                         }
                     }),
 
+                // FIXME il faudrait refactorer tout ça pour ne pas avoir de duplication avec les autres combat-item
                 name: OggDudeImporter.mapMandatoryString("weapon.Name", xmlWeapon.Name),
                 key: OggDudeImporter.mapMandatoryString("weapon.Key", xmlWeapon.Key),
                 description: OggDudeImporter.mapMandatoryString("weapon.Description", xmlWeapon.Description),
