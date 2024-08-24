@@ -2,11 +2,9 @@ import OggDudeImporter from "../oggDude.mjs";
 
 export function buildWeaponModifiers(xmlWeaponModifier) {
     if (xmlWeaponModifier == null) {
-        console.log("Weapon Modifier is null");
         return {}
     }
 
-    console.log("Weapon Modifier", xmlWeaponModifier);
     return {
         unarmed: OggDudeImporter.mapOptionalBoolean(xmlWeaponModifier?.Unarmed),
         unarmedName: OggDudeImporter.mapOptionalString(xmlWeaponModifier?.UnarmedName),
@@ -30,7 +28,6 @@ function _buildDieModifier(dieModifier) {
     if (dieModifier == null) {
         return {}
     }
-
 
     return {
         skillKey: OggDudeImporter.mapOptionalString(dieModifier?.SkillKey),

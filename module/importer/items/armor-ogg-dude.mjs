@@ -13,27 +13,35 @@ import {buildMod, buildWeaponModifiers} from "./combat-item-mapper.mjs";
 export function armorMapper(armors) {
     return armors.map((xmlArmor) => {
         return {
+            soak: OggDudeImporter.mapOptionalNumber(xmlArmor.Soak),
+            defense: OggDudeImporter.mapOptionalNumber(xmlArmor.Defense),
+
             name: OggDudeImporter.mapMandatoryString("armor.Name", xmlArmor.Name),
             key: OggDudeImporter.mapMandatoryString("armor.Key", xmlArmor.Key),
             description: OggDudeImporter.mapMandatoryString("armor.Description", xmlArmor.Description),
-            soak: OggDudeImporter.mapOptionalNumber(xmlArmor.Soak),
-            defense: OggDudeImporter.mapOptionalNumber(xmlArmor.Defense),
+            restricted: OggDudeImporter.mapOptionalBoolean(xmlArmor.Restricted),
             encumbrance: OggDudeImporter.mapOptionalNumber(xmlArmor.Encumbrance),
             price: OggDudeImporter.mapMandatoryNumber("armor.Price", xmlArmor.Price),
             rarity: OggDudeImporter.mapMandatoryNumber("armor.Rarity", xmlArmor.Rarity),
-            HP: OggDudeImporter.mapOptionalNumber(xmlArmor.HP),
-            restricted: OggDudeImporter.mapOptionalBoolean(xmlArmor.Restricted),
+            hp: OggDudeImporter.mapOptionalNumber(xmlArmor.HP),
             type: OggDudeImporter.mapOptionalString(xmlArmor.Type),
+
             sources: OggDudeImporter.mapOptionalArray(
                 xmlArmor?.Sources?.Source,
                 (source) => {
                     return {description: source._, page: source.Page}
                 }),
+
             categories: OggDudeImporter.mapOptionalArray(xmlArmor?.Categories?.Category, (category) => category),
 
-            mods: OggDudeImporter.mapOptionalArray(xmlArmor?.BaseMods?.Mod, (mod) => buildMod(mod)),
+            mods: OggDudeImporter.mapOptionalArray(
+                xmlArmor?.BaseMods?.Mod,
+                (mod) => buildMod(mod)),
 
-            weaponModifiers: OggDudeImporter.mapOptionalArray(xmlArmor?.WeaponModifiers?.WeaponModifier, (weaponModifier) => buildWeaponModifiers(weaponModifier)),
+            weaponModifiers: OggDudeImporter.mapOptionalArray(
+                xmlArmor?.WeaponModifiers?.WeaponModifier,
+                (weaponModifier) => buildWeaponModifiers(weaponModifier)
+            ),
 
             eraPricing: OggDudeImporter.mapOptionalArray(xmlArmor?.EraPricing?.Era, (eraPrice) => {
                 return {

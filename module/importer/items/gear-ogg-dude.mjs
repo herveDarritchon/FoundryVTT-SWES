@@ -13,21 +13,24 @@ import {buildMod, buildWeaponModifiers} from "./combat-item-mapper.mjs";
 export function gearMapper(gears) {
     return gears.map((xmlGear) => {
         return {
+            short: OggDudeImporter.mapOptionalString(xmlGear.Short),
+
             name: OggDudeImporter.mapMandatoryString("gear.Name", xmlGear.Name),
             key: OggDudeImporter.mapMandatoryString("gear.Key", xmlGear.Key),
-            short: OggDudeImporter.mapOptionalString(xmlGear.Short),
             description: OggDudeImporter.mapMandatoryString("gear.Description", xmlGear.Description),
+            restricted: OggDudeImporter.mapOptionalBoolean(xmlGear.Restricted),
             encumbrance: OggDudeImporter.mapOptionalNumber(xmlGear.Encumbrance),
             price: OggDudeImporter.mapOptionalNumber(xmlGear.Price),
             rarity: OggDudeImporter.mapOptionalNumber(xmlGear.Rarity),
-            HP: OggDudeImporter.mapOptionalNumber(xmlGear.HP),
-            restricted: OggDudeImporter.mapOptionalBoolean(xmlGear.Restricted),
+            hp: OggDudeImporter.mapOptionalNumber(xmlGear.HP),
             type: OggDudeImporter.mapMandatoryString("gear.Type", xmlGear.Type),
+
             sources: OggDudeImporter.mapOptionalArray(
                 xmlGear?.Sources?.Source,
                 (source) => {
                     return {description: source._, page: source.Page}
                 }),
+
             categories: OggDudeImporter.mapOptionalArray(xmlGear?.Categories?.Category, (category) => category),
 
             mods: OggDudeImporter.mapOptionalArray(
