@@ -206,6 +206,11 @@
         "rarity": {
           "label": "Rarity"
         },
+        "restricted": {
+          "label": "Restricted",
+          "hint": "Is the item restricted",
+          "placeholder": "Enter the restricted"
+        },
         "short": {
           "label": "Short",
           "hint": "Short description of the item",

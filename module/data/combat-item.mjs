@@ -9,20 +9,24 @@ export default class SwesCombatItemData extends SwesItemBaseData {
 
         return foundry.utils.mergeObject(super.defineSchema(), {
 
+            /* Detail Tab*/
             key: new fields.StringField({...(SwesItemBaseData.optionalString), initial: "KEY"}),
-            restricted: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
-            price: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 1, min: 0}),
-            encumbrance: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 50}),
-            hp: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 20}),
-            rarity: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 5, min: 0, max: 10}),
             type: new fields.StringField({...(SwesItemBaseData.optionalString), initial: "Item"}),
+            price: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 1, min: 0}),
+            restricted: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
 
+            /* Description Tab */
             sources: new fields.SetField(new fields.SchemaField({
                 description: new fields.StringField({...(SwesItemBaseData.requiredString), initial: "Description"}),
                 page: new fields.NumberField({...(SwesItemBaseData.requiredInteger), min: 1, initial: 1})
             }), {
                 required: false, initial: [], label: "ITEM.Source.label", hint: "ITEM.Source.hint"
             }),
+
+            /* Stats Tab */
+            encumbrance: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 50}),
+            hp: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 20}),
+            rarity: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 5, min: 0, max: 10}),
 
             categories: new fields.SetField(
                 new fields.StringField({
@@ -36,6 +40,7 @@ export default class SwesCombatItemData extends SwesItemBaseData {
                     hint: "SWES.Combat-Item.FIELDS.Categories.hint"
                 }),
 
+            /* Mods Tab */
             mods: new fields.SetField(new fields.SchemaField({
                 key: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                 miscDesc: new fields.StringField({...(SwesItemBaseData.optionalString)}),
@@ -69,6 +74,7 @@ export default class SwesCombatItemData extends SwesItemBaseData {
                 hint: "ITEM.Mod.hint"
             }),
 
+            /* Weapon Modifiers Tab */
             weaponModifiers: new fields.SetField(new fields.SchemaField({
                 unarmed: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean)}),
                 unarmedName: new fields.StringField({...(SwesItemBaseData.optionalString)}),
@@ -105,6 +111,7 @@ export default class SwesCombatItemData extends SwesItemBaseData {
                 hint: "ITEM.Mod.hint"
             }),
 
+            /* Era Pricing Tab */
             eraPricing: new fields.SetField(new fields.SchemaField({
                 name: new fields.StringField({...(SwesItemBaseData.requiredString)}),
                 price: new fields.NumberField({...(SwesItemBaseData.requiredInteger), min: 0}),

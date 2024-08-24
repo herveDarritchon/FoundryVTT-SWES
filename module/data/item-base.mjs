@@ -10,6 +10,7 @@ export default class SwesItemBaseData extends foundry.abstract.TypeDataModel {
         const fields = foundry.data.fields;
         const schema = {};
 
+        /* Description Tab */
         schema.description = new fields.HTMLField({required: false, blank: true, initial: "", textSearch: true});
 
         return schema;
