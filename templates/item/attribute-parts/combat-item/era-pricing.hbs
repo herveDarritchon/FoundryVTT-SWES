@@ -13,22 +13,22 @@
 
         {{#each system.eraPricing as |eraPrice idx|}}
             {{formField @root.systemFields.eraPricing.element.fields.name
-                        name=(concat "system.era-pricing." idx ".name")
+                        name=(concat "system.eraPricing." idx ".name")
                         value=eraPrice.name localize=true
                         label="SWES.Combat-Item.FIELDS.era-pricing.element.FIELDS.name.label"
                         rootId=partId}}
             {{formField @root.systemFields.eraPricing.element.fields.price
-                        name=(concat "system.era-pricing." idx ".price")
+                        name=(concat "system.eraPricing." idx ".price")
                         value=eraPrice.price localize=true
                         label="SWES.Combat-Item.FIELDS.era-pricing.element.FIELDS.price.label"
                         rootId=partId}}
             {{formField @root.systemFields.eraPricing.element.fields.rarity
-                        name=(concat "system.era-pricing." idx ".rarity")
+                        name=(concat "system.eraPricing." idx ".rarity")
                         value=eraPrice.rarity localize=true
                         label="SWES.Combat-Item.FIELDS.era-pricing.element.FIELDS.rarity.label"
                         rootId=partId}}
             {{formField @root.systemFields.eraPricing.element.fields.restricted
-                        name=(concat "system.era-pricing." idx ".restricted")
+                        name=(concat "system.eraPricing." idx ".restricted")
                         value=eraPrice.restricted localize=true
                         label="SWES.Combat-Item.FIELDS.era-pricing.element.FIELDS.restricted.label"
                         rootId=partId}}
