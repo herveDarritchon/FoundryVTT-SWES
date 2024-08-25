@@ -10,7 +10,6 @@ export default class SwesCombatItemData extends SwesItemBaseData {
         return foundry.utils.mergeObject(super.defineSchema(), {
 
             /* Detail Tab*/
-            key: new fields.StringField({...(SwesItemBaseData.optionalString), initial: "KEY"}),
             type: new fields.StringField({...(SwesItemBaseData.optionalString), initial: "Item"}),
             price: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 1, min: 0}),
             restricted: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
