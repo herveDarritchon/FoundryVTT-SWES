@@ -71,6 +71,7 @@
         "domains": {
           "armor": "Load Armor data",
           "gear": "Load Gear data",
+          "species": "Load Species data",
           "weapon": "Load Weapons data"
         }
       }

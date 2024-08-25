@@ -59,14 +59,17 @@ export function speciesMapper(species) {
  */
 export function buildSpeciesContext(zip, groupByDirectory, groupByType) {
 
+    console.debug("Building Species with Zip, GroupByDirectory, GroupByType", zip, groupByDirectory, groupByType);
+
     return {
         zip: {
-            elementFileName: "Species.xml",
+            folderName: "Species",
+            elementFileName: "*.xml",
             content: zip,
             directories: groupByDirectory
         },
         image: {
-            criteria: "Data/EquipmentImages/Species",
+            criteria: "SpeciesImages",
             worldPath: buildArmorImgWorldPath("species"),
             systemPath: buildItemImgSystemPath("species.svg"),
             images: groupByType.image
@@ -77,7 +80,7 @@ export function buildSpeciesContext(zip, groupByDirectory, groupByType) {
         },
         element: {
             jsonCriteria: 'Species.Species',
-            mapper: armorMapper,
+            mapper: speciesMapper,
             type: 'species'
         }
     };
