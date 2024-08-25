@@ -1,6 +1,7 @@
 import {buildArmorImgWorldPath, buildItemImgSystemPath} from "../../settings/directories.mjs";
 import OggDudeImporter from "../oggDude.mjs";
 import {buildMod, buildWeaponModifiers} from "./combat-item-mapper.mjs";
+import OggDudeDataElement from "../../settings/models/OggDudeDataElement.mjs";
 
 /**
  * Gear Array Mapper : Map the Gear XML data to the SwesGear object array.
@@ -65,11 +66,12 @@ export function gearMapper(gears) {
  * @public
  * @function
  */
-export function buildGearContext(zip, groupByDirectory, groupByType) {
+export async function buildGearContext(zip, groupByDirectory, groupByType) {
 
     console.debug("Building Gear with Zip, GroupByDirectory, GroupByType", zip, groupByDirectory, groupByType);
 
     return {
+        jsonData: await OggDudeDataElement.buildJsonDataFromFile(zip, groupByDirectory, "Gear.xml"),
         zip: {
             elementFileName: "Gear.xml",
             content: zip,

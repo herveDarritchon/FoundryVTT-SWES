@@ -181,7 +181,7 @@ export default class OggDudeImporter {
         Array.from(buildContextMap.values())
             .map(async (contextMapElement) => {
                 if (domainsToImport.includes(contextMapElement.type)) {
-                    const context = contextMapElement.contextBuilder(zip, groupByDirectory, groupByType);
+                    const context = await contextMapElement.contextBuilder(zip, groupByDirectory, groupByType);
                     console.debug("[ProcessOggDudeData] - Step 3.4: Context >", context);
                     await OggDudeDataElement.processElements(context);
                 }

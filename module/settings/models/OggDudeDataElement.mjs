@@ -1,6 +1,6 @@
 import {checkFileExists, createPathIfNeccessary, uploadFileOnTheServer} from "../../helpers/server/directory/file.mjs";
-import {parseXmlToJson} from "../../utils/xml/parser.mjs";
 import {createFoundryFolder} from "../../helpers/foundry/folder.mjs";
+import {parseXmlToJson} from "../../utils/xml/parser.mjs";
 
 /**
  * @typedef {object} ZipEntry
@@ -51,6 +51,7 @@ import {createFoundryFolder} from "../../helpers/foundry/folder.mjs";
 
 /**
  * @typedef {Object} OggDudeElementContext The context of the element to be stored
+ * @property {string} jsonData All the data in the json format
  * @property {OggDudeZip} zip The zip object
  * @property {ItemElement} element The item element of the file
  * @property {OggDudeContextImage} image The context of the images to be uploaded
@@ -402,22 +403,71 @@ class OggDudeDataElement {
     static processElements = async (context) => {
         const zip = context.zip.content;
 
-        // Step 4: Get the item File from the Data directory
-        const itemFile = OggDudeDataElement.getElementsFrom(context.zip.directories, "Data", context.zip.elementFileName);
-        console.debug("[ProcessElements] - Step 4: Item File >", itemFile);
-
-        // Step 5: Create the folder
+        // Step 4: Create the folder
         let folder = await createFoundryFolder(context.folder.name, context.folder.type);
-        console.debug("[ProcessElements] - Step 7: Folder >", folder);
+        console.debug("[ProcessElements] - Step 4: Folder >", folder);
 
-        // Step 6-1: Create the folder in the FVTT tab
+        // Step 5-1: Create the folder in the FVTT tab
         const imgPath = await createPathIfNeccessary(context.image.worldPath);
-        console.log("[ProcessElements] - Step 6-1: Image Path >", imgPath);
+        console.log("[ProcessElements] - Step 5-1: Image Path >", imgPath);
 
-        // Step 6-2: Upload the images to the server
+        // Step 5-2: Upload the images to the server
         await OggDudeDataElement._uploadImagesOnTheServer(context.image, zip);
-        console.debug("[ProcessElements] - Step 6-2: Images uploaded to the server.");
+        console.debug("[ProcessElements] - Step 5-2: Images uploaded to the server.");
 
+        /*
+                // Step 6-1: Get the item File from the Data directory
+                const itemFile = OggDudeDataElement.getElementsFrom(context.zip.directories, "Data", context.zip.elementFileName);
+                console.debug("[ProcessElements] - Step 6-1: Item File >", itemFile);
+
+                // Step 6-2: Get the item Data from the itemFile
+                const itemData = await zip.files[itemFile.fullPath].async('text');
+                console.debug("[ProcessElements] - Step 6-2: Item Data >", itemData);
+
+                // Step 6-3: Parse the XML itemData
+                const jsonData = await parseXmlToJson(itemData);
+                console.debug("[ProcessElements] - Step 6-3: JSON Data >", jsonData);
+        */
+
+        // Step 6-4 : Create the Items
+        const items = OggDudeDataElement._buildItemElements(context.jsonData, folder, context.element.jsonCriteria, context.element.mapper);
+        console.debug("[ProcessElements] - Step 6-4: Items >", items);
+
+        // Step 6-5: Store the Items in the server database
+        await OggDudeDataElement._storeItems(items, folder, context.element.type, context.image.worldPath, context.image.systemPath);
+        console.debug("[ProcessElements] - Step 6-5: Items stored in the server database.");
+
+    }
+
+    /**
+     * Process the data from the imported file. The process is as follows:
+     * @param zip {JSZip} The imported file.
+     * @param groupByDirectory  The directory to group the data by.
+     * @param elementFileName   The name of the element file.
+     * @returns {Promise<string>} A Promise that resolves when the data has been processed in the format of a json structure.
+     */
+    static async buildJsonDataFromFile(zip, groupByDirectory, elementFileName) {
+        // Step 6-1: Get the item File from the Data directory
+        const itemFile = OggDudeDataElement.getElementsFrom(groupByDirectory, "Data", elementFileName);
+        console.debug("[buildJsonDataFromFile] - Step 6-1: Item File >", itemFile);
+
+        // Step 6-2: Get the item Data from the itemFile
+        const itemData = await zip.files[itemFile.fullPath].async('text');
+        console.debug("[buildJsonDataFromFile] - Step 6-2: Item Data >", itemData);
+
+        // Step 6-3: Parse the XML itemData
+        const jsonData = await parseXmlToJson(itemData);
+        console.debug("[buildJsonDataFromFile] - Step 6-3: JSON Data >", jsonData);
+
+        return jsonData;
+    }
+
+    /**
+     * Process the data from the imported file. The process is as follows:
+     * @param zip {JSZip} The imported file.
+     * @returns {Promise<void>} A Promise that resolves when the data has been processed in the format of a json structure.
+     */
+    static async buildJsonDataFromDirectory(zip) {
         // Step 7-1: Get the item Data from the itemFile
         const itemData = await zip.files[itemFile.fullPath].async('text');
         console.debug("[ProcessElements] - Step 7-1: Item Data >", itemData);
@@ -425,15 +475,6 @@ class OggDudeDataElement {
         // Step 7-2: Parse the XML itemData
         const jsonData = await parseXmlToJson(itemData);
         console.debug("[ProcessElements] - Step 7-2: JSON Data >", jsonData);
-
-        // Step 7-3 : Create the Items
-        const items = OggDudeDataElement._buildItemElements(jsonData, folder, context.element.jsonCriteria, context.element.mapper);
-        console.debug("[ProcessElements] - Step 7-3: Items >", items);
-
-        // Step 7-4: Store the Items in the server database
-        await OggDudeDataElement._storeItems(items, folder, context.element.type, context.image.worldPath, context.image.systemPath);
-        console.debug("[ProcessElements] - Step 7-4: Items stored in the server database.");
-
     }
 
 }
