@@ -1,3 +1,5 @@
+![Foundry v12](https://img.shields.io/badge/foundry-v12-green)
+
 # swes System
 
 ## List of items
@@ -14,7 +16,40 @@
 - Droid
 - Craft
 
-![Foundry v12](https://img.shields.io/badge/foundry-v12-green)
+## The Forge
+
+To stock data in The Forge (use [Forge API](https://forums.forge-vtt.com/docs?topic=98008))
+> As mentioned in the introduction, this is not a requirement for your module to work on The Forge, but it may improve performance where recursive network calls such as browse operations are involved.
+
+Code Source ([Star Wars Silhouette](https://github.com/prolice/starwars-silhouette)) from Prolice#9101 (Discord Tag)
+
+Function call
+```js
+ if (typeof ForgeVTT !== "undefined" && ForgeVTT?.usingTheForge) {
+        return ForgeUploadFile("forgevtt", path, file, options);
+    }
+```
+
+Function declaration
+```js
+async function ForgeUploadFile(source, path, file, options) {
+const fd = new FormData();
+fd.append("file", file);
+fd.append("path", `${path}/${file.name}`);
+
+    const response = await ForgeAPI.call("assets/upload", fd);
+    if (!response || response.error) {
+        ui.notifications.error(response ? response.error : "An unknown error occured accessing The Forge API");
+        return false;
+    } else {
+        return {
+            path: response.url
+        };
+    }
+}
+```
+
+
 
 This system is a swes system that you can use as a starting point for building your own custom systems. It's similar to Simple World-building, but has examples of creating attributes in code rather than dynamically through the UI.
 
