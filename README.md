@@ -49,7 +49,71 @@ fd.append("path", `${path}/${file.name}`);
 }
 ```
 
+## Convert Images to webp
 
+```js
+/**
+ * Converts an image file to WebP format.
+ *
+ * @param {File} file - The image file to be converted to WebP format.
+ * @returns {Promise<File>} A promise that resolves to the converted WebP file.
+ */
+async function convertToWebp(file) {
+    return new Promise((resolve) => {
+        const imageWebp = new Image();
+        imageWebp.name = extractFileName(file.name) + '.webp';
+        imageWebp.onload = () => {
+            const canvas = createCanvasFromImage(imageWebp);
+            canvas.toBlob((blob) => {
+                const webpFile = new File([blob], imageWebp.name, {
+                    type: blob.type
+                });
+                resolve(webpFile);
+            }, 'image/webp');
+        };
+        imageWebp.src = URL.createObjectURL(file);
+    });
+}
+```
+
+```js
+/**
+ * Creates a canvas element from an image.
+ *
+ * @param {HTMLImageElement} image - The image element to draw onto the canvas.
+ * @returns {HTMLCanvasElement} The canvas element with the image drawn onto it.
+ */
+function createCanvasFromImage(image) {
+    const canvas = document.createElement('canvas');
+    canvas.width = image.naturalWidth;
+    canvas.height = image.naturalHeight;
+    canvas.getContext('2d').drawImage(image, 0, 0);
+    return canvas;
+}
+```
+
+```js
+/**
+ * Extrait le nom de fichier sans extension à partir d'un chemin de fichier.
+ *
+ * @param {string} filePath - Le chemin complet du fichier.
+ * @returns {string} Le nom de fichier sans l'extension.
+ */
+function extractFileName(filePath) {
+    let startIndex = filePath.lastIndexOf("/") + 1;
+    let endIndex = filePath.lastIndexOf(".");
+    return filePath.substring(startIndex, endIndex);
+}
+```
+
+But : La fonction convertToWebp prend un fichier image et le convertit au format WebP.
+Entrée : Un objet File représentant l'image à convertir.
+Sortie : Renvoie une Promise qui résout en un nouvel objet File au format WebP.
+Comment ça marche : La fonction charge l'image, la dessine sur un canvas, puis convertit le contenu du canvas en un blob WebP. Ce blob est ensuite encapsulé dans un objet File qui est retourné.
+But : La fonction createCanvasFromImage crée un élément canvas et y dessine l'image fournie.
+Entrée : Un HTMLImageElement représentant l'image à dessiner sur le canvas.
+Sortie : Renvoie un HTMLCanvasElement avec l'image dessinée dessus.
+Comment ça marche : La fonction définit les dimensions du canvas pour correspondre aux dimensions naturelles de l'image et utilise le contexte de rendu 2D pour dessiner l'image sur le canvas. Le canvas résultant peut être utilisé pour des opérations ultérieures, comme la conversion du format de l'image.
 
 This system is a swes system that you can use as a starting point for building your own custom systems. It's similar to Simple World-building, but has examples of creating attributes in code rather than dynamically through the UI.
 
