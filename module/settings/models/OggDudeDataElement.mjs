@@ -51,7 +51,7 @@ import {parseXmlToJson} from "../../utils/xml/parser.mjs";
 
 /**
  * @typedef {Object} OggDudeElementContext The context of the element to be stored
- * @property {string} jsonData All the data in the json format
+ * @property {[OggDudeDataElement]} jsonData All the data in the json format
  * @property {OggDudeZip} zip The zip object
  * @property {ItemElement} element The item element of the file
  * @property {OggDudeContextImage} image The context of the images to be uploaded
@@ -374,9 +374,7 @@ class OggDudeDataElement {
 
     /**
      * Store the Items in the database. The data is mapped to the Swes Item object array.
-     * @param jsonData {object} The Item JSON data.
-     * @param folder {Folder} The Item folder.
-     * @param elementCriteria {string} The criteria to select the elements in the json file.
+     * @param jsonData {[OggDudeDataElement]} The Items in the format of Json.
      * @param mapperFn {function} The function to map the Item data to the Swes Item object array.
      * @returns {Array} The items to be created in FVTT.
      * @async
@@ -384,10 +382,10 @@ class OggDudeDataElement {
      * @function
      * @name _buildItemElements
      */
-    static  _buildItemElements = (jsonData, folder, elementCriteria, mapperFn) => {
-        const elements = foundry.utils.getProperty(jsonData, elementCriteria);
-        let items = mapperFn(elements);
-        console.debug(`Items to be created in FVTT ${items} with ${elements}`);
+    static  _buildItemElements = (jsonData, mapperFn) => {
+        //const elements = foundry.utils.getProperty(jsonData, elementCriteria);
+        let items = mapperFn(jsonData);
+        console.debug(`Items to be created in FVTT ${items} with ${jsonData}`);
         return items;
     }
 
@@ -401,7 +399,7 @@ class OggDudeDataElement {
      * @name processElements
      */
     static processElements = async (context) => {
-        const zip = context.zip.content;
+        console.debug("[ProcessElements] - Step Initial", context);
 
         // Step 4: Create the folder
         let folder = await createFoundryFolder(context.folder.name, context.folder.type);
@@ -409,28 +407,14 @@ class OggDudeDataElement {
 
         // Step 5-1: Create the folder in the FVTT tab
         const imgPath = await createPathIfNeccessary(context.image.worldPath);
-        console.log("[ProcessElements] - Step 5-1: Image Path >", imgPath);
+        console.debug("[ProcessElements] - Step 5-1: Image Path >", imgPath);
 
         // Step 5-2: Upload the images to the server
-        await OggDudeDataElement._uploadImagesOnTheServer(context.image, zip);
+        await OggDudeDataElement._uploadImagesOnTheServer(context.image, context.zip.content);
         console.debug("[ProcessElements] - Step 5-2: Images uploaded to the server.");
 
-        /*
-                // Step 6-1: Get the item File from the Data directory
-                const itemFile = OggDudeDataElement.getElementsFrom(context.zip.directories, "Data", context.zip.elementFileName);
-                console.debug("[ProcessElements] - Step 6-1: Item File >", itemFile);
-
-                // Step 6-2: Get the item Data from the itemFile
-                const itemData = await zip.files[itemFile.fullPath].async('text');
-                console.debug("[ProcessElements] - Step 6-2: Item Data >", itemData);
-
-                // Step 6-3: Parse the XML itemData
-                const jsonData = await parseXmlToJson(itemData);
-                console.debug("[ProcessElements] - Step 6-3: JSON Data >", jsonData);
-        */
-
         // Step 6-4 : Create the Items
-        const items = OggDudeDataElement._buildItemElements(context.jsonData, folder, context.element.jsonCriteria, context.element.mapper);
+        const items = OggDudeDataElement._buildItemElements(context.jsonData, context.element.mapper);
         console.debug("[ProcessElements] - Step 6-4: Items >", items);
 
         // Step 6-5: Store the Items in the server database
@@ -442,22 +426,24 @@ class OggDudeDataElement {
     /**
      * Process the data from the imported file. The process is as follows:
      * @param zip {JSZip} The imported file.
-     * @param groupByDirectory  The directory to group the data by.
-     * @param elementFileName   The name of the element file.
+     * @param groupByDirectory {string} The directory to group the data by.
+     * @param elementFileName {string}  The name of the element file.
+     * @param elementCriteria
      * @returns {Promise<string>} A Promise that resolves when the data has been processed in the format of a json structure.
      */
-    static async buildJsonDataFromFile(zip, groupByDirectory, elementFileName) {
+    static async buildJsonDataFromFile(zip, groupByDirectory, elementFileName, elementCriteria) {
         // Step 6-1: Get the item File from the Data directory
         const itemFile = OggDudeDataElement.getElementsFrom(groupByDirectory, "Data", elementFileName);
-        console.debug("[buildJsonDataFromFile] - Step 6-1: Item File >", itemFile);
+        console.debug("[BuildJsonDataFromFile] - Step 6-1: Item File >", itemFile);
 
         // Step 6-2: Get the item Data from the itemFile
         const itemData = await zip.files[itemFile.fullPath].async('text');
-        console.debug("[buildJsonDataFromFile] - Step 6-2: Item Data >", itemData);
+        console.debug("[BuildJsonDataFromFile] - Step 6-2: Item Data >", itemData);
 
         // Step 6-3: Parse the XML itemData
-        const jsonData = await parseXmlToJson(itemData);
-        console.debug("[buildJsonDataFromFile] - Step 6-3: JSON Data >", jsonData);
+        const jsonRawData = await parseXmlToJson(itemData);
+        const jsonData = foundry.utils.getProperty(jsonRawData, elementCriteria);
+        console.debug("[BuildJsonDataFromFile] - Step 6-3: JSON Data >", jsonData);
 
         return jsonData;
     }
@@ -465,16 +451,27 @@ class OggDudeDataElement {
     /**
      * Process the data from the imported file. The process is as follows:
      * @param zip {JSZip} The imported file.
-     * @returns {Promise<void>} A Promise that resolves when the data has been processed in the format of a json structure.
+     * @param xmlOggDudeElement
+     * @param elementDirectoryName {string} The name of the element directory.
+     * @param elementCriteria
+     * @returns {Promise<string>} A Promise that resolves when the data has been processed in the format of a json structure.
      */
-    static async buildJsonDataFromDirectory(zip) {
-        // Step 7-1: Get the item Data from the itemFile
-        const itemData = await zip.files[itemFile.fullPath].async('text');
-        console.debug("[ProcessElements] - Step 7-1: Item Data >", itemData);
+    static async buildJsonDataFromDirectory(zip, xmlOggDudeElement, elementDirectoryName, elementCriteria) {
+        console.debug("[BuildJsonDataFromDirectory] - xmlOggDudeElement", xmlOggDudeElement);
+        const fullPathSearched = `Data/${elementDirectoryName}`;
+        const oggDudeElementsSelected = xmlOggDudeElement.filter(xmlElement => xmlElement.relativePath === fullPathSearched);
+        // Step 6-1: Get the item Data from the itemFile
 
-        // Step 7-2: Parse the XML itemData
-        const jsonData = await parseXmlToJson(itemData);
-        console.debug("[ProcessElements] - Step 7-2: JSON Data >", jsonData);
+        // Step 6-2: Parse the XML itemData
+        console.debug("[BuildJsonDataFromDirectory] - Step 6-1: Files >", oggDudeElementsSelected);
+        const jsonData = await Promise.all(oggDudeElementsSelected.map(async element => {
+            const fileData = await zip.files[element.fullPath].async('text');
+            const rawData = await parseXmlToJson(fileData);
+            return foundry.utils.getProperty(rawData, elementCriteria)
+        }));
+
+        console.debug("[ProcessElements] - Step 6-2: JSON Data >", jsonData);
+        return jsonData;
     }
 
 }

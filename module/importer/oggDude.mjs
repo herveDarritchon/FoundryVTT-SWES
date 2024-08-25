@@ -178,14 +178,14 @@ export default class OggDudeImporter {
         const domainsToImport = domains.filter(domain => domain.checked).map(domain => domain.id);
         console.debug("[ProcessOggDudeData] -Step 3.3: Domains to Import >", domainsToImport);
 
-        Array.from(buildContextMap.values())
+        await Promise.all(Array.from(buildContextMap.values())
             .map(async (contextMapElement) => {
                 if (domainsToImport.includes(contextMapElement.type)) {
                     const context = await contextMapElement.contextBuilder(zip, groupByDirectory, groupByType);
                     console.debug("[ProcessOggDudeData] - Step 3.4: Context >", context);
                     await OggDudeDataElement.processElements(context);
                 }
-            });
+            }));
 
         /* ------------------------------------------------------------------------------------------------------------------------------------ */
 

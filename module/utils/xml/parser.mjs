@@ -9,12 +9,12 @@
  * @name _parseXmlToJson
  */
 export async function parseXmlToJson(data) {
-    // xmlData {string} The data to parse in a XML format.
-    const xmlData = await xml2js.js.parseStringPromise(data, {
+    // data {string} The data to parse in a XML format.
+    const jsonData = await xml2js.js.parseStringPromise(data, {
         explicitArray: false,
         trim: true,
         mergeAttrs: true
     });
-    console.debug("Data XML:", xmlData);
-    return xmlData;
+    console.debug("Data XML:", jsonData);
+    return jsonData;
 }

@@ -96,7 +96,7 @@ export async function buildWeaponContext(zip, groupByDirectory, groupByType) {
     console.debug("Building Weapon with Zip, GroupByDirectory, GroupByType", zip, groupByDirectory, groupByType);
 
     return {
-        jsonData: await OggDudeDataElement.buildJsonDataFromFile(zip, groupByDirectory, "Weapons.xml"),
+        jsonData: await OggDudeDataElement.buildJsonDataFromFile(zip, groupByDirectory, "Weapons.xml", 'Weapons.Weapon'),
         zip: {
             elementFileName: "Weapons.xml",
             content: zip,

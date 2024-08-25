@@ -71,7 +71,7 @@ export async function buildGearContext(zip, groupByDirectory, groupByType) {
     console.debug("Building Gear with Zip, GroupByDirectory, GroupByType", zip, groupByDirectory, groupByType);
 
     return {
-        jsonData: await OggDudeDataElement.buildJsonDataFromFile(zip, groupByDirectory, "Gear.xml"),
+        jsonData: await OggDudeDataElement.buildJsonDataFromFile(zip, groupByDirectory, "Gear.xml", "Gears.Gear"),
         zip: {
             elementFileName: "Gear.xml",
             content: zip,

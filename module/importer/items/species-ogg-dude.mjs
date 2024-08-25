@@ -1,6 +1,7 @@
 import {buildArmorImgWorldPath, buildItemImgSystemPath} from "../../settings/directories.mjs";
 import OggDudeImporter from "../oggDude.mjs";
 import {buildMod, buildWeaponModifiers} from "./combat-item-mapper.mjs";
+import OggDudeDataElement from "../../settings/models/OggDudeDataElement.mjs";
 
 /**
  * Species Array Mapper : Map the Species XML data to the SwesArmor object array.
@@ -57,11 +58,12 @@ export function speciesMapper(species) {
  * @public
  * @function
  */
-export function buildSpeciesContext(zip, groupByDirectory, groupByType) {
+export async function buildSpeciesContext(zip, groupByDirectory, groupByType) {
 
     console.debug("Building Species with Zip, GroupByDirectory, GroupByType", zip, groupByDirectory, groupByType);
 
     return {
+        jsonData: await OggDudeDataElement.buildJsonDataFromDirectory(zip, groupByType.xml, "Species", "Species"),
         zip: {
             folderName: "Species",
             elementFileName: "*.xml",
@@ -69,7 +71,7 @@ export function buildSpeciesContext(zip, groupByDirectory, groupByType) {
             directories: groupByDirectory
         },
         image: {
-            criteria: "SpeciesImages",
+            criteria: "Data/SpeciesImages",
             worldPath: buildArmorImgWorldPath("species"),
             systemPath: buildItemImgSystemPath("species.svg"),
             images: groupByType.image
