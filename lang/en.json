@@ -313,6 +313,14 @@
       }
     },
     "Species-Item": {
+      "starting-attrs": {
+        "hint": "Starting Attributes of the species",
+        "label": "Starting Attributes",
+        "requirement": {
+          "label": "Requirement",
+          "hint": "Requirement of the species"
+        }
+      },
       "starting-chars": {
         "hint": "Starting Characteristics of the species",
         "label": "Starting Characteristics",
@@ -322,6 +330,90 @@
         }
       },
       "FIELDS": {
+        "starting-attrs": {
+          "defense-melee": {
+            "label": "Defense Melee",
+            "hint": "Defense Melee of the species",
+            "placeholder": "Enter the defense melee"
+          },
+          "defense-ranged": {
+            "label": "Defense Ranged",
+            "hint": "Defense Ranged of the species",
+            "placeholder": "Enter the defense ranged"
+          },
+          "encumbrance-bonus": {
+            "label": "Encumbrance Bonus",
+            "hint": "Encumbrance Bonus of the species",
+            "placeholder": "Enter the encumbrance bonus"
+          },
+          "experience": {
+            "label": "Experience",
+            "hint": "Experience of the species",
+            "placeholder": "Enter the experience"
+          },
+          "force-rating": {
+            "label": "Force Rating",
+            "hint": "Force Rating of the species",
+            "placeholder": "Enter the force rating"
+          },
+          "soak-value": {
+            "label": "Soak Value",
+            "hint": "Soak Value of the species",
+            "placeholder": "Enter the soak value"
+          },
+          "strain-threshold": {
+            "label": "Strain Threshold",
+            "hint": "Strain Threshold of the species",
+            "placeholder": "Enter the strain threshold"
+          },
+          "wound-threshold": {
+            "label": "Wound Threshold",
+            "hint": "Wound Threshold of the species",
+            "placeholder": "Enter the wound threshold"
+          },
+          "requirement": {
+            "career": {
+              "label": "Career",
+              "hint": "Career of the species",
+              "placeholder": "Enter the career"
+            },
+            "non-career": {
+              "label": "Non Career",
+              "hint": "Non Career of the species",
+              "placeholder": "Enter the non career"
+            },
+            "specialization": {
+              "label": "Specialization",
+              "hint": "Specialization of the species",
+              "placeholder": "Enter the specialization"
+            },
+            "soak-at-least": {
+              "label": "Soak At Least",
+              "hint": "Soak At Least of the species",
+              "placeholder": "Enter the soak at least"
+            },
+            "wearing-armor": {
+              "label": "Wearing Armor",
+              "hint": "Wearing Armor of the species",
+              "placeholder": "Enter the wearing armor"
+            },
+            "wielding-brawl": {
+              "label": "Wielding Brawl",
+              "hint": "Wielding Brawl of the species",
+              "placeholder": "Enter the wielding brawl"
+            },
+            "wielding-light-saber": {
+              "label": "Wielding Light Saber",
+              "hint": "Wielding Light Saber of the species",
+              "placeholder": "Enter the wielding light saber"
+            },
+            "wielding-melee": {
+              "label": "Wielding Melee",
+              "hint": "Wielding Melee of the species",
+              "placeholder": "Enter the wielding melee"
+            }
+          }
+        },
         "starting-chars": {
           "agility": {
             "label": "Agility",

@@ -5,4 +5,78 @@
         data-tab='attributesStartingAttributes'
 >
     <h3>Starting Attributes</h3>
+
+    <fieldset>
+        <legend data-tooltip="SWES.Species-Item.starting-attrs.hint">{{localize
+                "SWES.Species-Item.starting-attrs.label"}}</legend>
+
+        {{!--
+              startingAttrs: new fields.SchemaField({
+                    woundThreshold: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                    strainThreshold: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                    defenseRanged: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
+                    defenseMelee: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
+                    soakValue: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
+                    experience: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                    forceRating: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
+                    encumbranceBonus: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
+                    requirement: new fields.SchemaField({
+                        wearingArmor: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                        career: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                        specialization: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                        nonCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                        soakAtLeast: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                        wieldingMelee: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                        wieldingBrawl: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                        wieldingLightsaber: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                    }, {
+                        required: false,
+                        label: "ITEM.StartingAttrs.Requirement.label",
+                        hint: "ITEM.StartingAttrs.Requirement.hint"
+                    })
+                }, {
+                    required: true, label: "ITEM.StartingAttrs.label", hint: "ITEM.StartingAttrs.hint"
+                }),
+        --}}
+
+        {{formField systemFields.startingAttrs.fields.woundThreshold value=system.startingAttrs.woundThreshold
+                    label=(localize "SWES.Species-Item.FIELDS.starting-attrs.wound-threshold.label")}}
+        {{formField systemFields.startingAttrs.fields.strainThreshold value=system.startingAttrs.strainThreshold
+                    label=(localize "SWES.Species-Item.FIELDS.starting-attrs.strain-threshold.label")}}
+        {{formField systemFields.startingAttrs.fields.defenseRanged value=system.startingAttrs.defenseRanged
+                    label=(localize "SWES.Species-Item.FIELDS.starting-attrs.defense-ranged.label")}}
+        {{formField systemFields.startingAttrs.fields.defenseMelee value=system.startingAttrs.defenseMelee
+                    label=(localize "SWES.Species-Item.FIELDS.starting-attrs.defense-melee.label")}}
+        {{formField systemFields.startingAttrs.fields.soakValue value=system.startingAttrs.soakValue
+                    label=(localize "SWES.Species-Item.FIELDS.starting-attrs.soak-value.label")}}
+        {{formField systemFields.startingAttrs.fields.experience value=system.startingAttrs.experience
+                    label=(localize "SWES.Species-Item.FIELDS.starting-attrs.experience.label")}}
+        {{formField systemFields.startingAttrs.fields.forceRating value=system.startingAttrs.forceRating
+                    label=(localize "SWES.Species-Item.FIELDS.starting-attrs.force-rating.label")}}
+        {{formField systemFields.startingAttrs.fields.encumbranceBonus value=system.startingAttrs.encumbranceBonus
+                    label=(localize "SWES.Species-Item.FIELDS.starting-attrs.encumbrance-bonus.label")}}
+    </fieldset>
+
+    <fieldset>
+        <legend data-tooltip="SWES.Species-Item.starting-attrs.requirement.hint">{{localize
+                "SWES.Species-Item.starting-attrs.requirement.label"}}</legend>
+
+        {{formField systemFields.startingAttrs.fields.requirement.fields.wearingArmor value=system.startingAttrs.requirement.wearingArmor
+                    label=(localize "SWES.Species-Item.FIELDS.starting-attrs.requirement.wearing-armor.label")}}
+        {{formField systemFields.startingAttrs.fields.requirement.fields.career value=system.startingAttrs.requirement.career
+                    label=(localize "SWES.Species-Item.FIELDS.starting-attrs.requirement.career.label")}}
+        {{formField systemFields.startingAttrs.fields.requirement.fields.specialization value=system.startingAttrs.requirement.specialization
+                    label=(localize "SWES.Species-Item.FIELDS.starting-attrs.requirement.specialization.label")}}
+        {{formField systemFields.startingAttrs.fields.requirement.fields.nonCareer value=system.startingAttrs.requirement.nonCareer
+                    label=(localize "SWES.Species-Item.FIELDS.starting-attrs.requirement.non-career.label")}}
+        {{formField systemFields.startingAttrs.fields.requirement.fields.soakAtLeast value=system.startingAttrs.requirement.soakAtLeast
+                    label=(localize "SWES.Species-Item.FIELDS.starting-attrs.requirement.soak-at-least.label")}}
+        {{formField systemFields.startingAttrs.fields.requirement.fields.wieldingMelee value=system.startingAttrs.requirement.wieldingMelee
+                    label=(localize "SWES.Species-Item.FIELDS.starting-attrs.requirement.wielding-melee.label")}}
+        {{formField systemFields.startingAttrs.fields.requirement.fields.wieldingBrawl value=system.startingAttrs.requirement.wieldingBrawl
+                    label=(localize "SWES.Species-Item.FIELDS.starting-attrs.requirement.wielding-brawl.label")}}
+        {{formField systemFields.startingAttrs.fields.requirement.fields.wieldingLightsaber value=system.startingAttrs.requirement.wieldingLightsaber
+                    label=(localize "SWES.Species-Item.FIELDS.starting-attrs.requirement.wielding-light-saber.label")}}
+    </fieldset>
+
 </section>
