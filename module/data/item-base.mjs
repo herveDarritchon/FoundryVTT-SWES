@@ -8,12 +8,17 @@ export default class SwesItemBaseData extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
         const fields = foundry.data.fields;
-        const schema = {};
+        return foundry.utils.mergeObject({}, {
+            key: new fields.StringField({...(SwesItemBaseData.optionalString), initial: "KEY"}),
+            description: new fields.HTMLField({required: false, blank: true, initial: "", textSearch: true}),
 
-        /* Description Tab */
-        schema.key = new fields.StringField({...(SwesItemBaseData.optionalString), initial: "KEY"});
-        schema.description = new fields.HTMLField({required: false, blank: true, initial: "", textSearch: true});
-
-        return schema;
+            /* Description Tab */
+            sources: new fields.SetField(new fields.SchemaField({
+                description: new fields.StringField({...(SwesItemBaseData.requiredString), initial: "Description"}),
+                page: new fields.NumberField({...(SwesItemBaseData.requiredInteger), min: 1, initial: 1})
+            }), {
+                required: false, initial: [], label: "ITEM.Source.label", hint: "ITEM.Source.hint"
+            }),
+        });
     }
 }

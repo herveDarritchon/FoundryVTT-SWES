@@ -82,7 +82,8 @@ export async function buildArmorContext(zip, groupByDirectory, groupByType) {
             criteria: "Data/EquipmentImages/Armor",
             worldPath: buildArmorImgWorldPath("armors"),
             systemPath: buildItemImgSystemPath("armor.svg"),
-            images: groupByType.image
+            images: groupByType.image,
+            prefix: 'Armor'
         },
         folder: {
             name: 'Swes - Armors',

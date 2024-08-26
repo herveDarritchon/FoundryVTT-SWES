@@ -95,9 +95,9 @@ export async function checkFileExists(file) {
  * @async
  * @public
  * @function
- * @name createPathIfNeccessary
+ * @name createPathIfNecessary
  */
-export async function createPathIfNeccessary(path) {
+export async function createPathIfNecessary(path) {
     if (await _checkPathExists(path)) {
         console.debug(`Path ${path} exists on the server !`);
     } else {

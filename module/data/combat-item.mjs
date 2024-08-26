@@ -15,12 +15,6 @@ export default class SwesCombatItemData extends SwesItemBaseData {
             restricted: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
 
             /* Description Tab */
-            sources: new fields.SetField(new fields.SchemaField({
-                description: new fields.StringField({...(SwesItemBaseData.requiredString), initial: "Description"}),
-                page: new fields.NumberField({...(SwesItemBaseData.requiredInteger), min: 1, initial: 1})
-            }), {
-                required: false, initial: [], label: "ITEM.Source.label", hint: "ITEM.Source.hint"
-            }),
 
             /* Stats Tab */
             encumbrance: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 50}),

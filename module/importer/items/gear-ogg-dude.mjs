@@ -81,7 +81,8 @@ export async function buildGearContext(zip, groupByDirectory, groupByType) {
             criteria: "Data/EquipmentImages/Gear",
             worldPath: buildArmorImgWorldPath("gears"),
             systemPath: buildItemImgSystemPath("gear.svg"),
-            images: groupByType.image
+            images: groupByType.image,
+            prefix: 'Gear'
         },
         folder: {
             name: 'Swes - Gears',

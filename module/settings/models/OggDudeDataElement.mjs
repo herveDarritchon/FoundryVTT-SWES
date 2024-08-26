@@ -1,4 +1,4 @@
-import {checkFileExists, createPathIfNeccessary, uploadFileOnTheServer} from "../../helpers/server/directory/file.mjs";
+import {checkFileExists, createPathIfNecessary, uploadFileOnTheServer} from "../../helpers/server/directory/file.mjs";
 import {createFoundryFolder} from "../../helpers/foundry/folder.mjs";
 import {parseXmlToJson} from "../../utils/xml/parser.mjs";
 
@@ -301,21 +301,20 @@ class OggDudeDataElement {
             await uploadFileOnTheServer({data: imgData, element: file}, imageContext.worldPath);
         }
     }
-
     /**
      * Build the armor image world path
      * @param key {string} The key of the item
      * @param imageWorldPath {string} The path of the world
-     * @param elementType {string} The type of the element
+     * @param prefix {string} The type of the element
      * @param imgSystemPath {string} The system path and the item image filename
      * @returns {Promise<string>}   The path of the image
      * @private
      * @function
      * @name _buildItemImgSystemPath
      */
-    static  _getItemImage = async (key, imageWorldPath, elementType, imgSystemPath) => {
+    static  _getItemImage = async (key, imageWorldPath, prefix, imgSystemPath) => {
         // get the item image path
-        const image = `${imageWorldPath}/${elementType}${key}.png`;
+        const image = `${imageWorldPath}/${prefix}${key}.png`;
         console.debug(`Item image ${image} for item ${key} to be checked.`);
         const found = await checkFileExists(image);
         if (found) {
@@ -342,9 +341,10 @@ class OggDudeDataElement {
      */
     static _storeItems = async (items, folder, elementType, imageWorldPath, imgSystemPath) => {
         let itemPromises = await Promise.all(items.map(async item => {
-            console.debug("Items %s: Item image to be returned by method _getItemImage.", item.key);
-            const img = await OggDudeDataElement._getItemImage(item.key, imageWorldPath, elementType, imgSystemPath);
-            console.debug("Items %s: Items image returned by method _getItemsImage is %.", item.key, img);
+            const key = (item.key != null && item.key !== "") ? item.key : item.name.toUpperCase();
+            console.debug("Items %s: Item image to be returned by method _getItemImage.", key);
+            const img = await OggDudeDataElement._getItemImage(key, imageWorldPath, elementType, imgSystemPath);
+            console.debug("Items %s: Items image returned by method _getItemsImage is %s.", key, img);
             return {
                 name: item.name,
                 img: img,
@@ -385,7 +385,7 @@ class OggDudeDataElement {
     static  _buildItemElements = (jsonData, mapperFn) => {
         //const elements = foundry.utils.getProperty(jsonData, elementCriteria);
         let items = mapperFn(jsonData);
-        console.debug(`Items to be created in FVTT ${items} with ${jsonData}`);
+        console.debug("Items to be created in FVTT", items);
         return items;
     }
 
@@ -406,7 +406,7 @@ class OggDudeDataElement {
         console.debug("[ProcessElements] - Step 4: Folder >", folder);
 
         // Step 5-1: Create the folder in the FVTT tab
-        const imgPath = await createPathIfNeccessary(context.image.worldPath);
+        const imgPath = await createPathIfNecessary(context.image.worldPath);
         console.debug("[ProcessElements] - Step 5-1: Image Path >", imgPath);
 
         // Step 5-2: Upload the images to the server
@@ -418,7 +418,7 @@ class OggDudeDataElement {
         console.debug("[ProcessElements] - Step 6-4: Items >", items);
 
         // Step 6-5: Store the Items in the server database
-        await OggDudeDataElement._storeItems(items, folder, context.element.type, context.image.worldPath, context.image.systemPath);
+        await OggDudeDataElement._storeItems(items, folder, context.image.prefix, context.image.worldPath, context.image.systemPath);
         console.debug("[ProcessElements] - Step 6-5: Items stored in the server database.");
 
     }
