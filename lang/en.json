@@ -337,6 +337,38 @@
           "hint": "Requirement of the species"
         }
       },
+      "sub-species": {
+        "hint": "Sub Species of the species",
+        "label": "Sub Species",
+        "option-choices": {
+          "hint": "Option Choices of the sub species",
+          "label": "Option Choices",
+          "options": {
+            "hint": "Options of the Option Choices of the sub species",
+            "label": "Options",
+            "skill-modifiers": {
+              "hint": "Skill Modifiers of the Options of the Option Choices of the sub species",
+              "label": "Skill Modifiers"
+            }
+          }
+        },
+        "skill-modifiers": {
+          "hint": "Skill Modifiers of the sub species",
+          "label": "Skill Modifiers"
+        },
+        "talent-modifiers": {
+          "hint": "Talent Modifiers of the sub species",
+          "label": "Talent Modifiers"
+        },
+        "weapon-modifiers": {
+          "hint": "Weapon Modifiers of the sub species",
+          "label": "Weapon Modifiers",
+          "qualities": {
+            "hint": "Qualities of the Weapon Modifiers of the sub species",
+            "label": "Qualities"
+          }
+        }
+      },
       "talent-modifiers": {
         "hint": "Talent Modifiers of the species",
         "label": "Talent Modifiers",
@@ -414,7 +446,6 @@
               "placeholder": "Enter the wielding melee"
             }
           },
-
           "skill-type": {
             "label": "Skill Type",
             "hint": "Skill Type of the skill modifier",
@@ -584,6 +615,162 @@
             "placeholder": "Enter the willpower"
           }
         },
+        "sub-species": {
+          "description": {
+            "label": "Description",
+            "hint": "Description of the sub species",
+            "placeholder": "Enter the Description"
+          },
+          "key": {
+            "label": "Key",
+            "hint": "Key of the sub species",
+            "placeholder": "Enter the key"
+          },
+          "name": {
+            "label": "Name",
+            "hint": "Name of the sub species",
+            "placeholder": "Enter the Name"
+          },
+          "FIELDS": {
+            "option-choices": {
+              "FIELDS": {
+                "options": {
+                  "description": {
+                    "label": "Description",
+                    "hint": "Description of the Option Choices of the sub species",
+                    "placeholder": "Enter the Description"
+                  },
+                  "key": {
+                    "label": "Key",
+                    "hint": "Key of the Option Choices of the sub species",
+                    "placeholder": "Enter the key"
+                  },
+                  "name": {
+                    "label": "Name",
+                    "hint": "Name of the Option Choices of the sub species",
+                    "placeholder": "Enter the Name"
+                  },
+                  "FIELDS": {
+                    "skill-modifiers": {
+                      "key": {
+                        "label": "Key",
+                        "hint": "Key of the Skill Modifiers of the Option Choices of the sub species",
+                        "placeholder": "Enter the key"
+                      },
+                      "rank-start": {
+                        "label": "Rank Start",
+                        "hint": "Rank Start of the Skill Modifiers of the Option Choices of the sub species",
+                        "placeholder": "Enter the rank start"
+                      }
+                    }
+                  }
+                }
+              },
+              "key": {
+                "label": "Key",
+                "hint": "Key of the Option Choices of the sub species",
+                "placeholder": "Enter the key"
+              },
+              "name": {
+                "label": "Name",
+                "hint": "Name of the Option Choices of the sub species",
+                "placeholder": "Enter the Name"
+              }
+            },
+            "skill-modifiers": {
+              "key": {
+                "label": "Key",
+                "hint": "Key of the Skill Modifiers of the sub species",
+                "placeholder": "Enter the key"
+              },
+              "rank-start": {
+                "label": "Rank Start",
+                "hint": "Rank Start of the Skill Modifiers of the sub species",
+                "placeholder": "Enter the key"
+              },
+              "rank-limit": {
+                "label": "Rank Limit",
+                "hint": "Rank Limit of the Skill Modifiers of the sub species",
+                "placeholder": "Enter the key"
+              }
+            },
+            "talent-modifiers": {
+              "key": {
+                "label": "Key",
+                "hint": "Key of the Talent Modifiers of the sub species",
+                "placeholder": "Enter the key"
+              },
+              "rank-add": {
+                "label": "Rank Add",
+                "hint": "Rank Add of the Talent Modifiers of the sub species",
+                "placeholder": "Enter the Rank Add"
+              }
+            },
+            "weapon-modifiers": {
+              "all-skill-key": {
+                "label": "All Skill Key",
+                "hint": "All Skill Key of the Weapon Modifiers of the sub species",
+                "placeholder": "Enter the all skill key"
+              },
+              "damage": {
+                "label": "Damage",
+                "hint": "Damage of the Weapon Modifiers of the sub species",
+                "placeholder": "Enter the damage"
+              },
+              "damage-add": {
+                "label": "Damage Add",
+                "hint": "Damage Add of the Weapon Modifiers of the sub species",
+                "placeholder": "Enter the damage add"
+              },
+              "crit": {
+                "label": "Critical",
+                "hint": "Critical of the Weapon Modifiers of the sub species",
+                "placeholder": "Enter the critical"
+              },
+              "crit-sub": {
+                "label": "Critical Sub",
+                "hint": "Critical Sub of the Weapon Modifiers of the sub species",
+                "placeholder": "Enter the critical sub"
+              },
+              "range-value": {
+                "label": "Range Value",
+                "hint": "Range Value of the Weapon Modifiers of the sub species",
+                "placeholder": "Enter the range value"
+              },
+              "unarmed": {
+                "label": "Unarmed",
+                "hint": "Is the weapon unarmed",
+                "placeholder": "Enter the unarmed"
+              },
+              "unarmed-name": {
+                "label": "Unarmed Name",
+                "hint": "Unarmed Name of the weapon",
+                "placeholder": "Enter the unarmed name"
+              },
+              "FIELDS": {
+                "qualities": {
+                  "FIELDS": {
+                    "count": {
+                      "label": "Count",
+                      "hint": "Count of the Qualities of the weapon",
+                      "placeholder": "Enter the count"
+                    },
+                    "key": {
+                      "label": "Key",
+                      "hint": "Key of the Qualities of the weapon",
+                      "placeholder": "Enter the key"
+                    }
+                  }
+                }
+              },
+              "skill-key": {
+                "label": "Skill Key",
+                "hint": "Skill Key of the Talent Modifiers of the sub species",
+                "placeholder": "Enter the skill key"
+              }
+            }
+          }
+        },
         "talent-modifiers": {
           "key": {
             "label": "Key",
@@ -652,7 +839,6 @@
               "placeholder": "Enter the wielding melee"
             }
           },
-
           "skill-type": {
             "label": "Skill Type",
             "hint": "Skill Type of the skill modifier",

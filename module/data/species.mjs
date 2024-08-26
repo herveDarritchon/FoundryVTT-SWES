@@ -293,7 +293,12 @@ export default class SwesSpecies extends SwesItemBaseData {
                             career: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: ""}),
                             specialization: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: ""}),
                             nonCareer: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: ""}),
-                            soakAtLeast: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 10}),
+                            soakAtLeast: new fields.NumberField({
+                                ...(SwesItemBaseData.requiredInteger),
+                                initial: 0,
+                                min: 0,
+                                max: 10
+                            }),
                         }, {
                             required: false,
                             label: "ITEM.TalentModifiers.Requirement.label",
@@ -487,8 +492,18 @@ export default class SwesSpecies extends SwesItemBaseData {
                     description: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
                     skillModifiers: new fields.SetField(new fields.SchemaField({
                         key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                        rankStart: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                        rankLimit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
+                        rankStart: new fields.NumberField({
+                            ...(SwesItemBaseData.requiredInteger),
+                            initial: 0,
+                            min: 0,
+                            max: 10
+                        }),
+                        rankLimit: new fields.NumberField({
+                            ...(SwesItemBaseData.optionalInteger),
+                            initial: 0,
+                            min: 0,
+                            max: 10
+                        }),
                     }, {required: false}), {
                         required: false,
                         initial: [],
@@ -497,7 +512,12 @@ export default class SwesSpecies extends SwesItemBaseData {
                     }),
                     talentModifiers: new fields.SetField(new fields.SchemaField({
                         key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                        rankAdd: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                        rankAdd: new fields.NumberField({
+                            ...(SwesItemBaseData.requiredInteger),
+                            initial: 0,
+                            min: 0,
+                            max: 10
+                        }),
                     }, {required: false}), {
                         required: false,
                         initial: [],
@@ -516,7 +536,8 @@ export default class SwesSpecies extends SwesItemBaseData {
                                 rankStart: new fields.NumberField({
                                     ...(SwesItemBaseData.requiredInteger),
                                     initial: 0,
-                                    min: 0
+                                    min: 0,
+                                    max: 10
                                 }),
                             }, {required: false}), {
                                 required: false,
@@ -541,11 +562,11 @@ export default class SwesSpecies extends SwesItemBaseData {
                         unarmedName: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                         skillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                         allSkillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                        damage: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                        damageAdd: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                        crit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                        critSub: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                        rangeValue: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
+                        damage: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
+                        damageAdd: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
+                        crit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
+                        critSub: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
+                        rangeValue: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
                         qualities: new fields.SetField(new fields.SchemaField({
                             key: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                             count: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 100})

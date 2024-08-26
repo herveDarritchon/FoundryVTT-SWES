@@ -4,5 +4,339 @@
         data-group='primary'
         data-tab='attributesSubSpecies'
 >
-    <h3>Sub Species</h3>
+    <h3>Sub Species List</h3>
+
+    {{log "Sub Species Tab" this}}
+
+    {{#each system.subSpeciesList as |subSpcies subSpeciesIdx|}}
+        <fieldset>
+            <legend data-tooltip="SWES.Species-Item.sub-species.hint">{{localize
+                    "SWES.Species-Item.sub-species.label"}}</legend>
+
+            {{!--
+                    subSpeciesList: new fields.SetField(new fields.SchemaField({
+                    key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
+                    name: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
+                    description: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
+                    skillModifiers: new fields.SetField(new fields.SchemaField({
+                        key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
+                        rankStart: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                        rankLimit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
+                    }, {required: false}), {
+                        required: false,
+                        initial: [],
+                        label: "ITEM.SubSpeciesList.SkillModifiers.label",
+                        hint: "ITEM.SubSpeciesList.SkillModifiers.hint"
+                    }),
+                    talentModifiers: new fields.SetField(new fields.SchemaField({
+                        key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
+                        rankAdd: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                    }, {required: false}), {
+                        required: false,
+                        initial: [],
+                        label: "ITEM.SubSpeciesList.TalentModifiers.label",
+                        hint: "ITEM.SubSpeciesList.TalentModifiers.hint"
+                    }),
+                    optionChoices: new fields.SetField(new fields.SchemaField({
+                        key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
+                        name: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
+                        options: new fields.SetField(new fields.SchemaField({
+                            key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
+                            name: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
+                            description: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
+                            skillModifiers: new fields.SetField(new fields.SchemaField({
+                                key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
+                                rankStart: new fields.NumberField({
+                                    ...(SwesItemBaseData.requiredInteger),
+                                    initial: 0,
+                                    min: 0
+                                }),
+                            }, {required: false}), {
+                                required: false,
+                                initial: [],
+                                label: "ITEM.SubSpeciesList.OptionChoices.SkillModifiers.label",
+                                hint: "ITEM.SubSpeciesList.OptionChoices.SkillModifiers.hint"
+                            }),
+                        }, {required: false}), {
+                            required: false,
+                            initial: [],
+                            label: "ITEM.SubSpeciesList.OptionChoices.Options.label",
+                            hint: "ITEM.SubSpeciesList.OptionChoices.Options.hint"
+                        }),
+                    }, {required: false}), {
+                        required: false,
+                        initial: [],
+                        label: "ITEM.SubSpeciesList.OptionChoices.label",
+                        hint: "ITEM.SubSpeciesList.OptionChoices.hint"
+                    }),
+                    weaponModifiers: new fields.SetField(new fields.SchemaField({
+                        unarmed: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean)}),
+                        unarmedName: new fields.StringField({...(SwesItemBaseData.optionalString)}),
+                        skillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
+                        allSkillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
+                        damage: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
+                        damageAdd: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
+                        crit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
+                        critSub: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
+                        rangeValue: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
+                        qualities: new fields.SetField(new fields.SchemaField({
+                            key: new fields.StringField({...(SwesItemBaseData.optionalString)}),
+                            count: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 100})
+                        }, {required: false}), {required: true, initial: []}),
+                    }, {required: false}), {
+                        required: false,
+                        initial: [],
+                        label: "ITEM.WeaponModifiers.label",
+                        hint: "ITEM.WeaponModifiers.hint"
+                    }),
+                }), {
+                    required: false,
+                    initial: [],
+                    label: "ITEM.SubSpeciesList.label",
+                    hint: "ITEM.SubSpeciesList.hint"
+                }),
+            --}}
+
+            {{formField @root.systemFields.subSpeciesList.element.fields.key
+                        name=(concat "system.subSpecies." subSpeciesIdx ".key")
+                        value=subSpcies.key localize=true
+                        label=(localize "SWES.Species-Item.FIELDS.sub-species.key.label")
+                        rootId=partId}}
+
+            {{formField @root.systemFields.subSpeciesList.element.fields.name
+                        name=(concat "system.subSpecies." subSpeciesIdx ".name")
+                        value=subSpcies.name localize=true
+                        label=(localize "SWES.Species-Item.FIELDS.sub-species.name.label")
+                        rootId=partId}}
+
+            {{formField @root.systemFields.subSpeciesList.element.fields.description
+                        name=(concat "system.subSpecies." subSpeciesIdx ".description")
+                        value=subSpcies.description localize=true
+                        label=(localize "SWES.Species-Item.FIELDS.sub-species.description.label")
+                        rootId=partId}}
+
+            {{#each subSpcies.skillModifiers as |skillModifier skillModIdx|}}
+
+                <fieldset>
+                    <legend data-tooltip="SWES.Species-Item.sub-species.skill-modifiers.hint">{{localize
+                            "SWES.Species-Item.sub-species.skill-modifiers.label"}}</legend>
+
+                    {{formField @root.systemFields.subSpeciesList.element.fields.skillModifiers.element.fields.key
+                                name=(concat "system.subSpecies." subSpeciesIdx ".skillModifiers." skillModIdx ".key")
+                                value=skillModifier.key localize=true
+                                label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.skill-modifiers.key.label")
+                                rootId=partId}}
+
+                    {{formField @root.systemFields.subSpeciesList.element.fields.skillModifiers.element.fields.rankStart
+                                name=(concat "system.subSpecies." subSpeciesIdx ".skillModifiers." skillModIdx ".rankStart")
+                                value=skillModifier.rankStart localize=true
+                                label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.skill-modifiers.rank-start.label")
+                                rootId=partId}}
+
+                    {{formField @root.systemFields.subSpeciesList.element.fields.skillModifiers.element.fields.rankLimit
+                                name=(concat "system.subSpecies." subSpeciesIdx ".skillModifiers." skillModIdx ".rankLimit")
+                                value=skillModifier.rankLimit localize=true
+                                label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.skill-modifiers.rank-limit.label")
+                                rootId=partId}}
+
+                </fieldset>
+
+            {{/each}}
+
+            {{#each subSpcies.talentModifiers as |talentModifier talentModIdx|}}
+
+                <fieldset>
+                    <legend data-tooltip="SWES.Species-Item.sub-species.talent-modifiers.hint">{{localize
+                            "SWES.Species-Item.sub-species.talent-modifiers.label"}}</legend>
+
+                    {{formField @root.systemFields.subSpeciesList.element.fields.talentModifiers.element.fields.key
+                                name=(concat "system.subSpecies." subSpeciesIdx ".talentModifiers." talentModIdx ".key")
+                                value=talentModifier.key localize=true
+                                label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.talent-modifiers.key.label")
+                                rootId=partId}}
+
+                    {{formField @root.systemFields.subSpeciesList.element.fields.talentModifiers.element.fields.rankAdd
+                                name=(concat "system.subSpecies." subSpeciesIdx ".talentModifiers." talentModIdx ".rankAdd")
+                                value=talentModifier.rankAdd localize=true
+                                label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.talent-modifiers.rank-add.label")
+                                rootId=partId}}
+
+                </fieldset>
+
+            {{/each}}
+
+            {{#each subSpcies.optionChoices as |optionChoice optionChoiceIdx|}}
+
+                <fieldset>
+                    <legend data-tooltip="SWES.Species-Item.sub-species.option-choices.hint">{{localize
+                            "SWES.Species-Item.sub-species.option-choices.label"}}</legend>
+
+                    {{formField @root.systemFields.subSpeciesList.element.fields.optionChoices.element.fields.key
+                                name=(concat "system.subSpecies." subSpeciesIdx ".optionChoices." optionChoiceIdx ".key")
+                                value=optionChoice.key localize=true
+                                label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.option-choices.key.label")
+                                rootId=partId}}
+
+                    {{formField @root.systemFields.subSpeciesList.element.fields.optionChoices.element.fields.name
+                                name=(concat "system.subSpecies." subSpeciesIdx ".optionChoices." optionChoiceIdx ".name")
+                                value=optionChoice.name localize=true
+                                label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.option-choices.name.label")
+                                rootId=partId}}
+
+                    {{#each optionChoice.options as |option optionIdx|}}
+
+                        <fieldset>
+                            <legend data-tooltip="SWES.Species-Item.sub-species.option-choices.options.hint">{{localize
+                                    "SWES.Species-Item.sub-species.option-choices.options.label"}}</legend>
+
+                            {{formField
+                                    @root.systemFields.subSpeciesList.element.fields.optionChoices.element.fields.options.element.fields.key
+                                    name=(concat "system.subSpecies." subSpeciesIdx ".optionChoices." optionChoiceIdx ".options." optionIdx ".key")
+                                    value=option.key localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.option-choices.FIELDS.options.key.label")
+                                    rootId=partId}}
+
+                            {{formField
+                                    @root.systemFields.subSpeciesList.element.fields.optionChoices.element.fields.options.element.fields.name
+                                    name=(concat "system.subSpecies." subSpeciesIdx ".optionChoices." optionChoiceIdx ".options." optionIdx ".name")
+                                    value=option.name localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.option-choices.FIELDS.options.name.label")
+                                    rootId=partId}}
+
+                            {{formField
+                                    @root.systemFields.subSpeciesList.element.fields.optionChoices.element.fields.options.element.fields.description
+                                    name=(concat "system.subSpecies." subSpeciesIdx ".optionChoices." optionChoiceIdx ".options." optionIdx ".description")
+                                    value=option.description localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.option-choices.FIELDS.options.description.label")
+                                    rootId=partId}}
+
+                            {{#each option.skillModifiers as |optionSkillModifier osmIdx|}}
+
+                                <fieldset>
+                                    <legend data-tooltip="SWES.Species-Item.sub-species.option-choices.options.skill-modifiers.hint">{{localize
+                                            "SWES.Species-Item.sub-species.option-choices.options.skill-modifiers.label"}}</legend>
+
+                                    {{formField
+                                            @root.systemFields.subSpeciesList.element.fields.optionChoices.element.fields.options.element.fields.skillModifiers.element.fields.key
+                                            name=(concat "system.subSpecies." subSpeciesIdx ".optionChoices." optionChoiceIdx ".options." optionIdx  ".skillModifiers." osmIdx ".key")
+                                            value=optionSkillModifier.key localize=true
+                                            label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.option-choices.FIELDS.options.FIELDS.skill-modifiers.key.label")
+                                            rootId=partId}}
+
+                                    {{formField
+                                            @root.systemFields.subSpeciesList.element.fields.optionChoices.element.fields.options.element.fields.skillModifiers.element.fields.rankStart
+                                            name=(concat "system.subSpecies." subSpeciesIdx ".optionChoices." optionChoiceIdx ".options." optionIdx  ".skillModifiers." osmIdx ".rankStart")
+                                            value=optionSkillModifier.rankStart localize=true
+                                            label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.option-choices.FIELDS.options.FIELDS.skill-modifiers.rank-start.label")
+                                            rootId=partId}}
+
+                                </fieldset>
+
+                            {{/each}}
+
+                        </fieldset>
+
+                    {{/each}}
+
+                </fieldset>
+
+            {{/each}}
+
+            {{#each subSpcies.weaponModifiers as |weaponModifier weaponModIdx|}}
+
+                <fieldset>
+                    <legend data-tooltip="SWES.Species-Item.sub-species.weapon-modifiers.hint">{{localize
+                            "SWES.Species-Item.sub-species.weapon-modifiers.label"}}</legend>
+
+                    {{formField @root.systemFields.subSpeciesList.element.fields.weaponModifiers.element.fields.unarmed
+                                name=(concat "system.subSpecies." subSpeciesIdx ".weaponModifiers." weaponModIdx ".unarmed")
+                                value=weaponModifier.unarmed localize=true
+                                label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.weapon-modifiers.unarmed.label")
+                                rootId=partId}}
+
+                    {{formField
+                            @root.systemFields.subSpeciesList.element.fields.weaponModifiers.element.fields.unarmedName
+                            name=(concat "system.subSpecies." subSpeciesIdx ".weaponModifiers." weaponModIdx ".unarmedName")
+                            value=weaponModifier.unarmedName localize=true
+                            label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.weapon-modifiers.unarmed-name.label")
+                            rootId=partId}}
+
+                    {{formField @root.systemFields.subSpeciesList.element.fields.weaponModifiers.element.fields.skillKey
+                                name=(concat "system.subSpecies." subSpeciesIdx ".weaponModifiers." weaponModIdx ".skillKey")
+                                value=weaponModifier.skillKey localize=true
+                                label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.weapon-modifiers.skill-key.label")
+                                rootId=partId}}
+
+                    {{formField
+                            @root.systemFields.subSpeciesList.element.fields.weaponModifiers.element.fields.allSkillKey
+                            name=(concat "system.subSpecies." subSpeciesIdx ".weaponModifiers." weaponModIdx ".allSkillKey")
+                            value=weaponModifier.allSkillKey localize=true
+                            label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.weapon-modifiers.all-skill-key.label")
+                            rootId=partId}}
+
+                    {{formField @root.systemFields.subSpeciesList.element.fields.weaponModifiers.element.fields.damage
+                                name=(concat "system.subSpecies." subSpeciesIdx ".weaponModifiers." weaponModIdx ".damage")
+                                value=weaponModifier.damage localize=true
+                                label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.weapon-modifiers.damage.label")
+                                rootId=partId}}
+
+                    {{formField
+                            @root.systemFields.subSpeciesList.element.fields.weaponModifiers.element.fields.damageAdd
+                            name=(concat "system.subSpecies." subSpeciesIdx ".weaponModifiers." weaponModIdx ".damageAdd")
+                            value=weaponModifier.damageAdd localize=true
+                            label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.weapon-modifiers.damage-add.label")
+                            rootId=partId}}
+
+                    {{formField @root.systemFields.subSpeciesList.element.fields.weaponModifiers.element.fields.crit
+                                name=(concat "system.subSpecies." subSpeciesIdx ".weaponModifiers." weaponModIdx ".crit")
+                                value=weaponModifier.crit localize=true
+                                label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.weapon-modifiers.crit.label")
+                                rootId=partId}}
+
+                    {{formField @root.systemFields.subSpeciesList.element.fields.weaponModifiers.element.fields.critSub
+                                name=(concat "system.subSpecies." subSpeciesIdx ".weaponModifiers." weaponModIdx ".critSub")
+                                value=weaponModifier.critSub localize=true
+                                label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.weapon-modifiers.crit-sub.label")
+                                rootId=partId}}
+
+                    {{formField
+                            @root.systemFields.subSpeciesList.element.fields.weaponModifiers.element.fields.rangeValue
+                            name=(concat "system.subSpecies." subSpeciesIdx ".weaponModifiers." weaponModIdx ".rangeValue")
+                            value=weaponModifier.rangeValue localize=true
+                            label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.weapon-modifiers.range-value.label")
+                            rootId=partId}}
+
+                    {{#each weaponModifier.qualities as |quality qualityIdx|}}
+
+                        <fieldset>
+                            <legend data-tooltip="SWES.Species-Item.sub-species.weapon-modifiers.qualities.hint">{{localize
+                                    "SWES.Species-Item.sub-species.weapon-modifiers.qualities.label"}}</legend>
+
+                            {{formField
+                                    @root.systemFields.subSpeciesList.element.fields.weaponModifiers.element.fields.qualities.element.fields.key
+                                    name=(concat "system.subSpecies." subSpeciesIdx ".weaponModifiers." weaponModIdx ".qualities." qualityIdx ".key")
+                                    value=quality.key localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.weapon-modifiers.FIELDS.qualities.FIELDS.key.label")
+                                    rootId=partId}}
+
+                            {{formField
+                                    @root.systemFields.subSpeciesList.element.fields.weaponModifiers.element.fields.qualities.element.fields.count
+                                    name=(concat "system.subSpecies." subSpeciesIdx ".weaponModifiers." weaponModIdx ".qualities." qualityIdx ".count")
+                                    value=quality.count localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.sub-species.FIELDS.weapon-modifiers.FIELDS.qualities.FIELDS.count.label")
+                                    rootId=partId}}
+
+                        </fieldset>
+
+                    {{/each}}
+
+                </fieldset>
+
+            {{/each}}
+
+
+        </fieldset>
+
+    {{/each}}
+
 </section>
