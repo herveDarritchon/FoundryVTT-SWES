@@ -344,14 +344,20 @@
     },
     "Item": {
       "Tabs": {
-        "Details": "Details",
-        "Description": "Description",
-        "Effects": "Effects",
-        "AttributesMods": "Mods",
+        "AttributesStartingChars": "Starting Characteristics",
+        "AttributesStartingAttributes": "Starting Attributes",
+        "AttributesSkillModifiers": "Skill Modifiers",
+        "AttributesTalentModifiers": "Talent Modifiers",
+        "AttributesSubSpecies": "Sub Species",
+        "AttributesOptionChoices": "Option Choices",
         "AttributesCombat": "Combat",
+        "AttributesEraPricing": "Era Pricing",
+        "AttributesMods": "Mods",
         "AttributesStats": "Stats",
         "AttributesWeaponModifiers": "Weapon Modifiers",
-        "AttributesEraPricing": "Era Pricing"
+        "Description": "Description",
+        "Details": "Details",
+        "Effects": "Effects"
       }
     },
     "Rules": "Star Wars Edge Studio Rules",

@@ -25,7 +25,7 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             submitOnChange: true,
         },
         position: {
-            width: 520,
+            width: "auto",
             height: "auto",
         },
         actions: {
@@ -56,6 +56,26 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         description: {
             template: 'systems/swes/templates/item/parts/item-description.hbs',
         },
+        /* Species Item Parts */
+        attributesStartingChars: {
+            template: 'systems/swes/templates/item/attribute-parts/species/starting-chars.hbs',
+        },
+        attributesStartingAttributes: {
+            template: 'systems/swes/templates/item/attribute-parts/species/starting-attrs.hbs',
+        },
+        attributesSkillModifiers: {
+            template: 'systems/swes/templates/item/attribute-parts/species/skill-modifiers.hbs',
+        },
+        attributesTalentModifiers: {
+            template: 'systems/swes/templates/item/attribute-parts/species/talent-modifiers.hbs',
+        },
+        attributesSubSpecies: {
+            template: 'systems/swes/templates/item/attribute-parts/species/sub-species.hbs',
+        },
+        attributesOptionChoices: {
+            template: 'systems/swes/templates/item/attribute-parts/species/option-choices.hbs',
+        },
+        /* Combat Item Parts */
         attributesMods: {
             template: 'systems/swes/templates/item/attribute-parts/combat-item/mods.hbs',
         },
@@ -111,19 +131,22 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     _configureRenderOptions(options) {
         super._configureRenderOptions(options);
         // Not all parts always render
-        options.parts = ['header', 'tabs', 'details', 'description'];
+        options.parts = ['header', 'tabs', 'description'];
         // Don't show the other tabs if only limited view
         if (this.document.limited) return;
         // Control which parts show based on document subtype
         switch (this.document.type) {
             case 'armor':
-                options.parts.push('attributesStats', 'attributesMods', 'attributesWeaponModifiers', 'attributesEraPricing', 'effects');
+                options.parts.push('details', 'attributesStats', 'attributesMods', 'attributesWeaponModifiers', 'attributesEraPricing', 'effects');
                 break;
             case 'weapon':
-                options.parts.push('attributesStats', 'attributesCombat', 'attributesMods', 'attributesWeaponModifiers', 'attributesEraPricing', 'effects');
+                options.parts.push('details', 'attributesStats', 'attributesCombat', 'attributesMods', 'attributesWeaponModifiers', 'attributesEraPricing', 'effects');
                 break;
             case 'gear':
-                options.parts.push('attributesStats', 'attributesMods', 'attributesWeaponModifiers', 'attributesEraPricing', 'effects');
+                options.parts.push('details', 'attributesStats', 'attributesMods', 'attributesWeaponModifiers', 'attributesEraPricing', 'effects');
+                break;
+            case 'species':
+                options.parts.push('attributesStartingChars', 'attributesStartingAttributes', 'attributesSkillModifiers', 'attributesTalentModifiers', 'attributesSubSpecies', 'attributesOptionChoices', 'effects');
                 break;
         }
     }
@@ -139,6 +162,12 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             case 'attributesCombat':
             case 'attributesWeaponModifiers':
             case 'details':
+            case 'attributesStartingChars':
+            case 'attributesStartingAttributes':
+            case 'attributesSkillModifiers':
+            case 'attributesTalentModifiers':
+            case 'attributesSubSpecies':
+            case 'attributesOptionChoices':
                 // Necessary for preserving active tab on re-render
                 context.tab = context.tabs[partId];
                 break;
@@ -146,18 +175,19 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
                 context.tab = context.tabs[partId];
                 // Enrich description info for display
                 // Enrichment turns text like `[[/r 1d20]]` into buttons
-                context.enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, { async: true });
-/*                context.enrichedDescription = await TextEditor.enrichHTML(
-                    this.item.system.description,
-                    {
-                        // Whether to show secret blocks in the finished html
-                        secrets: this.document.isOwner,
-                        // Data to fill in for inline rolls
-                        rollData: this.item.getRollData(),
-                        // Relative UUID resolution
-                        relativeTo: this.item,
-                    }
-                )*/;
+                context.enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, {async: true});
+                /*                context.enrichedDescription = await TextEditor.enrichHTML(
+                                    this.item.system.description,
+                                    {
+                                        // Whether to show secret blocks in the finished html
+                                        secrets: this.document.isOwner,
+                                        // Data to fill in for inline rolls
+                                        rollData: this.item.getRollData(),
+                                        // Relative UUID resolution
+                                        relativeTo: this.item,
+                                    }
+                                )*/
+                ;
                 console.log("Context:", context);
                 break;
             case 'effects':
@@ -181,7 +211,10 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         // If you have sub-tabs this is necessary to change
         const tabGroup = 'primary';
         // Default tab for first time it's rendered this session
-        if (!this.tabGroups[tabGroup]) this.tabGroups[tabGroup] = 'attributesStats';
+        if (!this.tabGroups[tabGroup]) {
+            this.tabGroups[tabGroup] = parts.includes('attributesStats') ? 'attributesStats' : 'attributesStartingChars'
+        }
+        ;
         return parts.reduce((tabs, partId) => {
             const tab = {
                 cssClass: '',
@@ -229,6 +262,31 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
                     tab.id = 'effects';
                     tab.label += 'Effects';
                     break;
+                case 'attributesStartingChars':
+                    tab.id = 'attributesStartingChars';
+                    tab.label += 'AttributesStartingChars';
+                    break;
+                case 'attributesStartingAttributes':
+                    tab.id = 'attributesStartingAttributes';
+                    tab.label += 'AttributesStartingAttributes';
+                    break;
+                case 'attributesSkillModifiers':
+                    tab.id = 'attributesSkillModifiers';
+                    tab.label += 'AttributesSkillModifiers';
+                    break;
+                case 'attributesTalentModifiers':
+                    tab.id = 'attributesTalentModifiers';
+                    tab.label += 'AttributesTalentModifiers';
+                    break;
+                case 'attributesSubSpecies':
+                    tab.id = 'attributesSubSpecies';
+                    tab.label += 'AttributesSubSpecies';
+                    break;
+                case 'attributesOptionChoices':
+                    tab.id = 'attributesOptionChoices';
+                    tab.label += 'AttributesOptionChoices';
+                    break;
+
             }
             if (this.tabGroups[tabGroup] === tab.id) tab.cssClass = 'active';
             tabs[partId] = tab;

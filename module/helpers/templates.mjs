@@ -15,7 +15,7 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/swes/templates/item/parts/item-description.hbs',
         'systems/swes/templates/item/parts/item-details.hbs',
         'systems/swes/templates/item/parts/item-effects.hbs',
-        // Item attributes
+        // Item attributes combat-item
         'systems/swes/templates/item/attribute-parts/combat-item/weapon/combat.hbs',
         'systems/swes/templates/item/attribute-parts/combat-item/stats.hbs',
         'systems/swes/templates/item/attribute-parts/combat-item/era-pricing.hbs',
@@ -24,5 +24,12 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/swes/templates/item/attribute-parts/combat-item/armor/armor.hbs',
         'systems/swes/templates/item/attribute-parts/combat-item/weapon/weapon.hbs',
         'systems/swes/templates/item/attribute-parts/combat-item/gear/gear.hbs',
+        // Item attributes species-item
+        'systems/swes/templates/item/attribute-parts/species/starting-chars.hbs',
+        'systems/swes/templates/item/attribute-parts/species/starting-attrs.hbs',
+        'systems/swes/templates/item/attribute-parts/species/skill-modifiers.hbs',
+        'systems/swes/templates/item/attribute-parts/species/talent-modifiers.hbs',
+        'systems/swes/templates/item/attribute-parts/species/sub-species.hbs',
+        'systems/swes/templates/item/attribute-parts/species/option-choices.hbs',
     ]);
 };
