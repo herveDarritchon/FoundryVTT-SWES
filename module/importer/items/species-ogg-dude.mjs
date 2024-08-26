@@ -156,7 +156,7 @@ export function speciesMapper(species) {
                 xmlSpecies?.SkillModifiers?.SkillModifier,
                 (skillModifier) => {
                     return {
-                        key: OggDudeImporter.mapMandatoryString("species.SkillModifiers.SkillModifier.Key", skillModifier?.Key),
+                        key: OggDudeImporter.mapOptionalString(skillModifier?.Key),
                         subSpeciesKey: OggDudeImporter.mapOptionalString(skillModifier?.SubSpeciesKey),
                         rankStart: OggDudeImporter.mapOptionalNumber(skillModifier?.RankStart),
                         rankAdd: OggDudeImporter.mapOptionalNumber(skillModifier?.RankAdd),
@@ -514,7 +514,7 @@ export function speciesMapper(species) {
                 (optionChoice) => {
                     return {
                         key: OggDudeImporter.mapMandatoryString("species.SubSpeciesList.SubSpecies.OptionChoices.OptionChoice.Key", optionChoice?.Key),
-                        name: OggDudeImporter.mapMandatoryString("species.SubSpeciesList.SubSpecies.OptionChoices.OptionChoice.Name", optionChoice?.Name),
+                        name: OggDudeImporter.mapOptionalString(optionChoice?.Name),
                         description: OggDudeImporter.mapOptionalString(optionChoice?.Description),
                         source: OggDudeImporter.mapOptionalString(optionChoice?.Source),
                         sources: OggDudeImporter.mapOptionalString(optionChoice?.Sources),
@@ -530,7 +530,7 @@ export function speciesMapper(species) {
                                         option?.SkillModifiers?.SkillModifier,
                                         (skillModifier) => {
                                             return {
-                                                key: OggDudeImporter.mapMandatoryString("species.SubSpeciesList.SubSpecies.OptionChoices.OptionChoice.Options.Option.SkillModifiers.SkillModifier.Key", skillModifier?.Key),
+                                                key: OggDudeImporter.mapOptionalString(skillModifier?.Key),
                                                 rankAdd: OggDudeImporter.mapOptionalNumber(skillModifier?.RankAdd),
                                                 rankStart: OggDudeImporter.mapOptionalNumber(skillModifier?.RankStart),
                                                 rankLimit: OggDudeImporter.mapOptionalNumber(skillModifier?.RankLimit),
@@ -541,7 +541,7 @@ export function speciesMapper(species) {
                                         option?.DieModifiers?.DieModifier,
                                         (dieModifier) => {
                                             return {
-                                                skillKey: OggDudeImporter.mapMandatoryString("species.SubSpeciesList.SubSpecies.OptionChoices.OptionChoice.Options.Option.DieModifiers.DieModifier.SkillKey", dieModifier?.SkillKey),
+                                                skillKey: OggDudeImporter.mapOptionalString(dieModifier?.SkillKey),
                                                 advantageCount: OggDudeImporter.mapOptionalNumber(dieModifier?.AdvantageCount),
                                                 setbackCount: OggDudeImporter.mapOptionalNumber(dieModifier?.SetbackCount),
                                                 successCount: OggDudeImporter.mapOptionalNumber(dieModifier?.SuccessCount)

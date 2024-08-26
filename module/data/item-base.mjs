@@ -4,7 +4,7 @@ export default class SwesItemBaseData extends foundry.abstract.TypeDataModel {
     static  requiredInteger = {required: true, nullable: false, integer: true};
     static optionalInteger = {required: false, nullable: false, integer: true};
     static requiredString = {required: true, blank: false, trim: true, nullable: false};
-    static optionalString = {required: false, blank: false, trim: true, nullable: false};
+    static optionalString = {required: false, blank: true, trim: true, nullable: false};
 
     static defineSchema() {
         const fields = foundry.data.fields;

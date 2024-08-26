@@ -334,16 +334,17 @@ class OggDudeDataElement {
      * @param elementType {string} The element type to be stored, must be a system item type.
      * @param imageWorldPath {string} The path to store the image for the item in the world .
      * @param imgSystemPath {string} The path to store the image for the item in the system.
+     * @param prefix
      * @returns {Promise<void>} A Promise that resolves when the items have been stored.
      * @private
      * @function
      * @name _storeItems
      */
-    static _storeItems = async (items, folder, elementType, imageWorldPath, imgSystemPath) => {
+    static _storeItems = async (items, folder, elementType, imageWorldPath, imgSystemPath, prefix) => {
         let itemPromises = await Promise.all(items.map(async item => {
             const key = (item.key != null && item.key !== "") ? item.key : item.name.toUpperCase();
             console.debug("Items %s: Item image to be returned by method _getItemImage.", key);
-            const img = await OggDudeDataElement._getItemImage(key, imageWorldPath, elementType, imgSystemPath);
+            const img = await OggDudeDataElement._getItemImage(key, imageWorldPath, prefix, imgSystemPath);
             console.debug("Items %s: Items image returned by method _getItemsImage is %s.", key, img);
             return {
                 name: item.name,
@@ -418,7 +419,7 @@ class OggDudeDataElement {
         console.debug("[ProcessElements] - Step 6-4: Items >", items);
 
         // Step 6-5: Store the Items in the server database
-        await OggDudeDataElement._storeItems(items, folder, context.image.prefix, context.image.worldPath, context.image.systemPath);
+        await OggDudeDataElement._storeItems(items, folder, context.element.type, context.image.worldPath, context.image.systemPath, context.image.prefix);
         console.debug("[ProcessElements] - Step 6-5: Items stored in the server database.");
 
     }

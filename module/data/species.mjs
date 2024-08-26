@@ -165,7 +165,7 @@ export default class SwesSpecies extends SwesItemBaseData {
 
                 /* Skill Modifiers Tab */
                 skillModifiers: new fields.SetField(new fields.SchemaField({
-                        key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
+                        key: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
                         subSpeciesKey: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
                         rankStart: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
                         rankAdd: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
@@ -694,7 +694,7 @@ export default class SwesSpecies extends SwesItemBaseData {
                 /* Option Choices Tab */
                 optionChoices: new fields.SetField(new fields.SchemaField({
                         key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                        name: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
+                        name: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
                         description: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
                         source: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
                         sources: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
@@ -704,7 +704,7 @@ export default class SwesSpecies extends SwesItemBaseData {
                             name: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
                             description: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
                             skillModifiers: new fields.SetField(new fields.SchemaField({
-                                key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
+                                key: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
                                 rankAdd: new fields.NumberField({
                                     ...(SwesItemBaseData.requiredInteger),
                                     initial: 0,
@@ -729,7 +729,7 @@ export default class SwesSpecies extends SwesItemBaseData {
                             }),
                             dieModifiers: new fields.SetField(new fields.SchemaField({
                                 dieModifier: new fields.SchemaField({
-                                    skillKey: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
+                                    skillKey: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
                                     advantageCount: new fields.NumberField({
                                         ...(SwesItemBaseData.optionalInteger),
                                         initial: 0,
