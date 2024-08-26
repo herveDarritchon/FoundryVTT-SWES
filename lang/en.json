@@ -313,10 +313,14 @@
       }
     },
     "Species-Item": {
-        "starting-chars": {
-          "hint": "Starting Characteristics of the species",
-          "label": "Starting Characteristics"
-        },
+      "starting-chars": {
+        "hint": "Starting Characteristics of the species",
+        "label": "Starting Characteristics",
+        "requirement": {
+          "label": "Requirement",
+          "hint": "Requirement of the species"
+        }
+      },
       "FIELDS": {
         "starting-chars": {
           "agility": {
@@ -343,6 +347,48 @@
             "label": "Presence",
             "hint": "Presence of the species",
             "placeholder": "Enter the presence"
+          },
+          "requirement": {
+            "career": {
+              "label": "Career",
+              "hint": "Career of the species",
+              "placeholder": "Enter the career"
+            },
+            "non-career": {
+              "label": "Non Career",
+              "hint": "Non Career of the species",
+              "placeholder": "Enter the non career"
+            },
+            "specialization": {
+              "label": "Specialization",
+              "hint": "Specialization of the species",
+              "placeholder": "Enter the specialization"
+            },
+            "soak-at-least": {
+              "label": "Soak At Least",
+              "hint": "Soak At Least of the species",
+              "placeholder": "Enter the soak at least"
+            },
+            "wearing-armor": {
+              "label": "Wearing Armor",
+              "hint": "Wearing Armor of the species",
+              "placeholder": "Enter the wearing armor"
+            },
+            "wielding-brawl": {
+              "label": "Wielding Brawl",
+              "hint": "Wielding Brawl of the species",
+              "placeholder": "Enter the wielding brawl"
+            },
+            "wielding-light-saber": {
+              "label": "Wielding Light Saber",
+              "hint": "Wielding Light Saber of the species",
+              "placeholder": "Enter the wielding light saber"
+            },
+            "wielding-melee": {
+              "label": "Wielding Melee",
+              "hint": "Wielding Melee of the species",
+              "placeholder": "Enter the wielding melee"
+            }
           },
           "willpower": {
             "label": "Willpower",
