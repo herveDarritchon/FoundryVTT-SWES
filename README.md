@@ -51,6 +51,14 @@ fd.append("path", `${path}/${file.name}`);
 
 ## Convert Images to webp
 
+Exemple de code pour convertir une image en format WebP en utilisant JavaScript.
+
+### ConvertToWebp function
+But : La fonction convertToWebp prend un fichier image et le convertit au format WebP.
+Entrée : Un objet File représentant l'image à convertir.
+Sortie : Renvoie une Promise qui résout en un nouvel objet File au format WebP.
+Comment ça marche : La fonction charge l'image, la dessine sur un canvas, puis convertit le contenu du canvas en un blob WebP. Ce blob est ensuite encapsulé dans un objet File qui est retourné.
+
 ```js
 /**
  * Converts an image file to WebP format.
@@ -75,6 +83,13 @@ async function convertToWebp(file) {
     });
 }
 ```
+
+### createCanvasFromImage function
+
+But : La fonction createCanvasFromImage crée un élément canvas et y dessine l'image fournie.
+Entrée : Un HTMLImageElement représentant l'image à dessiner sur le canvas.
+Sortie : Renvoie un HTMLCanvasElement avec l'image dessinée dessus.
+Comment ça marche : La fonction définit les dimensions du canvas pour correspondre aux dimensions naturelles de l'image et utilise le contexte de rendu 2D pour dessiner l'image sur le canvas. Le canvas résultant peut être utilisé pour des opérations ultérieures, comme la conversion du format de l'image.
 
 ```js
 /**
@@ -106,14 +121,8 @@ function extractFileName(filePath) {
 }
 ```
 
-But : La fonction convertToWebp prend un fichier image et le convertit au format WebP.
-Entrée : Un objet File représentant l'image à convertir.
-Sortie : Renvoie une Promise qui résout en un nouvel objet File au format WebP.
-Comment ça marche : La fonction charge l'image, la dessine sur un canvas, puis convertit le contenu du canvas en un blob WebP. Ce blob est ensuite encapsulé dans un objet File qui est retourné.
-But : La fonction createCanvasFromImage crée un élément canvas et y dessine l'image fournie.
-Entrée : Un HTMLImageElement représentant l'image à dessiner sur le canvas.
-Sortie : Renvoie un HTMLCanvasElement avec l'image dessinée dessus.
-Comment ça marche : La fonction définit les dimensions du canvas pour correspondre aux dimensions naturelles de l'image et utilise le contexte de rendu 2D pour dessiner l'image sur le canvas. Le canvas résultant peut être utilisé pour des opérations ultérieures, comme la conversion du format de l'image.
+### Projet exemple
+[Image Uploader](https://github.com/prolice/image-uploader-converter/tree/main)
 
 This system is a swes system that you can use as a starting point for building your own custom systems. It's similar to Simple World-building, but has examples of creating attributes in code rather than dynamically through the UI.
 
