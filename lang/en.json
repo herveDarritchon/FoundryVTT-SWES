@@ -80,17 +80,22 @@
   "SWES": {
     "Combat-Item": {
       "FIELDS": {
-        "defense": {
-          "label": "Defense"
-        },
         "categories": {
           "label": "Categories",
           "hint": "List of categories"
+        },
+        "defense": {
+          "label": "Defense"
         },
         "description": {
           "label": "Description",
           "hint": "Description of the item",
           "placeholder": "Enter the description"
+        },
+        "details": {
+          "label": "Details",
+          "hint": "Details of the item",
+          "placeholder": "Enter the details"
         },
         "encumbrance": {
           "label": "Encumbrance"
@@ -304,6 +309,46 @@
           },
           "label": "Modification",
           "hint": "Modification of the armor"
+        }
+      }
+    },
+    "Species-Item": {
+        "starting-chars": {
+          "hint": "Starting Characteristics of the species",
+          "label": "Starting Characteristics"
+        },
+      "FIELDS": {
+        "starting-chars": {
+          "agility": {
+            "label": "Agility",
+            "hint": "Agility of the species",
+            "placeholder": "Enter the agility"
+          },
+          "brawn": {
+            "label": "Brawn",
+            "hint": "Brawn of the species",
+            "placeholder": "Enter the brawn"
+          },
+          "cunning": {
+            "label": "Cunning",
+            "hint": "Cunning of the species",
+            "placeholder": "Enter the cunning"
+          },
+          "intellect": {
+            "label": "Intellect",
+            "hint": "Intellect of the species",
+            "placeholder": "Enter the intellect"
+          },
+          "presence": {
+            "label": "Presence",
+            "hint": "Presence of the species",
+            "placeholder": "Enter the presence"
+          },
+          "willpower": {
+            "label": "Willpower",
+            "hint": "Willpower of the species",
+            "placeholder": "Enter the willpower"
+          }
         }
       }
     },

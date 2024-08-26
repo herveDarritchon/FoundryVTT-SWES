@@ -5,4 +5,54 @@
         data-tab='attributesStartingChars'
 >
     <h3>Starting Characteristics</h3>
+
+    {{!--
+     startingChars: new fields.SchemaField({
+                    brawn: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                    agility: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                    intellect: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                    cunning: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                    willpower: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                    presence: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                    requirement: new fields.SchemaField({
+                        wearingArmor: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                        career: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                        specialization: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                        nonCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                        soakAtLeast: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                        wieldingMelee: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                        wieldingBrawl: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                        wieldingLightsaber: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                    }, {
+                        required: false,
+                        label: "ITEM.StartingChars.Requirement.label",
+                        hint: "ITEM.StartingChars.Requirement.hint"
+                    })
+
+                }, {
+                    required: true, label: "ITEM.StartingChars.label", hint: "ITEM.StartingChars.hint"
+                }),
+    --}}
+
+    {{log "Starting Characteristics Tab" this}}
+
+    <fieldset>
+        <legend data-tooltip="SWES.Species-Item.starting-chars.hint">{{localize
+                "SWES.Species-Item.starting-chars.label"}}</legend>
+
+        {{formField systemFields.startingChars.fields.brawn value=system.startingChars.brawn
+                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.brawn.label")}}
+        {{formField systemFields.startingChars.fields.agility value=system.startingChars.agility
+                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.agility.label")}}
+        {{formField systemFields.startingChars.fields.intellect value=system.startingChars.intellect
+                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.intellect.label")}}
+        {{formField systemFields.startingChars.fields.cunning value=system.startingChars.cunning
+                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.cunning.label")}}
+        {{formField systemFields.startingChars.fields.willpower value=system.startingChars.willpower
+                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.willpower.label")}}
+        {{formField systemFields.startingChars.fields.presence value=system.startingChars.presence
+                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.presence.label")}}
+
+</fieldset>
+
 </section>
