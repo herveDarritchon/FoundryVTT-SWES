@@ -15,6 +15,8 @@ export function speciesMapper(species) {
         return {
             /* Starting Characteristics Tab */
 
+            description: OggDudeImporter.mapMandatoryString("species.Description", xmlSpecies?.Description),
+
             /*
             startingChars: new fields.SchemaField({
                 brawn: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
@@ -49,14 +51,14 @@ export function speciesMapper(species) {
                 willpower: OggDudeImporter.mapMandatoryNumber("species.StartingChars.Willpower", xmlSpecies?.StartingChars?.Willpower),
                 presence: OggDudeImporter.mapMandatoryNumber("species.StartingChars.Presence", xmlSpecies?.StartingChars?.Presence),
                 requirement: {
-                    wearingArmor: OggDudeImporter.mapOptionalString(xmlSpecies?.StartingChars?.Requirement?.WearingArmor),
-                    career: OggDudeImporter.mapOptionalString(xmlSpecies?.StartingChars?.Requirement?.Career),
-                    specialization: OggDudeImporter.mapOptionalString(xmlSpecies?.StartingChars?.Requirement?.Specialization),
-                    nonCareer: OggDudeImporter.mapOptionalString(xmlSpecies?.StartingChars?.Requirement?.NonCareer),
+                    wearingArmor: OggDudeImporter.mapOptionalBoolean(xmlSpecies?.StartingChars?.Requirement?.WearingArmor),
+                    career: OggDudeImporter.mapOptionalBoolean(xmlSpecies?.StartingChars?.Requirement?.Career),
+                    specialization: OggDudeImporter.mapOptionalBoolean(xmlSpecies?.StartingChars?.Requirement?.Specialization),
+                    nonCareer: OggDudeImporter.mapOptionalBoolean(xmlSpecies?.StartingChars?.Requirement?.NonCareer),
                     soakAtLeast: OggDudeImporter.mapOptionalNumber(xmlSpecies?.StartingChars?.Requirement?.SoakAtLeast),
-                    wieldingMelee: OggDudeImporter.mapOptionalString(xmlSpecies?.StartingChars?.Requirement?.WieldingMelee),
-                    wieldingBrawl: OggDudeImporter.mapOptionalString(xmlSpecies?.StartingChars?.Requirement?.WieldingBrawl),
-                    wieldingLightsaber: OggDudeImporter.mapOptionalString(xmlSpecies?.StartingChars?.Requirement?.WieldingLightsaber)
+                    wieldingMelee: OggDudeImporter.mapOptionalBoolean(xmlSpecies?.StartingChars?.Requirement?.WieldingMelee),
+                    wieldingBrawl: OggDudeImporter.mapOptionalBoolean(xmlSpecies?.StartingChars?.Requirement?.WieldingBrawl),
+                    wieldingLightsaber: OggDudeImporter.mapOptionalBoolean(xmlSpecies?.StartingChars?.Requirement?.WieldingLightsaber)
                 }
             },
 
@@ -101,14 +103,14 @@ export function speciesMapper(species) {
                 forceRating: OggDudeImporter.mapOptionalNumber(xmlSpecies?.StartingAttrs?.ForceRating),
                 encumbranceBonus: OggDudeImporter.mapOptionalNumber(xmlSpecies?.StartingAttrs?.EncumbranceBonus),
                 requirement: {
-                    wearingArmor: OggDudeImporter.mapOptionalString(xmlSpecies?.StartingAttrs?.Requirement?.WearingArmor),
-                    career: OggDudeImporter.mapOptionalString(xmlSpecies?.StartingAttrs?.Requirement?.Career),
-                    specialization: OggDudeImporter.mapOptionalString(xmlSpecies?.StartingAttrs?.Requirement?.Specialization),
-                    nonCareer: OggDudeImporter.mapOptionalString(xmlSpecies?.StartingAttrs?.Requirement?.NonCareer),
+                    wearingArmor: OggDudeImporter.mapOptionalBoolean(xmlSpecies?.StartingAttrs?.Requirement?.WearingArmor),
+                    career: OggDudeImporter.mapOptionalBoolean(xmlSpecies?.StartingAttrs?.Requirement?.Career),
+                    specialization: OggDudeImporter.mapOptionalBoolean(xmlSpecies?.StartingAttrs?.Requirement?.Specialization),
+                    nonCareer: OggDudeImporter.mapOptionalBoolean(xmlSpecies?.StartingAttrs?.Requirement?.NonCareer),
                     soakAtLeast: OggDudeImporter.mapOptionalNumber(xmlSpecies?.StartingAttrs?.Requirement?.SoakAtLeast),
-                    wieldingMelee: OggDudeImporter.mapOptionalString(xmlSpecies?.StartingAttrs?.Requirement?.WieldingMelee),
-                    wieldingBrawl: OggDudeImporter.mapOptionalString(xmlSpecies?.StartingAttrs?.Requirement?.WieldingBrawl),
-                    wieldingLightsaber: OggDudeImporter.mapOptionalString(xmlSpecies?.StartingAttrs?.Requirement?.WieldingLightsaber)
+                    wieldingMelee: OggDudeImporter.mapOptionalBoolean(xmlSpecies?.StartingAttrs?.Requirement?.WieldingMelee),
+                    wieldingBrawl: OggDudeImporter.mapOptionalBoolean(xmlSpecies?.StartingAttrs?.Requirement?.WieldingBrawl),
+                    wieldingLightsaber: OggDudeImporter.mapOptionalBoolean(xmlSpecies?.StartingAttrs?.Requirement?.WieldingLightsaber)
                 }
             },
 
@@ -161,13 +163,13 @@ export function speciesMapper(species) {
                         rankStart: OggDudeImporter.mapOptionalNumber(skillModifier?.RankStart),
                         rankAdd: OggDudeImporter.mapOptionalNumber(skillModifier?.RankAdd),
                         rankLimit: OggDudeImporter.mapOptionalNumber(skillModifier?.RankLimit),
-                        isCareer: OggDudeImporter.mapOptionalString(skillModifier?.IsCareer),
+                        isCareer: OggDudeImporter.mapOptionalBoolean(skillModifier?.IsCareer),
                         skillType: OggDudeImporter.mapOptionalString(skillModifier?.SkillType),
                         requirement: {
-                            wearingArmor: OggDudeImporter.mapOptionalString(skillModifier?.Requirement?.WearingArmor),
-                            career: OggDudeImporter.mapOptionalString(skillModifier?.Requirement?.Career),
-                            specialization: OggDudeImporter.mapOptionalString(skillModifier?.Requirement?.Specialization),
-                            nonCareer: OggDudeImporter.mapOptionalString(skillModifier?.Requirement?.NonCareer),
+                            wearingArmor: OggDudeImporter.mapOptionalBoolean(skillModifier?.Requirement?.WearingArmor),
+                            career: OggDudeImporter.mapOptionalBoolean(skillModifier?.Requirement?.Career),
+                            specialization: OggDudeImporter.mapOptionalBoolean(skillModifier?.Requirement?.Specialization),
+                            nonCareer: OggDudeImporter.mapOptionalBoolean(skillModifier?.Requirement?.NonCareer),
                             soakAtLeast: OggDudeImporter.mapOptionalNumber(skillModifier?.Requirement?.SoakAtLeast)
                         }
                     }

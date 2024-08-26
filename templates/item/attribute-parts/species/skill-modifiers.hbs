@@ -5,4 +5,110 @@
         data-tab='attributesSkillModifiers'
 >
     <h3>Skill Modifiers</h3>
+
+    {{log "Skill Modifiers Tab" this}}
+
+    {{#each system.skillModifiers as |modifier modIdx|}}
+        <fieldset>
+            <legend data-tooltip="SWES.Species-Item.skill-modifiers.hint">{{localize
+                    "SWES.Species-Item.skill-modifiers.label"}}</legend>
+
+            {{!--
+                   skillModifiers: new fields.SetField(new fields.SchemaField({
+                            key: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                            subSpeciesKey: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                            rankStart: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                            rankAdd: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
+                            rankLimit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
+                            isCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                            skillType: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                            requirement: new fields.SchemaField({
+                                wearingArmor: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                                career: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                                specialization: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                                nonCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                                soakAtLeast: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                            }, {
+                                required: false,
+                                label: "ITEM.SkillModifiers.Requirement.label",
+                                hint: "ITEM.SkillModifiers.Requirement.hint"
+                            })
+                        }, {
+                            required: false, initial: [], label: "ITEM.SkillModifiers.label", hint: "ITEM.SkillModifiers.hint"
+                        }),
+                        {
+                            required: false,
+                            initial: [],
+                            label: "SWES.Combat-Item.FIELDS.Categories.label",
+                            hint: "SWES.Combat-Item.FIELDS.Categories.hint"
+                        }),
+            --}}
+
+            {{formField @root.systemFields.skillModifiers.element.fields.key
+                        name=(concat "system.skillModifiers." modIdx ".key")
+                        value=modifier.key localize=true
+                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.key.label")
+                        rootId=partId}}
+
+            {{formField @root.systemFields.skillModifiers.element.fields.subSpeciesKey
+                        name=(concat "system.skillModifiers." modIdx ".subSpeciesKey")
+                        value=modifier.subSpeciesKey localize=true
+                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.sub-species-key.label")
+                        rootId=partId}}
+
+            {{formField @root.systemFields.skillModifiers.element.fields.rankStart
+                        name=(concat "system.skillModifiers." modIdx ".rankStart")
+                        value=modifier.rankStart localize=true
+                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.rank-start.label")
+                        rootId=partId}}
+
+            {{formField @root.systemFields.skillModifiers.element.fields.rankAdd
+                        name=(concat "system.skillModifiers." modIdx ".rankAdd")
+                        value=modifier.rankAdd localize=true
+                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.rank-add.label")
+                        rootId=partId}}
+
+            {{formField @root.systemFields.skillModifiers.element.fields.rankLimit
+                        name=(concat "system.skillModifiers." modIdx ".rankLimit")
+                        value=modifier.rankLimit localize=true
+                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.rank-limit.label")
+                        rootId=partId}}
+
+            {{formField @root.systemFields.skillModifiers.element.fields.isCareer
+                        name=(concat "system.skillModifiers." modIdx ".isCareer")
+                        value=modifier.isCareer localize=true
+                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.is-career.label")
+                        rootId=partId}}
+
+            {{formField @root.systemFields.skillModifiers.element.fields.skillType
+                        name=(concat "system.skillModifiers." modIdx ".skillType")
+                        value=modifier.skillType localize=true
+                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.skill-type.label")
+                        rootId=partId}}
+
+        </fieldset>
+
+        <fieldset>
+            <legend data-tooltip="SWES.Species-Item.skill-modifiers.requirement.hint">{{localize
+                    "SWES.Species-Item.skill-modifiers.requirement.label"}}</legend>
+
+            {{formField @root.systemFields.skillModifiers.element.fields.requirement.fields.wearingArmor
+                        value=skillModifiers.requirement.wearingArmor
+                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.requirement.wearing-armor.label")}}
+            {{formField @root.systemFields.skillModifiers.element.fields.requirement.fields.career
+                        value=skillModifiers.requirement.career
+                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.requirement.career.label")}}
+            {{formField @root.systemFields.skillModifiers.element.fields.requirement.fields.specialization
+                        value=skillModifiers.requirement.specialization
+                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.requirement.specialization.label")}}
+            {{formField @root.systemFields.skillModifiers.element.fields.requirement.fields.nonCareer
+                        value=skillModifiers.requirement.nonCareer
+                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.requirement.non-career.label")}}
+            {{formField @root.systemFields.skillModifiers.element.fields.requirement.fields.soakAtLeast
+                        value=skillModifiers.requirement.soakAtLeast
+                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.requirement.soak-at-least.label")}}
+        </fieldset>
+
+    {{/each}}
+
 </section>

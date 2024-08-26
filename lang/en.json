@@ -313,6 +313,14 @@
       }
     },
     "Species-Item": {
+      "skill-modifiers": {
+        "hint": "Skill Modifiers of the species",
+        "label": "Skill Modifiers",
+        "requirement": {
+          "label": "Requirement",
+          "hint": "Requirement of the species"
+        }
+      },
       "starting-attrs": {
         "hint": "Starting Attributes of the species",
         "label": "Starting Attributes",
@@ -330,6 +338,86 @@
         }
       },
       "FIELDS": {
+        "skill-modifiers": {
+          "key": {
+            "label": "Key",
+            "hint": "Key of the skill modifier",
+            "placeholder": "Enter the key"
+          },
+          "is-career": {
+            "label": "Is Career",
+            "hint": "Is the species a career",
+            "placeholder": "Enter the career"
+          },
+          "rank-add": {
+            "label": "Rank Add",
+            "hint": "Rank Add of the species",
+            "placeholder": "Enter the rank add"
+          },
+          "rank-limit": {
+            "label": "Rank Limit",
+            "hint": "Rank Limit of the species",
+            "placeholder": "Enter the rank limit"
+          },
+          "rank-start": {
+            "label": "Rank Start",
+            "hint": "Rank Start of the species",
+            "placeholder": "Enter the rank start"
+          },
+          "requirement": {
+            "career": {
+              "label": "Career",
+              "hint": "Career of the species",
+              "placeholder": "Enter the career"
+            },
+            "non-career": {
+              "label": "Non Career",
+              "hint": "Non Career of the species",
+              "placeholder": "Enter the non career"
+            },
+            "specialization": {
+              "label": "Specialization",
+              "hint": "Specialization of the species",
+              "placeholder": "Enter the specialization"
+            },
+            "soak-at-least": {
+              "label": "Soak At Least",
+              "hint": "Soak At Least of the species",
+              "placeholder": "Enter the soak at least"
+            },
+            "wearing-armor": {
+              "label": "Wearing Armor",
+              "hint": "Wearing Armor of the species",
+              "placeholder": "Enter the wearing armor"
+            },
+            "wielding-brawl": {
+              "label": "Wielding Brawl",
+              "hint": "Wielding Brawl of the species",
+              "placeholder": "Enter the wielding brawl"
+            },
+            "wielding-light-saber": {
+              "label": "Wielding Light Saber",
+              "hint": "Wielding Light Saber of the species",
+              "placeholder": "Enter the wielding light saber"
+            },
+            "wielding-melee": {
+              "label": "Wielding Melee",
+              "hint": "Wielding Melee of the species",
+              "placeholder": "Enter the wielding melee"
+            }
+          },
+
+          "skill-type": {
+            "label": "Skill Type",
+            "hint": "Skill Type of the skill modifier",
+            "placeholder": "Enter the skill type"
+          },
+          "sub-species-key": {
+            "label": "Sub Species Key",
+            "hint": "Sub Species Key of the skill modifier",
+            "placeholder": "Enter the sub species key"
+          }
+        },
         "starting-attrs": {
           "defense-melee": {
             "label": "Defense Melee",

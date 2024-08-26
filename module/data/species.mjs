@@ -56,10 +56,18 @@ export default class SwesSpecies extends SwesItemBaseData {
                         career: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
                         specialization: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
                         nonCareer: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
-                        soakAtLeast: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 10}),
+                        soakAtLeast: new fields.NumberField({
+                            ...(SwesItemBaseData.requiredInteger),
+                            initial: 0,
+                            min: 0,
+                            max: 10
+                        }),
                         wieldingMelee: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
                         wieldingBrawl: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
-                        wieldingLightsaber: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
+                        wieldingLightsaber: new fields.BooleanField({
+                            ...(SwesItemBaseData.optionalBoolean),
+                            initial: false
+                        }),
                     }, {
                         required: false,
                         label: "ITEM.StartingChars.Requirement.label",
@@ -104,23 +112,66 @@ export default class SwesSpecies extends SwesItemBaseData {
 
                 /* Starting Attributes Tab */
                 startingAttrs: new fields.SchemaField({
-                    woundThreshold: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 20}),
-                    strainThreshold: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 20}),
-                    defenseRanged: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
-                    defenseMelee: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
+                    woundThreshold: new fields.NumberField({
+                        ...(SwesItemBaseData.requiredInteger),
+                        initial: 0,
+                        min: 0,
+                        max: 20
+                    }),
+                    strainThreshold: new fields.NumberField({
+                        ...(SwesItemBaseData.requiredInteger),
+                        initial: 0,
+                        min: 0,
+                        max: 20
+                    }),
+                    defenseRanged: new fields.NumberField({
+                        ...(SwesItemBaseData.optionalInteger),
+                        initial: 0,
+                        min: 0,
+                        max: 10
+                    }),
+                    defenseMelee: new fields.NumberField({
+                        ...(SwesItemBaseData.optionalInteger),
+                        initial: 0,
+                        min: 0,
+                        max: 10
+                    }),
                     soakValue: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
-                    experience: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: -50, max: 150}),
-                    forceRating: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
-                    encumbranceBonus: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
+                    experience: new fields.NumberField({
+                        ...(SwesItemBaseData.requiredInteger),
+                        initial: 0,
+                        min: -50,
+                        max: 150
+                    }),
+                    forceRating: new fields.NumberField({
+                        ...(SwesItemBaseData.optionalInteger),
+                        initial: 0,
+                        min: 0,
+                        max: 10
+                    }),
+                    encumbranceBonus: new fields.NumberField({
+                        ...(SwesItemBaseData.optionalInteger),
+                        initial: 0,
+                        min: 0,
+                        max: 10
+                    }),
                     requirement: new fields.SchemaField({
                         wearingArmor: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
                         career: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
                         specialization: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
                         nonCareer: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
-                        soakAtLeast: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 10}),
+                        soakAtLeast: new fields.NumberField({
+                            ...(SwesItemBaseData.requiredInteger),
+                            initial: 0,
+                            min: 0,
+                            max: 10
+                        }),
                         wieldingMelee: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
                         wieldingBrawl: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
-                        wieldingLightsaber: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
+                        wieldingLightsaber: new fields.BooleanField({
+                            ...(SwesItemBaseData.optionalBoolean),
+                            initial: false
+                        }),
                     }, {
                         required: false,
                         label: "ITEM.StartingAttrs.Requirement.label",
@@ -167,17 +218,22 @@ export default class SwesSpecies extends SwesItemBaseData {
                 skillModifiers: new fields.SetField(new fields.SchemaField({
                         key: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
                         subSpeciesKey: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        rankStart: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                        rankAdd: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                        rankLimit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                        isCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
+                        rankStart: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 10}),
+                        rankAdd: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
+                        rankLimit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
+                        isCareer: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: ""}),
                         skillType: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
                         requirement: new fields.SchemaField({
-                            wearingArmor: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                            career: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                            specialization: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                            nonCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                            soakAtLeast: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                            wearingArmor: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
+                            career: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
+                            specialization: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
+                            nonCareer: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
+                            soakAtLeast: new fields.NumberField({
+                                ...(SwesItemBaseData.requiredInteger),
+                                initial: 0,
+                                min: 0,
+                                max: 10
+                            }),
                         }, {
                             required: false,
                             label: "ITEM.SkillModifiers.Requirement.label",
