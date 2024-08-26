@@ -216,10 +216,10 @@ export function speciesMapper(species) {
                         rankAdd: OggDudeImporter.mapOptionalNumber(talentModifier?.RankAdd),
                         rankLimit: OggDudeImporter.mapOptionalNumber(talentModifier?.RankLimit),
                         requirement: {
-                            wearingArmor: OggDudeImporter.mapOptionalString(talentModifier?.Requirement?.WearingArmor),
-                            career: OggDudeImporter.mapOptionalString(talentModifier?.Requirement?.Career),
-                            specialization: OggDudeImporter.mapOptionalString(talentModifier?.Requirement?.Specialization),
-                            nonCareer: OggDudeImporter.mapOptionalString(talentModifier?.Requirement?.NonCareer),
+                            wearingArmor: OggDudeImporter.mapOptionalBoolean(talentModifier?.Requirement?.WearingArmor),
+                            career: OggDudeImporter.mapOptionalBoolean(talentModifier?.Requirement?.Career),
+                            specialization: OggDudeImporter.mapOptionalBoolean(talentModifier?.Requirement?.Specialization),
+                            nonCareer: OggDudeImporter.mapOptionalBoolean(talentModifier?.Requirement?.NonCareer),
                             soakAtLeast: OggDudeImporter.mapOptionalNumber(talentModifier?.Requirement?.SoakAtLeast)
                         }
                     }

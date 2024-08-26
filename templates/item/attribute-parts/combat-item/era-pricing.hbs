@@ -12,6 +12,7 @@
                 "SWES.Combat-Item.FIELDS.era-pricing.label"}}</legend>
 
         {{#each system.eraPricing as |eraPrice idx|}}
+
             {{formField @root.systemFields.eraPricing.element.fields.name
                         name=(concat "system.eraPricing." idx ".name")
                         value=eraPrice.name localize=true

@@ -6,8 +6,6 @@
 >
     <h3>Skill Modifiers</h3>
 
-    {{log "Skill Modifiers Tab" this}}
-
     {{#each system.skillModifiers as |modifier modIdx|}}
         <fieldset>
             <legend data-tooltip="SWES.Species-Item.skill-modifiers.hint">{{localize
@@ -86,27 +84,32 @@
                         label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.skill-type.label")
                         rootId=partId}}
 
-        </fieldset>
+            <fieldset>
+                <legend data-tooltip="SWES.Species-Item.skill-modifiers.requirement.hint">{{localize
+                        "SWES.Species-Item.skill-modifiers.requirement.label"}}</legend>
 
-        <fieldset>
-            <legend data-tooltip="SWES.Species-Item.skill-modifiers.requirement.hint">{{localize
-                    "SWES.Species-Item.skill-modifiers.requirement.label"}}</legend>
-
-            {{formField @root.systemFields.skillModifiers.element.fields.requirement.fields.wearingArmor
-                        value=skillModifiers.requirement.wearingArmor
-                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.requirement.wearing-armor.label")}}
-            {{formField @root.systemFields.skillModifiers.element.fields.requirement.fields.career
-                        value=skillModifiers.requirement.career
-                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.requirement.career.label")}}
-            {{formField @root.systemFields.skillModifiers.element.fields.requirement.fields.specialization
-                        value=skillModifiers.requirement.specialization
-                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.requirement.specialization.label")}}
-            {{formField @root.systemFields.skillModifiers.element.fields.requirement.fields.nonCareer
-                        value=skillModifiers.requirement.nonCareer
-                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.requirement.non-career.label")}}
-            {{formField @root.systemFields.skillModifiers.element.fields.requirement.fields.soakAtLeast
-                        value=skillModifiers.requirement.soakAtLeast
-                        label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.requirement.soak-at-least.label")}}
+                {{formField @root.systemFields.skillModifiers.element.fields.requirement.fields.wearingArmor
+                            value=modifier.requirement.wearingArmor  localize=true
+                            name=(concat "system.skillModifiers." modIdx ".requirement.wearingArmor")
+                            label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.requirement.wearing-armor.label")
+                            rootId=partId}}
+                {{formField @root.systemFields.skillModifiers.element.fields.requirement.fields.career
+                            value=modifier.requirement.career
+                            name=(concat "system.skillModifiers." modIdx ".requirement.career")
+                            label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.requirement.career.label")}}
+                {{formField @root.systemFields.skillModifiers.element.fields.requirement.fields.specialization
+                            value=modifier.requirement.specialization
+                            name=(concat "system.skillModifiers." modIdx ".requirement.specialization")
+                            label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.requirement.specialization.label")}}
+                {{formField @root.systemFields.skillModifiers.element.fields.requirement.fields.nonCareer
+                            value=modifier.requirement.nonCareer
+                            name=(concat "system.skillModifiers." modIdx ".requirement.nonCareer")
+                            label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.requirement.non-career.label")}}
+                {{formField @root.systemFields.skillModifiers.element.fields.requirement.fields.soakAtLeast
+                            value=modifier.requirement.soakAtLeast
+                            name=(concat "system.skillModifiers." modIdx ".requirement.soakAtLeast")
+                            label=(localize "SWES.Species-Item.FIELDS.skill-modifiers.requirement.soak-at-least.label")}}
+            </fieldset>
         </fieldset>
 
     {{/each}}

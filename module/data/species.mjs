@@ -285,15 +285,15 @@ export default class SwesSpecies extends SwesItemBaseData {
                 talentModifiers: new fields.SetField(new fields.SchemaField({
                         key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
                         subSpeciesKey: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        rankStart: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                        rankAdd: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                        rankLimit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
+                        rankStart: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
+                        rankAdd: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
+                        rankLimit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
                         requirement: new fields.SchemaField({
-                            wearingArmor: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                            career: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                            specialization: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                            nonCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                            soakAtLeast: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
+                            wearingArmor: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: ""}),
+                            career: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: ""}),
+                            specialization: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: ""}),
+                            nonCareer: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: ""}),
+                            soakAtLeast: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 10}),
                         }, {
                             required: false,
                             label: "ITEM.TalentModifiers.Requirement.label",
