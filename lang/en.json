@@ -313,6 +313,22 @@
       }
     },
     "Species-Item": {
+      "option-choices": {
+        "hint": "Option Choices of the species",
+        "label": "Option Choices",
+        "options": {
+          "hint": "Options of the Option Choices of the species",
+          "label": "Options",
+          "starting-skill-training": {
+            "hint": "Starting Skill Training of the Options of the Option Choices of the species",
+            "label": "Starting Skill Training",
+            "requirement": {
+              "hint": "Requirement of the starting skill training",
+              "label": "Requirement"
+            }
+          }
+        }
+      },
       "skill-modifiers": {
         "hint": "Skill Modifiers of the species",
         "label": "Skill Modifiers",
@@ -378,6 +394,101 @@
         }
       },
       "FIELDS": {
+        "option-choices": {
+          "key": {
+            "label": "Key",
+            "hint": "Key of the option choices",
+            "placeholder": "Enter the key"
+          },
+          "name": {
+            "label": "Name",
+            "hint": "Name of the option choices",
+            "placeholder": "Enter the name"
+          },
+          "description": {
+            "label": "Description",
+            "hint": "Description of the option choices",
+            "placeholder": "Enter the description"
+          },
+          "source": {
+            "label": "Source",
+            "hint": "Source of the option choices",
+            "placeholder": "Enter the source"
+          },
+          "sources": {
+            "label": "Sources",
+            "hint": "Sources of the option choices",
+            "placeholder": "Enter the sources"
+          },
+          "custom": {
+            "label": "Custom",
+            "hint": "Custom of the option choices",
+            "placeholder": "Enter the custom"
+          },
+          "FIELDS": {
+            "options": {
+              "key": {
+                "label": "Key",
+                "hint": "Key of the option choices",
+                "placeholder": "Enter the key"
+              },
+              "name": {
+                "label": "Name",
+                "hint": "Name of the option choices",
+                "placeholder": "Enter the name"
+              },
+              "description": {
+                "label": "Description",
+                "hint": "Description of the option choices",
+                "placeholder": "Enter the description"
+              },
+              "FIELDS": {
+                "starting-skill-training": {
+                  "FIELDS": {
+                    "skill-training": {
+                      "skill-count": {
+                        "label": "Skill Count",
+                        "hint": "Skill Count of the starting skill training",
+                        "placeholder": "Enter the skill count"
+                      },
+                      "FIELDS": {
+                        "requirement": {
+                          "FIELDS": {
+                            "career": {
+                              "label": "Career",
+                              "hint": "Career of the starting skill training",
+                              "placeholder": "Enter the career"
+                            },
+                            "specialization": {
+                              "label": "Specialization",
+                              "hint": "Specialization of the starting skill training",
+                              "placeholder": "Enter the specialization"
+                            },
+                            "from-skill-type": {
+                              "label": "From Skill Type",
+                              "hint": "From Skill Type of the starting skill training",
+                              "placeholder": "Enter the from skill type"
+                            },
+                            "skill-type": {
+                              "label": "Skill Type",
+                              "hint": "Skill Type of the starting skill training",
+                              "placeholder": "Enter the skill type"
+                            },
+                            "non-career": {
+                              "label": "Non Career",
+                              "hint": "Non Career of the starting skill training",
+                              "placeholder": "Enter the non career"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "skill-modifiers": {
           "key": {
             "label": "Key",

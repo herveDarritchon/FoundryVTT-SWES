@@ -198,37 +198,42 @@
 
                         <fieldset>
                             <legend data-tooltip="SWES.Species-Item.option-choices.options.skillModifiers.hint">{{localize
-                                    "SWES.Species-Item.option-choices.option.skillModifiers.label"}}</legend>
+                                    "SWES.Species-Item.option-choices.options.skillModifiers.label"}}</legend>
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.skillModifiers.element.fields.key
-                                        name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".skillModifiers." skillModifierIdx ".key")
-                                        value=skillModifier.key localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.skill-modifiers.FIELDS.key.label")
-                                        rootId=partId}}
+                            {{formField
+                                    @root.systemFields.optionChoices.element.fields.options.element.fields.skillModifiers.element.fields.key
+                                    name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".skillModifiers." skillModifierIdx ".key")
+                                    value=skillModifier.key localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.skill-modifiers.FIELDS.key.label")
+                                    rootId=partId}}
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.skillModifiers.element.fields.rankAdd
-                                        name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".skillModifiers." skillModifierIdx ".rankAdd")
-                                        value=skillModifier.rankAdd localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.skill-modifiers.FIELDS.rankAdd.label")
-                                        rootId=partId}}
+                            {{formField
+                                    @root.systemFields.optionChoices.element.fields.options.element.fields.skillModifiers.element.fields.rankAdd
+                                    name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".skillModifiers." skillModifierIdx ".rankAdd")
+                                    value=skillModifier.rankAdd localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.skill-modifiers.FIELDS.rankAdd.label")
+                                    rootId=partId}}
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.skillModifiers.element.fields.rankStart
-                                        name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".skillModifiers." skillModifierIdx ".rankStart")
-                                        value=skillModifier.rankStart localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.skill-modifiers.FIELDS.rankStart.label")
-                                        rootId=partId}}
+                            {{formField
+                                    @root.systemFields.optionChoices.element.fields.options.element.fields.skillModifiers.element.fields.rankStart
+                                    name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".skillModifiers." skillModifierIdx ".rankStart")
+                                    value=skillModifier.rankStart localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.skill-modifiers.FIELDS.rankStart.label")
+                                    rootId=partId}}
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.skillModifiers.element.fields.rankLimit
-                                        name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".skillModifiers." skillModifierIdx ".rankLimit")
-                                        value=skillModifier.rankLimit localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.skill-modifiers.FIELDS.rankLimit.label")
-                                        rootId=partId}}
+                            {{formField
+                                    @root.systemFields.optionChoices.element.fields.options.element.fields.skillModifiers.element.fields.rankLimit
+                                    name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".skillModifiers." skillModifierIdx ".rankLimit")
+                                    value=skillModifier.rankLimit localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.skill-modifiers.FIELDS.rankLimit.label")
+                                    rootId=partId}}
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.skillModifiers.element.fields.isCareer
-                                        name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".skillModifiers." skillModifierIdx ".isCareer")
-                                        value=skillModifier.isCareer localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.skill-modifiers.FIELDS.isCareer.label")
-                                        rootId=partId}}
+                            {{formField
+                                    @root.systemFields.optionChoices.element.fields.options.element.fields.skillModifiers.element.fields.isCareer
+                                    name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".skillModifiers." skillModifierIdx ".isCareer")
+                                    value=skillModifier.isCareer localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.skill-modifiers.FIELDS.isCareer.label")
+                                    rootId=partId}}
 
                         </fieldset>
 
@@ -238,31 +243,35 @@
 
                         <fieldset>
                             <legend data-tooltip="SWES.Species-Item.option-choices.options.dieModifiers.hint">{{localize
-                                    "SWES.Species-Item.option-choices.option.dieModifiers.label"}}</legend>
+                                    "SWES.Species-Item.option-choices.options.dieModifiers.label"}}</legend>
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.dieModifiers.element.fields.dieModifier.fields.skillKey
-                                        name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".dieModifiers." dieModifierIdx ".dieModifier.skillKey")
-                                        value=dm.dieModifier.skillKey localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.die-modifiers.FIELDS.dieModifier.skillKey.label")
-                                        rootId=partId}}
+                            {{formField
+                                    @root.systemFields.optionChoices.element.fields.options.element.fields.dieModifiers.element.fields.dieModifier.fields.skillKey
+                                    name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".dieModifiers." dieModifierIdx ".dieModifier.skillKey")
+                                    value=dm.dieModifier.skillKey localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.die-modifiers.FIELDS.dieModifier.skillKey.label")
+                                    rootId=partId}}
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.dieModifiers.element.fields.dieModifier.fields.advantageCount
-                                        name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".dieModifiers." dieModifierIdx ".dieModifier.advantageCount")
-                                        value=dm.dieModifier.advantageCount localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.die-modifiers.FIELDS.dieModifier.advantageCount.label")
-                                        rootId=partId}}
+                            {{formField
+                                    @root.systemFields.optionChoices.element.fields.options.element.fields.dieModifiers.element.fields.dieModifier.fields.advantageCount
+                                    name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".dieModifiers." dieModifierIdx ".dieModifier.advantageCount")
+                                    value=dm.dieModifier.advantageCount localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.die-modifiers.FIELDS.dieModifier.advantageCount.label")
+                                    rootId=partId}}
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.dieModifiers.element.fields.dieModifier.fields.setbackCount
-                                        name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".dieModifiers." dieModifierIdx ".dieModifier.setbackCount")
-                                        value=dm.dieModifier.setbackCount localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.die-modifiers.FIELDS.dieModifier.setbackCount.label")
-                                        rootId=partId}}
+                            {{formField
+                                    @root.systemFields.optionChoices.element.fields.options.element.fields.dieModifiers.element.fields.dieModifier.fields.setbackCount
+                                    name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".dieModifiers." dieModifierIdx ".dieModifier.setbackCount")
+                                    value=dm.dieModifier.setbackCount localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.die-modifiers.FIELDS.dieModifier.setbackCount.label")
+                                    rootId=partId}}
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.dieModifiers.element.fields.dieModifier.fields.successCount
-                                        name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".dieModifiers." dieModifierIdx ".dieModifier.successCount")
-                                        value=dm.dieModifier.successCount localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.die-modifiers.FIELDS.dieModifier.successCount.label")
-                                        rootId=partId}}
+                            {{formField
+                                    @root.systemFields.optionChoices.element.fields.options.element.fields.dieModifiers.element.fields.dieModifier.fields.successCount
+                                    name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".dieModifiers." dieModifierIdx ".dieModifier.successCount")
+                                    value=dm.dieModifier.successCount localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.die-modifiers.FIELDS.dieModifier.successCount.label")
+                                    rootId=partId}}
 
                         </fieldset>
 
@@ -271,44 +280,55 @@
                     {{#each option.startingSkillTraining as |sst sstIdx|}}
 
                         <fieldset>
-                            <legend data-tooltip="SWES.Species-Item.option-choices.options.startingSkillTraining.hint">{{localize
-                                    "SWES.Species-Item.option-choices.option.startingSkillTraining.label"}}</legend>
+                            <legend data-tooltip="SWES.Species-Item.option-choices.options.starting-skill-training.hint">{{localize
+                                    "SWES.Species-Item.option-choices.options.starting-skill-training.label"}}</legend>
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.startingSkillTraining.element.fields.skillTraining.fields.skillCount
-                                        name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".startingSkillTraining." sstIdx ".skillTraining.skillCount")
-                                        value=sst.skillTraining.skillCount localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.die-modifiers.FIELDS.skillTraining.FIELDS.skillCount.label")
-                                        rootId=partId}}
+                            {{formField
+                                    @root.systemFields.optionChoices.element.fields.options.element.fields.startingSkillTraining.element.fields.skillTraining.fields.skillCount
+                                    name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".startingSkillTraining." sstIdx ".skillTraining.skillCount")
+                                    value=sst.skillTraining.skillCount localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.starting-skill-training.FIELDS.skill-training.skill-count.label")
+                                    rootId=partId}}
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.startingSkillTraining.element.fields.skillTraining.fields.requirement.fields.career
+                            <fieldset>
+                                <legend data-tooltip="SWES.Species-Item.option-choices.options.starting-skill-training.requirement.hint">{{localize
+                                        "SWES.Species-Item.option-choices.options.starting-skill-training.requirement.label"}}</legend>
+
+                                {{formField
+                                        @root.systemFields.optionChoices.element.fields.options.element.fields.startingSkillTraining.element.fields.skillTraining.fields.requirement.fields.career
                                         name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".startingSkillTraining." sstIdx ".skillTraining.requirement.career")
                                         value=sst.skillTraining.requirement.career localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.die-modifiers.FIELDS.skillTraining.requirement.FIELDS.career.label")
+                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.starting-skill-training.FIELDS.skill-training.FIELDS.requirement.FIELDS.career.label")
                                         rootId=partId}}
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.startingSkillTraining.element.fields.skillTraining.fields.requirement.fields.specialization
+                                {{formField
+                                        @root.systemFields.optionChoices.element.fields.options.element.fields.startingSkillTraining.element.fields.skillTraining.fields.requirement.fields.specialization
                                         name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".startingSkillTraining." sstIdx ".skillTraining.requirement.specialization")
                                         value=sst.skillTraining.requirement.specialization localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.die-modifiers.FIELDS.skillTraining.requirement.FIELDS.specialization.label")
+                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.starting-skill-training.FIELDS.skill-training.FIELDS.requirement.FIELDS.specialization.label")
                                         rootId=partId}}
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.startingSkillTraining.element.fields.skillTraining.fields.requirement.fields.fromSkillType
+                                {{formField
+                                        @root.systemFields.optionChoices.element.fields.options.element.fields.startingSkillTraining.element.fields.skillTraining.fields.requirement.fields.fromSkillType
                                         name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".startingSkillTraining." sstIdx ".skillTraining.requirement.fromSkillType")
                                         value=sst.skillTraining.requirement.fromSkillType localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.die-modifiers.FIELDS.skillTraining.requirement.FIELDS.fromSkillType.label")
+                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.starting-skill-training.FIELDS.skill-training.FIELDS.requirement.FIELDS.from-skill-type.label")
                                         rootId=partId}}
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.startingSkillTraining.element.fields.skillTraining.fields.requirement.fields.skillType
+                                {{formField
+                                        @root.systemFields.optionChoices.element.fields.options.element.fields.startingSkillTraining.element.fields.skillTraining.fields.requirement.fields.skillType
                                         name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".startingSkillTraining." sstIdx ".skillTraining.requirement.skillType")
                                         value=sst.skillTraining.requirement.skillType localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.die-modifiers.FIELDS.skillTraining.requirement.FIELDS.skillType.label")
+                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.starting-skill-training.FIELDS.skill-training.FIELDS.requirement.FIELDS.skill-type.label")
                                         rootId=partId}}
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.startingSkillTraining.element.fields.skillTraining.fields.requirement.fields.nonCareer
+                                {{formField
+                                        @root.systemFields.optionChoices.element.fields.options.element.fields.startingSkillTraining.element.fields.skillTraining.fields.requirement.fields.nonCareer
                                         name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".startingSkillTraining." sstIdx ".skillTraining.requirement.nonCareer")
                                         value=sst.skillTraining.requirement.nonCareer localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.die-modifiers.FIELDS.skillTraining.requirement.FIELDS.nonCareer.label")
+                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.starting-skill-training.FIELDS.skill-training.FIELDS.requirement.FIELDS.non-career.label")
                                         rootId=partId}}
+                            </fieldset>
 
                         </fieldset>
 
@@ -318,13 +338,14 @@
 
                         <fieldset>
                             <legend data-tooltip="SWES.Species-Item.option-choices.options.startingAttributes.hint">{{localize
-                                    "SWES.Species-Item.option-choices.option.startingAttributes.label"}}</legend>
+                                    "SWES.Species-Item.option-choices.options.startingAttributes.label"}}</legend>
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.startingAttributes.element.fields.experiene
-                                        name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".startingAttributes." dieModifierIdx ".experience")
-                                        value=startingAttribute.experience localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.starting-attributes.FIELDS.experience.label")
-                                        rootId=partId}}
+                            {{formField
+                                    @root.systemFields.optionChoices.element.fields.options.element.fields.startingAttributes.element.fields.experiene
+                                    name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".startingAttributes." dieModifierIdx ".experience")
+                                    value=startingAttribute.experience localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.starting-attributes.FIELDS.experience.label")
+                                    rootId=partId}}
 
                         </fieldset>
 
@@ -334,31 +355,35 @@
 
                         <fieldset>
                             <legend data-tooltip="SWES.Species-Item.option-choices.options.talentModifiers.hint">{{localize
-                                    "SWES.Species-Item.option-choices.option.talentModifiers.label"}}</legend>
+                                    "SWES.Species-Item.option-choices.options.talentModifiers.label"}}</legend>
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.talentModifiers.element.fields.key
-                                        name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".talentModifiers." talentModifierIdx ".key")
-                                        value=talentModifier.key localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.talent-modifiers.FIELDS.key.label")
-                                        rootId=partId}}
+                            {{formField
+                                    @root.systemFields.optionChoices.element.fields.options.element.fields.talentModifiers.element.fields.key
+                                    name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".talentModifiers." talentModifierIdx ".key")
+                                    value=talentModifier.key localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.talent-modifiers.FIELDS.key.label")
+                                    rootId=partId}}
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.talentModifiers.element.fields.rankStart
-                                        name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".talentModifiers." talentModifierIdx ".rankStart")
-                                        value=talentModifier.rankStart localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.talent-modifiers.FIELDS.rankStart.label")
-                                        rootId=partId}}
+                            {{formField
+                                    @root.systemFields.optionChoices.element.fields.options.element.fields.talentModifiers.element.fields.rankStart
+                                    name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".talentModifiers." talentModifierIdx ".rankStart")
+                                    value=talentModifier.rankStart localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.talent-modifiers.FIELDS.rankStart.label")
+                                    rootId=partId}}
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.talentModifiers.element.fields.rankAdd
-                                        name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".talentModifiers." talentModifierIdx ".rankAdd")
-                                        value=talentModifier.rankAdd localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.talent-modifiers.FIELDS.rankAdd.label")
-                                        rootId=partId}}
+                            {{formField
+                                    @root.systemFields.optionChoices.element.fields.options.element.fields.talentModifiers.element.fields.rankAdd
+                                    name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".talentModifiers." talentModifierIdx ".rankAdd")
+                                    value=talentModifier.rankAdd localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.talent-modifiers.FIELDS.rankAdd.label")
+                                    rootId=partId}}
 
-                            {{formField @root.systemFields.optionChoices.element.fields.options.element.fields.talentModifiers.element.fields.rankLimit
-                                        name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".talentModifiers." talentModifierIdx ".rankLimit")
-                                        value=talentModifier.rankLimit localize=true
-                                        label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.option.FIELDS.talent-modifiers.FIELDS.rankLimit.label")
-                                        rootId=partId}}
+                            {{formField
+                                    @root.systemFields.optionChoices.element.fields.options.element.fields.talentModifiers.element.fields.rankLimit
+                                    name=(concat "system.optionChoices." optionChoiceIdx ".options." optionIdx ".talentModifiers." talentModifierIdx ".rankLimit")
+                                    value=talentModifier.rankLimit localize=true
+                                    label=(localize "SWES.Species-Item.FIELDS.option-choices.FIELDS.options.FIELDS.talent-modifiers.FIELDS.rankLimit.label")
+                                    rootId=partId}}
 
                         </fieldset>
 
