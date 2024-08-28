@@ -17,32 +17,6 @@ export function speciesMapper(species) {
 
             description: OggDudeImporter.mapMandatoryString("species.Description", xmlSpecies?.Description),
 
-            /*
-            startingChars: new fields.SchemaField({
-                brawn: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                agility: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                intellect: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                cunning: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                willpower: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                presence: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                requirement: new fields.SchemaField({
-                    wearingArmor: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                    career: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                    specialization: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                    nonCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                    soakAtLeast: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    wieldingMelee: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                    wieldingBrawl: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                    wieldingLightsaber: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                }, {
-                    required: false,
-                    label: "ITEM.StartingChars.Requirement.label",
-                    hint: "ITEM.StartingChars.Requirement.hint"
-                })
-            }, {
-                required: true, label: "ITEM.StartingChars.label", hint: "ITEM.StartingChars.hint"
-            }),
-            */
             startingChars: {
                 brawn: OggDudeImporter.mapMandatoryNumber("species.StartingChars.Brawn", xmlSpecies?.StartingChars?.Brawn),
                 agility: OggDudeImporter.mapMandatoryNumber("species.StartingChars.Agility", xmlSpecies?.StartingChars?.Agility),
@@ -63,35 +37,6 @@ export function speciesMapper(species) {
             },
 
             /* Starting Attributes Tab */
-
-            /*
-                            startingAttrs: new fields.SchemaField({
-                    woundThreshold: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    strainThreshold: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    defenseRanged: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    defenseMelee: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    soakValue: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    experience: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    forceRating: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    encumbranceBonus: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    requirement: new fields.SchemaField({
-                        wearingArmor: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        career: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        specialization: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        nonCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        soakAtLeast: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                        wieldingMelee: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        wieldingBrawl: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        wieldingLightsaber: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                    }, {
-                        required: false,
-                        label: "ITEM.StartingAttrs.Requirement.label",
-                        hint: "ITEM.StartingAttrs.Requirement.hint"
-                    })
-                }, {
-                    required: true, label: "ITEM.StartingAttrs.label", hint: "ITEM.StartingAttrs.hint"
-                })
-             */
 
             startingAttrs: {
                 woundThreshold: OggDudeImporter.mapMandatoryNumber("species.StartingAttrs.WoundThreshold", xmlSpecies?.StartingAttrs?.WoundThreshold),
@@ -123,37 +68,6 @@ export function speciesMapper(species) {
 
             /* Skill Modifiers Tab */
 
-            /*
-            skillModifiers: new fields.SetField(new fields.SchemaField({
-                    key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                    subSpeciesKey: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                    rankStart: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    rankAdd: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    rankLimit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    isCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                    skillType: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                    requirement: new fields.SchemaField({
-                        wearingArmor: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        career: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        specialization: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        nonCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        soakAtLeast: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    }, {
-                        required: false,
-                        label: "ITEM.SkillModifiers.Requirement.label",
-                        hint: "ITEM.SkillModifiers.Requirement.hint"
-                    })
-                }, {
-                    required: false, initial: [], label: "ITEM.SkillModifiers.label", hint: "ITEM.SkillModifiers.hint"
-                }),
-                {
-                    required: false,
-                    initial: [],
-                    label: "SWES.Combat-Item.FIELDS.Categories.label",
-                    hint: "SWES.Combat-Item.FIELDS.Categories.hint"
-                }),
-             */
-
             skillModifiers: OggDudeImporter.mapOptionalArray(
                 xmlSpecies?.SkillModifiers?.SkillModifier,
                 (skillModifier) => {
@@ -177,35 +91,6 @@ export function speciesMapper(species) {
 
             /* Talent Modifiers Tab */
 
-            /*
-            talentModifiers: new fields.SetField(new fields.SchemaField({
-                    key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                    subSpeciesKey: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                    rankStart: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    rankAdd: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    rankLimit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    requirement: new fields.SchemaField({
-                        wearingArmor: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        career: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        specialization: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        nonCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        soakAtLeast: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    }, {
-                        required: false,
-                        label: "ITEM.TalentModifiers.Requirement.label",
-                        hint: "ITEM.TalentModifiers.Requirement.hint"
-                    })
-                }, {
-                    required: false, initial: [], label: "ITEM.TalentModifiers.label", hint: "ITEM.TalentModifiers.hint"
-                }),
-                {
-                    required: false,
-                    initial: [],
-                    label: "SWES.Combat-Item.FIELDS.Categories.label",
-                    hint: "SWES.Combat-Item.FIELDS.Categories.hint"
-                }),
-             */
-
             talentModifiers: OggDudeImporter.mapOptionalArray(
                 xmlSpecies?.TalentModifiers?.TalentModifier,
                 (talentModifier) => {
@@ -226,91 +111,6 @@ export function speciesMapper(species) {
                 }),
 
             /* SubSpecies List Tab */
-
-            /*
-            subSpeciesList: new fields.SetField(new fields.SchemaField({
-                key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                name: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                description: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                skillModifiers: new fields.SetField(new fields.SchemaField({
-                    key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                    rankStart: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    rankLimit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                }, {required: false}), {
-                    required: false,
-                    initial: [],
-                    label: "ITEM.SubSpeciesList.SkillModifiers.label",
-                    hint: "ITEM.SubSpeciesList.SkillModifiers.hint"
-                }),
-                talentModifiers: new fields.SetField(new fields.SchemaField({
-                    key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                    rankAdd: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                }, {required: false}), {
-                    required: false,
-                    initial: [],
-                    label: "ITEM.SubSpeciesList.TalentModifiers.label",
-                    hint: "ITEM.SubSpeciesList.TalentModifiers.hint"
-                }),
-                optionChoices: new fields.SetField(new fields.SchemaField({
-                    key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                    name: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                    options: new fields.SetField(new fields.SchemaField({
-                        key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                        name: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                        description: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                        skillModifiers: new fields.SetField(new fields.SchemaField({
-                            key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                            rankStart: new fields.NumberField({
-                                ...(SwesItemBaseData.requiredInteger),
-                                initial: 0,
-                                min: 0
-                            }),
-                        }, {required: false}), {
-                            required: false,
-                            initial: [],
-                            label: "ITEM.SubSpeciesList.OptionChoices.SkillModifiers.label",
-                            hint: "ITEM.SubSpeciesList.OptionChoices.SkillModifiers.hint"
-                        }),
-                    }, {required: false}), {
-                        required: false,
-                        initial: [],
-                        label: "ITEM.SubSpeciesList.OptionChoices.Options.label",
-                        hint: "ITEM.SubSpeciesList.OptionChoices.Options.hint"
-                    }),
-                }, {required: false}), {
-                    required: false,
-                    initial: [],
-                    label: "ITEM.SubSpeciesList.OptionChoices.label",
-                    hint: "ITEM.SubSpeciesList.OptionChoices.hint"
-                }),
-                weaponModifiers: new fields.SetField(new fields.SchemaField({
-                    unarmed: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean)}),
-                    unarmedName: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                    skillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                    allSkillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                    damage: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    damageAdd: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    crit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    critSub: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    rangeValue: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    qualities: new fields.SetField(new fields.SchemaField({
-                        key: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                        count: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 100})
-                    }, {required: false}), {required: true, initial: []}),
-                }, {required: false}), {
-                    required: false,
-                    initial: [],
-                    label: "ITEM.WeaponModifiers.label",
-                    hint: "ITEM.WeaponModifiers.hint"
-                }),
-            }), {
-                required: false,
-                initial: [],
-                label: "ITEM.SubSpeciesList.label",
-                hint: "ITEM.SubSpeciesList.hint"
-            }),
-
-            */
 
             subSpeciesList: OggDudeImporter.mapOptionalArray(
                 xmlSpecies?.SubSpeciesList?.SubSpecies,
@@ -391,126 +191,6 @@ export function speciesMapper(species) {
 
             /* Option Choices Tab */
 
-            /*
-            optionChoices: new fields.SetField(new fields.SchemaField({
-                        key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                        name: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                        description: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        source: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        sources: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        custom: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        options: new fields.SetField(new fields.SchemaField({
-                            key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                            name: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                            description: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                            skillModifiers: new fields.SetField(new fields.SchemaField({
-                                key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                                rankAdd: new fields.NumberField({
-                                    ...(SwesItemBaseData.requiredInteger),
-                                    initial: 0,
-                                    min: 0
-                                }),
-                                rankStart: new fields.NumberField({
-                                    ...(SwesItemBaseData.requiredInteger),
-                                    initial: 0,
-                                    min: 0
-                                }),
-                                rankLimit: new fields.NumberField({
-                                    ...(SwesItemBaseData.requiredInteger),
-                                    initial: 0,
-                                    min: 0
-                                }),
-                                isCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                            }, {required: false}), {
-                                required: false,
-                                initial: [],
-                                label: "ITEM.OptionChoices.Options.SkillModifiers.label",
-                                hint: "ITEM.OptionChoices.Options.SkillModifiers.hint"
-                            }),
-                            dieModifiers: new fields.SetField(new fields.SchemaField({
-                                dieModifier: new fields.SchemaField({
-                                    skillKey: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                                    advantageCount: new fields.NumberField({
-                                        ...(SwesItemBaseData.optionalInteger),
-                                        initial: 0,
-                                        min: 0
-                                    }),
-                                    setbackCount: new fields.NumberField({
-                                        ...(SwesItemBaseData.optionalInteger), initial: 0, min: 0
-                                    }),
-                                    successCount: new fields.NumberField({
-                                        ...(SwesItemBaseData.optionalInteger), initial: 0, min: 0
-                                    }),
-                                }, {required: false}),
-                            }, {required: false}), {
-                                required: false,
-                                initial: [],
-                                label: "ITEM.OptionChoices.Options.DieModifiers.label",
-                                hint: "ITEM.OptionChoices.Options.DieModifiers.hint"
-                            }),
-                            startingSkillTraining: new fields.SetField(new fields.SchemaField({
-                                skillTraining: new fields.SchemaField({
-                                    skillCount: new fields.NumberField({
-                                        ...(SwesItemBaseData.requiredInteger),
-                                        initial: 0,
-                                        min: 0
-                                    }),
-                                    requirement: new fields.SchemaField({
-                                        career: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                                        specialization: new fields.StringField({
-                                            ...(SwesItemBaseData.optionalString),
-                                            initial: ""
-                                        }),
-                                        fromSkillType: new fields.StringField({
-                                            ...(SwesItemBaseData.optionalString),
-                                            initial: ""
-                                        }),
-                                        skillType: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                                        nonCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                                    }, {required: false}),
-                                }, {required: false}),
-                            }, {required: false}), {
-                                required: false,
-                                initial: [],
-                                label: "ITEM.OptionChoices.Options.StartingSkillTraining.label",
-                                hint: "ITEM.OptionChoices.Options.StartingSkillTraining.hint"
-                            }),
-                            startingAttributes: new fields.SetField(new fields.SchemaField({
-                                experience: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                            }, {required: false}), {
-                                required: false,
-                                initial: [],
-                                label: "ITEM.OptionChoices.Options.StartingAttributes.label",
-                                hint: "ITEM.OptionChoices.Options.StartingAttributes.hint"
-                            }),
-                            talentModifiers: new fields.SetField(new fields.SchemaField({
-                                key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                                rankStart: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                                rankAdd: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                                rankLimit: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                            }, {required: false}), {
-                                required: false,
-                                initial: [],
-                                label: "ITEM.OptionChoices.Options.TalentModifiers.label",
-                                hint: "ITEM.OptionChoices.Options.TalentModifiers.hint"
-                            }),
-                        }, {required: false}), {
-                            required: false,
-                            initial: [],
-                            label: "ITEM.OptionChoices.Options.label",
-                            hint: "ITEM.OptionChoices.Options.hint"
-                        }),
-                    }, {
-                        required: false
-                    }),
-                    {
-                        required: false,
-                        initial: [],
-                        label: "ITEM.OptionChoices.label",
-                        hint: "ITEM.OptionChoices.hint"
-                    })
-             */
-
             optionChoices: OggDudeImporter.mapOptionalArray(
                 xmlSpecies?.OptionChoices?.OptionChoice,
                 (optionChoice) => {
@@ -555,11 +235,11 @@ export function speciesMapper(species) {
                                             return {
                                                 skillCount: OggDudeImporter.mapMandatoryNumber("species.SubSpeciesList.SubSpecies.OptionChoices.OptionChoice.Options.Option.StartingSkillTraining.SkillTraining.SkillCount", skillTraining.SkillCount),
                                                 requirement: {
-                                                    career: OggDudeImporter.mapOptionalString(skillTraining?.Requirement?.Career),
-                                                    specialization: OggDudeImporter.mapOptionalString(skillTraining?.Requirement?.Specialization),
-                                                    fromSkillType: OggDudeImporter.mapOptionalString(skillTraining?.Requirement?.FromSkillType),
-                                                    skillType: OggDudeImporter.mapOptionalString(skillTraining?.Requirement?.SkillType),
-                                                    nonCareer: OggDudeImporter.mapOptionalString(skillTraining?.Requirement?.NonCareer)
+                                                    career: OggDudeImporter.mapOptionalBoolean(skillTraining?.Requirement?.Career),
+                                                    specialization: OggDudeImporter.mapOptionalBoolean(skillTraining?.Requirement?.Specialization),
+                                                    fromSkillType: OggDudeImporter.mapOptionalBoolean(skillTraining?.Requirement?.FromSkillType),
+                                                    skillType: OggDudeImporter.mapOptionalBoolean(skillTraining?.Requirement?.SkillType),
+                                                    nonCareer: OggDudeImporter.mapOptionalBoolean(skillTraining?.Requirement?.NonCareer)
                                                 }
                                             }
                                         }),

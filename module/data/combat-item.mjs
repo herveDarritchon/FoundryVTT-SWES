@@ -1,4 +1,5 @@
 import SwesItemBaseData from "./item-base.mjs";
+import {buildWeaponModifiersSchemaWithExtraSchema} from "../helpers/data/schema.mjs";
 
 export default class SwesCombatItemData extends SwesItemBaseData {
 
@@ -11,7 +12,7 @@ export default class SwesCombatItemData extends SwesItemBaseData {
 
             /* Detail Tab*/
             type: new fields.StringField({...(SwesItemBaseData.optionalString), initial: "Item"}),
-            price: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 1, min: 0}),
+            price: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 1, min: 0, max: 100000}),
             restricted: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
 
             /* Description Tab */
@@ -37,8 +38,8 @@ export default class SwesCombatItemData extends SwesItemBaseData {
             mods: new fields.SetField(new fields.SchemaField({
                 key: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                 miscDesc: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                count: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0}),
-                index: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0}),
+                count: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 10}),
+                index: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 10}),
                 defZone: new fields.StringField({...(SwesItemBaseData.optionalString)}),
                 dieModifiers: new fields.SetField(new fields.SchemaField({
                     skillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
@@ -68,41 +69,7 @@ export default class SwesCombatItemData extends SwesItemBaseData {
             }),
 
             /* Weapon Modifiers Tab */
-            weaponModifiers: new fields.SetField(new fields.SchemaField({
-                unarmed: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean)}),
-                unarmedName: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                skillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                allSkillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                damage: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
-                damageAdd: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
-                crit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
-                critSub: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
-                rangeValue: new fields.NumberField({
-                    ...(SwesItemBaseData.optionalInteger),
-                    initial: 0,
-                    min: 0,
-                    max: 10
-                }),
-                qualities: new fields.SetField(new fields.SchemaField({
-                    key: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                    count: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 100})
-                }, {required: false}), {required: true, initial: []}),
-                range: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                baseMods: new fields.SetField(new fields.SchemaField({
-                    miscDesc: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                    count: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 100})
-                }, {required: false}), {
-                    required: false,
-                    initial: [],
-                    label: "ITEM.WeaponModifiers.label",
-                    hint: "ITEM.WeaponModifiers.hint"
-                })
-            }), {
-                required: false,
-                initial: [],
-                label: "ITEM.Mod.label",
-                hint: "ITEM.Mod.hint"
-            }),
+            weaponModifiers: buildWeaponModifiersSchemaWithExtraSchema(fields),
 
             /* Era Pricing Tab */
             eraPricing: new fields.SetField(new fields.SchemaField({

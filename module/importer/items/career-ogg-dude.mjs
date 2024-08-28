@@ -14,95 +14,6 @@ export function careerMapper(careers) {
     return careers.map((xmlCareer) => {
         console.debug("[CareerMapper] Mapping Career to FVTT Item Object", xmlCareer);
         return {
-            /*
-return foundry.utils.mergeObject(super.defineSchema(), {
-            careerSkills: new fields.ArrayField({
-                key: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                required: false,
-                initial: [],
-                label: "SWES.Career.CareerSkills.label",
-                hint: "SWES.Career.CareerSkills.hint"
-            }),
-            specializations: new fields.ArrayField({
-                key: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                required: false,
-                initial: [],
-                label: "SWES.Career.Specializations.label",
-                hint: "SWES.Career.Specializations.hint"
-            }),
-            attributes: new fields.SchemaField({
-                woundThreshold: new fields.NumberField({
-                    ...(SwesItemBaseData.requiredInteger),
-                    initial: 0,
-                    min: 0,
-                    max: 20
-                }),
-                strainThreshold: new fields.NumberField({
-                    ...(SwesItemBaseData.requiredInteger),
-                    initial: 0,
-                    min: 0,
-                    max: 20
-                }),
-                defenseRanged: new fields.NumberField({
-                    ...(SwesItemBaseData.optionalInteger),
-                    initial: 0,
-                    min: 0,
-                    max: 10
-                }),
-                defenseMelee: new fields.NumberField({
-                    ...(SwesItemBaseData.optionalInteger),
-                    initial: 0,
-                    min: 0,
-                    max: 10
-                }),
-                soakValue: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
-                experience: new fields.NumberField({
-                    ...(SwesItemBaseData.requiredInteger),
-                    initial: 0,
-                    min: -50,
-                    max: 150
-                }),
-                forceRating: new fields.NumberField({
-                    ...(SwesItemBaseData.optionalInteger),
-                    initial: 0,
-                    min: 0,
-                    max: 10
-                }),
-                encumbranceBonus: new fields.NumberField({
-                    ...(SwesItemBaseData.optionalInteger),
-                    initial: 0,
-                    min: 0,
-                    max: 10
-                }),
-                requirement: new fields.SchemaField({
-                    wearingArmor: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
-                    career: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
-                    specialization: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
-                    nonCareer: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
-                    soakAtLeast: new fields.NumberField({
-                        ...(SwesItemBaseData.requiredInteger),
-                        initial: 0,
-                        min: 0,
-                        max: 10
-                    })
-                }, {
-                    required: false,
-                    label: "ITEM.StartingAttrs.Requirement.label",
-                    hint: "ITEM.StartingAttrs.Requirement.hint"
-                })
-            }, {
-                required: true, label: "ITEM.StartingAttrs.label", hint: "ITEM.StartingAttrs.hint"
-            }),
-            freeRanks: new fields.NumberField({
-                ...(SwesItemBaseData.optionalInteger),
-                initial: 0,
-                min: 0,
-                max: 10
-            })
-        }
-    );
- */
-
 
             name: OggDudeImporter.mapMandatoryString("armor.Name", xmlCareer.Name),
             key: OggDudeImporter.mapMandatoryString("armor.Key", xmlCareer.Key),
@@ -124,12 +35,12 @@ return foundry.utils.mergeObject(super.defineSchema(), {
 
             /* Starting Career Attributes Tab */
             attributes: {
-                woundThreshold: OggDudeImporter.mapMandatoryNumber("careers.WoundThreshold", xmlCareer?.WoundThreshold),
-                strainThreshold: OggDudeImporter.mapMandatoryNumber("careers.StrainThreshold", xmlCareer?.StrainThreshold),
+                woundThreshold: OggDudeImporter.mapOptionalNumber(xmlCareer?.WoundThreshold),
+                strainThreshold: OggDudeImporter.mapOptionalNumber(xmlCareer?.StrainThreshold),
                 defenseRanged: OggDudeImporter.mapOptionalNumber(xmlCareer?.DefenseRanged),
                 defenseMelee: OggDudeImporter.mapOptionalNumber(xmlCareer?.DefenseMelee),
                 soakValue: OggDudeImporter.mapOptionalNumber(xmlCareer?.SoakValue),
-                experience: OggDudeImporter.mapMandatoryNumber("careers.Experience", xmlCareer?.Experience),
+                experience: OggDudeImporter.mapOptionalNumber(xmlCareer?.Experience),
                 forceRating: OggDudeImporter.mapOptionalNumber(xmlCareer?.ForceRating),
                 encumbranceBonus: OggDudeImporter.mapOptionalNumber(xmlCareer?.EncumbranceBonus),
                 requirement: {
@@ -137,7 +48,7 @@ return foundry.utils.mergeObject(super.defineSchema(), {
                     career: OggDudeImporter.mapOptionalBoolean(xmlCareer?.Requirement?.Career),
                     specialization: OggDudeImporter.mapOptionalBoolean(xmlCareer?.Requirement?.Specialization),
                     nonCareer: OggDudeImporter.mapOptionalBoolean(xmlCareer?.Requirement?.NonCareer),
-                    soakAtLeast: OggDudeImporter.mapMandatoryNumber("careers.Requirement.SoakAtLeast", xmlCareer?.Requirement?.SoakAtLeast)
+                    soakAtLeast: OggDudeImporter.mapOptionalNumber(xmlCareer?.Requirement?.SoakAtLeast)
                 }
             },
             freeRanks: OggDudeImporter.mapOptionalNumber(xmlCareer?.FreeRanks)
