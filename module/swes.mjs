@@ -14,6 +14,7 @@ import SwesWeapon from "./data/weapon.mjs";
 import SwesGear from "./data/gear.mjs";
 import SwesSpecies from "./data/species.mjs";
 import {SwesItem} from "./documents/item.mjs";
+import SwesCareer from "./data/career.mjs";
 
 // Add key classes to the global scope so they can be more easily used
 // by downstream developers
@@ -24,6 +25,7 @@ globalThis.swes = {
     SwesWeapon,
     SwesGear,
     SwesSpecies,
+    SwesCareer,
   },
   applications: {
     SwesActorSheet,
@@ -75,6 +77,7 @@ Hooks.once('init', function () {
     weapon: models.SwesWeapon,
     gear: models.SwesGear,
     species: models.SwesSpecies,
+    career: models.SwesCareer,
   }
 
   // Active Effects are never copied to the Actor,

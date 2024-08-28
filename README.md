@@ -7,8 +7,8 @@
 - Armor ☑️
 - Weapon ☑️ 
 - Gear ☑️
-- Species 
-- Career
+- Species ☑️ 
+- Career ☑️
 - Specialization
 - Force
 - Vehicule

@@ -8,10 +8,11 @@
   "Item": {
     "types": [
       "armor",
+      "career",
       "gear",
       "item",
-      "weapon",
-      "species"
+      "species",
+      "weapon"
     ]
   }
 }

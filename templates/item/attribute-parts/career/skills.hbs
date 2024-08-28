@@ -1,0 +1,46 @@
+{{! Career Skills Tab }}
+<section
+        class='tab {{tab.cssClass}}'
+        data-group='primary'
+        data-tab='attributesCareerSkills'
+>
+    <h3>Career Skills</h3>
+
+    {{!--
+    /* Starting Career Skills Tab */
+    careerSkills: OggDudeImporter.mapOptionalArray(xmlCareer?.CareerSkills?.CareerSkill, (careerSkill) => careerSkill),
+
+    {{#each system.careerSkills as |skill idx|}}
+
+        <fieldset>
+            <legend data-tooltip="SWES.Career-Item.FIELDS.career-skills.hint">{{localize
+                    "SWES.Career-Item.FIELDS.career-skills.label"}}</legend>
+
+            {{formField @root.systemFields.careerSkills.element.fields.key
+                        name=(concat "system.careerSkills." idx ".key")
+                        value=skill.key localize=true
+                        label="SWES.Career-Item.FIELDS.skills.element.FIELDS.key.label"
+                        rootId=partId}}
+
+        </fieldset>
+
+    {{/each}}
+
+    --}}
+
+    <fieldset>
+        <legend data-tooltip="SWES.Career-Item.skills.hint">{{localize
+                "SWES.Career-Item.skills.label"}}</legend>
+
+        {{formField @root.systemFields.freeRanks
+                    value=system.freeRanks localize=true
+                    rootId=partId}}
+
+    </fieldset>
+    <fieldset>
+        <legend data-tooltip="SWES.Career-Item.career-skills.hint">{{localize
+                "SWES.Career-Item.career-skills.label"}}</legend>
+        {{formField @root.systemFields.careerSkills value=system.careerSkills localize=true rootId=partId}}
+    </fieldset>
+
+</section>

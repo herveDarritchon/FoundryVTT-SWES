@@ -31,5 +31,10 @@ export const preloadHandlebarsTemplates = async function () {
         'systems/swes/templates/item/attribute-parts/species/talent-modifiers.hbs',
         'systems/swes/templates/item/attribute-parts/species/sub-species.hbs',
         'systems/swes/templates/item/attribute-parts/species/option-choices.hbs',
+        // Item attributes career-item
+        'systems/swes/templates/item/attribute-parts/career/specializations.hbs',
+        'systems/swes/templates/item/attribute-parts/career/skills.hbs',
+        'systems/swes/templates/item/attribute-parts/career/attributes.hbs',
+
     ]);
 };

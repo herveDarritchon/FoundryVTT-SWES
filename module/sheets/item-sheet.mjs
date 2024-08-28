@@ -56,6 +56,16 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         description: {
             template: 'systems/swes/templates/item/parts/item-description.hbs',
         },
+        /* Career Item Parts */
+        attributesCareerSkills: {
+            template: 'systems/swes/templates/item/attribute-parts/career/skills.hbs',
+        },
+        attributesCareerSpecializations: {
+            template: 'systems/swes/templates/item/attribute-parts/career/specializations.hbs',
+        },
+        attributesCareerAttributes: {
+            template: 'systems/swes/templates/item/attribute-parts/career/attributes.hbs',
+        },
         /* Species Item Parts */
         attributesStartingChars: {
             template: 'systems/swes/templates/item/attribute-parts/species/starting-chars.hbs',
@@ -148,6 +158,9 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             case 'species':
                 options.parts.push('attributesStartingChars', 'attributesStartingAttributes', 'attributesSkillModifiers', 'attributesTalentModifiers', 'attributesSubSpecies', 'attributesOptionChoices', 'effects');
                 break;
+            case 'career':
+                options.parts.push('attributesCareerAttributes', 'attributesCareerSpecializations', 'attributesCareerSkills', 'effects');
+                break;
         }
     }
 
@@ -168,6 +181,9 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             case 'attributesTalentModifiers':
             case 'attributesSubSpecies':
             case 'attributesOptionChoices':
+            case 'attributesCareerAttributes':
+            case 'attributesCareerSpecializations':
+            case 'attributesCareerSkills':
                 // Necessary for preserving active tab on re-render
                 context.tab = context.tabs[partId];
                 break;
@@ -212,7 +228,13 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         const tabGroup = 'primary';
         // Default tab for first time it's rendered this session
         if (!this.tabGroups[tabGroup]) {
-            this.tabGroups[tabGroup] = parts.includes('attributesStats') ? 'attributesStats' : 'attributesStartingChars'
+            if (parts.includes('attributesStats')) {
+                this.tabGroups[tabGroup] = 'attributesStats';
+            } else if (parts.includes('attributesStartingChars')) {
+                this.tabGroups[tabGroup] = 'attributesStartingChars';
+            } else if (parts.includes('attributesCareerSkills')) {
+                this.tabGroups[tabGroup] = 'attributesCareerSkills';
+            }
         }
         ;
         return parts.reduce((tabs, partId) => {
@@ -286,7 +308,18 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
                     tab.id = 'attributesOptionChoices';
                     tab.label += 'AttributesOptionChoices';
                     break;
-
+                case 'attributesCareerAttributes':
+                    tab.id = 'attributesCareerAttributes';
+                    tab.label += 'AttributesCareerAttributes';
+                    break;
+                case 'attributesCareerSpecializations':
+                    tab.id = 'attributesCareerSpecializations';
+                    tab.label += 'AttributesCareerSpecializations';
+                    break;
+                case 'attributesCareerSkills':
+                    tab.id = 'attributesCareerSkills';
+                    tab.label += 'AttributesCareerSkills';
+                    break;
             }
             if (this.tabGroups[tabGroup] === tab.id) tab.cssClass = 'active';
             tabs[partId] = tab;
@@ -303,7 +336,8 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
      * @returns {Promise}
      * @protected
      */
-    static async _onEditImage(event, target) {
+    static
+    async _onEditImage(event, target) {
         const attr = target.dataset.edit;
         const current = foundry.utils.getProperty(this.document, attr);
         const {img} =
@@ -330,7 +364,8 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
      * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
      * @protected
      */
-    static async _viewEffect(event, target) {
+    static
+    async _viewEffect(event, target) {
         const effect = this._getEffect(target);
         effect.sheet.render(true);
     }
@@ -343,7 +378,8 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
      * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
      * @protected
      */
-    static async _deleteEffect(event, target) {
+    static
+    async _deleteEffect(event, target) {
         const effect = this._getEffect(target);
         await effect.delete();
     }
@@ -356,7 +392,8 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
      * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
      * @private
      */
-    static async _createEffect(event, target) {
+    static
+    async _createEffect(event, target) {
         // Retrieve the configured document class for ActiveEffect
         const aeCls = getDocumentClass('ActiveEffect');
         // Prepare the document creation data by initializing it a default name.
@@ -390,7 +427,8 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
      * @param {HTMLElement} target   The capturing HTML element which defined a [data-action]
      * @private
      */
-    static async _toggleEffect(event, target) {
+    static
+    async _toggleEffect(event, target) {
         const effect = this._getEffect(target);
         await effect.update({disabled: !effect.disabled});
     }

@@ -9,3 +9,4 @@ export {default as SwesArmor} from "./armor.mjs";
 export {default as SwesWeapon} from "./weapon.mjs";
 export {default as SwesGear} from "./gear.mjs";
 export {default as SwesSpecies} from "./species.mjs";
+export {default as SwesCareer} from "./career.mjs";

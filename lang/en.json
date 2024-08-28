@@ -70,6 +70,7 @@
         "selectDomains": "Select the domains you want to import",
         "domains": {
           "armor": "Load Armor data",
+          "career": "Load Career data",
           "gear": "Load Gear data",
           "species": "Load Species data",
           "weapon": "Load Weapons data"
@@ -963,6 +964,109 @@
         }
       }
     },
+    "Career-Item": {
+      "attributes": {
+        "hint": "Attributes of the career",
+        "label": "Attributes",
+        "requirement": {
+          "hint": "Requirement of the career",
+            "label": "Requirement"
+        }
+      },
+      "career-skills": {
+        "hint": "Career Skills of the career",
+        "label": "Career Skills"
+      },
+      "career-specializations": {
+        "hint": "Career Specializations of the career",
+        "label": "Career Specializations"
+      },
+      "skills": {
+        "hint": "Skills of the career",
+        "label": "Skills"
+      },
+      "FIELDS": {
+        "career-skills": {
+          "hint": "Career Skills of the career",
+          "label": "Career Skills",
+          "placeholder": "Enter the career skills"
+        },
+        "career-specializations": {
+          "hint": "Career Specializations of the career",
+          "label": "Career Specializations",
+          "placeholder": "Enter the career specializations"
+        },
+        "free-ranks": {
+          "label": "Free Ranks",
+          "hint": "Free Ranks of the career",
+          "placeholder": "Enter the free ranks"
+        },
+        "attributes": {
+          "wound-threshold": {
+            "label": "Wound Threshold",
+            "hint": "Wound Threshold of the career",
+            "placeholder": "Enter the wound threshold"
+          },
+          "strain-threshold": {
+            "label": "Strain Threshold",
+            "hint": "Strain Threshold of the career",
+            "placeholder": "Enter the strain threshold"
+          },
+          "defense-ranged": {
+            "label": "Defense Ranged",
+            "hint": "Defense Ranged of the career",
+            "placeholder": "Enter the defense ranged"
+          },
+          "defense-melee": {
+            "label": "Defense Melee",
+            "hint": "Defense Melee of the career",
+            "placeholder": "Enter the defense melee"
+          },
+          "soak-value": {
+            "label": "Soak Value",
+            "hint": "Soak Value of the career",
+            "placeholder": "Enter the soak value"
+          },
+          "experience": {
+            "label": "Experience",
+            "hint": "Experience of the career",
+            "placeholder": "Enter the experience"
+          },
+          "force-rating": {
+            "label": "Force Rating",
+            "hint": "Force Rating of the career",
+            "placeholder": "Enter the force rating"
+          },
+          "encumbrance-bonus": {
+            "label": "Encumbrance Bonus",
+            "hint": "Encumbrance Bonus of the career",
+            "placeholder": "Enter the encumbrance bonus"
+          },
+          "requirement": {
+            "wearing-armor": {
+              "label": "Wearing Armour",
+              "hint": "Wearing Armour of the career",
+              "placeholder": "Enter the wearing armour"
+            },
+            "career": {
+              "label": "Career",
+              "hint": "Career of the career",
+              "placeholder": "Enter the career"
+            },
+            "specialization": {
+              "label": "Specialization",
+              "hint": "Specialization of the career",
+              "placeholder": "Enter the specialization"
+            },
+            "non-career": {
+              "label": "Non Career",
+              "hint": "Non Career of the career",
+              "placeholder": "Enter the non career"
+            }
+          }
+        }
+      }
+    },
     "Ability": {
       "Str": {
         "long": "Strength",
@@ -1000,16 +1104,19 @@
     },
     "Item": {
       "Tabs": {
-        "AttributesStartingChars": "Starting Characteristics",
-        "AttributesStartingAttributes": "Starting Attributes",
-        "AttributesSkillModifiers": "Skill Modifiers",
-        "AttributesTalentModifiers": "Talent Modifiers",
-        "AttributesSubSpecies": "Sub Species",
-        "AttributesOptionChoices": "Option Choices",
+        "AttributesCareerAttributes": "Career Attributes",
+        "AttributesCareerSpecializations": "Career Specializations",
+        "AttributesCareerSkills": "Career Skills",
         "AttributesCombat": "Combat",
         "AttributesEraPricing": "Era Pricing",
         "AttributesMods": "Mods",
+        "AttributesOptionChoices": "Option Choices",
         "AttributesStats": "Stats",
+        "AttributesStartingChars": "Starting Characteristics",
+        "AttributesStartingAttributes": "Starting Attributes",
+        "AttributesSkillModifiers": "Skill Modifiers",
+        "AttributesSubSpecies": "Sub Species",
+        "AttributesTalentModifiers": "Talent Modifiers",
         "AttributesWeaponModifiers": "Weapon Modifiers",
         "Description": "Description",
         "Details": "Details",
@@ -1031,12 +1138,11 @@
     },
     "Item": {
       "armor": "Armor",
+      "career": "Career",
       "gear": "Gear",
       "weapon": "Weapon",
       "species": "Species",
-      "item": "Item",
-      "feature": "Feature",
-      "spell": "Spell"
+      "item": "Item"
     }
   }
 }

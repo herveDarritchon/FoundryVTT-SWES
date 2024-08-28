@@ -3,6 +3,7 @@ import {buildGearContext} from "./items/gear-ogg-dude.mjs";
 import {buildArmorContext} from "./items/armor-ogg-dude.mjs";
 import {buildWeaponContext} from "./items/weapon-ogg-dude.mjs";
 import {buildSpeciesContext} from "./items/species-ogg-dude.mjs";
+import {buildCareerContext} from "./items/career-ogg-dude.mjs";
 
 export default class OggDudeImporter {
 
@@ -174,6 +175,7 @@ export default class OggDudeImporter {
         buildContextMap.set("weapon", {type: "weapon", contextBuilder: buildWeaponContext});
         buildContextMap.set("gear", {type: "gear", contextBuilder: buildGearContext});
         buildContextMap.set("species", {type: "species", contextBuilder: buildSpeciesContext});
+        buildContextMap.set("career", {type: "career", contextBuilder: buildCareerContext});
 
         const domainsToImport = domains.filter(domain => domain.checked).map(domain => domain.id);
         console.debug("[ProcessOggDudeData] -Step 3.3: Domains to Import >", domainsToImport);

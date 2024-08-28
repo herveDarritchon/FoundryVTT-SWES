@@ -1,0 +1,106 @@
+{{! Career Attribute Tab }}
+<section
+        class='tab {{tab.cssClass}}'
+        data-group='primary'
+        data-tab='attributesCareerAttributes'
+>
+    <h3>Career Attributes</h3>
+
+    {{!--
+      attributes: {
+                woundThreshold: OggDudeImporter.mapMandatoryNumber("careers.WoundThreshold", xmlCareer?.WoundThreshold),
+                strainThreshold: OggDudeImporter.mapMandatoryNumber("careers.StrainThreshold", xmlCareer?.StrainThreshold),
+                defenseRanged: OggDudeImporter.mapOptionalNumber(xmlCareer?.DefenseRanged),
+                defenseMelee: OggDudeImporter.mapOptionalNumber(xmlCareer?.DefenseMelee),
+                soakValue: OggDudeImporter.mapOptionalNumber(xmlCareer?.SoakValue),
+                experience: OggDudeImporter.mapMandatoryNumber("careers.Experience", xmlCareer?.Experience),
+                forceRating: OggDudeImporter.mapOptionalNumber(xmlCareer?.ForceRating),
+                encumbranceBonus: OggDudeImporter.mapOptionalNumber(xmlCareer?.EncumbranceBonus),
+                requirement: {
+                    wearingArmor: OggDudeImporter.mapOptionalBoolean(xmlCareer?.Requirement?.WearingArmor),
+                    career: OggDudeImporter.mapOptionalBoolean(xmlCareer?.Requirement?.Career),
+                    specialization: OggDudeImporter.mapOptionalBoolean(xmlCareer?.Requirement?.Specialization),
+                    nonCareer: OggDudeImporter.mapOptionalBoolean(xmlCareer?.Requirement?.NonCareer),
+                    soakAtLeast: OggDudeImporter.mapMandatoryNumber("careers.Requirement.SoakAtLeast", xmlCareer?.Requirement?.SoakAtLeast)
+                }
+            },
+        --}}
+
+    <fieldset>
+        <legend data-tooltip="SWES.Career-Item.attributes.hint">{{localize
+                "SWES.Career-Item.attributes.label"}}</legend>
+
+        {{formField @root.systemFields.attributes.fields.woundThreshold
+                    name=(concat "system.attributes." idx ".woundThreshold")
+                    value=attribute.woundThreshold localize=true
+                    rootId=partId}}
+
+        {{formField @root.systemFields.attributes.fields.strainThreshold
+                    name=(concat "system.attributes." idx ".strainThreshold")
+                    value=attribute.strainThreshold localize=true
+                    rootId=partId}}
+
+        {{formField @root.systemFields.attributes.fields.defenseRanged
+                    name=(concat "system.attributes." idx ".defenseRanged")
+                    value=attribute.defenseRanged localize=true
+                    rootId=partId}}
+
+        {{formField @root.systemFields.attributes.fields.defenseMelee
+                    name=(concat "system.attributes." idx ".defenseMelee")
+                    value=attribute.defenseMelee localize=true
+                    rootId=partId}}
+
+        {{formField @root.systemFields.attributes.fields.soakValue
+                    name=(concat "system.attributes." idx ".soakValue")
+                    value=attribute.soakValue localize=true
+                    rootId=partId}}
+
+        {{formField @root.systemFields.attributes.fields.experience
+                    name=(concat "system.attributes." idx ".experience")
+                    value=attribute.experience localize=true
+                    rootId=partId}}
+
+        {{formField @root.systemFields.attributes.fields.forceRating
+                    name=(concat "system.attributes." idx ".forceRating")
+                    value=attribute.forceRating localize=true
+                    rootId=partId}}
+
+        {{formField @root.systemFields.attributes.fields.encumbranceBonus
+                    name=(concat "system.attributes." idx ".encumbranceBonus")
+                    value=attribute.encumbranceBonus localize=true
+                    rootId=partId}}
+
+        <fieldset>
+            <legend data-tooltip="SWES.Career-Item.attributes.requirement.hint">{{localize
+                    "SWES.Career-Item.attributes.requirement.label"}}</legend>
+
+            {{formField @root.systemFields.attributes.fields.requirement.fields.wearingArmor
+                        name=(concat "system.attributes." idx ".requirement.wearingArmor")
+                        value=attribute.requirement.wearingArmor localize=true
+                        rootId=partId}}
+
+            {{formField @root.systemFields.attributes.fields.requirement.fields.career
+                        name=(concat "system.attributes." idx ".requirement.career")
+                        value=attribute.requirement.career localize=true
+                        rootId=partId}}
+
+            {{formField @root.systemFields.attributes.fields.requirement.fields.specialization
+                        name=(concat "system.attributes." idx ".requirement.specialization")
+                        value=attribute.requirement.specialization localize=true
+                        rootId=partId}}
+
+            {{formField @root.systemFields.attributes.fields.requirement.fields.nonCareer
+                        name=(concat "system.attributes." idx ".requirement.nonCareer")
+                        value=attribute.requirement.nonCareer localize=true
+                        rootId=partId}}
+
+            {{formField @root.systemFields.attributes.fields.requirement.fields.soakAtLeast
+                        name=(concat "system.attributes." idx ".requirement.soakAtLeast")
+                        value=attribute.requirement.soakAtLeast localize=true
+                        rootId=partId}}
+
+        </fieldset>
+
+    </fieldset>
+
+</section>
