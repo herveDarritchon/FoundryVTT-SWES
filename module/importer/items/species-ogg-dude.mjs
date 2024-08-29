@@ -14,7 +14,7 @@ export function speciesMapper(species) {
     return species.map((xmlSpecies) => {
         return {
             /* Starting Characteristics Tab */
-
+            key: OggDudeImporter.mapMandatoryString("gear.Key", xmlSpecies.Key),
             description: OggDudeImporter.mapMandatoryString("species.Description", xmlSpecies?.Description),
 
             startingChars: {
