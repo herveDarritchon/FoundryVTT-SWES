@@ -1,20 +1,28 @@
-import SwesItemBaseData from "./item-base.mjs";
 import SwesCombatItemData from "./combat-item.mjs";
+import {buildMandatoryIntegerField} from "../helpers/data/utilities.mjs";
 
 export default class SwesArmor extends SwesCombatItemData {
 
+    static ITEM_TYPE = "Armor-Item";
+
     /* -------------------------------------------- */
     /*  Data Schema                                                  */
+
     /* -------------------------------------------- */
 
     /** @inheritDoc */
     static defineSchema() {
-        const fields = foundry.data.fields;
         return foundry.utils.mergeObject(super.defineSchema(), {
-            defense: new fields.NumberField(
-                {...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 20}
-            ),
-            soak: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 20}),
+            defense: buildMandatoryIntegerField({
+                itemType: SwesArmor.ITEM_TYPE,
+                key: "defense",
+                max: 20,
+            }),
+            soak: buildMandatoryIntegerField({
+                itemType: SwesArmor.ITEM_TYPE,
+                key: "soak",
+                max: 20,
+            })
         });
     }
 

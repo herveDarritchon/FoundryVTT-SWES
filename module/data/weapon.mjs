@@ -1,36 +1,89 @@
-import SwesItemBaseData from "./item-base.mjs";
 import SwesCombatItemData from "./combat-item.mjs";
+import {
+    buildMandatoryIntegerField,
+    buildMandatoryStringField,
+    buildOptionalBooleanField,
+    buildOptionalIntegerField,
+    buildOptionalSchemaField,
+    buildOptionalSetField,
+    buildOptionalStringField
+} from "../helpers/data/utilities.mjs";
 
 export default class SwesWeapon extends SwesCombatItemData {
+    static ITEM_TYPE = "Weapon-Item";
 
     static defineSchema() {
-        const fields = foundry.data.fields;
-        const schema = super.defineSchema();
-
-        schema.skillKey = new fields.StringField({...(SwesItemBaseData.requiredString)});
-        schema.damage = new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 20});
-        schema.damageAdd = new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0});
-        schema.crit = new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0});
-        schema.sizeLow = new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0});
-        schema.sizeHigh = new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0});
-        schema.attachCostMult = new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0});
-        schema.range = new fields.StringField({...(SwesItemBaseData.optionalString)});
-        schema.noMelee = new fields.BooleanField({...(SwesItemBaseData.optionalBoolean)});
-        schema.scale = new fields.StringField({...(SwesItemBaseData.optionalString)});
-        schema.hands = new fields.StringField({...(SwesItemBaseData.optionalString)});
-        schema.ordnance = new fields.BooleanField({...(SwesItemBaseData.optionalBoolean)});
-        schema.vehicleNoReplace = new fields.BooleanField({...(SwesItemBaseData.optionalBoolean)});
-
-        schema.rangeValue= new fields.StringField({...(SwesItemBaseData.optionalString)});
-
-        schema.qualities = new fields.ArrayField(new fields.SchemaField({
-                key: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                count: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0}),
-            }), {
-            required: true, initial: [], label: "WEAPON.Mod.label", hint: "WEAPON.Mod.hint"
+        return foundry.utils.mergeObject(super.defineSchema(), {
+            skillKey: buildMandatoryStringField({
+                itemType: SwesWeapon.ITEM_TYPE,
+                key: "skill-key"
+            }),
+            damage: buildMandatoryIntegerField({
+                itemType: SwesWeapon.ITEM_TYPE,
+                key: "damage",
+                max: 20
+            }),
+            damageAdd: buildMandatoryIntegerField({
+                itemType: SwesWeapon.ITEM_TYPE,
+                key: "damage-add"
+            }),
+            crit: buildMandatoryIntegerField({
+                itemType: SwesWeapon.ITEM_TYPE,
+                key: "crit"
+            }),
+            sizeLow: buildMandatoryIntegerField({
+                itemType: SwesWeapon.ITEM_TYPE,
+                key: "size-low"
+            }),
+            sizeHigh: buildMandatoryIntegerField({
+                itemType: SwesWeapon.ITEM_TYPE,
+                key: "size-high"
+            }),
+            attachCostMult: buildMandatoryIntegerField({
+                itemType: SwesWeapon.ITEM_TYPE,
+                key: "attach-cost-mult"
+            }),
+            range: buildOptionalStringField({
+                itemType: SwesWeapon.ITEM_TYPE,
+                key: "range"
+            }),
+            noMelee: buildOptionalBooleanField({
+                itemType: SwesWeapon.ITEM_TYPE,
+                key: "no-melee"
+            }),
+            scale: buildOptionalStringField({
+                itemType: SwesWeapon.ITEM_TYPE,
+                key: "scale"
+            }),
+            hands: buildOptionalStringField({
+                itemType: SwesWeapon.ITEM_TYPE,
+                key: "hands"
+            }),
+            ordnance: buildOptionalBooleanField({
+                itemType: SwesWeapon.ITEM_TYPE,
+                key: "ordnance"
+            }),
+            vehicleNoReplace: buildOptionalBooleanField({
+                itemType: SwesWeapon.ITEM_TYPE,
+                key: "vehicle-no-replace"
+            }),
+            rangeValue: buildMandatoryStringField({
+                itemType: SwesWeapon.ITEM_TYPE,
+                key: "range-value"
+            }),
+            qualities: buildOptionalSetField({
+                field: buildOptionalSchemaField({
+                    key: buildOptionalStringField({
+                        itemType: SwesWeapon.ITEM_TYPE,
+                        key: "qualities.key"
+                    }),
+                    count: buildOptionalIntegerField({
+                        itemType: SwesWeapon.ITEM_TYPE,
+                        key: "qualities.count"
+                    })
+                })
+            })
         });
-
-        return schema;
     }
 
     prepareDerivedData() {

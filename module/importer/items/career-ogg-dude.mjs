@@ -12,7 +12,6 @@ import OggDudeDataElement from "../../settings/models/OggDudeDataElement.mjs";
  */
 export function careerMapper(careers) {
     return careers.map((xmlCareer) => {
-        console.debug("[CareerMapper] Mapping Career to FVTT Item Object", xmlCareer);
         return {
 
             name: OggDudeImporter.mapMandatoryString("armor.Name", xmlCareer.Name),

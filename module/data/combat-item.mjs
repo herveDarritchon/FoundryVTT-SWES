@@ -1,8 +1,18 @@
 import SwesItemBaseData from "./item-base.mjs";
-import {buildWeaponModifiersSchemaWithExtraSchema} from "../helpers/data/schema.mjs";
+import {buildWeaponModifiersSchemaWithExtraSchema} from "../helpers/data/itemSchema.mjs";
+import {
+    buildMandatoryIntegerField, buildMandatoryStringField,
+    buildOptionalBooleanField,
+    buildOptionalIntegerField,
+    buildOptionalSchemaField,
+    buildOptionalSetField,
+    buildOptionalStringField
+} from "../helpers/data/utilities.mjs";
 
 export default class SwesCombatItemData extends SwesItemBaseData {
 
+    static ITEM_TYPE = "Combat-Item";
+    static DEFAULT_TYPE = "item";
     static LOCALIZATION_PREFIXES = ["SWES.Combat-Item"]
 
     static defineSchema() {
@@ -11,78 +21,145 @@ export default class SwesCombatItemData extends SwesItemBaseData {
         return foundry.utils.mergeObject(super.defineSchema(), {
 
             /* Detail Tab*/
-            type: new fields.StringField({...(SwesItemBaseData.optionalString), initial: "Item"}),
-            price: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 1, min: 0, max: 100000}),
-            restricted: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false}),
+            type: buildOptionalStringField({
+                initial: SwesCombatItemData.DEFAULT_TYPE,
+                itemType: SwesItemBaseData.ITEM_TYPE,
+                key: "key"
+            }),
+            price: buildMandatoryIntegerField({
+                itemType: SwesItemBaseData.ITEM_TYPE,
+                key: "price",
+                initial: 500,
+                max: 1000000
+            }),
+            restricted: buildOptionalBooleanField({
+                itemType: SwesItemBaseData.ITEM_TYPE,
+                key: "restricted"
+            }),
 
             /* Description Tab */
 
             /* Stats Tab */
-            encumbrance: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 50}),
-            hp: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 20}),
-            rarity: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 5, min: 0, max: 10}),
+            encumbrance: buildMandatoryIntegerField({
+                itemType: SwesItemBaseData.ITEM_TYPE,
+                key: "encumbrance",
+                initial: 2,
+                max: 50
+            }),
+            hp: buildMandatoryIntegerField({
+                itemType: SwesItemBaseData.ITEM_TYPE,
+                key: "hp",
+                initial: 1,
+                max: 20
+            }),
+            rarity: buildMandatoryIntegerField({
+                itemType: SwesItemBaseData.ITEM_TYPE,
+                key: "rarity",
+                initial: 5,
+                max: 10
+            }),
 
-            categories: new fields.SetField(
-                new fields.StringField({
-                    ...(SwesItemBaseData.requiredString),
-                    label: "SWES.Combat-Item.FIELDS.Category.label",
-                    hint: "SWES.Combat-Item.FIELDS.Category.hint"
-                }), {
-                    required: false,
-                    initial: [],
-                    label: "SWES.Combat-Item.FIELDS.Categories.label",
-                    hint: "SWES.Combat-Item.FIELDS.Categories.hint"
-                }),
+            categories: buildOptionalSetField({
+                field: buildOptionalStringField({
+                    itemType: SwesItemBaseData.ITEM_TYPE,
+                    key: "category"
+                })
+            }),
 
             /* Mods Tab */
-            mods: new fields.SetField(new fields.SchemaField({
-                key: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                miscDesc: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                count: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 10}),
-                index: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 10}),
-                defZone: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                dieModifiers: new fields.SetField(new fields.SchemaField({
-                    skillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                    skillChar: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                    skillType: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-                    boostCount: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 10}),
-                    advantageCount: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 10}),
-                    threatCount: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 10}),
-                    setbackCount: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 10}),
-                    upgradeAbilityCount: new fields.NumberField({
-                        ...(SwesItemBaseData.optionalInteger),
-                        min: 0,
-                        max: 10
+            mods: buildOptionalSetField({
+                field: buildOptionalSchemaField({
+                    key: buildOptionalStringField({
+                        itemType: SwesItemBaseData.ITEM_TYPE,
+                        key: "mods.key"
                     }),
-                    successCount: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 10}),
-                }, {required: false}), {
-                    required: false,
-                    initial: [],
-                    label: "ITEM.Mod.DieModifiers.label",
-                    hint: "ITEM.Mod.DieModifiers.hint"
+                    miscDesc: buildOptionalStringField({
+                        itemType: SwesItemBaseData.ITEM_TYPE,
+                        key: "mods.misc-desc"
+                    }),
+                    count: buildOptionalIntegerField({
+                        itemType: SwesItemBaseData.ITEM_TYPE,
+                        key: "mods.count",
+                    }),
+                    index: buildOptionalIntegerField({
+                        itemType: SwesItemBaseData.ITEM_TYPE,
+                        key: "mods.index",
+                    }),
+                    defZone: buildOptionalStringField({
+                        itemType: SwesItemBaseData.ITEM_TYPE,
+                        key: "mods.defZone"
+                    }),
+                    dieModifiers: buildOptionalSetField({
+                        field: buildOptionalSchemaField({
+                            skillKey: buildOptionalStringField({
+                                itemType: SwesItemBaseData.ITEM_TYPE,
+                                key: "mods.die-modifiers.skill-key"
+                            }),
+                            skillChar: buildOptionalStringField({
+                                itemType: SwesItemBaseData.ITEM_TYPE,
+                                key: "mods.die-modifiers.skill-char"
+                            }),
+                            skillType: buildOptionalStringField({
+                                itemType: SwesItemBaseData.ITEM_TYPE,
+                                key: "mods.die-modifiers.skill-type"
+                            }),
+                            boostCount: buildOptionalIntegerField({
+                                itemType: SwesItemBaseData.ITEM_TYPE,
+                                key: "mods.die-modifiers.boost-count"
+                            }),
+                            advantageCount: buildOptionalIntegerField({
+                                itemType: SwesItemBaseData.ITEM_TYPE,
+                                key: "mods.die-modifiers.advantage-count"
+                            }),
+                            threatCount: buildOptionalIntegerField({
+                                itemType: SwesItemBaseData.ITEM_TYPE,
+                                key: "mods.die-modifiers.threat-count"
+                            }),
+                            setbackCount: buildOptionalIntegerField({
+                                itemType: SwesItemBaseData.ITEM_TYPE,
+                                key: "mods.die-modifiers.setback-count"
+                            }),
+                            upgradeAbilityCount: buildOptionalIntegerField({
+                                itemType: SwesItemBaseData.ITEM_TYPE,
+                                key: "mods.die-modifiers.upgrade-ability-count"
+                            }),
+                            successCount: buildOptionalIntegerField({
+                                itemType: SwesItemBaseData.ITEM_TYPE,
+                                key: "mods.die-modifiers.success-count"
+                            }),
+                        })
+                    })
                 })
-            }, {required: false}), {
-                required: false,
-                initial: [],
-                label: "ITEM.Mod.label",
-                hint: "ITEM.Mod.hint"
             }),
 
             /* Weapon Modifiers Tab */
             weaponModifiers: buildWeaponModifiersSchemaWithExtraSchema(fields),
 
             /* Era Pricing Tab */
-            eraPricing: new fields.SetField(new fields.SchemaField({
-                name: new fields.StringField({...(SwesItemBaseData.requiredString)}),
-                price: new fields.NumberField({...(SwesItemBaseData.requiredInteger), min: 0}),
-                rarity: new fields.NumberField({...(SwesItemBaseData.requiredInteger), min: 0, max: 10}),
-                restricted: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false})
-            }, {required: false}), {
-                required: true,
-                initial: [],
-                label: "ITEM.EraPricing.label",
-                hint: "ITEM.EraPricing.hint"
-            }),
+            eraPricing: buildOptionalSetField({
+                field: buildOptionalSchemaField({
+                    name: buildMandatoryStringField({
+                        itemType: SwesItemBaseData.ITEM_TYPE,
+                        key: "era-pricing.name"
+                    }),
+                    price: buildMandatoryIntegerField({
+                        itemType: SwesItemBaseData.ITEM_TYPE,
+                        key: "era-pricing.price",
+                        min: 0
+                    }),
+                    rarity: buildMandatoryIntegerField({
+                        itemType: SwesItemBaseData.ITEM_TYPE,
+                        key: "era-pricing.rarity",
+                        min: 0,
+                        max: 10
+                    }),
+                    restricted: buildOptionalBooleanField({
+                        itemType: SwesItemBaseData.ITEM_TYPE,
+                        key: "era-pricing.restricted"
+                    })
+                })
+            })
+
         });
     }
 }

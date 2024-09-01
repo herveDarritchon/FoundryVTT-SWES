@@ -5,10 +5,11 @@ import {
     buildSkillModifiersSchema,
     buildTalentModifiersSchema,
     buildWeaponModifiersSchema
-} from "../helpers/data/schema.mjs";
+} from "../helpers/data/itemSchema.mjs";
 
 export default class SwesSpecies extends SwesItemBaseData {
 
+    static ITEM_TYPE = "Species-Item";
     static LOCALIZATION_PREFIXES = ["SWES.Species"]
 
     /* -------------------------------------------- */

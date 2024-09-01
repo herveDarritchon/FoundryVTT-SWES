@@ -1,17 +1,21 @@
-import SwesItemBaseData from "./item-base.mjs";
 import SwesCombatItemData from "./combat-item.mjs";
+import {buildOptionalStringField} from "../helpers/data/utilities.mjs";
 
 export default class SwesGear extends SwesCombatItemData {
+    static ITEM_TYPE = "Gear-Item";
 
     /* -------------------------------------------- */
     /*  Data Schema                                                  */
+
     /* -------------------------------------------- */
 
     /** @inheritDoc */
     static defineSchema() {
-        const fields = foundry.data.fields;
         return foundry.utils.mergeObject(super.defineSchema(), {
-            short: new fields.StringField({...(SwesItemBaseData.requiredString), initial: "Short"}),
+            short: buildOptionalStringField({
+                itemType: SwesGear.ITEM_TYPE,
+                key: "short"
+            }),
         });
     }
 
