@@ -28,7 +28,6 @@ export default class SwesCareer extends SwesItemBaseData {
                     key: "career-skills"
                 })
 
-
             }),
             careerSpecializations: buildOptionalSetField({
                 field: buildMandatoryStringField({

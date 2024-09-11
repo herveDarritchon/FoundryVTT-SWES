@@ -107,6 +107,90 @@
         }
       }
     },
+    "Career-Item": {
+      "attributes": {
+        "label": "Attributes",
+        "hint": "Attributes of the career",
+        "requirement": {
+          "label": "Requirements",
+          "hint": "Requirements of the career"
+        }
+      },
+      "career-skills": {
+        "label": "Career Skills",
+        "hint": "Career Skills of the career"
+      },
+      "skills": {
+        "label": "Skills",
+        "hint": "Skills of the career"
+      },
+      "specializations": {
+        "label": "Specializations",
+        "hint": "Specializations of the career"
+      },
+      "FIELDS": {
+        "attributes": {
+          "defense-melee": {
+            "label": "Defense Melee",
+            "hint": "Defense Melee of the career"
+          },
+          "defense-ranged": {
+            "label": "Defense Ranged",
+            "hint": "Defense Ranged of the career"
+          },
+          "encumbrance-bonus": {
+            "label": "Encumbrance Bonus",
+            "hint": "Encumbrance Bonus of the career"
+          },
+          "experience": {
+            "label": "Experience",
+            "hint": "Experience of the career"
+          },
+          "free-ranks": {
+            "label": "Free Ranks",
+            "hint": "Free Ranks of the career"
+          },
+          "force-rating": {
+            "label": "Force Rating",
+            "hint": "Force Rating of the career"
+          },
+          "soak-value": {
+            "label": "Soak Value",
+            "hint": "Soak Value of the career"
+          },
+          "strain-threshold": {
+            "label": "Strain Threshold",
+            "hint": "Strain Threshold of the career"
+          },
+          "wound-threshold": {
+            "label": "Wound Threshold",
+            "hint": "Wound Threshold of the career"
+          },
+          "requirement": {
+            "career": {
+              "label": "Career",
+              "hint": "Career of the career"
+            },
+            "non-career": {
+              "label": "Non Career",
+              "hint": "Non Career of the career"
+            },
+            "soak-at-least": {
+              "label": "Soak At Least",
+              "hint": "Soak At Least of the career"
+            },
+            "specialization": {
+              "label": "Specialization",
+              "hint": "Specialization of the career"
+            },
+            "wearing-armor": {
+              "label": "Wearing Armor",
+              "hint": "Wearing Armor of the career"
+            }
+          }
+        }
+      }
+    },
     "Combat-Item": {
       "categories": {
         "label": "Categories",
@@ -322,7 +406,7 @@
         "short": {
           "label": "Short Description",
           "hint": "Short description of the gear",
-            "placeholder": "Enter the short description"
+          "placeholder": "Enter the short description"
         }
       }
     },

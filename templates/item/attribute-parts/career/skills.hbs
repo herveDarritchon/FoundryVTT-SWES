@@ -4,30 +4,8 @@
         data-group='primary'
         data-tab='attributesCareerSkills'
 >
-    <h3>Career Skills</h3>
 
-    {{!--
-    /* Starting Career Skills Tab */
-    careerSkills: OggDudeImporter.mapOptionalArray(xmlCareer?.CareerSkills?.CareerSkill, (careerSkill) => careerSkill),
-
-    {{#each system.careerSkills as |skill idx|}}
-
-        <fieldset>
-            <legend data-tooltip="SWES.Career-Item.FIELDS.career-skills.hint">{{localize
-                    "SWES.Career-Item.FIELDS.career-skills.label"}}</legend>
-
-            {{formField @root.systemFields.careerSkills.element.fields.key
-                        name=(concat "system.careerSkills." idx ".key")
-                        value=skill.key localize=true
-                        label="SWES.Career-Item.FIELDS.skills.element.FIELDS.key.label"
-                        rootId=partId}}
-
-        </fieldset>
-
-    {{/each}}
-
-    --}}
-
+    <h3>{{localize "SWES.Item.Tabs.AttributesCareerSkills"}}</h3>
 
     <fieldset>
         <legend data-tooltip="SWES.Career-Item.skills.hint">{{localize

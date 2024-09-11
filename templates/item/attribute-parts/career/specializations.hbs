@@ -4,13 +4,14 @@
         data-group='primary'
         data-tab='attributesCareerSpecializations'
 >
-    <h3>Career Specializations</h3>
 
-    {{log "Career Specializations" this}}
+    <h3>{{localize "SWES.Item.Tabs.AttributesCareerSpecializations"}}</h3>
 
     <fieldset>
-        <legend data-tooltip="SWES.Career-Item.career-specializations.hint">{{localize
-                "SWES.Career-Item.career-specializations.label"}}</legend>
+        <legend data-tooltip="SWES.Career-Item.specializations.hint">{{localize
+                "SWES.Career-Item.specializations.label"}}</legend>
+
         {{formField @root.systemFields.careerSpecializations value=system.careerSpecializations localize=true rootId=partId}}
+
     </fieldset>
 </section>
