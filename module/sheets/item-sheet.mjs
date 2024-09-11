@@ -202,8 +202,7 @@ export class SwesItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
                                         // Relative UUID resolution
                                         relativeTo: this.item,
                                     }
-                                )*/
-                ;
+                                );*/
                 console.log("Context:", context);
                 break;
             case 'effects':

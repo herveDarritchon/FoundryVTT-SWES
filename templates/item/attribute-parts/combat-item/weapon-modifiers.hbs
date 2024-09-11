@@ -5,75 +5,72 @@
         data-tab='attributesWeaponModifiers'
 >
     {{!-- As you add new fields, add them in here! --}}
-    <h3>Weapon Modifiers</h3>
-
-    {{log "system.weaponModifiers data" system.weaponModifiers}}
-    {{log "system.weaponModifiers fields" systemFields.weaponModifiers.element.fields}}
+    <h3>{{localize "SWES.Item.Tabs.AttributesWeaponModifiers"}}</h3>
 
     {{#each system.weaponModifiers as |weaponModifier wmIdx|}}
 
         <fieldset>
-            <legend data-tooltip="SWES.Combat-Item.FIELDS.weaponModifiers.hint">{{localize
-                    "SWES.Combat-Item.FIELDS.weaponModifiers.label"}}</legend>
+            <legend data-tooltip="SWES.Combat-Item.weapon-modifiers.hint">{{localize
+                    "SWES.Combat-Item.weapon-modifiers.label"}}</legend>
 
             {{formField @root.systemFields.weaponModifiers.element.fields.unarmed
                         name=(concat "system.weaponModifiers." wmIdx ".unarmed")
                         value=weaponModifier.unarmed localize=true
-                        label="SWES.Combat-Item.FIELDS.weaponModifiers.element.FIELDS.unarmed.label"
+                        rootId=partId}}
+
+            {{formField @root.systemFields.weaponModifiers.element.fields.unarmedName
+                        name=(concat "system.weaponModifiers." wmIdx ".unarmedName")
+                        value=weaponModifier.unarmedName localize=true
+                        placeholder=(localize "SWES.Combat-Item.FIELDS.weapon-modifiers.unarmed-name.placeholder")
                         rootId=partId}}
 
             {{formField @root.systemFields.weaponModifiers.element.fields.skillKey
                         name=(concat "system.weaponModifiers." wmIdx ".skillKey")
                         value=weaponModifier.skillKey localize=true
-                        label="SWES.Combat-Item.FIELDS.weaponModifiers.element.FIELDS.skillKey.label"
+                        placeholder=(localize "SWES.Combat-Item.FIELDS.weapon-modifiers.skill-key.placeholder")
                         rootId=partId}}
 
             {{formField @root.systemFields.weaponModifiers.element.fields.damage
                         name=(concat "system.weaponModifiers." wmIdx ".damage")
                         value=weaponModifier.damage localize=true
-                        label="SWES.Combat-Item.FIELDS.weaponModifiers.element.FIELDS.damage.label"
                         rootId=partId}}
 
             {{formField @root.systemFields.weaponModifiers.element.fields.crit
                         name=(concat "system.weaponModifiers." wmIdx ".crit")
                         value=weaponModifier.crit localize=true
-                        label="SWES.Combat-Item.FIELDS.weaponModifiers.element.FIELDS.crit.label"
                         rootId=partId}}
 
             {{formField @root.systemFields.weaponModifiers.element.fields.critSub
                         name=(concat "system.weaponModifiers." wmIdx ".critSub")
                         value=weaponModifier.critSub localize=true
-                        label="SWES.Combat-Item.FIELDS.weaponModifiers.element.FIELDS.critSub.label"
                         rootId=partId}}
 
             {{formField @root.systemFields.weaponModifiers.element.fields.rangeValue
                         name=(concat "system.weaponModifiers." wmIdx ".rangeValue")
                         value=weaponModifier.rangeValue localize=true
-                        label="SWES.Combat-Item.FIELDS.weaponModifiers.element.FIELDS.rangeValue.label"
                         rootId=partId}}
 
             {{formField @root.systemFields.weaponModifiers.element.fields.range
                         name=(concat "system.weaponModifiers." wmIdx ".range")
                         value=weaponModifier.range localize=true
-                        label="SWES.Combat-Item.FIELDS.weaponModifiers.element.FIELDS.range.label"
+                        placeholder=(localize "SWES.Combat-Item.FIELDS.weapon-modifiers.range.placeholder")
                         rootId=partId}}
 
             {{#each weaponModifier.qualities as |quality qIdx|}}
 
                 <fieldset>
-                    <legend data-tooltip="SWES.Combat-Item.FIELDS.weaponModifiers.element.FIELDS.qualities.hint">{{localize
-                            "SWES.Combat-Item.FIELDS.weaponModifiers.element.FIELDS.qualities.label"}}</legend>
+                    <legend data-tooltip="SWES.Combat-Item.weapon-modifiers.qualities.hint">{{localize
+                            "SWES.Combat-Item.weapon-modifiers.qualities.label"}}</legend>
 
                     {{formField @root.systemFields.weaponModifiers.element.fields.qualities.element.fields.key
                                 name=(concat "system.weaponModifiers." wmIdx ".qualities." qIdx ".key")
                                 value=quality.key localize=true
-                                label="SWES.Combat-Item.FIELDS.weaponModifiers.element.FIELDS.qualities.element.FIELDS.key.label"
+                                placeholder=(localize "SWES.Combat-Item.FIELDS.weapon-modifiers.qualities.key.placeholder")
                                 rootId=partId}}
 
                     {{formField @root.systemFields.weaponModifiers.element.fields.qualities.element.fields.count
                                 name=(concat "system.weaponModifiers." wmIdx ".qualities." qIdx ".count")
                                 value=quality.count localize=true
-                                label="SWES.Combat-Item.FIELDS.weaponModifiers.element.FIELDS.qualities.element.FIELDS.count.label"
                                 rootId=partId}}
 
                 </fieldset>
@@ -83,19 +80,18 @@
             {{#each weaponModifier.baseMods as |mod modIdx|}}
 
                 <fieldset>
-                    <legend data-tooltip="SWES.Combat-Item.FIELDS.weaponModifiers.element.FIELDS.mods.hint">{{localize
-                            "SWES.Combat-Item.FIELDS.weaponModifiers.element.FIELDS.mods.label"}}</legend>
+                    <legend data-tooltip="SWES.Combat-Item.weapon-modifiers.mods.hint">{{localize
+                            "SWES.Combat-Item.weapon-modifiers.mods.label"}}</legend>
 
-                    {{formField @root.systemFields.weaponModifiers.element.fields.mods.element.fields.miscDesc
-                                name=(concat "system.weaponModifiers." wmIdx ".mods." modIdx ".miscDesc")
+                    {{formField @root.systemFields.weaponModifiers.element.fields.baseMods.element.fields.miscDesc
+                                name=(concat "system.weaponModifiers." wmIdx ".baseMods." modIdx ".miscDesc")
                                 value=mod.miscDesc localize=true
-                                label="SWES.Combat-Item.FIELDS.weaponModifiers.element.FIELDS.mods.element.FIELDS.miscDesc.label"
+                                placeholder=(localize "SWES.Combat-Item.FIELDS.weapon-modifiers.base-mods.misc-desc.placeholder")
                                 rootId=partId}}
 
-                    {{formField @root.systemFields.weaponModifiers.element.fields.mods.element.fields.count
-                                name=(concat "system.weaponModifiers." wmIdx ".mods." modIdx ".count")
+                    {{formField @root.systemFields.weaponModifiers.element.fields.baseMods.element.fields.count
+                                name=(concat "system.weaponModifiers." wmIdx ".baseMods." modIdx ".count")
                                 value=mod.count localize=true
-                                label="SWES.Combat-Item.FIELDS.weaponModifiers.element.FIELDS.mods.element.FIELDS.count.label"
                                 rootId=partId}}
 
                 </fieldset>

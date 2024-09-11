@@ -5,7 +5,8 @@
         data-tab='attributesStats'
 >
     {{! As you add new fields, add them in here! }}
-    <h3>Attributes</h3>
+    <h3>{{localize "SWES.Item.Tabs.AttributesStats"}}</h3>
+
     <div>
 
         {{#if (eq item.type "armor")}}
@@ -20,16 +21,16 @@
             {{> "systems/swes/templates/item/attribute-parts/combat-item/gear/gear.hbs"}}
         {{/if}}
 
-        {{formField systemFields.encumbrance value=system.encumbrance}}
+        {{formField systemFields.encumbrance value=system.encumbrance localize=true}}
 
         {{formField systemFields.hp value=system.hp classes="slim" rootId=partId}}
 
         {{formField systemFields.rarity value=system.rarity classes="slim" rootId=partId}}
 
         <fieldset>
-            <legend data-tooltip="SWES.Combat-Item.FIELDS.categories.hint">{{localize
-                    "SWES.Combat-Item.FIELDS.categories.label"}}</legend>
-                {{formField @root.systemFields.categories value=system.categories localize=true rootId=partId}}
+            <legend data-tooltip="SWES.Combat-Item.categories.hint">{{localize
+                    "SWES.Combat-Item.categories.label"}}</legend>
+            {{formField @root.systemFields.categories value=system.categories localize=true rootId=partId}}
         </fieldset>
 
     </div>

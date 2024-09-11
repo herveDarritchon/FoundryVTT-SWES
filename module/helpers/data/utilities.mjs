@@ -84,7 +84,8 @@ export function buildOptionalStringField({initial = "", itemType, key}) {
     return new fields.StringField({
         ...(objectValues),
         label: `${prefix}.label`,
-        hint: `${prefix}.hint`
+        hint: `${prefix}.hint`,
+        placeholder: `${prefix}.placeholder`
     });
 }
 
@@ -108,7 +109,8 @@ export function buildMandatoryStringField({itemType, key}) {
     return new fields.StringField({
         ...(dataFieldConfiguration),
         label: `${prefix}.label`,
-        hint: `${prefix}.hint`
+        hint: `${prefix}.hint`,
+        placeholder: `${prefix}.placeholder`
     });
 }
 

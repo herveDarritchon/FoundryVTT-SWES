@@ -5,13 +5,12 @@
         data-tab='description'
 >
 
-    <h3>Description</h3>
-    {{! Editors must receive enriched text data from getData to properly handle rolls, UUID links, etc. }}
+    <h3>{{localize "SWES.Item.Tabs.Description"}}</h3>
 
     <section class="item-description">
         <fieldset>
-            <legend data-tooltip="SWES.Combat-Item.FIELDS.description.hint">{{localize
-                    "SWES.Combat-Item.FIELDS.description.label"}}</legend>
+            <legend data-tooltip="SWES.Base-Item.description.hint">{{localize
+                    "SWES.Base-Item.description.label"}}</legend>
             {{formInput
                     systemFields.description
                     enriched=enrichedDescription
@@ -26,26 +25,17 @@
     </section>
 
     <fieldset>
-        <legend data-tooltip="SWES.Combat-Item.FIELDS.sources.hint">{{localize
-                "SWES.Combat-Item.FIELDS.sources.label"}}</legend>
+        <legend data-tooltip="SWES.Base-Item.FIELDS.sources.hint">{{localize
+                "SWES.Base-Item.FIELDS.sources.label"}}</legend>
         {{#each system.sources as |source idx|}}
             {{formField @root.systemFields.sources.element.fields.description
                         name=(concat "system.sources." idx ".description")
-                        value=source.description localize=true
-                        label="SWES.Combat-Item.FIELDS.sources.element.FIELDS.description.label"
-                        rootId=partId}}
+                        value=source.description localize=true rootId=partId}}
             {{formField @root.systemFields.sources.element.fields.page
                         name=(concat "system.sources." idx ".page")
-                        value=source.page localize=true
-                        label="SWES.Combat-Item.FIELDS.sources.element.FIELDS.page.label"
-                        rootId=partId}}
+                        value=source.page localize=true rootId=partId}}
         {{/each}}
 
     </fieldset>
-
-    {{!--
-    {{formField @root.systemFields.sources value=system.sources localize=true
-                rootId=partId}}
-    --}}
 
 </section>

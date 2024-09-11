@@ -8,30 +8,27 @@
     <h3>Era Pricing</h3>
 
     <fieldset>
-        <legend data-tooltip="SWES.Combat-Item.FIELDS.era-pricing.hint">{{localize
-                "SWES.Combat-Item.FIELDS.era-pricing.label"}}</legend>
+        <legend data-tooltip="SWES.Combat-Item.era-pricing.hint">{{localize
+                "SWES.Combat-Item.era-pricing.label"}}</legend>
 
         {{#each system.eraPricing as |eraPrice idx|}}
 
             {{formField @root.systemFields.eraPricing.element.fields.name
                         name=(concat "system.eraPricing." idx ".name")
                         value=eraPrice.name localize=true
-                        label="SWES.Combat-Item.FIELDS.era-pricing.element.FIELDS.name.label"
+                        placeholder=(localize "SWES.Combat-Item.FIELDS.era-pricing.name.placeholder")
                         rootId=partId}}
             {{formField @root.systemFields.eraPricing.element.fields.price
                         name=(concat "system.eraPricing." idx ".price")
                         value=eraPrice.price localize=true
-                        label="SWES.Combat-Item.FIELDS.era-pricing.element.FIELDS.price.label"
                         rootId=partId}}
             {{formField @root.systemFields.eraPricing.element.fields.rarity
                         name=(concat "system.eraPricing." idx ".rarity")
                         value=eraPrice.rarity localize=true
-                        label="SWES.Combat-Item.FIELDS.era-pricing.element.FIELDS.rarity.label"
                         rootId=partId}}
             {{formField @root.systemFields.eraPricing.element.fields.restricted
                         name=(concat "system.eraPricing." idx ".restricted")
                         value=eraPrice.restricted localize=true
-                        label="SWES.Combat-Item.FIELDS.era-pricing.element.FIELDS.restricted.label"
                         rootId=partId}}
         {{/each}}
 

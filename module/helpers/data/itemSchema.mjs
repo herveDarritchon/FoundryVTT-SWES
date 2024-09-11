@@ -1,4 +1,12 @@
 import SwesItemBaseData from "../../data/item-base.mjs";
+import {
+    buildOptionalBooleanField,
+    buildOptionalIntegerField,
+    buildOptionalSchemaField,
+    buildOptionalSetField,
+    buildOptionalStringField
+} from "./utilities.mjs";
+import SwesCombatItemData from "../../data/combat-item.mjs";
 
 export function buildAttributesSchema(fields) {
     return new fields.SchemaField({
@@ -59,7 +67,8 @@ export function buildStandardRequirementSchema(fields, extraFields = {}) {
             label: "SWES.Career-Item.FIELDS.attributes.requirement.wearing-armor.label",
             hint: "SWES.Career-Item.FIELDS.attributes.requirement.wearing-armor.hint",
         }),
-        nonCareer: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false,
+        nonCareer: new fields.BooleanField({
+            ...(SwesItemBaseData.optionalBoolean), initial: false,
             label: "SWES.Career-Item.FIELDS.attributes.requirement.non-career.label",
             hint: "SWES.Career-Item.FIELDS.attributes.requirement.non-career.hint",
         }),
@@ -95,11 +104,13 @@ export function buildBaseRequirementSchema(fields, extraFields = {}) {
 export function buildRequirementSchemaWithExtraFields(fields) {
     return buildStandardRequirementSchema(fields, {
             wieldingMelee:
-                new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false,
+                new fields.BooleanField({
+                    ...(SwesItemBaseData.optionalBoolean), initial: false,
                     label: "SWES.Career-Item.FIELDS.attributes.requirement.wielding-melee.label",
                     hint: "SWES.Career-Item.FIELDS.attributes.requirement.wielding-melee.hint",
                 }),
-            wieldingBrawl: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: false,
+            wieldingBrawl: new fields.BooleanField({
+                ...(SwesItemBaseData.optionalBoolean), initial: false,
                 label: "SWES.Career-Item.FIELDS.attributes.requirement.wielding-brawl.label",
                 hint: "SWES.Career-Item.FIELDS.attributes.requirement.wielding-brawl.hint",
             }),
@@ -142,64 +153,97 @@ export function buildTalentModifiersSchema(fields, extraFields = {}) {
 }
 
 export function buildQualitiesSchema(fields) {
-    return new fields.SetField(new fields.SchemaField({
-        key: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-        count: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 100})
-    }, {required: false}), {required: true, initial: []})
+    return buildOptionalSetField({
+        field: buildOptionalSchemaField({
+            key: buildOptionalStringField({
+                itemType: SwesCombatItemData.ITEM_TYPE,
+                key: "weapon-modifiers.qualities.key"
+            }),
+            count: buildOptionalIntegerField({
+                itemType: SwesCombatItemData.ITEM_TYPE,
+                key: "weapon-modifiers.qualities.count",
+                min: 0,
+                max: 100
+            })
+        })
+    });
 }
 
 export function buildWeaponModifiersSchema(fields, extraFields = {}) {
-    return new fields.SetField(new fields.SchemaField({
-        ...(extraFields),
-        unarmed: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean)}),
-        unarmedName: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-        skillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-        allSkillKey: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-        damage: new fields.NumberField({
-            ...(SwesItemBaseData.optionalInteger),
-            initial: 0,
-            min: 0,
-            max: 10
-        }),
-        damageAdd: new fields.NumberField({
-            ...(SwesItemBaseData.optionalInteger),
-            initial: 0,
-            min: 0,
-            max: 10
-        }),
-        crit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0, max: 10}),
-        critSub: new fields.NumberField({
-            ...(SwesItemBaseData.optionalInteger),
-            initial: 0,
-            min: 0,
-            max: 10
-        }),
-        rangeValue: new fields.NumberField({
-            ...(SwesItemBaseData.optionalInteger),
-            initial: 0,
-            min: 0,
-            max: 10
-        }),
-        qualities: buildQualitiesSchema(fields),
-    }, {required: false}), {
-        required: false,
-        initial: [],
-        label: "ITEM.WeaponModifiers.label",
-        hint: "ITEM.WeaponModifiers.hint"
-    })
+    return buildOptionalSetField({
+        field: buildOptionalSchemaField({
+            ...(extraFields),
+            unarmed: buildOptionalBooleanField({
+                itemType: SwesCombatItemData.ITEM_TYPE,
+                key: "weapon-modifiers.unarmed"
+            }),
+            unarmedName: buildOptionalStringField({
+                itemType: SwesCombatItemData.ITEM_TYPE,
+                key: "weapon-modifiers.unarmed-name"
+            }),
+            skillKey: buildOptionalStringField({
+                itemType: SwesCombatItemData.ITEM_TYPE,
+                key: "weapon-modifiers.skill-key"
+            }),
+            allSkillKey: buildOptionalStringField({
+                itemType: SwesCombatItemData.ITEM_TYPE,
+                key: "weapon-modifiers.all-skill-key"
+            }),
+            damage: buildOptionalIntegerField({
+                itemType: SwesCombatItemData.ITEM_TYPE,
+                key: "weapon-modifiers.damage",
+                initial: 0,
+                max: 10
+            }),
+            damageAdd: buildOptionalIntegerField({
+                itemType: SwesCombatItemData.ITEM_TYPE,
+                key: "weapon-modifiers.damage-add",
+                initial: 0,
+                max: 10
+            }),
+            crit: buildOptionalIntegerField({
+                itemType: SwesCombatItemData.ITEM_TYPE,
+                key: "weapon-modifiers.crit",
+                initial: 0,
+                max: 10
+            }),
+            critSub: buildOptionalIntegerField({
+                itemType: SwesCombatItemData.ITEM_TYPE,
+                key: "weapon-modifiers.crit-sub",
+                initial: 0,
+                max: 10
+            }),
+            rangeValue: buildOptionalIntegerField({
+                itemType: SwesCombatItemData.ITEM_TYPE,
+                key: "weapon-modifiers.range-value",
+                initial: 0,
+                max: 10
+            }),
+            qualities: buildQualitiesSchema(fields),
+        })
+    });
+
 }
 
 export function buildWeaponModifiersSchemaWithExtraSchema(fields) {
     return buildWeaponModifiersSchema(fields, {
-        range: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-        baseMods: new fields.SetField(new fields.SchemaField({
-            miscDesc: new fields.StringField({...(SwesItemBaseData.optionalString)}),
-            count: new fields.NumberField({...(SwesItemBaseData.optionalInteger), min: 0, max: 100})
-        }, {required: false}), {
-            required: false,
-            initial: [],
-            label: "ITEM.WeaponModifiers.label",
-            hint: "ITEM.WeaponModifiers.hint"
+        range: buildOptionalStringField({
+            itemType: SwesCombatItemData.ITEM_TYPE,
+            key: "weapon-modifiers.range",
+        }),
+        baseMods: buildOptionalSetField({
+            field: buildOptionalSchemaField({
+                miscDesc: buildOptionalStringField({
+                    itemType: SwesCombatItemData.ITEM_TYPE,
+                    key: "weapon-modifiers.base-mods.misc-desc"
+                }),
+                count: buildOptionalIntegerField({
+                    itemType: SwesCombatItemData.ITEM_TYPE,
+                    key: "weapon-modifiers.base-mods.count",
+                    initial: 0,
+                    max: 10
+                }),
+            })
         })
     });
 }

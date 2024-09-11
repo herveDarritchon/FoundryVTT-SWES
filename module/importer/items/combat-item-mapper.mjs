@@ -21,6 +21,9 @@ export function buildWeaponModifiers(xmlWeaponModifier) {
                 count: OggDudeImporter.mapOptionalNumber(quality?.Count)
             }
         }),
+        baseMods: OggDudeImporter.mapOptionalArray(xmlWeaponModifier?.BaseMods?.Mod, (mod) => {
+            return buildMod(mod);
+        })
     };
 }
 
