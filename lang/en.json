@@ -151,18 +151,18 @@
             "hint": "Name of the Era Price",
             "placeholder": "Enter the name"
           },
-            "price": {
-                "label": "Price",
-                "hint": "Price of the Era Price"
-            },
-            "rarity": {
-                "label": "Rarity",
-                "hint": "Rarity of the Era Price"
-            },
-            "restricted": {
-                "label": "Restricted",
-                "hint": "Is the Era Price restricted"
-            }
+          "price": {
+            "label": "Price",
+            "hint": "Price of the Era Price"
+          },
+          "rarity": {
+            "label": "Rarity",
+            "hint": "Rarity of the Era Price"
+          },
+          "restricted": {
+            "label": "Restricted",
+            "hint": "Is the Era Price restricted"
+          }
         },
         "hp": {
           "label": "Hard Points",
@@ -317,239 +317,12 @@
         }
       }
     },
-    "Combat-Item-Old": {
+    "Gear-Item": {
       "FIELDS": {
-        "categories": {
-          "label": "Categories",
-          "hint": "List of categories"
-        },
-        "defense": {
-          "label": "Defense"
-        },
-        "description": {
-          "label": "Description",
-          "hint": "Description of the item",
-          "placeholder": "Enter the description"
-        },
-        "details": {
-          "label": "Details",
-          "hint": "Details of the item",
-          "placeholder": "Enter the details"
-        },
-        "encumbrance": {
-          "label": "Encumbrance",
-          "hint": "Encumbrance of the Item"
-        },
-        "era-pricing": {
-          "element": {
-            "FIELDS": {
-              "name": {
-                "label": "Name",
-                "hint": "Name of the Era Price"
-              },
-              "price": {
-                "label": "Price",
-                "hint": "Price of the Era Price"
-              },
-              "rarity": {
-                "label": "Rarity",
-                "hint": "Rarity of the Era Price"
-              },
-              "restricted": {
-                "label": "Restricted",
-                "hint": "Is the Era Price restricted"
-              }
-            }
-          },
-          "label": "Sources",
-          "hint": "Sources about the item"
-        },
-        "hp": {
-          "label": "Hard Points",
-          "hint": "Hard Points of the item"
-        },
-        "key": {
-          "label": "Key",
-          "hint": "Key of the item",
-          "placeholder": "Enter the key"
-        },
-        "mods": {
-          "element": {
-            "FIELDS": {
-              "count": {
-                "label": "Count",
-                "hint": "Count of the armor"
-              },
-              "dieModifiers": {
-                "element": {
-                  "FIELDS": {
-                    "advatageCount": {
-                      "label": "Advantage Count",
-                      "hint": "Advantage Count of the die modifier"
-                    },
-                    "boosCount": {
-                      "label": "Boost Count",
-                      "hint": "Boost Count of the die modifier"
-                    },
-                    "setbackCount": {
-                      "label": "Setback Count",
-                      "hint": "Setback Count of the die modifier"
-                    },
-                    "skillChar": {
-                      "label": "Skill Characteristic",
-                      "hint": "Skill Characteristic of the die modifier"
-                    },
-                    "skillKey": {
-                      "label": "Skill Key",
-                      "hint": "Skill Key of the die modifier"
-                    },
-                    "skillType": {
-                      "label": "Skill Type",
-                      "hint": "Skill Type of the die modifier"
-                    },
-                    "successCount": {
-                      "label": "Success Count",
-                      "hint": "Success Count of the die modifier"
-                    },
-                    "threatCount": {
-                      "label": "Threat Count",
-                      "hint": "Threat Count of the die modifier"
-                    },
-                    "upgradeAbilityCount": {
-                      "label": "Upgrade Ability Count",
-                      "hint": "Upgrade Ability Count of the die modifier"
-                    }
-                  }
-                },
-                "label": "Die Modifiers",
-                "hint": "Die Modifiers of the armor"
-              },
-              "defZone": {
-                "label": "Defense Zone",
-                "hint": "Defense Zone of the armor"
-              },
-              "index": {
-                "label": "Index",
-                "hint": "Index of the armor"
-              },
-              "key": {
-                "label": "Key",
-                "hint": "Key of the modification"
-              },
-              "miscDesc": {
-                "label": "Miscellaneous Description",
-                "hint": "Miscellaneous Description of the modification"
-              }
-            }
-          },
-          "label": "Modification",
-          "hint": "Modification of the armor"
-        },
-        "price": {
-          "label": "Price",
-          "hint": "Price of the item",
-          "placeholder": "Enter the price"
-        },
-        "rarity": {
-          "label": "Rarity",
-          "hint": "Rarity of the item"
-        },
-        "restricted": {
-          "label": "Restricted",
-          "hint": "Is the item restricted"
-        },
         "short": {
-          "label": "Short",
-          "hint": "Short description of the item",
-          "placeholder": "Enter the short description"
-        },
-        "soak": {
-          "label": "Soak"
-        },
-        "sources": {
-          "element": {
-            "FIELDS": {
-              "description": {
-                "label": "Resource",
-                "hint": "Name of the resource"
-              },
-              "page": {
-                "label": "Page",
-                "hint": "Page about the source"
-              }
-            }
-          },
-          "label": "Sources",
-          "hint": "Sources about the item"
-        },
-        "type": {
-          "label": "Type",
-          "hint": "Type of the item",
-          "placeholder": "Enter the type"
-        },
-        "weaponModifiers": {
-          "element": {
-            "FIELDS": {
-              "qualities": {
-                "element": {
-                  "FIELDS": {
-                    "count": {
-                      "label": "Count",
-                      "hint": "Count of the modifier"
-                    },
-                    "key": {
-                      "label": "Key",
-                      "hint": "Key of the quality"
-                    }
-                  }
-                },
-                "label": "Quality",
-                "hint": "Quality of the weapon"
-              },
-              "mods": {
-                "element": {
-                  "FIELDS": {
-                    "miscDesc": {
-                      "label": "Miscellaneous Description",
-                      "hint": "Miscellaneous Description of the modifier"
-                    }
-                  }
-                },
-                "label": "Modifiers",
-                "hint": "Modifiers of the weapon"
-              },
-              "crit": {
-                "label": "Critical",
-                "hint": "Critical of the weapon"
-              },
-              "critSub": {
-                "label": "Critical Sub",
-                "hint": "Critical Sub of the weapon"
-              },
-              "damage": {
-                "label": "Damage",
-                "hint": "Damage of the weapon"
-              },
-              "range": {
-                "label": "Range",
-                "hint": "Range of the weapon"
-              },
-              "rangeValue": {
-                "label": "Range Value",
-                "hint": "Range Value of the weapon"
-              },
-              "skillKey": {
-                "label": "Skill Key",
-                "hint": "Skill Key of the weapon"
-              },
-              "unarmed": {
-                "label": "Unarmed",
-                "hint": "Is the weapon unarmed"
-              }
-            }
-          },
-          "label": "Modification",
-          "hint": "Modification of the armor"
+          "label": "Short Description",
+          "hint": "Short description of the gear",
+            "placeholder": "Enter the short description"
         }
       }
     },
