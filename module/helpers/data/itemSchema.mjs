@@ -102,33 +102,36 @@ export function buildBaseRequirementSchema(fields, extraFields = {}) {
 }
 
 export function buildRequirementSchemaWithExtraFields(fields) {
-    return buildStandardRequirementSchema(fields, {
-            wieldingMelee:
-                new fields.BooleanField({
-                    ...(SwesItemBaseData.optionalBoolean), initial: false,
-                    label: "SWES.Career-Item.FIELDS.attributes.requirement.wielding-melee.label",
-                    hint: "SWES.Career-Item.FIELDS.attributes.requirement.wielding-melee.hint",
-                }),
-            wieldingBrawl: new fields.BooleanField({
-                ...(SwesItemBaseData.optionalBoolean), initial: false,
-                label: "SWES.Career-Item.FIELDS.attributes.requirement.wielding-brawl.label",
-                hint: "SWES.Career-Item.FIELDS.attributes.requirement.wielding-brawl.hint",
+    return buildStandardRequirementSchema(fields,
+        {
+            wieldingMelee: buildOptionalBooleanField({
+                itemType: SwesCombatItemData.ITEM_TYPE,
+                key: "wielding-melee"
             }),
-            wieldingLightsaber: new fields.BooleanField({
-                ...(SwesItemBaseData.optionalBoolean),
-                initial: false,
-                label: "SWES.Career-Item.FIELDS.attributes.requirement.wielding-lightsaber.label",
-                hint: "SWES.Career-Item.FIELDS.attributes.requirement.wielding-lightsaber.hint",
+            wieldingBrawl: buildOptionalBooleanField({
+                itemType: SwesCombatItemData.ITEM_TYPE,
+                key: "wielding-brawl"
+            }),
+            wieldingLightsaber: buildOptionalBooleanField({
+                itemType: SwesCombatItemData.ITEM_TYPE,
+                key: "wielding-lightsaber"
             })
-        }
-    );
+        });
 }
+
 
 export function buildSkillModifiersSchema(fields) {
     return buildTalentModifiersSchema(fields, {
-        isCareer: new fields.BooleanField({...(SwesItemBaseData.optionalBoolean), initial: ""}),
-        skillType: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-    });
+            isCareer: buildOptionalBooleanField({
+                itemType: SwesCombatItemData.ITEM_TYPE,
+                key: "is-career"
+            }),
+            skillType: buildOptionalStringField({
+                itemType: SwesCombatItemData.ITEM_TYPE,
+                key: "skill-type"
+            })
+        }
+    );
 }
 
 export function buildTalentModifiersSchema(fields, extraFields = {}) {

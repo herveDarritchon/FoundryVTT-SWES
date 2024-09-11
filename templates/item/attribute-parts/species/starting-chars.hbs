@@ -4,52 +4,20 @@
         data-group='primary'
         data-tab='attributesStartingChars'
 >
-    <h3>Starting Characteristics</h3>
 
-    {{!--
-     startingChars: new fields.SchemaField({
-                    brawn: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    agility: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    intellect: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    cunning: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    willpower: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    presence: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    requirement: new fields.SchemaField({
-                        wearingArmor: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        career: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        specialization: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        nonCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        soakAtLeast: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                        wieldingMelee: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        wieldingBrawl: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        wieldingLightsaber: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                    }, {
-                        required: false,
-                        label: "ITEM.StartingChars.Requirement.label",
-                        hint: "ITEM.StartingChars.Requirement.hint"
-                    })
-
-                }, {
-                    required: true, label: "ITEM.StartingChars.label", hint: "ITEM.StartingChars.hint"
-                }),
-    --}}
+    <h3>{{localize "SWES.Item.Tabs.AttributesStartingChars"}}</h3>
 
     <fieldset>
         <legend data-tooltip="SWES.Species-Item.starting-chars.hint">{{localize
                 "SWES.Species-Item.starting-chars.label"}}</legend>
 
-        {{formField systemFields.startingChars.fields.brawn value=system.startingChars.brawn
-                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.brawn.label")}}
-        {{formField systemFields.startingChars.fields.agility value=system.startingChars.agility
-                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.agility.label")}}
-        {{formField systemFields.startingChars.fields.intellect value=system.startingChars.intellect
-                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.intellect.label")}}
-        {{formField systemFields.startingChars.fields.cunning value=system.startingChars.cunning
-                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.cunning.label")}}
-        {{formField systemFields.startingChars.fields.willpower value=system.startingChars.willpower
-                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.willpower.label")}}
-        {{formField systemFields.startingChars.fields.presence value=system.startingChars.presence
-                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.presence.label")}}
+        {{formField systemFields.startingChars.fields.brawn value=system.startingChars.brawn localize=true}}
+        {{formField systemFields.startingChars.fields.agility value=system.startingChars.agility localize=true}}
+        {{formField systemFields.startingChars.fields.intellect value=system.startingChars.intellect localize=true}}
+        {{formField systemFields.startingChars.fields.cunning value=system.startingChars.cunning localize=true}}
+        {{formField systemFields.startingChars.fields.willpower value=system.startingChars.willpower localize=true}}
+        {{formField systemFields.startingChars.fields.presence value=system.startingChars.presence localize=true}}
+
     </fieldset>
 
     <fieldset>
@@ -57,29 +25,22 @@
                 "SWES.Species-Item.starting-chars.requirement.label"}}</legend>
 
         {{formField systemFields.startingChars.fields.requirement.fields.wearingArmor
-                    value=system.startingChars.requirement.wearingArmor
-                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.requirement.wearing-armor.label")}}
+                    value=system.startingChars.requirement.wearingArmor localize=true}}
         {{formField systemFields.startingChars.fields.requirement.fields.career
-                    value=system.startingChars.requirement.career
-                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.requirement.career.label")}}
+                    value=system.startingChars.requirement.career localize=true}}
         {{formField systemFields.startingChars.fields.requirement.fields.specialization
-                    value=system.startingChars.requirement.specialization
-                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.requirement.specialization.label")}}
+                    value=system.startingChars.requirement.specialization localize=true}}
         {{formField systemFields.startingChars.fields.requirement.fields.nonCareer
-                    value=system.startingChars.requirement.nonCareer
-                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.requirement.non-career.label")}}
+                    value=system.startingChars.requirement.nonCareer localize=true}}
         {{formField systemFields.startingChars.fields.requirement.fields.soakAtLeast
-                    value=system.startingChars.requirement.soakAtLeast
-                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.requirement.soak-at-least.label")}}
+                    value=system.startingChars.requirement.soakAtLeast localize=true}}
         {{formField systemFields.startingChars.fields.requirement.fields.wieldingMelee
-                    value=system.startingChars.requirement.wieldingMelee
-                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.requirement.wielding-melee.label")}}
+                    value=system.startingChars.requirement.wieldingMelee localize=true}}
         {{formField systemFields.startingChars.fields.requirement.fields.wieldingBrawl
-                    value=system.startingChars.requirement.wieldingBrawl
-                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.requirement.wielding-brawl.label")}}
+                    value=system.startingChars.requirement.wieldingBrawl localize=true}}
         {{formField systemFields.startingChars.fields.requirement.fields.wieldingLightsaber
-                    value=system.startingChars.requirement.wieldingLightsaber
-                    label=(localize "SWES.Species-Item.FIELDS.starting-chars.requirement.wielding-light-saber.label")}}
+                    value=system.startingChars.requirement.wieldingLightsaber localize=true}}
+
     </fieldset>
 
 </section>

@@ -4,40 +4,12 @@
         data-group='primary'
         data-tab='attributesStartingAttributes'
 >
-    <h3>Starting Attributes</h3>
+
+    <h3>{{localize "SWES.Item.Tabs.AttributesStartingAttributes"}}</h3>
 
     <fieldset>
         <legend data-tooltip="SWES.Species-Item.starting-attrs.hint">{{localize
                 "SWES.Species-Item.starting-attrs.label"}}</legend>
-
-        {{!--
-              startingAttrs: new fields.SchemaField({
-                    woundThreshold: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    strainThreshold: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    defenseRanged: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    defenseMelee: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    soakValue: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    experience: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                    forceRating: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    encumbranceBonus: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                    requirement: new fields.SchemaField({
-                        wearingArmor: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        career: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        specialization: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        nonCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        soakAtLeast: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                        wieldingMelee: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        wieldingBrawl: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        wieldingLightsaber: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                    }, {
-                        required: false,
-                        label: "ITEM.StartingAttrs.Requirement.label",
-                        hint: "ITEM.StartingAttrs.Requirement.hint"
-                    })
-                }, {
-                    required: true, label: "ITEM.StartingAttrs.label", hint: "ITEM.StartingAttrs.hint"
-                }),
-        --}}
 
         {{formField systemFields.startingAttrs.fields.woundThreshold value=system.startingAttrs.woundThreshold
                     label=(localize "SWES.Species-Item.FIELDS.starting-attrs.wound-threshold.label")}}

@@ -1,11 +1,13 @@
 import SwesItemBaseData from "./item-base.mjs";
 import {
-    buildAttributesSchema, buildBaseRequirementSchema, buildStandardRequirementSchema,
+    buildAttributesSchema,
+    buildBaseRequirementSchema,
     buildRequirementSchemaWithExtraFields,
     buildSkillModifiersSchema,
     buildTalentModifiersSchema,
     buildWeaponModifiersSchema
 } from "../helpers/data/itemSchema.mjs";
+import {buildMandatoryIntegerField, buildOptionalSchemaField} from "../helpers/data/utilities.mjs";
 
 export default class SwesSpecies extends SwesItemBaseData {
 
@@ -23,16 +25,44 @@ export default class SwesSpecies extends SwesItemBaseData {
         return foundry.utils.mergeObject(super.defineSchema(), {
 
                 /* Starting Characteristics Tab */
-                startingChars: new fields.SchemaField({
-                    brawn: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 10}),
-                    agility: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 10}),
-                    intellect: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 10}),
-                    cunning: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 10}),
-                    willpower: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 10}),
-                    presence: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0, max: 10}),
+                startingChars: buildOptionalSchemaField({
+                    brawn: buildMandatoryIntegerField({
+                        itemType: SwesSpecies.ITEM_TYPE,
+                        key: "starting-chars.brawn",
+                        initial: 0,
+                        max: 10
+                    }),
+                    agility: buildMandatoryIntegerField({
+                        itemType: SwesSpecies.ITEM_TYPE,
+                        key: "starting-chars.agility",
+                        initial: 0,
+                        max: 10
+                    }),
+                    intellect: buildMandatoryIntegerField({
+                        itemType: SwesSpecies.ITEM_TYPE,
+                        key: "starting-chars.intellect",
+                        initial: 0,
+                        max: 10
+                    }),
+                    cunning: buildMandatoryIntegerField({
+                        itemType: SwesSpecies.ITEM_TYPE,
+                        key: "starting-chars.cunning",
+                        initial: 0,
+                        max: 10
+                    }),
+                    willpower: buildMandatoryIntegerField({
+                        itemType: SwesSpecies.ITEM_TYPE,
+                        key: "starting-chars.willpower",
+                        initial: 0,
+                        max: 10
+                    }),
+                    presence: buildMandatoryIntegerField({
+                        itemType: SwesSpecies.ITEM_TYPE,
+                        key: "starting-chars.presence",
+                        initial: 0,
+                        max: 10
+                    }),
                     requirement: buildRequirementSchemaWithExtraFields(fields)
-                }, {
-                    required: true, label: "ITEM.StartingChars.label", hint: "ITEM.StartingChars.hint"
                 }),
 
                 /* Starting Attributes Tab */
@@ -192,7 +222,7 @@ export default class SwesSpecies extends SwesItemBaseData {
                                     min: 0,
                                     max: 10
                                 }),
-                                requirement:  buildBaseRequirementSchema(fields),
+                                requirement: buildBaseRequirementSchema(fields),
                             }, {required: false}), {
                                 required: false,
                                 initial: [],

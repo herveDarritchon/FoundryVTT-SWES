@@ -410,6 +410,150 @@
         }
       }
     },
+    "Species-Item": {
+      "option-choices": {
+        "label": "Option Choices",
+        "hint": "Option Choices of the species",
+        "options": {
+          "label": "Options",
+          "hint": "Options of the Option Choices of the species",
+          "skill-modifiers": {
+            "label": "Skill Modifiers",
+            "hint": "Skill Modifiers of the Options of the Option Choices of the species",
+            "requirement": {
+              "label": "Requirement",
+              "hint": "Requirement of the starting skill training"
+            }
+          }
+        }
+      },
+      "skill-modifiers": {
+        "label": "Skill Modifiers",
+        "hint": "Skill Modifiers of the species",
+        "requirement": {
+          "label": "Requirement",
+          "hint": "Requirement of the species"
+        }
+      },
+      "starting-attrs": {
+        "label": "Starting Attributes",
+        "hint": "Starting Attributes of the species",
+        "requirement": {
+          "label": "Requirement",
+          "hint": "Requirement of the species"
+        }
+      },
+      "starting-chars": {
+        "label": "Starting Characteristics",
+        "hint": "Starting Characteristics of the species",
+        "requirement": {
+          "label": "Requirement",
+          "hint": "Requirement of the species"
+        }
+      },
+      "sub-species": {
+        "label": "Sub Species",
+        "hint": "Sub Species of the species",
+        "option-choices": {
+          "label": "Option Choices",
+          "hint": "Option Choices of the sub species",
+          "options": {
+            "label": "Options",
+            "hint": "Options of the Option Choices of the sub species",
+            "skill-modifiers": {
+              "label": "Skill Modifiers",
+              "hint": "Skill Modifiers of the Options of the Option Choices of the sub species"
+            }
+          }
+        },
+        "skill-modifiers": {
+          "label": "Skill Modifiers",
+          "hint": "Skill Modifiers of the sub species"
+        },
+        "talent-modifiers": {
+          "label": "Talent Modifiers",
+          "hint": "Talent Modifiers of the sub species"
+        },
+        "weapon-modifiers": {
+          "label": "Weapon Modifiers",
+          "hint": "Weapon Modifiers of the sub species",
+          "qualities": {
+            "label": "Qualities",
+            "hint": "Qualities of the Weapon Modifiers of the sub species"
+          }
+        }
+      },
+      "talent-modifiers": {
+        "label": "Talent Modifiers",
+        "hint": "Talent Modifiers of the species",
+        "requirement": {
+          "label": "Requirement",
+          "hint": "Requirement of the species"
+        }
+      },
+      "FIELDS": {
+        "starting-chars": {
+          "agility": {
+            "label": "Agility",
+            "hint": "Agility of the species"
+          },
+          "brawn": {
+            "label": "Brawn",
+            "hint": "Brawn of the species"
+          },
+          "cunning": {
+            "label": "Cunning",
+            "hint": "Cunning of the species"
+          },
+          "intellect": {
+            "label": "Intellect",
+            "hint": "Intellect of the species"
+          },
+          "presence": {
+            "label": "Presence",
+            "hint": "Presence of the species"
+          },
+          "willpower": {
+            "label": "Willpower",
+            "hint": "Willpower of the species"
+          },
+          "requirement": {
+            "career": {
+              "label": "Career",
+              "hint": "Career of the species"
+            },
+            "non-career": {
+              "label": "Non Career",
+              "hint": "Non Career of the species"
+            },
+            "specialization": {
+              "label": "Specialization",
+              "hint": "Specialization of the species"
+            },
+            "soak-at-least": {
+              "label": "Soak At Least",
+              "hint": "Soak At Least of the species"
+            },
+            "wearing-armor": {
+              "label": "Wearing Armor",
+              "hint": "Wearing Armor of the species"
+            },
+            "wielding-brawl": {
+              "label": "Wielding Brawl",
+              "hint": "Wielding Brawl of the species"
+            },
+            "wielding-light-saber": {
+              "label": "Wielding Light Saber",
+              "hint": "Wielding Light Saber of the species"
+            },
+            "wielding-melee": {
+              "label": "Wielding Melee",
+              "hint": "Wielding Melee of the species"
+            }
+          }
+        }
+      }
+    },
     "Species-Item-Old": {
       "option-choices": {
         "hint": "Option Choices of the species",

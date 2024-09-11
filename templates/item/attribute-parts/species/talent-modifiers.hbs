@@ -4,43 +4,13 @@
         data-group='primary'
         data-tab='attributesTalentModifiers'
 >
-    <h3>Talent Modifiers</h3>
+
+    <h3>{{localize "SWES.Item.Tabs.AttributesTalentModifiers"}}</h3>
 
     {{#each system.talentModifiers as |modifier talentIdx|}}
         <fieldset>
             <legend data-tooltip="SWES.Species-Item.talent-modifiers.hint">{{localize
                     "SWES.Species-Item.talent-modifiers.label"}}</legend>
-
-            {{!--
-                   talentModifiers: new fields.SetField(new fields.SchemaField({
-                            key: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                            subSpeciesKey: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                            rankStart: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                            rankAdd: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                            rankLimit: new fields.NumberField({...(SwesItemBaseData.optionalInteger), initial: 0, min: 0}),
-                            isCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                            skillType: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                            requirement: new fields.SchemaField({
-                                wearingArmor: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                                career: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                                specialization: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                                nonCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                                soakAtLeast: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                            }, {
-                                required: false,
-                                label: "ITEM.SkillModifiers.Requirement.label",
-                                hint: "ITEM.SkillModifiers.Requirement.hint"
-                            })
-                        }, {
-                            required: false, initial: [], label: "ITEM.SkillModifiers.label", hint: "ITEM.SkillModifiers.hint"
-                        }),
-                        {
-                            required: false,
-                            initial: [],
-                            label: "SWES.Combat-Item.FIELDS.Categories.label",
-                            hint: "SWES.Combat-Item.FIELDS.Categories.hint"
-                        }),
-            --}}
 
             {{formField @root.systemFields.talentModifiers.element.fields.key
                         name=(concat "system.talentModifiers." talentIdx ".key")

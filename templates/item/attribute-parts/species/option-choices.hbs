@@ -4,133 +4,13 @@
         data-group='primary'
         data-tab='attributesOptionChoices'
 >
-    <h3>Option Choices</h3>
+
+    <h3>{{localize "SWES.Item.Tabs.AttributesOptionChoices"}}</h3>
 
     {{#each system.optionChoices as |optionChoice optionChoiceIdx|}}
         <fieldset>
             <legend data-tooltip="SWES.Species-Item.option-choices.hint">{{localize
                     "SWES.Species-Item.option-choices.label"}}</legend>
-
-            {{!--
-                   optionChoices: new fields.SetField(new fields.SchemaField({
-                        key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                        name: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        description: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        source: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        sources: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        custom: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                        options: new fields.SetField(new fields.SchemaField({
-                            key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                            name: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                            description: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                            skillModifiers: new fields.SetField(new fields.SchemaField({
-                                key: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                                rankAdd: new fields.NumberField({
-                                    ...(SwesItemBaseData.requiredInteger),
-                                    initial: 0,
-                                    min: 0
-                                }),
-                                rankStart: new fields.NumberField({
-                                    ...(SwesItemBaseData.requiredInteger),
-                                    initial: 0,
-                                    min: 0
-                                }),
-                                rankLimit: new fields.NumberField({
-                                    ...(SwesItemBaseData.requiredInteger),
-                                    initial: 0,
-                                    min: 0
-                                }),
-                                isCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                            }, {required: false}), {
-                                required: false,
-                                initial: [],
-                                label: "ITEM.OptionChoices.Options.SkillModifiers.label",
-                                hint: "ITEM.OptionChoices.Options.SkillModifiers.hint"
-                            }),
-                            dieModifiers: new fields.SetField(new fields.SchemaField({
-                                dieModifier: new fields.SchemaField({
-                                    skillKey: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                                    advantageCount: new fields.NumberField({
-                                        ...(SwesItemBaseData.optionalInteger),
-                                        initial: 0,
-                                        min: 0
-                                    }),
-                                    setbackCount: new fields.NumberField({
-                                        ...(SwesItemBaseData.optionalInteger), initial: 0, min: 0
-                                    }),
-                                    successCount: new fields.NumberField({
-                                        ...(SwesItemBaseData.optionalInteger), initial: 0, min: 0
-                                    }),
-                                }, {required: false}),
-                            }, {required: false}), {
-                                required: false,
-                                initial: [],
-                                label: "ITEM.OptionChoices.Options.DieModifiers.label",
-                                hint: "ITEM.OptionChoices.Options.DieModifiers.hint"
-                            }),
-                            startingSkillTraining: new fields.SetField(new fields.SchemaField({
-                                skillTraining: new fields.SchemaField({
-                                    skillCount: new fields.NumberField({
-                                        ...(SwesItemBaseData.requiredInteger),
-                                        initial: 0,
-                                        min: 0
-                                    }),
-                                    requirement: new fields.SchemaField({
-                                        career: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                                        specialization: new fields.StringField({
-                                            ...(SwesItemBaseData.optionalString),
-                                            initial: ""
-                                        }),
-                                        fromSkillType: new fields.StringField({
-                                            ...(SwesItemBaseData.optionalString),
-                                            initial: ""
-                                        }),
-                                        skillType: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                                        nonCareer: new fields.StringField({...(SwesItemBaseData.optionalString), initial: ""}),
-                                    }, {required: false}),
-                                }, {required: false}),
-                            }, {required: false}), {
-                                required: false,
-                                initial: [],
-                                label: "ITEM.OptionChoices.Options.StartingSkillTraining.label",
-                                hint: "ITEM.OptionChoices.Options.StartingSkillTraining.hint"
-                            }),
-                            startingAttributes: new fields.SetField(new fields.SchemaField({
-                                experience: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                            }, {required: false}), {
-                                required: false,
-                                initial: [],
-                                label: "ITEM.OptionChoices.Options.StartingAttributes.label",
-                                hint: "ITEM.OptionChoices.Options.StartingAttributes.hint"
-                            }),
-                            talentModifiers: new fields.SetField(new fields.SchemaField({
-                                key: new fields.StringField({...(SwesItemBaseData.requiredString), initial: ""}),
-                                rankStart: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                                rankAdd: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                                rankLimit: new fields.NumberField({...(SwesItemBaseData.requiredInteger), initial: 0, min: 0}),
-                            }, {required: false}), {
-                                required: false,
-                                initial: [],
-                                label: "ITEM.OptionChoices.Options.TalentModifiers.label",
-                                hint: "ITEM.OptionChoices.Options.TalentModifiers.hint"
-                            }),
-                        }, {required: false}), {
-                            required: false,
-                            initial: [],
-                            label: "ITEM.OptionChoices.Options.label",
-                            hint: "ITEM.OptionChoices.Options.hint"
-                        }),
-                    }, {
-                        required: false
-                    }),
-                    {
-                        required: false,
-                        initial: [],
-                        label: "ITEM.OptionChoices.label",
-                        hint: "ITEM.OptionChoices.hint"
-                    })
-
-            --}}
 
             {{formField @root.systemFields.optionChoices.element.fields.key
                         name=(concat "system.optionChoices." optionChoiceIdx ".key")
@@ -195,8 +75,8 @@
                     {{#each option.skillModifiers as |skillModifier skillModifierIdx|}}
 
                         <fieldset>
-                            <legend data-tooltip="SWES.Species-Item.option-choices.options.skillModifiers.hint">{{localize
-                                    "SWES.Species-Item.option-choices.options.skillModifiers.label"}}</legend>
+                            <legend data-tooltip="SWES.Species-Item.option-choices.options.skill-modifiers.hint">{{localize
+                                    "SWES.Species-Item.option-choices.options.skill-modifiers.label"}}</legend>
 
                             {{formField
                                     @root.systemFields.optionChoices.element.fields.options.element.fields.skillModifiers.element.fields.key
