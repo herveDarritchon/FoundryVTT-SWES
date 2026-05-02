@@ -23,8 +23,9 @@
   ],
   "version": "0.1.0",
   "compatibility": {
-    "minimum": 11,
-    "verified": "11.315"
+    "minimum": 14,
+    "verified": "14.309",
+    "maximum": 14
   },
   "esmodules": [
     "./module/swes.mjs"
@@ -49,8 +50,6 @@
   "manifest": "Replace this with a link to the /latest release system.json so people can receive updates after they've installed the system",
   "download": "This must link to a .zip file of the current version",
   "background": "systems/swes/ui/background-sw.webp",
-  "grid.distance": 5,
-  "grid.units": "ft",
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power"
 }
